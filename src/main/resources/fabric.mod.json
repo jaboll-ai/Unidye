@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "unidye",
+	"version": "${version}",
+	"name": "Unidye",
+	"description": "Unidye adds a way to make any dye your mind can think of!",
+	"authors": [
+		"Diemond_Player"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/unidye/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.diemond_player.unidye.Unidye"
+		],
+		"fabric-datagen": [
+			"net.diemond_player.unidye.UnidyeDataGenerator"
+		],
+		"client": [
+			"net.diemond_player.unidye.UnidyeClient"
+		]
+	},
+	"mixins": [
+		"unidye.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.20",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
