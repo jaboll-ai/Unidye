@@ -1,13 +1,10 @@
 package net.diemond_player.unidye.item;
 
+import net.diemond_player.unidye.block.ModBlocks;
 import net.diemond_player.unidye.Unidye;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.minecraft.enchantment.EnchantmentLevelEntry;
-import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.potion.PotionUtil;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
@@ -20,6 +17,11 @@ public class ModItemGroups {
                     .icon(() -> new ItemStack(ModItems.CUSTOM_DYE)).entries((displayContext, entries) -> {
 
                         entries.add(ModItems.CUSTOM_DYE);
+
+                        entries.add(ModBlocks.CUSTOM_WOOL);
+                        entries.add(ModBlocks.CUSTOM_CONCRETE);
+                        entries.add(ModBlocks.CUSTOM_TERRACOTTA);
+                        entries.add(ModBlocks.CUSTOM_STAINED_GLASS);
 
                     }).build());
     public static void registerItemGroups(){

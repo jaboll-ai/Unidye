@@ -1,5 +1,10 @@
 {
   "itemgroup.unidye": "Unidye",
 
-  "item.unidye.custom_dye": "Custom Dye"
+  "item.unidye.custom_dye": "Custom Dye",
+
+  "block.unidye.custom_wool": "Custom Wool",
+  "block.unidye.custom_concrete": "Custom Concrete",
+  "block.unidye.custom_terracotta": "Custom Terracotta",
+  "block.unidye.custom_stained_glass": "Custom Stained Glass"
 }
