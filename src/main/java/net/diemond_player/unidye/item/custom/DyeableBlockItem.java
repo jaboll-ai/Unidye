@@ -4,11 +4,11 @@ import net.diemond_player.unidye.block.entity.DyeableBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.DyeableItem;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.util.ActionResult;
 
-public class DyeableBlockItem extends BlockItem implements UnidyeableItem {
-    public int defaultColor = DyeableBlockEntity.DEFAULT_COLOR;
+public class DyeableBlockItem extends BlockItem implements DyeableItem {
     public DyeableBlockItem(Block block, Settings settings) {
         super(block, settings);
     }

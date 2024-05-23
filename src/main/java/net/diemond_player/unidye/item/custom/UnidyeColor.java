@@ -20,7 +20,7 @@ public enum UnidyeColor implements StringIdentifiable
     GRAY(7, "gray", 4673362, 0x3e4447, 0x392a23, 0x36393d, 0x4b4b4b),
     LIGHT_GRAY(8, "light_gray", 0x9D9D97, 0x8e8e86, 0x876a61, 0x7d7d73, 0x999999),
     CYAN(9, "cyan", 1481884, 0x158991, 0x565b5b, 0x157788, 0x4b7f99),
-    PURPLE(10, "purple", 8991416, 0x792aac, 0x764656, 0x641f9c, 0xb24bd7),
+    PURPLE(10, "purple", 8991416, 0x792aac, 0x764656, 0x641f9c, 0x7f3fb2),
     BLUE(11, "blue", 3949738, 0x35399d, 0x4a3b5b, 0x2c2e8f, 0x324bb2),
     BROWN(12, "brown", 8606770, 0x724728, 0x4d3323, 0x603b1f, 0x664b32),
     GREEN(13, "green", 6192150, 0x546d1b, 0x4c532a, 0x495b24, 0x667f32),

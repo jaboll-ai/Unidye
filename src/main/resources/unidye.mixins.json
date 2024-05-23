@@ -3,7 +3,7 @@
 	"package": "net.diemond_player.unidye.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"ExampleMixin"
+		"UniDyeingMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

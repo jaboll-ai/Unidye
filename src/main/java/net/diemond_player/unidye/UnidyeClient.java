@@ -17,7 +17,7 @@ public class UnidyeClient implements ClientModInitializer {
     public void onInitializeClient() {
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CUSTOM_STAINED_GLASS, RenderLayer.getTranslucent());
-        registerItemColorD(ModItems.CUSTOM_DYE);
+        registerItemColor(ModItems.CUSTOM_DYE);
         registerBlockColor(ModBlocks.CUSTOM_WOOL);
         registerBlockColor(ModBlocks.CUSTOM_CONCRETE);
         registerBlockColor(ModBlocks.CUSTOM_TERRACOTTA);
@@ -25,16 +25,12 @@ public class UnidyeClient implements ClientModInitializer {
 
     }
 
-    private void registerItemColorD(Item item) {
+    private void registerItemColor(Item item) {
         ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : ((DyeableItem) ((Object) stack.getItem())).getColor(stack), item);
     }
 
-    private void registerItemColorU(Item item) {
-        ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : ((UnidyeableItem) ((Object) stack.getItem())).getColor(stack), item);
-    }
-
     private void registerBlockColor(Block block) {
-        registerItemColorU(block.asItem());
+        registerItemColor(block.asItem());
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> DyeableBlockEntity.getColor(world,pos),block);
     }
 }
