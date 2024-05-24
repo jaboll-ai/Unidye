@@ -36,12 +36,17 @@ public class UniDyeingMixin {
 		for (int i = 0; i < recipeInputInventory.size(); ++i) {
 			ItemStack itemStack2 = recipeInputInventory.getStack(i);
 			if (itemStack2.isEmpty()) continue;
-			if (itemStack2.getItem() instanceof DyeableItem && itemStack2.getItem() != ModItems.CUSTOM_DYE) {
-				if (!itemStack.isEmpty()) {
+			if (itemStack2.getItem() instanceof DyeableItem) {
+				if (itemStack.isEmpty()){
+					itemStack = itemStack2;
+					continue;
+				}
+				if (itemStack.getItem() == ModItems.CUSTOM_DYE && itemStack2.getItem() != ModItems.CUSTOM_DYE) {
+					itemStack = itemStack2;
+					continue;
+				} else if(itemStack.getItem() != ModItems.CUSTOM_DYE && itemStack2.getItem() != ModItems.CUSTOM_DYE) {
 					return false;
 				}
-				itemStack = itemStack2;
-				continue;
 			}
 			if (itemStack2.getItem() instanceof DyeItem) {
 				list.add(itemStack2);
@@ -64,12 +69,17 @@ public class UniDyeingMixin {
 			ItemStack itemStack2 = recipeInputInventory.getStack(i);
 			if (itemStack2.isEmpty()) continue;
 			Item item = itemStack2.getItem();
-			if (item instanceof DyeableItem && item != ModItems.CUSTOM_DYE) {
-				if (!itemStack.isEmpty()) {
+			if (item instanceof DyeableItem) {
+				if (itemStack.isEmpty()){
+					itemStack = itemStack2;
+					continue;
+				}
+				if (itemStack.getItem() == ModItems.CUSTOM_DYE && itemStack2.getItem() != ModItems.CUSTOM_DYE) {
+					itemStack = itemStack2;
+					continue;
+				} else if(itemStack.getItem() != ModItems.CUSTOM_DYE && itemStack2.getItem() != ModItems.CUSTOM_DYE){
 					return ItemStack.EMPTY;
 				}
-				itemStack = itemStack2.copy();
-				continue;
 			}
 			if (item instanceof DyeItem) {
 				list.add((DyeItem)item);

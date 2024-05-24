@@ -12,9 +12,6 @@ import java.util.Map;
 import java.util.Objects;
 
 public interface UnidyeableItem {
-    public static final String COLOR_KEY = "color";
-    public static final String DISPLAY_KEY = "display";
-    public static final int DEFAULT_COLOR = 16777215;
     public static final Map<String, UnidyeColor> DYES = new HashMap<String, UnidyeColor>(){{
         put("white", UnidyeColor.WHITE);
         put("orange", UnidyeColor.ORANGE);
@@ -33,31 +30,6 @@ public interface UnidyeableItem {
         put("red", UnidyeColor.RED);
         put("black", UnidyeColor.BLACK);
     }};
-
-
-    default public boolean hasColor(ItemStack stack) {
-        NbtCompound nbtCompound = stack.getSubNbt(DISPLAY_KEY);
-        return nbtCompound != null && nbtCompound.contains(COLOR_KEY, NbtElement.NUMBER_TYPE);
-    }
-
-    default public int getColor(ItemStack stack) {
-        NbtCompound nbtCompound = stack.getSubNbt(DISPLAY_KEY);
-        if (nbtCompound != null && nbtCompound.contains(COLOR_KEY, NbtElement.NUMBER_TYPE)) {
-            return nbtCompound.getInt(COLOR_KEY);
-        }
-        return DEFAULT_COLOR;
-    }
-
-    default public void removeColor(ItemStack stack) {
-        NbtCompound nbtCompound = stack.getSubNbt(DISPLAY_KEY);
-        if (nbtCompound != null && nbtCompound.contains(COLOR_KEY)) {
-            nbtCompound.remove(COLOR_KEY);
-        }
-    }
-
-    default public void setColor(ItemStack stack, int color) {
-        stack.getOrCreateSubNbt(DISPLAY_KEY).putInt(COLOR_KEY, color);
-    }
 
     static ItemStack blendAndSetColor(ItemStack stack, List<DyeItem> colors, List<ItemStack> customColors) {
         if (stack.getItem() instanceof CustomDyeItem){
@@ -85,31 +57,27 @@ public interface UnidyeableItem {
                 is[2] = is[2] + (int)(h * 255.0f);
                 ++j;
             }
-            if(!colors.isEmpty()) {
-                for (DyeItem dyeItem : colors) {
-                    float[] fs = getColorArray(getMaterialType(dyeableItem), getDyeType(dyeItem));
-                    int l = (int)(fs[0] * 255.0f);
-                    int m = (int)(fs[1] * 255.0f);
-                    n = (int)(fs[2] * 255.0f);
-                    i += Math.max(l, Math.max(m, n));
-                    is[0] = is[0] + l;
-                    is[1] = is[1] + m;
-                    is[2] = is[2] + n;
-                    ++j;
-                }
+            for (DyeItem dyeItem : colors) {
+                float[] fs = getColorArray(getMaterialType(dyeableItem), getDyeType(dyeItem));
+                int l = (int)(fs[0] * 255.0f);
+                int m = (int)(fs[1] * 255.0f);
+                n = (int)(fs[2] * 255.0f);
+                i += Math.max(l, Math.max(m, n));
+                is[0] = is[0] + l;
+                is[1] = is[1] + m;
+                is[2] = is[2] + n;
+                ++j;
             }
-            if(!customColors.isEmpty()) {
-                for (ItemStack customDyeItem : customColors){
-                    float[] fs = getCustomColorArray(getMaterialType(dyeableItem), customDyeItem);
-                    int l = (int)(fs[0] * 255.0f);
-                    int m = (int)(fs[1] * 255.0f);
-                    n = (int)(fs[2] * 255.0f);
-                    i += Math.max(l, Math.max(m, n));
-                    is[0] = is[0] + l;
-                    is[1] = is[1] + m;
-                    is[2] = is[2] + n;
-                    ++j;
-                }
+            for (ItemStack customDyeItem : customColors){
+                float[] fs = getCustomColorArray(getMaterialType(dyeableItem), customDyeItem);
+                int l = (int)(fs[0] * 255.0f);
+                int m = (int)(fs[1] * 255.0f);
+                n = (int)(fs[2] * 255.0f);
+                i += Math.max(l, Math.max(m, n));
+                is[0] = is[0] + l;
+                is[1] = is[1] + m;
+                is[2] = is[2] + n;
+                ++j;
             }
         }
         if (dyeableItem == null) {
@@ -183,7 +151,6 @@ public interface UnidyeableItem {
         n = k;
         n = (n << 8) + o;
         n = (n << 8) + p;
-        customDyeItem.setColor(itemStack, n);
         customDyeItem.setMaterialColor(itemStack, n, "leather");
         is = new int[3];
         i = 0;
@@ -377,6 +344,55 @@ public interface UnidyeableItem {
         n = (n << 8) + o;
         n = (n << 8) + p;
         customDyeItem.setMaterialColor(itemStack, n, "terracotta");
+        is = new int[3];
+        i = 0;
+        j = 0;
+        if (customDyeItem.hasColor(stack)) {
+            k = customDyeItem.getMaterialColor(itemStack, "wool");
+            float f = (float)(k >> 16 & 0xFF) / 255.0f;
+            float g = (float)(k >> 8 & 0xFF) / 255.0f;
+            h = (float)(k & 0xFF) / 255.0f;
+            i += (int)(Math.max(f, Math.max(g, h)) * 255.0f);
+            is[0] = is[0] + (int)(f * 255.0f);
+            is[1] = is[1] + (int)(g * 255.0f);
+            is[2] = is[2] + (int)(h * 255.0f);
+            ++j;
+        }
+        for (DyeItem dyeItem : colors) {
+            float[] fs = getColorArray("dye", getDyeType(dyeItem));
+            int l = (int)(fs[0] * 255.0f);
+            int m = (int)(fs[1] * 255.0f);
+            n = (int)(fs[2] * 255.0f);
+            i += Math.max(l, Math.max(m, n));
+            is[0] = is[0] + l;
+            is[1] = is[1] + m;
+            is[2] = is[2] + n;
+            ++j;
+        }
+        for (ItemStack customDye : customColors){
+            float[] fs = getCustomColorArray("dye", customDye);
+            int l = (int)(fs[0] * 255.0f);
+            int m = (int)(fs[1] * 255.0f);
+            n = (int)(fs[2] * 255.0f);
+            i += Math.max(l, Math.max(m, n));
+            is[0] = is[0] + l;
+            is[1] = is[1] + m;
+            is[2] = is[2] + n;
+            ++j;
+        }
+        k = is[0] / j;
+        o = is[1] / j;
+        p = is[2] / j;
+        h = (float)i / (float)j;
+        q = Math.max(k, Math.max(o, p));
+        k = (int)((float)k * h / q);
+        o = (int)((float)o * h / q);
+        p = (int)((float)p * h / q);
+        n = k;
+        n = (n << 8) + o;
+        n = (n << 8) + p;
+        customDyeItem.setMaterialColor(itemStack, n, "dye");
+        itemStack.setCount(j);
         return itemStack;
     }
 
@@ -425,19 +441,11 @@ public interface UnidyeableItem {
             return "terracotta";
         } else if(dyeableItem == ModBlocks.CUSTOM_STAINED_GLASS.asItem()){
             return "glass";
-        } else{ return "leather";}
-    }
-
-    static String getMaterialType(UnidyeableItem unidyeableItem) {
-        if (unidyeableItem == ModBlocks.CUSTOM_CONCRETE.asItem()) {
-            return "concrete";
-        } else if(unidyeableItem == ModBlocks.CUSTOM_WOOL.asItem()){
-            return "wool";
-        } else if(unidyeableItem == ModBlocks.CUSTOM_TERRACOTTA.asItem()){
-            return "terracotta";
-        } else if(unidyeableItem == ModBlocks.CUSTOM_STAINED_GLASS.asItem()){
-            return "glass";
-        } else{ return "leather";}
+        } else if(dyeableItem == ModItems.CUSTOM_DYE){
+            return "dye";
+        } else {
+            return "leather";
+        }
     }
 
     static float[] getColorArray(String materialType, String dyeType){

@@ -69,6 +69,12 @@ public class CustomDyeItem extends Item implements DyeableItem {
                     return nbtCompound.getInt(LEATHER_COLOR_KEY);
                 }
                 break;
+            case "dye":
+                nbtCompound = stack.getSubNbt(DISPLAY_KEY);
+                if (nbtCompound != null && nbtCompound.contains(COLOR_KEY, NbtElement.NUMBER_TYPE)) {
+                    return nbtCompound.getInt(COLOR_KEY);
+                }
+                break;
         }
         return DEFAULT_COLOR;
     }
@@ -80,6 +86,7 @@ public class CustomDyeItem extends Item implements DyeableItem {
             case "concrete": itemStack.getOrCreateSubNbt(CONCRETE_KEY).putInt(CONCRETE_COLOR_KEY, n); break;
             case "terracotta": itemStack.getOrCreateSubNbt(TERRACOTTA_KEY).putInt(TERRACOTTA_COLOR_KEY, n); break;
             case "leather": itemStack.getOrCreateSubNbt(LEATHER_KEY).putInt(LEATHER_COLOR_KEY, n); break;
+            case "dye": itemStack.getOrCreateSubNbt(DISPLAY_KEY).putInt(COLOR_KEY, n); break;
         }
     }
 }
