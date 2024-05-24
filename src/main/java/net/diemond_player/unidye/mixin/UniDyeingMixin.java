@@ -42,6 +42,7 @@ public class UniDyeingMixin {
 					continue;
 				}
 				if (itemStack.getItem() == ModItems.CUSTOM_DYE && itemStack2.getItem() != ModItems.CUSTOM_DYE) {
+					customColors.add(itemStack);
 					itemStack = itemStack2;
 					continue;
 				} else if(itemStack.getItem() != ModItems.CUSTOM_DYE && itemStack2.getItem() != ModItems.CUSTOM_DYE) {
@@ -75,6 +76,7 @@ public class UniDyeingMixin {
 					continue;
 				}
 				if (itemStack.getItem() == ModItems.CUSTOM_DYE && itemStack2.getItem() != ModItems.CUSTOM_DYE) {
+					customColors.add(itemStack);
 					itemStack = itemStack2;
 					continue;
 				} else if(itemStack.getItem() != ModItems.CUSTOM_DYE && itemStack2.getItem() != ModItems.CUSTOM_DYE){
