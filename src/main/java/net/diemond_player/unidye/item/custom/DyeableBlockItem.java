@@ -16,6 +16,8 @@ public class DyeableBlockItem extends BlockItem implements DyeableItem {
         super(block, settings);
     }
 
+    public static final int DEFAULT_COLOR = 16777215;
+
     @Override
     public ActionResult place(ItemPlacementContext context) {
         ActionResult result = super.place(context);

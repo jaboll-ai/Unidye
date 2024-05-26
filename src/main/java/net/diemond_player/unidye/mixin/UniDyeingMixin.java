@@ -8,10 +8,7 @@ import net.diemond_player.unidye.item.custom.CustomDyeItem;
 import net.diemond_player.unidye.item.custom.UnidyeableItem;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.RecipeInputInventory;
-import net.minecraft.item.DyeItem;
-import net.minecraft.item.DyeableItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.recipe.ArmorDyeRecipe;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.text.Text;
@@ -33,6 +30,23 @@ public class UniDyeingMixin {
 		ItemStack itemStack = ItemStack.EMPTY;
 		ArrayList<ItemStack> list = Lists.newArrayList();
 		ArrayList<ItemStack> customColors = Lists.newArrayList();
+		ArrayList<Item> items = Lists.newArrayList();
+		items.add(Items.GLASS);
+		items.add(Items.TERRACOTTA);
+		items.add(Items.WHITE_WOOL);
+		boolean test = true;
+		if(items.contains(recipeInputInventory.getStack(0).getItem())){
+			for (int i = 1; i < recipeInputInventory.size(); ++i){
+				if(!(recipeInputInventory.getStack(0).getItem() == recipeInputInventory.getStack(i).getItem()
+						|| (recipeInputInventory.getStack(i).getItem() == ModItems.CUSTOM_DYE && i==4))){
+					test = false;
+					break;
+				}
+			}
+			if(test){
+				return true;
+			}
+		}
 		for (int i = 0; i < recipeInputInventory.size(); ++i) {
 			ItemStack itemStack2 = recipeInputInventory.getStack(i);
 			if (itemStack2.isEmpty()) continue;
@@ -66,6 +80,28 @@ public class UniDyeingMixin {
 		ArrayList<DyeItem> list = Lists.newArrayList();
 		ArrayList<ItemStack> customColors = Lists.newArrayList();
 		ItemStack itemStack = ItemStack.EMPTY;
+		ArrayList<Item> items = Lists.newArrayList();
+		items.add(Items.GLASS);
+		items.add(Items.TERRACOTTA);
+		items.add(Items.WHITE_WOOL);
+		boolean test = true;
+		if(items.contains(recipeInputInventory.getStack(0).getItem())){
+			for (int i = 1; i < recipeInputInventory.size(); ++i){
+				if(recipeInputInventory.getStack(0).getItem() == recipeInputInventory.getStack(i).getItem()){
+					itemStack = recipeInputInventory.getStack(0);
+				} else if (recipeInputInventory.getStack(i).getItem() == ModItems.CUSTOM_DYE && i==4){
+					customColors.add(recipeInputInventory.getStack(4));
+				} else {
+					test = false;
+					itemStack = ItemStack.EMPTY;
+					customColors = Lists.newArrayList();
+					break;
+				}
+			}
+			if(test){
+				return UnidyeableItem.dyeVanillaItems(itemStack, customColors);
+			}
+		}
 		for (int i = 0; i < recipeInputInventory.size(); ++i) {
 			ItemStack itemStack2 = recipeInputInventory.getStack(i);
 			if (itemStack2.isEmpty()) continue;

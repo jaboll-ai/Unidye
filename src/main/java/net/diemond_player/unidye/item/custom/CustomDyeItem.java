@@ -1,12 +1,22 @@
 package net.diemond_player.unidye.item.custom;
 
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.DyeableItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.DyeColor;
+import net.minecraft.util.Formatting;
+import net.minecraft.world.World;
+import org.apache.commons.codec.binary.Base16;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class CustomDyeItem extends Item implements DyeableItem {
     public static final String WOOL_KEY = "wool";
@@ -36,7 +46,7 @@ public class CustomDyeItem extends Item implements DyeableItem {
         return DEFAULT_COLOR;
     }
 
-    public int getMaterialColor(ItemStack stack, String materialType) {
+    public Integer getMaterialColor(ItemStack stack, String materialType) {
         NbtCompound nbtCompound;
         switch(materialType){
             case "wool":
@@ -79,6 +89,11 @@ public class CustomDyeItem extends Item implements DyeableItem {
         return DEFAULT_COLOR;
     }
 
+    public String getMaterialHexColor(ItemStack stack, String materialType) {
+        Integer color = getMaterialColor(stack, materialType);
+        return "§7#" + Integer.toString(color, 16).toUpperCase();
+    }
+
     public void setMaterialColor(ItemStack itemStack, int n, String materialType) {
         switch (materialType){
             case "wool": itemStack.getOrCreateSubNbt(WOOL_KEY).putInt(WOOL_COLOR_KEY, n); break;
@@ -87,6 +102,18 @@ public class CustomDyeItem extends Item implements DyeableItem {
             case "terracotta": itemStack.getOrCreateSubNbt(TERRACOTTA_KEY).putInt(TERRACOTTA_COLOR_KEY, n); break;
             case "leather": itemStack.getOrCreateSubNbt(LEATHER_KEY).putInt(LEATHER_COLOR_KEY, n); break;
             case "dye": itemStack.getOrCreateSubNbt(DISPLAY_KEY).putInt(COLOR_KEY, n); break;
+        }
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        if(Screen.hasShiftDown()){
+            tooltip.add(Text.translatable("tooltip.unidye.wool_color").append(getMaterialHexColor(stack, "wool")));
+            tooltip.add(Text.translatable("tooltip.unidye.glass_color").append(getMaterialHexColor(stack, "glass")));
+            tooltip.add(Text.translatable("tooltip.unidye.concrete_color").append(getMaterialHexColor(stack, "concrete")));
+            tooltip.add(Text.translatable("tooltip.unidye.terracotta_color").append(getMaterialHexColor(stack, "terracotta")));
+        } else {
+            tooltip.add(Text.translatable("tooltip.unidye.press_shift"));
         }
     }
 }

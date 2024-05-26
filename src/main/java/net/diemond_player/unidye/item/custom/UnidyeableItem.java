@@ -6,10 +6,7 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public interface UnidyeableItem {
     public static final Map<String, UnidyeColor> DYES = new HashMap<String, UnidyeColor>(){{
@@ -448,6 +445,18 @@ public interface UnidyeableItem {
         }
     }
 
+    static String getMaterialType(Item item) {
+        if (item == Items.TERRACOTTA) {
+            return "terracotta";
+        } else if(item == Items.WHITE_WOOL){
+            return "wool";
+        } else if(item == Items.GLASS){
+            return "glass";
+        } else {
+            return "unknown";
+        }
+    }
+
     static float[] getColorArray(String materialType, String dyeType){
         return DYES.get(dyeType).getColorComponents(materialType);
     }
@@ -461,4 +470,22 @@ public interface UnidyeableItem {
         return new float[]{(float)j / 255.0f, (float)k / 255.0f, (float)l / 255.0f};
     }
 
+    static ItemStack dyeVanillaItems(ItemStack itemStack, ArrayList<ItemStack> customColors) {
+        Item item = itemStack.getItem();
+        ItemStack customDyeStack = customColors.get(0);
+        CustomDyeItem customDyeItem = (CustomDyeItem)customDyeStack.getItem();
+        int color = customDyeItem.getMaterialColor(customDyeStack, getMaterialType(item));
+        DyeableItem dyeableItem = null;
+        if (item == Items.GLASS){
+            dyeableItem = (DyeableItem) ModBlocks.CUSTOM_STAINED_GLASS.asItem();
+        } else if (item == Items.WHITE_WOOL){
+            dyeableItem = (DyeableItem) ModBlocks.CUSTOM_WOOL.asItem();
+        } else if (item == Items.TERRACOTTA){
+            dyeableItem = (DyeableItem) ModBlocks.CUSTOM_TERRACOTTA.asItem();
+        }
+        ItemStack dyeableItemStack = ((Item) dyeableItem).getDefaultStack();
+        dyeableItem.setColor(dyeableItemStack, color);
+        dyeableItemStack.setCount(8);
+        return dyeableItemStack;
+    }
 }
