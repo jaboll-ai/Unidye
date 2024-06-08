@@ -1,6 +1,7 @@
 package net.diemond_player.unidye.block;
 
 import net.diemond_player.unidye.block.custom.DyeableBlock;
+import net.diemond_player.unidye.block.custom.DyeableConcretePowderBlock;
 import net.diemond_player.unidye.block.custom.DyeableGlassBlock;
 import net.diemond_player.unidye.Unidye;
 import net.diemond_player.unidye.item.custom.DyeableBlockItem;
@@ -23,6 +24,8 @@ public class ModBlocks {
             new DyeableBlock(FabricBlockSettings.copyOf(Blocks.TERRACOTTA)));
     public static final Block CUSTOM_STAINED_GLASS = registerDyeableBlock("custom_stained_glass",
             new DyeableGlassBlock(FabricBlockSettings.copyOf(Blocks.GLASS)));
+    public static final Block CUSTOM_CONCRETE_POWDER = registerDyeableBlock("custom_concrete_powder",
+            new DyeableConcretePowderBlock(CUSTOM_CONCRETE, FabricBlockSettings.copyOf(Blocks.WHITE_CONCRETE_POWDER)));
 
 
     private static Block registerBlock(String name, Block block){

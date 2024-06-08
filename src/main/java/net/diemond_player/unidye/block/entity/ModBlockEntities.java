@@ -15,7 +15,8 @@ public class ModBlockEntities {
                         ModBlocks.CUSTOM_WOOL,
                         ModBlocks.CUSTOM_TERRACOTTA,
                         ModBlocks.CUSTOM_CONCRETE,
-                        ModBlocks.CUSTOM_STAINED_GLASS
+                        ModBlocks.CUSTOM_STAINED_GLASS,
+                        ModBlocks.CUSTOM_CONCRETE_POWDER
                         ).build(null));
 
         public static void registerBlockEntities(){

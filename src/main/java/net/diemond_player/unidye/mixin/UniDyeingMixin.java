@@ -25,6 +25,10 @@ import java.util.ArrayList;
 
 @Mixin(ArmorDyeRecipe.class)
 public class UniDyeingMixin {
+	/**
+	 * @author
+	 * @reason
+	 */
 	@Overwrite
 	public boolean matches(RecipeInputInventory recipeInputInventory, World world) {
 		ItemStack itemStack = ItemStack.EMPTY;
@@ -75,6 +79,10 @@ public class UniDyeingMixin {
 		}
 		return !itemStack.isEmpty() && (!list.isEmpty() || !customColors.isEmpty());
 	}
+	/**
+	 * @author
+	 * @reason
+	 */
 	@Overwrite
 	public ItemStack craft(RecipeInputInventory recipeInputInventory, DynamicRegistryManager dynamicRegistryManager) {
 		ArrayList<DyeItem> list = Lists.newArrayList();

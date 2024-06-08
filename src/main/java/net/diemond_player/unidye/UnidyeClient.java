@@ -22,6 +22,7 @@ public class UnidyeClient implements ClientModInitializer {
         registerBlockColor(ModBlocks.CUSTOM_CONCRETE);
         registerBlockColor(ModBlocks.CUSTOM_TERRACOTTA);
         registerBlockColor(ModBlocks.CUSTOM_STAINED_GLASS);
+        registerBlockColor(ModBlocks.CUSTOM_CONCRETE_POWDER);
 
     }
 

@@ -32,9 +32,8 @@ public interface UnidyeableItem {
         if (stack.getItem() instanceof CustomDyeItem){
             return blendAndSetCustomDyeColor(stack, colors, customColors);
         }
-        int n;
-        float h;
         ItemStack itemStack = ItemStack.EMPTY;
+        int n;
         int[] is = new int[3];
         int i = 0;
         int j = 0;
@@ -47,19 +46,17 @@ public interface UnidyeableItem {
                 int k = dyeableItem.getColor(itemStack);
                 float f = (float)(k >> 16 & 0xFF) / 255.0f;
                 float g = (float)(k >> 8 & 0xFF) / 255.0f;
-                h = (float)(k & 0xFF) / 255.0f;
-                i += (int)(Math.max(f, Math.max(g, h)) * 255.0f);
-                is[0] = is[0] + (int)(f * 255.0f);
-                is[1] = is[1] + (int)(g * 255.0f);
-                is[2] = is[2] + (int)(h * 255.0f);
+                float h = (float)(k & 0xFF) / 255.0f;
+                is[0] = is[0] + (int)(f * 255.0f * f * 255.0f);
+                is[1] = is[1] + (int)(g * 255.0f * g * 255.0f);
+                is[2] = is[2] + (int)(h * 255.0f * h * 255.0f);
                 ++j;
             }
             for (DyeItem dyeItem : colors) {
                 float[] fs = getColorArray(getMaterialType(dyeableItem), getDyeType(dyeItem));
-                int l = (int)(fs[0] * 255.0f);
-                int m = (int)(fs[1] * 255.0f);
-                n = (int)(fs[2] * 255.0f);
-                i += Math.max(l, Math.max(m, n));
+                int l = (int)(fs[0] * 255.0f * fs[0] * 255.0f);
+                int m = (int)(fs[1] * 255.0f * fs[1] * 255.0f);
+                n = (int)(fs[2] * 255.0f * fs[2] * 255.0f);
                 is[0] = is[0] + l;
                 is[1] = is[1] + m;
                 is[2] = is[2] + n;
@@ -67,10 +64,9 @@ public interface UnidyeableItem {
             }
             for (ItemStack customDyeItem : customColors){
                 float[] fs = getCustomColorArray(getMaterialType(dyeableItem), customDyeItem);
-                int l = (int)(fs[0] * 255.0f);
-                int m = (int)(fs[1] * 255.0f);
-                n = (int)(fs[2] * 255.0f);
-                i += Math.max(l, Math.max(m, n));
+                int l = (int)(fs[0] * 255.0f * fs[0] * 255.0f);
+                int m = (int)(fs[1] * 255.0f * fs[1] * 255.0f);
+                n = (int)(fs[2] * 255.0f * fs[2] * 255.0f);
                 is[0] = is[0] + l;
                 is[1] = is[1] + m;
                 is[2] = is[2] + n;
@@ -80,14 +76,9 @@ public interface UnidyeableItem {
         if (dyeableItem == null) {
             return ItemStack.EMPTY;
         }
-        int k = is[0] / j;
-        int o = is[1] / j;
-        int p = is[2] / j;
-        h = (float)i / (float)j;
-        float q = Math.max(k, Math.max(o, p));
-        k = (int)((float)k * h / q);
-        o = (int)((float)o * h / q);
-        p = (int)((float)p * h / q);
+        int k = (int) Math.sqrt((double) is[0] / j);
+        int o = (int) Math.sqrt((double) is[1] / j);
+        int p = (int) Math.sqrt((double) is[2] / j);
         n = k;
         n = (n << 8) + o;
         n = (n << 8) + p;
@@ -97,9 +88,7 @@ public interface UnidyeableItem {
 
     static ItemStack blendAndSetCustomDyeColor(ItemStack stack, List<DyeItem> colors, List<ItemStack> customColors) {
         int n;
-        float h;
         int[] is = new int[3];
-        int i = 0;
         int j = 0;
         Item item = stack.getItem();
         CustomDyeItem customDyeItem = (CustomDyeItem)((Object)item);
@@ -108,19 +97,17 @@ public interface UnidyeableItem {
             int k = customDyeItem.getColor(itemStack);
             float f = (float)(k >> 16 & 0xFF) / 255.0f;
             float g = (float)(k >> 8 & 0xFF) / 255.0f;
-            h = (float)(k & 0xFF) / 255.0f;
-            i += (int)(Math.max(f, Math.max(g, h)) * 255.0f);
-            is[0] = is[0] + (int)(f * 255.0f);
-            is[1] = is[1] + (int)(g * 255.0f);
-            is[2] = is[2] + (int)(h * 255.0f);
+            float h = (float)(k & 0xFF) / 255.0f;
+            is[0] = is[0] + (int)(f * 255.0f * f * 255.0f);
+            is[1] = is[1] + (int)(g * 255.0f * g * 255.0f);
+            is[2] = is[2] + (int)(h * 255.0f * h * 255.0f);
             ++j;
         }
         for (DyeItem dyeItem : colors) {
             float[] fs = getColorArray("leather", getDyeType(dyeItem));
-            int l = (int)(fs[0] * 255.0f);
-            int m = (int)(fs[1] * 255.0f);
-            n = (int)(fs[2] * 255.0f);
-            i += Math.max(l, Math.max(m, n));
+            int l = (int)(fs[0] * 255.0f * fs[0] * 255.0f);
+            int m = (int)(fs[1] * 255.0f * fs[1] * 255.0f);
+            n = (int)(fs[2] * 255.0f * fs[2] * 255.0f);
             is[0] = is[0] + l;
             is[1] = is[1] + m;
             is[2] = is[2] + n;
@@ -128,47 +115,38 @@ public interface UnidyeableItem {
         }
         for (ItemStack customDye : customColors){
             float[] fs = getCustomColorArray("leather", customDye);
-            int l = (int)(fs[0] * 255.0f);
-            int m = (int)(fs[1] * 255.0f);
-            n = (int)(fs[2] * 255.0f);
-            i += Math.max(l, Math.max(m, n));
+            int l = (int)(fs[0] * 255.0f * fs[0] * 255.0f);
+            int m = (int)(fs[1] * 255.0f * fs[1] * 255.0f);
+            n = (int)(fs[2] * 255.0f * fs[2] * 255.0f);
             is[0] = is[0] + l;
             is[1] = is[1] + m;
             is[2] = is[2] + n;
             ++j;
         }
-        int k = is[0] / j;
-        int o = is[1] / j;
-        int p = is[2] / j;
-        h = (float)i / (float)j;
-        float q = Math.max(k, Math.max(o, p));
-        k = (int)((float)k * h / q);
-        o = (int)((float)o * h / q);
-        p = (int)((float)p * h / q);
+        int k = (int) Math.sqrt((double) is[0] / j);
+        int o = (int) Math.sqrt((double) is[1] / j);
+        int p = (int) Math.sqrt((double) is[2] / j);
         n = k;
         n = (n << 8) + o;
         n = (n << 8) + p;
         customDyeItem.setMaterialColor(itemStack, n, "leather");
         is = new int[3];
-        i = 0;
         j = 0;
         if (customDyeItem.hasColor(stack)) {
-            k = customDyeItem.getMaterialColor(itemStack, "wool");
+            k = customDyeItem.getColor(itemStack);
             float f = (float)(k >> 16 & 0xFF) / 255.0f;
             float g = (float)(k >> 8 & 0xFF) / 255.0f;
-            h = (float)(k & 0xFF) / 255.0f;
-            i += (int)(Math.max(f, Math.max(g, h)) * 255.0f);
-            is[0] = is[0] + (int)(f * 255.0f);
-            is[1] = is[1] + (int)(g * 255.0f);
-            is[2] = is[2] + (int)(h * 255.0f);
+            float h = (float)(k & 0xFF) / 255.0f;
+            is[0] = is[0] + (int)(f * 255.0f * f * 255.0f);
+            is[1] = is[1] + (int)(g * 255.0f * g * 255.0f);
+            is[2] = is[2] + (int)(h * 255.0f * h * 255.0f);
             ++j;
         }
         for (DyeItem dyeItem : colors) {
             float[] fs = getColorArray("wool", getDyeType(dyeItem));
-            int l = (int)(fs[0] * 255.0f);
-            int m = (int)(fs[1] * 255.0f);
-            n = (int)(fs[2] * 255.0f);
-            i += Math.max(l, Math.max(m, n));
+            int l = (int)(fs[0] * 255.0f * fs[0] * 255.0f);
+            int m = (int)(fs[1] * 255.0f * fs[1] * 255.0f);
+            n = (int)(fs[2] * 255.0f * fs[2] * 255.0f);
             is[0] = is[0] + l;
             is[1] = is[1] + m;
             is[2] = is[2] + n;
@@ -176,47 +154,38 @@ public interface UnidyeableItem {
         }
         for (ItemStack customDye : customColors){
             float[] fs = getCustomColorArray("wool", customDye);
-            int l = (int)(fs[0] * 255.0f);
-            int m = (int)(fs[1] * 255.0f);
-            n = (int)(fs[2] * 255.0f);
-            i += Math.max(l, Math.max(m, n));
+            int l = (int)(fs[0] * 255.0f * fs[0] * 255.0f);
+            int m = (int)(fs[1] * 255.0f * fs[1] * 255.0f);
+            n = (int)(fs[2] * 255.0f * fs[2] * 255.0f);
             is[0] = is[0] + l;
             is[1] = is[1] + m;
             is[2] = is[2] + n;
             ++j;
         }
-        k = is[0] / j;
-        o = is[1] / j;
-        p = is[2] / j;
-        h = (float)i / (float)j;
-        q = Math.max(k, Math.max(o, p));
-        k = (int)((float)k * h / q);
-        o = (int)((float)o * h / q);
-        p = (int)((float)p * h / q);
+        k = (int) Math.sqrt((double) is[0] / j);
+        o = (int) Math.sqrt((double) is[1] / j);
+        p = (int) Math.sqrt((double) is[2] / j);
         n = k;
         n = (n << 8) + o;
         n = (n << 8) + p;
         customDyeItem.setMaterialColor(itemStack, n, "wool");
         is = new int[3];
-        i = 0;
         j = 0;
         if (customDyeItem.hasColor(stack)) {
-            k = customDyeItem.getMaterialColor(itemStack, "glass");
+            k = customDyeItem.getColor(itemStack);
             float f = (float)(k >> 16 & 0xFF) / 255.0f;
             float g = (float)(k >> 8 & 0xFF) / 255.0f;
-            h = (float)(k & 0xFF) / 255.0f;
-            i += (int)(Math.max(f, Math.max(g, h)) * 255.0f);
-            is[0] = is[0] + (int)(f * 255.0f);
-            is[1] = is[1] + (int)(g * 255.0f);
-            is[2] = is[2] + (int)(h * 255.0f);
+            float h = (float)(k & 0xFF) / 255.0f;
+            is[0] = is[0] + (int)(f * 255.0f * f * 255.0f);
+            is[1] = is[1] + (int)(g * 255.0f * g * 255.0f);
+            is[2] = is[2] + (int)(h * 255.0f * h * 255.0f);
             ++j;
         }
         for (DyeItem dyeItem : colors) {
             float[] fs = getColorArray("glass", getDyeType(dyeItem));
-            int l = (int)(fs[0] * 255.0f);
-            int m = (int)(fs[1] * 255.0f);
-            n = (int)(fs[2] * 255.0f);
-            i += Math.max(l, Math.max(m, n));
+            int l = (int)(fs[0] * 255.0f * fs[0] * 255.0f);
+            int m = (int)(fs[1] * 255.0f * fs[1] * 255.0f);
+            n = (int)(fs[2] * 255.0f * fs[2] * 255.0f);
             is[0] = is[0] + l;
             is[1] = is[1] + m;
             is[2] = is[2] + n;
@@ -224,47 +193,38 @@ public interface UnidyeableItem {
         }
         for (ItemStack customDye : customColors){
             float[] fs = getCustomColorArray("glass", customDye);
-            int l = (int)(fs[0] * 255.0f);
-            int m = (int)(fs[1] * 255.0f);
-            n = (int)(fs[2] * 255.0f);
-            i += Math.max(l, Math.max(m, n));
+            int l = (int)(fs[0] * 255.0f * fs[0] * 255.0f);
+            int m = (int)(fs[1] * 255.0f * fs[1] * 255.0f);
+            n = (int)(fs[2] * 255.0f * fs[2] * 255.0f);
             is[0] = is[0] + l;
             is[1] = is[1] + m;
             is[2] = is[2] + n;
             ++j;
         }
-        k = is[0] / j;
-        o = is[1] / j;
-        p = is[2] / j;
-        h = (float)i / (float)j;
-        q = Math.max(k, Math.max(o, p));
-        k = (int)((float)k * h / q);
-        o = (int)((float)o * h / q);
-        p = (int)((float)p * h / q);
+        k = (int) Math.sqrt((double) is[0] / j);
+        o = (int) Math.sqrt((double) is[1] / j);
+        p = (int) Math.sqrt((double) is[2] / j);
         n = k;
         n = (n << 8) + o;
         n = (n << 8) + p;
         customDyeItem.setMaterialColor(itemStack, n, "glass");
         is = new int[3];
-        i = 0;
         j = 0;
         if (customDyeItem.hasColor(stack)) {
-            k = customDyeItem.getMaterialColor(itemStack, "concrete");
+            k = customDyeItem.getColor(itemStack);
             float f = (float)(k >> 16 & 0xFF) / 255.0f;
             float g = (float)(k >> 8 & 0xFF) / 255.0f;
-            h = (float)(k & 0xFF) / 255.0f;
-            i += (int)(Math.max(f, Math.max(g, h)) * 255.0f);
-            is[0] = is[0] + (int)(f * 255.0f);
-            is[1] = is[1] + (int)(g * 255.0f);
-            is[2] = is[2] + (int)(h * 255.0f);
+            float h = (float)(k & 0xFF) / 255.0f;
+            is[0] = is[0] + (int)(f * 255.0f * f * 255.0f);
+            is[1] = is[1] + (int)(g * 255.0f * g * 255.0f);
+            is[2] = is[2] + (int)(h * 255.0f * h * 255.0f);
             ++j;
         }
         for (DyeItem dyeItem : colors) {
             float[] fs = getColorArray("concrete", getDyeType(dyeItem));
-            int l = (int)(fs[0] * 255.0f);
-            int m = (int)(fs[1] * 255.0f);
-            n = (int)(fs[2] * 255.0f);
-            i += Math.max(l, Math.max(m, n));
+            int l = (int)(fs[0] * 255.0f * fs[0] * 255.0f);
+            int m = (int)(fs[1] * 255.0f * fs[1] * 255.0f);
+            n = (int)(fs[2] * 255.0f * fs[2] * 255.0f);
             is[0] = is[0] + l;
             is[1] = is[1] + m;
             is[2] = is[2] + n;
@@ -272,47 +232,38 @@ public interface UnidyeableItem {
         }
         for (ItemStack customDye : customColors){
             float[] fs = getCustomColorArray("concrete", customDye);
-            int l = (int)(fs[0] * 255.0f);
-            int m = (int)(fs[1] * 255.0f);
-            n = (int)(fs[2] * 255.0f);
-            i += Math.max(l, Math.max(m, n));
+            int l = (int)(fs[0] * 255.0f * fs[0] * 255.0f);
+            int m = (int)(fs[1] * 255.0f * fs[1] * 255.0f);
+            n = (int)(fs[2] * 255.0f * fs[2] * 255.0f);
             is[0] = is[0] + l;
             is[1] = is[1] + m;
             is[2] = is[2] + n;
             ++j;
         }
-        k = is[0] / j;
-        o = is[1] / j;
-        p = is[2] / j;
-        h = (float)i / (float)j;
-        q = Math.max(k, Math.max(o, p));
-        k = (int)((float)k * h / q);
-        o = (int)((float)o * h / q);
-        p = (int)((float)p * h / q);
+        k = (int) Math.sqrt((double) is[0] / j);
+        o = (int) Math.sqrt((double) is[1] / j);
+        p = (int) Math.sqrt((double) is[2] / j);
         n = k;
         n = (n << 8) + o;
         n = (n << 8) + p;
         customDyeItem.setMaterialColor(itemStack, n, "concrete");
         is = new int[3];
-        i = 0;
         j = 0;
         if (customDyeItem.hasColor(stack)) {
-            k = customDyeItem.getMaterialColor(itemStack, "terracotta");
+            k = customDyeItem.getColor(itemStack);
             float f = (float)(k >> 16 & 0xFF) / 255.0f;
             float g = (float)(k >> 8 & 0xFF) / 255.0f;
-            h = (float)(k & 0xFF) / 255.0f;
-            i += (int)(Math.max(f, Math.max(g, h)) * 255.0f);
-            is[0] = is[0] + (int)(f * 255.0f);
-            is[1] = is[1] + (int)(g * 255.0f);
-            is[2] = is[2] + (int)(h * 255.0f);
+            float h = (float)(k & 0xFF) / 255.0f;
+            is[0] = is[0] + (int)(f * 255.0f * f * 255.0f);
+            is[1] = is[1] + (int)(g * 255.0f * g * 255.0f);
+            is[2] = is[2] + (int)(h * 255.0f * h * 255.0f);
             ++j;
         }
         for (DyeItem dyeItem : colors) {
             float[] fs = getColorArray("terracotta", getDyeType(dyeItem));
-            int l = (int)(fs[0] * 255.0f);
-            int m = (int)(fs[1] * 255.0f);
-            n = (int)(fs[2] * 255.0f);
-            i += Math.max(l, Math.max(m, n));
+            int l = (int)(fs[0] * 255.0f * fs[0] * 255.0f);
+            int m = (int)(fs[1] * 255.0f * fs[1] * 255.0f);
+            n = (int)(fs[2] * 255.0f * fs[2] * 255.0f);
             is[0] = is[0] + l;
             is[1] = is[1] + m;
             is[2] = is[2] + n;
@@ -320,47 +271,38 @@ public interface UnidyeableItem {
         }
         for (ItemStack customDye : customColors){
             float[] fs = getCustomColorArray("terracotta", customDye);
-            int l = (int)(fs[0] * 255.0f);
-            int m = (int)(fs[1] * 255.0f);
-            n = (int)(fs[2] * 255.0f);
-            i += Math.max(l, Math.max(m, n));
+            int l = (int)(fs[0] * 255.0f * fs[0] * 255.0f);
+            int m = (int)(fs[1] * 255.0f * fs[1] * 255.0f);
+            n = (int)(fs[2] * 255.0f * fs[2] * 255.0f);
             is[0] = is[0] + l;
             is[1] = is[1] + m;
             is[2] = is[2] + n;
             ++j;
         }
-        k = is[0] / j;
-        o = is[1] / j;
-        p = is[2] / j;
-        h = (float)i / (float)j;
-        q = Math.max(k, Math.max(o, p));
-        k = (int)((float)k * h / q);
-        o = (int)((float)o * h / q);
-        p = (int)((float)p * h / q);
+        k = (int) Math.sqrt((double) is[0] / j);
+        o = (int) Math.sqrt((double) is[1] / j);
+        p = (int) Math.sqrt((double) is[2] / j);
         n = k;
         n = (n << 8) + o;
         n = (n << 8) + p;
         customDyeItem.setMaterialColor(itemStack, n, "terracotta");
         is = new int[3];
-        i = 0;
         j = 0;
         if (customDyeItem.hasColor(stack)) {
-            k = customDyeItem.getMaterialColor(itemStack, "wool");
+            k = customDyeItem.getColor(itemStack);
             float f = (float)(k >> 16 & 0xFF) / 255.0f;
             float g = (float)(k >> 8 & 0xFF) / 255.0f;
-            h = (float)(k & 0xFF) / 255.0f;
-            i += (int)(Math.max(f, Math.max(g, h)) * 255.0f);
-            is[0] = is[0] + (int)(f * 255.0f);
-            is[1] = is[1] + (int)(g * 255.0f);
-            is[2] = is[2] + (int)(h * 255.0f);
+            float h = (float)(k & 0xFF) / 255.0f;
+            is[0] = is[0] + (int)(f * 255.0f * f * 255.0f);
+            is[1] = is[1] + (int)(g * 255.0f * g * 255.0f);
+            is[2] = is[2] + (int)(h * 255.0f * h * 255.0f);
             ++j;
         }
         for (DyeItem dyeItem : colors) {
             float[] fs = getColorArray("dye", getDyeType(dyeItem));
-            int l = (int)(fs[0] * 255.0f);
-            int m = (int)(fs[1] * 255.0f);
-            n = (int)(fs[2] * 255.0f);
-            i += Math.max(l, Math.max(m, n));
+            int l = (int)(fs[0] * 255.0f * fs[0] * 255.0f);
+            int m = (int)(fs[1] * 255.0f * fs[1] * 255.0f);
+            n = (int)(fs[2] * 255.0f * fs[2] * 255.0f);
             is[0] = is[0] + l;
             is[1] = is[1] + m;
             is[2] = is[2] + n;
@@ -368,23 +310,17 @@ public interface UnidyeableItem {
         }
         for (ItemStack customDye : customColors){
             float[] fs = getCustomColorArray("dye", customDye);
-            int l = (int)(fs[0] * 255.0f);
-            int m = (int)(fs[1] * 255.0f);
-            n = (int)(fs[2] * 255.0f);
-            i += Math.max(l, Math.max(m, n));
+            int l = (int)(fs[0] * 255.0f * fs[0] * 255.0f);
+            int m = (int)(fs[1] * 255.0f * fs[1] * 255.0f);
+            n = (int)(fs[2] * 255.0f * fs[2] * 255.0f);
             is[0] = is[0] + l;
             is[1] = is[1] + m;
             is[2] = is[2] + n;
             ++j;
         }
-        k = is[0] / j;
-        o = is[1] / j;
-        p = is[2] / j;
-        h = (float)i / (float)j;
-        q = Math.max(k, Math.max(o, p));
-        k = (int)((float)k * h / q);
-        o = (int)((float)o * h / q);
-        p = (int)((float)p * h / q);
+        k = (int) Math.sqrt((double) is[0] / j);
+        o = (int) Math.sqrt((double) is[1] / j);
+        p = (int) Math.sqrt((double) is[2] / j);
         n = k;
         n = (n << 8) + o;
         n = (n << 8) + p;
@@ -430,7 +366,7 @@ public interface UnidyeableItem {
     }
 
     static String getMaterialType(DyeableItem dyeableItem) {
-        if (dyeableItem == ModBlocks.CUSTOM_CONCRETE.asItem()) {
+        if (dyeableItem == ModBlocks.CUSTOM_CONCRETE.asItem() || dyeableItem == ModBlocks.CUSTOM_CONCRETE_POWDER.asItem()) {
             return "concrete";
         } else if(dyeableItem == ModBlocks.CUSTOM_WOOL.asItem()){
             return "wool";

@@ -22,6 +22,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.CUSTOM_CONCRETE);
                         entries.add(ModBlocks.CUSTOM_TERRACOTTA);
                         entries.add(ModBlocks.CUSTOM_STAINED_GLASS);
+                        entries.add(ModBlocks.CUSTOM_CONCRETE_POWDER);
 
                     }).build());
     public static void registerItemGroups(){

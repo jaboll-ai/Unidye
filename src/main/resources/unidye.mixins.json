@@ -1,11 +1,12 @@
 {
-	"required": true,
-	"package": "net.diemond_player.unidye.mixin",
-	"compatibilityLevel": "JAVA_17",
-	"mixins": [
-		"UniDyeingMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "net.diemond_player.unidye.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "FallingBlockMixin",
+    "UniDyeingMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }

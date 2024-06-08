@@ -5,11 +5,13 @@
 
   "block.unidye.custom_wool": "Custom Wool",
   "block.unidye.custom_concrete": "Custom Concrete",
+  "block.unidye.custom_concrete_powder": "Custom Concrete Powder",
   "block.unidye.custom_terracotta": "Custom Terracotta",
   "block.unidye.custom_stained_glass": "Custom Stained Glass",
 
   "tooltip.unidye.wool_color": "§7Wool Color: ",
   "tooltip.unidye.glass_color": "§7Glass Color: ",
+  "tooltip.unidye.leather_color": "§7Leather Color: ",
   "tooltip.unidye.concrete_color": "§7Concrete Color: ",
   "tooltip.unidye.terracotta_color": "§7Terracotta Color: ",
   "tooltip.unidye.press_shift": "§7Press §fShift§r §7for more info§r"
