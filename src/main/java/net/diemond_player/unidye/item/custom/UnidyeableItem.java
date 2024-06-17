@@ -7,6 +7,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 
 import java.util.*;
+import static net.diemond_player.unidye.item.custom.CustomDyeItem.CONTENTS_KEY;
 
 public interface UnidyeableItem {
     public static final Map<String, UnidyeColor> DYES = new HashMap<String, UnidyeColor>(){{
@@ -35,7 +36,6 @@ public interface UnidyeableItem {
         ItemStack itemStack = ItemStack.EMPTY;
         int n;
         int[] is = new int[3];
-        int i = 0;
         int j = 0;
         DyeableItem dyeableItem = null;
         Item item = stack.getItem();
@@ -97,7 +97,28 @@ public interface UnidyeableItem {
         blendAndSetMaterialColor(stack, itemStack, colors, customColors, "terracotta", customDyeItem);
         blendAndSetMaterialColor(stack, itemStack, colors, customColors, "glass", customDyeItem);
         itemStack.setCount(colors.size()+customColors.size()+1);
+        //customDyeItem.setContents(itemStack, getContents(stack, colors, customColors));
         return itemStack;
+    }
+
+    static String getContents(ItemStack stack, List<DyeItem> colors, List<ItemStack> customColors) {
+        Item item = stack.getItem();
+        CustomDyeItem customDyeItem = (CustomDyeItem)((Object)item);
+        StringBuilder contents = new StringBuilder();
+        if (customDyeItem.hasColor(stack)) {
+            contents.append(" (" + customDyeItem.getContents(stack) + " ) +");
+        }
+        for (DyeItem dyeItem : colors) {
+            contents.append(" " + getDyeType(dyeItem) + "+");
+        }
+        for (ItemStack customDye : customColors){
+            CustomDyeItem customDyeItem1 = ((CustomDyeItem) customDye.getItem());
+            contents.append(" (" + customDyeItem1.getContents(customDye) + " ) +");
+        }
+        if(contents.toString().endsWith("+")){
+            contents.deleteCharAt(contents.length()-1);
+        }
+        return contents.toString();
     }
 
     static void blendAndSetMaterialColor(ItemStack stack, ItemStack itemStack, List<DyeItem> colors,
@@ -181,13 +202,17 @@ public interface UnidyeableItem {
     }
 
     static String getMaterialType(DyeableItem dyeableItem) {
-        if (dyeableItem == ModBlocks.CUSTOM_CONCRETE.asItem() || dyeableItem == ModBlocks.CUSTOM_CONCRETE_POWDER.asItem()) {
+        if (dyeableItem == ModBlocks.CUSTOM_CONCRETE.asItem()
+                || dyeableItem == ModBlocks.CUSTOM_CONCRETE_POWDER.asItem()
+                || dyeableItem == ModBlocks.CUSTOM_CANDLE.asItem()) {
             return "concrete";
-        } else if(dyeableItem == ModBlocks.CUSTOM_WOOL.asItem()){
+        } else if(dyeableItem == ModBlocks.CUSTOM_WOOL.asItem()
+                || dyeableItem == ModBlocks.CUSTOM_CARPET.asItem()){
             return "wool";
         } else if(dyeableItem == ModBlocks.CUSTOM_TERRACOTTA.asItem()){
             return "terracotta";
-        } else if(dyeableItem == ModBlocks.CUSTOM_STAINED_GLASS.asItem()){
+        } else if(dyeableItem == ModBlocks.CUSTOM_STAINED_GLASS.asItem()
+                || dyeableItem == ModBlocks.CUSTOM_STAINED_GLASS_PANE.asItem()){
             return "glass";
         } else if(dyeableItem == ModItems.CUSTOM_DYE){
             return "dye";

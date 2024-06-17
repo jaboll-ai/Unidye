@@ -17,6 +17,7 @@ import org.apache.commons.codec.binary.Base16;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Objects;
 
 public class CustomDyeItem extends Item implements DyeableItem {
     public static final String WOOL_KEY = "wool";
@@ -29,6 +30,8 @@ public class CustomDyeItem extends Item implements DyeableItem {
     public static final String GLASS_COLOR_KEY = "glass_color";
     public static final String LEATHER_KEY = "leather";
     public static final String LEATHER_COLOR_KEY = "leather_color";
+    public static final String CONTENTS_KEY = "contents";
+    public static final String CONTENTS_LIST_KEY = "contents_list";
     public static final int DEFAULT_COLOR = 16777215;
 
 
@@ -116,5 +119,18 @@ public class CustomDyeItem extends Item implements DyeableItem {
         } else {
             tooltip.add(Text.translatable("tooltip.unidye.press_shift"));
         }
+        //tooltip.add(Text.translatable("tooltip.unidye.contents").append(getContents(stack)));
+    }
+
+    public String getContents(ItemStack stack) {
+        NbtCompound nbtCompound = stack.getSubNbt(CONTENTS_KEY);
+        if (nbtCompound != null && nbtCompound.contains(CONTENTS_LIST_KEY, NbtElement.STRING_TYPE)) {
+            return nbtCompound.getString(CONTENTS_LIST_KEY);
+        }
+        return "None";
+    }
+
+    public void setContents(ItemStack itemStack, String contents) {
+        itemStack.getOrCreateSubNbt(CONTENTS_KEY).putString(CONTENTS_LIST_KEY, contents);
     }
 }

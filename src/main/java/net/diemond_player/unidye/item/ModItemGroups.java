@@ -19,10 +19,14 @@ public class ModItemGroups {
                         entries.add(ModItems.CUSTOM_DYE);
 
                         entries.add(ModBlocks.CUSTOM_WOOL);
+                        entries.add(ModBlocks.CUSTOM_CARPET);
+                        entries.add(ModBlocks.CUSTOM_CONCRETE_POWDER);
                         entries.add(ModBlocks.CUSTOM_CONCRETE);
                         entries.add(ModBlocks.CUSTOM_TERRACOTTA);
                         entries.add(ModBlocks.CUSTOM_STAINED_GLASS);
-                        entries.add(ModBlocks.CUSTOM_CONCRETE_POWDER);
+                        entries.add(ModBlocks.CUSTOM_STAINED_GLASS_PANE);
+                        entries.add(ModBlocks.CUSTOM_CANDLE);
+
 
                     }).build());
     public static void registerItemGroups(){

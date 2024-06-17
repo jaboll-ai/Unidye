@@ -17,12 +17,16 @@ public class UnidyeClient implements ClientModInitializer {
     public void onInitializeClient() {
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CUSTOM_STAINED_GLASS, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CUSTOM_STAINED_GLASS_PANE, RenderLayer.getTranslucent());
         registerItemColor(ModItems.CUSTOM_DYE);
         registerBlockColor(ModBlocks.CUSTOM_WOOL);
         registerBlockColor(ModBlocks.CUSTOM_CONCRETE);
         registerBlockColor(ModBlocks.CUSTOM_TERRACOTTA);
         registerBlockColor(ModBlocks.CUSTOM_STAINED_GLASS);
         registerBlockColor(ModBlocks.CUSTOM_CONCRETE_POWDER);
+        registerBlockColor(ModBlocks.CUSTOM_CARPET);
+        registerBlockColor(ModBlocks.CUSTOM_STAINED_GLASS_PANE);
+        registerBlockColor(ModBlocks.CUSTOM_CANDLE);
 
     }
 

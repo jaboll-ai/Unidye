@@ -1,8 +1,6 @@
 package net.diemond_player.unidye.block;
 
-import net.diemond_player.unidye.block.custom.DyeableBlock;
-import net.diemond_player.unidye.block.custom.DyeableConcretePowderBlock;
-import net.diemond_player.unidye.block.custom.DyeableGlassBlock;
+import net.diemond_player.unidye.block.custom.*;
 import net.diemond_player.unidye.Unidye;
 import net.diemond_player.unidye.item.custom.DyeableBlockItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -26,7 +24,12 @@ public class ModBlocks {
             new DyeableGlassBlock(FabricBlockSettings.copyOf(Blocks.GLASS)));
     public static final Block CUSTOM_CONCRETE_POWDER = registerDyeableBlock("custom_concrete_powder",
             new DyeableConcretePowderBlock(CUSTOM_CONCRETE, FabricBlockSettings.copyOf(Blocks.WHITE_CONCRETE_POWDER)));
-
+    public static final Block CUSTOM_CARPET = registerDyeableBlock("custom_carpet",
+            new DyeableCarpetBlock(FabricBlockSettings.copyOf(Blocks.WHITE_CARPET)));
+    public static final Block CUSTOM_STAINED_GLASS_PANE = registerDyeableBlock("custom_stained_glass_pane",
+            new DyeablePaneBlock(FabricBlockSettings.copyOf(Blocks.WHITE_STAINED_GLASS_PANE)));
+    public static final Block CUSTOM_CANDLE = registerDyeableBlock("custom_candle",
+            new DyeableCandleBlock(FabricBlockSettings.copyOf(Blocks.WHITE_CANDLE)));
 
     private static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);

@@ -16,7 +16,10 @@ public class ModBlockEntities {
                         ModBlocks.CUSTOM_TERRACOTTA,
                         ModBlocks.CUSTOM_CONCRETE,
                         ModBlocks.CUSTOM_STAINED_GLASS,
-                        ModBlocks.CUSTOM_CONCRETE_POWDER
+                        ModBlocks.CUSTOM_CONCRETE_POWDER,
+                        ModBlocks.CUSTOM_CARPET,
+                        ModBlocks.CUSTOM_STAINED_GLASS_PANE,
+                        ModBlocks.CUSTOM_CANDLE
                         ).build(null));
 
         public static void registerBlockEntities(){
