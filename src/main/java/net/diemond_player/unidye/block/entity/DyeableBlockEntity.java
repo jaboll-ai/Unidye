@@ -40,7 +40,6 @@ public class DyeableBlockEntity extends BlockEntity {
         if (this.world != null) {
             markDirty(this.world, this.pos, this.getCachedState());
         }
-
     }
 
 
