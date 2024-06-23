@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "unidye:item/custom_light_gray_dye"
+  }
+}

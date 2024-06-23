@@ -97,8 +97,26 @@ public interface UnidyeableItem {
         blendAndSetMaterialColor(stack, itemStack, colors, customColors, "terracotta", customDyeItem);
         blendAndSetMaterialColor(stack, itemStack, colors, customColors, "glass", customDyeItem);
         itemStack.setCount(colors.size()+customColors.size()+1);
+        defineClosestVanillaDye(itemStack);
         //customDyeItem.setContents(itemStack, getContents(stack, colors, customColors));
         return itemStack;
+    }
+
+    static void defineClosestVanillaDye(ItemStack itemStack) {
+        float[] customColorArray = getCustomColorArray("dye", itemStack);
+        double distance;
+        double minDistance = -1;
+        int id = -1;
+        for (Map.Entry<String, UnidyeColor> entry : DYES.entrySet()){
+            float[] colorArray = entry.getValue().getColorComponents("dye");
+            distance = Math.pow(customColorArray[0]-colorArray[0], 2)
+                                            + Math.pow(customColorArray[1]-colorArray[1], 2) + Math.pow(customColorArray[2]-colorArray[2], 2);
+            if(distance < minDistance || minDistance == -1){
+                minDistance = distance;
+                id = entry.getValue().getId();
+            }
+        }
+        itemStack.getOrCreateSubNbt("closest_vanilla_dye").putInt("closest_vanilla_dye_id", id);
     }
 
     static String getContents(ItemStack stack, List<DyeItem> colors, List<ItemStack> customColors) {

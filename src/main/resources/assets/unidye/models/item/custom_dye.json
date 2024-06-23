@@ -1,7 +1,80 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "unidye:item/custom_dye",
-    "layer1": "unidye:item/custom_dye_overlay"
-  }
+    "layer0": "unidye:item/custom_dye"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "unidye:dye_id": 0.0
+      },
+      "model": "unidye:item/custom_white_dye"
+    },
+    {
+      "predicate": {
+        "unidye:dye_id": 0.090909
+      },
+      "model": "unidye:item/custom_orange_dye"
+    },
+    {
+      "predicate": {
+        "unidye:dye_id": 0.181818
+      },
+      "model": "unidye:item/custom_light_blue_dye"
+    },
+    {
+      "predicate": {
+        "unidye:dye_id": 0.272727
+      },
+      "model": "unidye:item/custom_yellow_dye"
+    },
+    {
+      "predicate": {
+        "unidye:dye_id": 0.363636
+      },
+      "model": "unidye:item/custom_light_gray_dye"
+    },
+    {
+      "predicate": {
+        "unidye:dye_id": 0.454545
+      },
+      "model": "unidye:item/custom_cyan_dye"
+    },
+    {
+      "predicate": {
+        "unidye:dye_id": 0.545454
+      },
+      "model": "unidye:item/custom_blue_dye"
+    },
+    {
+      "predicate": {
+        "unidye:dye_id": 0.636363
+      },
+      "model": "unidye:item/custom_brown_dye"
+    },
+    {
+      "predicate": {
+        "unidye:dye_id": 0.727272
+      },
+      "model": "unidye:item/custom_green_dye"
+    },
+    {
+      "predicate": {
+        "unidye:dye_id": 0.818181
+      },
+      "model": "unidye:item/custom_red_dye"
+    },
+    {
+      "predicate": {
+        "unidye:dye_id": 0.909090
+      },
+      "model": "unidye:item/custom_black_dye"
+    },
+    {
+      "predicate": {
+        "unidye:dye_id": 1
+      },
+      "model": "unidye:item/custom_other_dye"
+    }
+  ]
 }

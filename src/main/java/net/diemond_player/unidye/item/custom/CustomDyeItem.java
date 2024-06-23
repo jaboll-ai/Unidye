@@ -32,6 +32,8 @@ public class CustomDyeItem extends Item implements DyeableItem {
     public static final String LEATHER_COLOR_KEY = "leather_color";
     public static final String CONTENTS_KEY = "contents";
     public static final String CONTENTS_LIST_KEY = "contents_list";
+    public static final String CLOSEST_VANILLA_DYE_KEY = "closest_vanilla_dye";
+    public static final String CLOSEST_VANILLA_DYE_ID_KEY = "closest_vanilla_dye_id";
     public static final int DEFAULT_COLOR = 16777215;
 
 
@@ -47,6 +49,30 @@ public class CustomDyeItem extends Item implements DyeableItem {
             return nbtCompound.getInt(COLOR_KEY);
         }
         return DEFAULT_COLOR;
+    }
+
+    public static float getClosestVanillaDyeId(ItemStack stack) {
+        NbtCompound nbtCompound;
+        nbtCompound = stack.getSubNbt(CLOSEST_VANILLA_DYE_KEY);
+        int id = -1;
+        if (nbtCompound != null && nbtCompound.contains(CLOSEST_VANILLA_DYE_ID_KEY, NbtElement.NUMBER_TYPE)) {
+            id =  nbtCompound.getInt(CLOSEST_VANILLA_DYE_ID_KEY);
+        }
+        switch (id){
+            case 0: return 0f;
+            case 1: return 1f/11;
+            case 3: return 2f/11;
+            case 4: return 3f/11;
+            case 8: return 4f/11;
+            case 9: return 5f/11;
+            case 11: return 6f/11;
+            case 12: return 7f/11;
+            case 13: return 8f/11;
+            case 14: return 9f/11;
+            case 15: return 10f/11;
+            case 2, 6, 5, 7, 10: return 1f;
+        }
+        return -1;
     }
 
     public Integer getMaterialColor(ItemStack stack, String materialType) {

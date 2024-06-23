@@ -4,6 +4,7 @@ import net.diemond_player.unidye.block.ModBlocks;
 import net.diemond_player.unidye.block.entity.DyeableBlockEntity;
 import net.diemond_player.unidye.item.ModItems;
 import net.diemond_player.unidye.item.custom.UnidyeableItem;
+import net.diemond_player.unidye.util.ModModelPredicateProvider;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
@@ -27,6 +28,7 @@ public class UnidyeClient implements ClientModInitializer {
         registerBlockColor(ModBlocks.CUSTOM_CARPET);
         registerBlockColor(ModBlocks.CUSTOM_STAINED_GLASS_PANE);
         registerBlockColor(ModBlocks.CUSTOM_CANDLE);
+        ModModelPredicateProvider.registerModModels();
 
     }
 

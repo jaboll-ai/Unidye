@@ -51,7 +51,7 @@ public enum UnidyeColor implements StringIdentifiable
         int j = (leatherColor & 0xFF0000) >> 16;
         int k = (leatherColor & 0xFF00) >> 8;
         int l = (leatherColor & 0xFF) >> 0;
-        this.colorComponents = new float[]{(float)j / 255.0f, (float)k / 255.0f, (float)l / 255.0f};
+        this.colorComponents = new float[]{(float)j, (float)k, (float)l};
     }
 
     public int getId() {
