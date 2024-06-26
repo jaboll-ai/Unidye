@@ -11,6 +11,8 @@
   "block.unidye.custom_stained_glass": "Custom Stained Glass",
   "block.unidye.custom_stained_glass_pane": "Custom Stained Glass Pane",
   "block.unidye.custom_candle": "Custom Candle",
+  "block.unidye.custom_shulker_box": "Custom Shulker Box",
+  "block.unidye.custom_bed": "Custom Bed",
 
   "tooltip.unidye.wool_color": "§7Wool Color: ",
   "tooltip.unidye.glass_color": "§7Glass Color: ",

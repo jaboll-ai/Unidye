@@ -28,6 +28,8 @@ public class UnidyeClient implements ClientModInitializer {
         registerBlockColor(ModBlocks.CUSTOM_CARPET);
         registerBlockColor(ModBlocks.CUSTOM_STAINED_GLASS_PANE);
         registerBlockColor(ModBlocks.CUSTOM_CANDLE);
+        registerBlockColor(ModBlocks.CUSTOM_SHULKER_BOX);
+        registerBlockColor(ModBlocks.CUSTOM_BED);
         ModModelPredicateProvider.registerModModels();
 
     }

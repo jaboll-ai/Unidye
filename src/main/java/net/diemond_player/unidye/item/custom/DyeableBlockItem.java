@@ -1,7 +1,9 @@
 package net.diemond_player.unidye.item.custom;
 
+import net.diemond_player.unidye.block.ModBlocks;
 import net.diemond_player.unidye.block.entity.DyeableBlockEntity;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.DyeableItem;
@@ -20,9 +22,13 @@ public class DyeableBlockItem extends BlockItem implements DyeableItem {
 
     @Override
     public ActionResult place(ItemPlacementContext context) {
+        BlockState blockstate = context.getWorld().getBlockState(context.getBlockPos());
         ActionResult result = super.place(context);
         BlockEntity blockEntity = context.getWorld().getBlockEntity(context.getBlockPos());
-        if(blockEntity instanceof DyeableBlockEntity dyeableBlockEntity){
+        if(blockEntity instanceof DyeableBlockEntity dyeableBlockEntity
+                && !blockstate.isOf(ModBlocks.CUSTOM_CARPET)
+                && !blockstate.isOf(ModBlocks.CUSTOM_STAINED_GLASS_PANE)
+                && !blockstate.isOf(ModBlocks.CUSTOM_CANDLE)){
             dyeableBlockEntity.color = getColor(context.getStack());
         }
         return result;

@@ -145,13 +145,13 @@ public interface UnidyeableItem {
         int[] is = new int[3];
         int j = 0;
         if (customDyeItem.hasColor(stack)) {
-            int k = customDyeItem.getColor(itemStack);
-            float f = (float)(k >> 16 & 0xFF) / 255.0f;
-            float g = (float)(k >> 8 & 0xFF) / 255.0f;
-            float h = (float)(k & 0xFF) / 255.0f;
-            is[0] = is[0] + (int)(f * 255.0f * f * 255.0f);
-            is[1] = is[1] + (int)(g * 255.0f * g * 255.0f);
-            is[2] = is[2] + (int)(h * 255.0f * h * 255.0f);
+            int k = customDyeItem.getMaterialColor(itemStack, materialType);
+            float f = (float)(k >> 16 & 0xFF);
+            float g = (float)(k >> 8 & 0xFF);
+            float h = (float)(k & 0xFF);
+            is[0] = is[0] + (int)(f * f );
+            is[1] = is[1] + (int)(g * g);
+            is[2] = is[2] + (int)(h * h);
             ++j;
         }
         for (DyeItem dyeItem : colors) {
@@ -222,7 +222,8 @@ public interface UnidyeableItem {
     static String getMaterialType(DyeableItem dyeableItem) {
         if (dyeableItem == ModBlocks.CUSTOM_CONCRETE.asItem()
                 || dyeableItem == ModBlocks.CUSTOM_CONCRETE_POWDER.asItem()
-                || dyeableItem == ModBlocks.CUSTOM_CANDLE.asItem()) {
+                || dyeableItem == ModBlocks.CUSTOM_CANDLE.asItem()
+                || dyeableItem == ModBlocks.CUSTOM_SHULKER_BOX.asItem()) {
             return "concrete";
         } else if(dyeableItem == ModBlocks.CUSTOM_WOOL.asItem()
                 || dyeableItem == ModBlocks.CUSTOM_CARPET.asItem()){

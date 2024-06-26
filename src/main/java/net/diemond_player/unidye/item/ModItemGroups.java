@@ -26,6 +26,8 @@ public class ModItemGroups {
                         entries.add(ModBlocks.CUSTOM_STAINED_GLASS);
                         entries.add(ModBlocks.CUSTOM_STAINED_GLASS_PANE);
                         entries.add(ModBlocks.CUSTOM_CANDLE);
+                        entries.add(ModBlocks.CUSTOM_SHULKER_BOX);
+                        entries.add(ModBlocks.CUSTOM_BED);
 
 
                     }).build());

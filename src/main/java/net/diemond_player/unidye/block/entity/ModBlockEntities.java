@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 
 public class ModBlockEntities {
         public static final BlockEntityType<DyeableBlockEntity> DYEABLE_BE = Registry.register(
-            Registries.BLOCK_ENTITY_TYPE, new Identifier(Unidye.MOD_ID, "dyeable_block_entity"),
+                Registries.BLOCK_ENTITY_TYPE, new Identifier(Unidye.MOD_ID, "dyeable_block_entity"),
                 FabricBlockEntityTypeBuilder.create(DyeableBlockEntity::new,
                         ModBlocks.CUSTOM_WOOL,
                         ModBlocks.CUSTOM_TERRACOTTA,
@@ -19,7 +19,14 @@ public class ModBlockEntities {
                         ModBlocks.CUSTOM_CONCRETE_POWDER,
                         ModBlocks.CUSTOM_CARPET,
                         ModBlocks.CUSTOM_STAINED_GLASS_PANE,
-                        ModBlocks.CUSTOM_CANDLE
+                        ModBlocks.CUSTOM_CANDLE,
+                        ModBlocks.CUSTOM_BED
+                        ).build(null));
+
+        public static final BlockEntityType<DyeableShulkerBoxBlockEntity> DYEABLE_SHULKER_BOX_BE = Registry.register(
+                Registries.BLOCK_ENTITY_TYPE, new Identifier(Unidye.MOD_ID, "dyeable_shulker_box_block_entity"),
+                FabricBlockEntityTypeBuilder.create(DyeableShulkerBoxBlockEntity::new,
+                        ModBlocks.CUSTOM_SHULKER_BOX
                         ).build(null));
 
         public static void registerBlockEntities(){

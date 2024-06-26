@@ -30,6 +30,10 @@ public class ModBlocks {
             new DyeablePaneBlock(FabricBlockSettings.copyOf(Blocks.WHITE_STAINED_GLASS_PANE)));
     public static final Block CUSTOM_CANDLE = registerDyeableBlock("custom_candle",
             new DyeableCandleBlock(FabricBlockSettings.copyOf(Blocks.WHITE_CANDLE)));
+    public static final Block CUSTOM_SHULKER_BOX = registerDyeableBlock("custom_shulker_box",
+            new DyeableShulkerBoxBlock(null, FabricBlockSettings.copyOf(Blocks.WHITE_SHULKER_BOX)));
+    public static final Block CUSTOM_BED = registerDyeableBlock("custom_bed",
+            new DyeableBedBlock(FabricBlockSettings.copyOf(Blocks.WHITE_SHULKER_BOX)));
 
     private static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);
