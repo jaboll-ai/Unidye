@@ -3,13 +3,16 @@
   "package": "net.diemond_player.unidye.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "EntityMixin",
-    "UniDyeingMixin"
+    "DyeItemMixin",
+    "SheepEntityMixin",
+    "UniDyeingMixin",
+    "WolfEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
-    "SheepWoolFeatureRendererMixin"
+    "SheepWoolFeatureRendererMixin",
+    "WolfCollarFeatureRendererMixin"
   ]
 }

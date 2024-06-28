@@ -1,23 +1,25 @@
 package net.diemond_player.unidye.item.custom;
 
+import net.diemond_player.unidye.util.IEntityAccessor;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.DyeItem;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.passive.SheepEntity;
+import net.minecraft.entity.passive.WolfEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeableItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
-import net.minecraft.text.MutableText;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
-import org.apache.commons.codec.binary.Base16;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Objects;
 
 public class CustomDyeItem extends Item implements DyeableItem {
     public static final String WOOL_KEY = "wool";
@@ -35,6 +37,7 @@ public class CustomDyeItem extends Item implements DyeableItem {
     public static final String CLOSEST_VANILLA_DYE_KEY = "closest_vanilla_dye";
     public static final String CLOSEST_VANILLA_DYE_ID_KEY = "closest_vanilla_dye_id";
     public static final int DEFAULT_COLOR = 16777215;
+    public static final Identifier identifierColor = new Identifier("unidye", "custom_color");
 
 
     public CustomDyeItem(Settings settings) {
@@ -158,5 +161,23 @@ public class CustomDyeItem extends Item implements DyeableItem {
 
     public void setContents(ItemStack itemStack, String contents) {
         itemStack.getOrCreateSubNbt(CONTENTS_KEY).putString(CONTENTS_LIST_KEY, contents);
+    }
+
+    @Override
+    public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+        SheepEntity sheepEntity;
+        if (entity instanceof SheepEntity
+                && (sheepEntity = (SheepEntity)entity).isAlive()
+                && !sheepEntity.isSheared()) {
+            sheepEntity.getWorld().playSoundFromEntity(user, sheepEntity,
+                    SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0f, 1.0f);
+            if (!user.getWorld().isClient) {
+                IEntityAccessor sheep = (IEntityAccessor) sheepEntity;
+                sheep.unidye$setCustomColor(getMaterialColor(stack, "wool"));
+                stack.decrement(1);
+            }
+            return ActionResult.success(user.getWorld().isClient);
+        }
+        return ActionResult.PASS;
     }
 }
