@@ -1,6 +1,7 @@
 package net.diemond_player.unidye.block.custom;
 
 import net.diemond_player.unidye.block.entity.DyeableBlockEntity;
+import net.diemond_player.unidye.block.entity.ModBlockEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ConcretePowderBlock;
@@ -25,5 +26,11 @@ public class DyeableConcretePowderBlock extends ConcretePowderBlock implements I
         } else {
             return new ItemStack(this);
         }
+    }
+
+    @Override
+    public int getColor(BlockState state, BlockView world, BlockPos pos) {
+        DyeableBlockEntity blockEntity = ModBlockEntities.DYEABLE_BE.get(world,pos);
+        return blockEntity.color;
     }
 }

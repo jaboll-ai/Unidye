@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/all_cube",
+  "textures": {
+    "tint": "unidye:block/custom_concrete"
+  }
+}

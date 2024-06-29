@@ -3,7 +3,6 @@ package net.diemond_player.unidye.item.custom;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.function.ValueLists;
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 import java.util.function.IntFunction;
@@ -27,7 +26,7 @@ public enum UnidyeColor implements StringIdentifiable
     RED(14, "red", 0xC9424B,11546150, 0xa02722, 0x8f3d2e, 0x8e2020, 0x993232),
     BLACK(15, "black", 0x3E3759,0x1D1D21, 0x141519, 0x251610, 0x080a0f, 0x191919);
 
-    private static final IntFunction<net.minecraft.util.DyeColor> BY_ID;
+    private static final IntFunction<UnidyeColor> BY_ID;
     public static final StringIdentifiable.Codec<net.minecraft.util.DyeColor> CODEC;
     private final int id;
     private final String name;
@@ -97,15 +96,13 @@ public enum UnidyeColor implements StringIdentifiable
         return colorComponents;
     }
 
-    public static net.minecraft.util.DyeColor byId(int id) {
+    public static UnidyeColor byId(int id) {
         return BY_ID.apply(id);
     }
 
-    @Nullable
     @Contract(value="_,!null->!null;_,null->_")
-    public static net.minecraft.util.DyeColor byName(String name, @Nullable net.minecraft.util.DyeColor defaultColor) {
-        net.minecraft.util.DyeColor dyeColor = CODEC.byId(name);
-        return dyeColor != null ? dyeColor : defaultColor;
+    public static void byName(String name) {
+
     }
 
     public String toString() {
@@ -118,7 +115,7 @@ public enum UnidyeColor implements StringIdentifiable
     }
 
     static {
-        BY_ID = ValueLists.createIdToValueFunction(net.minecraft.util.DyeColor::getId, net.minecraft.util.DyeColor.values(), ValueLists.OutOfBoundsHandling.ZERO);
+        BY_ID = ValueLists.createIdToValueFunction(UnidyeColor::getId, UnidyeColor.values(), ValueLists.OutOfBoundsHandling.ZERO);
         CODEC = StringIdentifiable.createCodec(net.minecraft.util.DyeColor::values);
     }
 }

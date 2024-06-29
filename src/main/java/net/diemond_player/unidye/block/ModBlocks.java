@@ -34,6 +34,8 @@ public class ModBlocks {
             new DyeableShulkerBoxBlock(null, FabricBlockSettings.copyOf(Blocks.WHITE_SHULKER_BOX)));
     public static final Block CUSTOM_BED = registerDyeableBlock("custom_bed",
             new DyeableBedBlock(FabricBlockSettings.copyOf(Blocks.WHITE_SHULKER_BOX)));
+    public static final Block TEST_BLOCK = registerDyeableBlock("test_block",
+            new TestBlock(FabricBlockSettings.copyOf(Blocks.MUD_BRICKS)));
 
     private static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);
