@@ -1,5 +1,6 @@
 package net.diemond_player.unidye.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalBooleanRef;
 import net.diemond_player.unidye.item.custom.CustomDyeItem;
@@ -40,17 +41,19 @@ public abstract class FireworkStarRecipeMixin {
     private static final Ingredient FLICKER_MODIFIER = Ingredient.ofItems(Items.GLOWSTONE_DUST);
     @Shadow
     private static final Ingredient GUNPOWDER = Ingredient.ofItems(Items.GUNPOWDER);
-    @Inject(method = "matches(Lnet/minecraft/inventory/RecipeInputInventory;Lnet/minecraft/world/World;)Z", at = @At(value = "RETURN", ordinal = 4), cancellable = true)
-    private void matches(RecipeInputInventory recipeInputInventory, World world, CallbackInfoReturnable<Boolean> cir) {
-        if(!cir.getReturnValue()){
-            cir.setReturnValue(doesItActuallyMatchThough(recipeInputInventory, world));
+    @ModifyReturnValue(method = "matches(Lnet/minecraft/inventory/RecipeInputInventory;Lnet/minecraft/world/World;)Z", at = @At(value = "RETURN", ordinal = 4))
+    private boolean matches(boolean original, @Local(argsOnly = true) RecipeInputInventory recipeInputInventory, @Local(argsOnly = true) World world) {
+        if(!original){
+            return doesItActuallyMatchThough(recipeInputInventory, world);
         }
+        return true;
     }
-    @Inject(method = "matches(Lnet/minecraft/inventory/RecipeInputInventory;Lnet/minecraft/world/World;)Z", at = @At(value = "RETURN", ordinal = 5), cancellable = true)
-    private void matches2(RecipeInputInventory recipeInputInventory, World world, CallbackInfoReturnable<Boolean> cir) {
-        if(!cir.getReturnValue()){
-            cir.setReturnValue(doesItActuallyMatchThough(recipeInputInventory, world));
+    @ModifyReturnValue(method = "matches(Lnet/minecraft/inventory/RecipeInputInventory;Lnet/minecraft/world/World;)Z", at = @At(value = "RETURN", ordinal = 5))
+    private boolean matches2(boolean original, @Local(argsOnly = true) RecipeInputInventory recipeInputInventory, @Local(argsOnly = true) World world) {
+        if(!original){
+            return doesItActuallyMatchThough(recipeInputInventory, world);
         }
+        return true;
     }
     @Inject(method = "craft(Lnet/minecraft/inventory/RecipeInputInventory;Lnet/minecraft/registry/DynamicRegistryManager;)Lnet/minecraft/item/ItemStack;", at = @At(value = "INVOKE", target = "Lnet/minecraft/nbt/NbtCompound;putIntArray(Ljava/lang/String;Ljava/util/List;)V"), locals = LocalCapture.CAPTURE_FAILHARD)
     private void craft(RecipeInputInventory recipeInputInventory, DynamicRegistryManager dynamicRegistryManager, CallbackInfoReturnable<ItemStack> cir, ItemStack itemStack, NbtCompound nbtCompound, FireworkRocketItem.Type type, List list) {
