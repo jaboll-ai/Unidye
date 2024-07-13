@@ -1,17 +1,27 @@
 package net.diemond_player.unidye.item.custom;
 
+import net.diemond_player.unidye.Unidye;
 import net.diemond_player.unidye.util.IEntityAccessor;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.block.Block;
+import net.minecraft.block.SignBlock;
+import net.minecraft.block.entity.SignBlockEntity;
+import net.minecraft.block.entity.SignText;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.DyeableItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.network.NetworkThreadUtils;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -21,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class CustomDyeItem extends Item implements DyeableItem {
+public class CustomDyeItem extends Item implements SignChangingItem, DyeableItem {
     public static final String WOOL_KEY = "wool";
     public static final String WOOL_COLOR_KEY = "wool_color";
     public static final String CONCRETE_KEY = "concrete";
@@ -36,8 +46,8 @@ public class CustomDyeItem extends Item implements DyeableItem {
     public static final String CONTENTS_LIST_KEY = "contents_list";
     public static final String CLOSEST_VANILLA_DYE_KEY = "closest_vanilla_dye";
     public static final String CLOSEST_VANILLA_DYE_ID_KEY = "closest_vanilla_dye_id";
+    private static final Identifier SIGN_CUSTOM_COLOR_PACKET_ID = new Identifier("unidye", "sign_custom_color");
     public static final int DEFAULT_COLOR = 16777215;
-    public static final Identifier identifierColor = new Identifier("unidye", "custom_color");
 
 
     public CustomDyeItem(Settings settings) {
@@ -179,5 +189,22 @@ public class CustomDyeItem extends Item implements DyeableItem {
             return ActionResult.success(user.getWorld().isClient);
         }
         return ActionResult.PASS;
+    }
+
+    @Override
+    public boolean useOnSign(World world, SignBlockEntity signBlockEntity, boolean front, PlayerEntity player) {
+        IEntityAccessor iEntityAccessor = (IEntityAccessor) signBlockEntity;
+        if (iEntityAccessor.unidye$getCustomColor() != getMaterialColor(player.getStackInHand(player.getActiveHand()), "concrete")) {
+            world.playSound(null, signBlockEntity.getPos(), SoundEvents.ITEM_DYE_USE, SoundCategory.BLOCKS, 1.0f, 1.0f);
+            if(front){
+                iEntityAccessor.unidye$setCustomColor(getMaterialColor(player.getStackInHand(player.getActiveHand()), "concrete"));
+            }else{
+                iEntityAccessor.unidye$setCustomColorBack(getMaterialColor(player.getStackInHand(player.getActiveHand()), "concrete"));
+            }
+            signBlockEntity.markDirty();
+            world.updateListeners(signBlockEntity.getPos(), world.getBlockState(signBlockEntity.getPos()), world.getBlockState(signBlockEntity.getPos()), Block.NOTIFY_LISTENERS);
+            return true;
+        }
+        return false;
     }
 }
