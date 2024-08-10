@@ -2,6 +2,7 @@ package net.diemond_player.unidye.item.custom;
 
 import net.diemond_player.unidye.block.ModBlocks;
 import net.diemond_player.unidye.block.entity.DyeableBlockEntity;
+import net.diemond_player.unidye.block.entity.DyeableShulkerBoxBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -30,6 +31,9 @@ public class DyeableBlockItem extends BlockItem implements DyeableItem {
                 && !blockstate.isOf(ModBlocks.CUSTOM_STAINED_GLASS_PANE)
                 && !blockstate.isOf(ModBlocks.CUSTOM_CANDLE)){
             dyeableBlockEntity.color = getColor(context.getStack());
+        }
+        if(blockEntity instanceof DyeableShulkerBoxBlockEntity dyeableShulkerBoxBlockEntity){
+            dyeableShulkerBoxBlockEntity.color = getColor(context.getStack());
         }
         return result;
     }

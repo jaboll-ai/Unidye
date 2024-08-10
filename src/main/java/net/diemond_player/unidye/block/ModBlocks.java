@@ -30,12 +30,10 @@ public class ModBlocks {
             new DyeablePaneBlock(FabricBlockSettings.copyOf(Blocks.WHITE_STAINED_GLASS_PANE)));
     public static final Block CUSTOM_CANDLE = registerDyeableBlock("custom_candle",
             new DyeableCandleBlock(FabricBlockSettings.copyOf(Blocks.WHITE_CANDLE)));
-    public static final Block CUSTOM_SHULKER_BOX = registerDyeableBlock("custom_shulker_box",
-            new DyeableShulkerBoxBlock(null, FabricBlockSettings.copyOf(Blocks.WHITE_SHULKER_BOX)));
-    public static final Block CUSTOM_BED = registerDyeableBlock("custom_bed",
+    public static final Block CUSTOM_SHULKER_BOX = registerSingletonDyeableBlock("custom_shulker_box",
+            new DyeableShulkerBoxBlock(FabricBlockSettings.copyOf(Blocks.WHITE_SHULKER_BOX)));
+    public static final Block CUSTOM_BED = registerSingletonDyeableBlock("custom_bed",
             new DyeableBedBlock(FabricBlockSettings.copyOf(Blocks.WHITE_SHULKER_BOX)));
-    public static final Block TEST_BLOCK = registerDyeableBlock("test_block",
-            new TestBlock(FabricBlockSettings.copyOf(Blocks.MUD_BRICKS)));
 
     private static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);
@@ -57,6 +55,13 @@ public class ModBlocks {
     private static Block registerDyeableBlock(String name, Block block) {
         registerDyeableBlockItem(name, block);
         return Registry.register(Registries.BLOCK, new Identifier(Unidye.MOD_ID, name), block);
+    }
+    private static Block registerSingletonDyeableBlock(String name, Block block) {
+        registerSingletonDyeableBlockItem(name, block);
+        return Registry.register(Registries.BLOCK, new Identifier(Unidye.MOD_ID, name), block);
+    }
+    private static void registerSingletonDyeableBlockItem(String name, Block block) {
+        Registry.register(Registries.ITEM, new Identifier(Unidye.MOD_ID, name), new DyeableBlockItem(block, new FabricItemSettings().maxCount(1)));
     }
     private static void registerDyeableBlockItem(String name, Block block) {
         Registry.register(Registries.ITEM, new Identifier(Unidye.MOD_ID, name), new DyeableBlockItem(block, new FabricItemSettings()));
