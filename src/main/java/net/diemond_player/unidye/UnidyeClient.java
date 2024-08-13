@@ -5,6 +5,7 @@ import net.diemond_player.unidye.block.entity.DyeableBlockEntity;
 import net.diemond_player.unidye.block.entity.DyeableShulkerBoxBlockEntity;
 import net.diemond_player.unidye.block.entity.ModBlockEntities;
 import net.diemond_player.unidye.entity.DyeableFallingBlockEntity;
+import net.diemond_player.unidye.entity.ModEntities;
 import net.diemond_player.unidye.entity.client.model.DyeableShulkerEntityModel;
 import net.diemond_player.unidye.entity.client.renderer.DyeableShulkerBoxBlockEntityRenderer;
 import net.diemond_player.unidye.entity.layer.ModModelLayers;
@@ -32,13 +33,6 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class UnidyeClient implements ClientModInitializer {
-    public static final EntityType<DyeableFallingBlockEntity> DYEABLE_FALLING_BLOCK = Registry.register(
-            Registries.ENTITY_TYPE,
-            new Identifier("unidye", "custom_falling_block"),
-            FabricEntityTypeBuilder.create()
-                    .entityFactory(DyeableFallingBlockEntity::new)
-                    .build()
-    );
     public static final BlockEntityType<DyeableShulkerBoxBlockEntity> DYEABLE_SHULKER = Registry.register(
             Registries.BLOCK_ENTITY_TYPE,
             new Identifier("unidye", "custom_shulker"),
@@ -47,7 +41,7 @@ public class UnidyeClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
 
-        EntityRendererRegistry.register(UnidyeClient.DYEABLE_FALLING_BLOCK, DyeableFallingBlockEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.DYEABLE_FALLING_BLOCK_ENTITY, DyeableFallingBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.DYEABLE_SHULKER_BOX_BE, DyeableShulkerBoxBlockEntityRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.CUSTOM_SHULKER, DyeableShulkerEntityModel::getTexturedModelData);
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CUSTOM_STAINED_GLASS, RenderLayer.getTranslucent());

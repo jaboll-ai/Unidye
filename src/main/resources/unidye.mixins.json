@@ -7,7 +7,6 @@
     "CatEntityMixin",
     "DyeItemMixin",
     "FireworkStarRecipeMixin",
-    "LoomScreenHandlerMixin",
     "SheepEntityMixin",
     "SignBlockEntityMixin",
     "SignTextMixin",
@@ -18,12 +17,9 @@
     "defaultRequire": 1
   },
   "client": [
-    "BlockModelRendererMixin",
-    "BlockRenderManagerMixin",
     "CatCollarFeatureRendererMixin",
     "SheepWoolFeatureRendererMixin",
     "SignBlockEntityRendererMixin",
-    "VertexConsumerMixin",
     "WolfCollarFeatureRendererMixin"
   ]
 }

@@ -13,20 +13,20 @@ public interface UnidyeableItem {
     public static final Map<String, UnidyeColor> DYES = new HashMap<String, UnidyeColor>(){{
         put("white", UnidyeColor.WHITE);
         put("orange", UnidyeColor.ORANGE);
-        put("magenta", UnidyeColor.MAGENTA);
-        put("light_blue", UnidyeColor.LIGHT_BLUE);
         put("yellow", UnidyeColor.YELLOW);
-        put("lime", UnidyeColor.LIME);
-        put("pink", UnidyeColor.PINK);
-        put("gray", UnidyeColor.GRAY);
         put("light_gray", UnidyeColor.LIGHT_GRAY);
         put("cyan", UnidyeColor.CYAN);
-        put("purple", UnidyeColor.PURPLE);
         put("blue", UnidyeColor.BLUE);
         put("brown", UnidyeColor.BROWN);
         put("green", UnidyeColor.GREEN);
         put("red", UnidyeColor.RED);
         put("black", UnidyeColor.BLACK);
+        put("light_blue", UnidyeColor.LIGHT_BLUE);
+        put("magenta", UnidyeColor.MAGENTA);
+        put("lime", UnidyeColor.LIME);
+        put("pink", UnidyeColor.PINK);
+        put("gray", UnidyeColor.GRAY);
+        put("purple", UnidyeColor.PURPLE);
     }};
 
     static ItemStack blendAndSetColor(ItemStack stack, List<DyeItem> colors, List<ItemStack> customColors) {
