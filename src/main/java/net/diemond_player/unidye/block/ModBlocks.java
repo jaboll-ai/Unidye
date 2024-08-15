@@ -33,7 +33,7 @@ public class ModBlocks {
     public static final Block CUSTOM_SHULKER_BOX = registerSingletonDyeableBlock("custom_shulker_box",
             new DyeableShulkerBoxBlock(FabricBlockSettings.copyOf(Blocks.WHITE_SHULKER_BOX).noBlockBreakParticles()));
     public static final Block CUSTOM_BED = registerSingletonDyeableBlock("custom_bed",
-            new DyeableBedBlock(FabricBlockSettings.copyOf(Blocks.WHITE_SHULKER_BOX)));
+            new DyeableBedBlock(FabricBlockSettings.copyOf(Blocks.WHITE_BED)));
 
     private static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);

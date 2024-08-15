@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "unidye:block/bed"
+      "model": "minecraft:block/bed"
     }
   }
 }

@@ -1,6 +1,7 @@
 package net.diemond_player.unidye.item.custom;
 
 import net.diemond_player.unidye.block.ModBlocks;
+import net.diemond_player.unidye.block.entity.DyeableBedBlockEntity;
 import net.diemond_player.unidye.block.entity.DyeableBlockEntity;
 import net.diemond_player.unidye.block.entity.DyeableShulkerBoxBlockEntity;
 import net.minecraft.block.Block;
@@ -13,6 +14,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.math.Direction;
+
+import static net.minecraft.block.HorizontalFacingBlock.FACING;
 
 public class DyeableBlockItem extends BlockItem implements DyeableItem {
     public DyeableBlockItem(Block block, Settings settings) {
@@ -32,8 +36,19 @@ public class DyeableBlockItem extends BlockItem implements DyeableItem {
                 && !blockstate.isOf(ModBlocks.CUSTOM_CANDLE)){
             dyeableBlockEntity.color = getColor(context.getStack());
         }
-        if(blockEntity instanceof DyeableShulkerBoxBlockEntity dyeableShulkerBoxBlockEntity){
+        if(blockEntity instanceof DyeableShulkerBoxBlockEntity dyeableShulkerBoxBlockEntity
+                && context.getStack().isOf(ModBlocks.CUSTOM_SHULKER_BOX.asItem())
+                && !blockstate.isOf(ModBlocks.CUSTOM_SHULKER_BOX)){
             dyeableShulkerBoxBlockEntity.color = getColor(context.getStack());
+        }
+        if(blockEntity instanceof DyeableBedBlockEntity dyeableBedBlockEntity
+                && context.getStack().isOf(ModBlocks.CUSTOM_BED.asItem())
+                && !blockstate.isOf(ModBlocks.CUSTOM_BED)){
+            dyeableBedBlockEntity.color = getColor(context.getStack());
+            DyeableBedBlockEntity dyeableBedBlockEntity1 = (DyeableBedBlockEntity) context.getWorld().getBlockEntity(context.getBlockPos().offset(context.getWorld().getBlockState(context.getBlockPos()).get(FACING)));
+            if(dyeableBedBlockEntity1 != null){
+                dyeableBedBlockEntity1.color = getColor(context.getStack());
+            }
         }
         return result;
     }

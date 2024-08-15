@@ -19,8 +19,7 @@ public class ModBlockEntities {
                         ModBlocks.CUSTOM_CONCRETE_POWDER,
                         ModBlocks.CUSTOM_CARPET,
                         ModBlocks.CUSTOM_STAINED_GLASS_PANE,
-                        ModBlocks.CUSTOM_CANDLE,
-                        ModBlocks.CUSTOM_BED
+                        ModBlocks.CUSTOM_CANDLE
                         ).build(null));
 
         public static final BlockEntityType<DyeableShulkerBoxBlockEntity> DYEABLE_SHULKER_BOX_BE = Registry.register(
@@ -28,6 +27,12 @@ public class ModBlockEntities {
                 FabricBlockEntityTypeBuilder.create(DyeableShulkerBoxBlockEntity::new,
                         ModBlocks.CUSTOM_SHULKER_BOX
                         ).build(null));
+        public static final BlockEntityType<DyeableBedBlockEntity> DYEABLE_BED_BE = Registry.register(
+                Registries.BLOCK_ENTITY_TYPE, new Identifier(Unidye.MOD_ID, "dyeable_bed_block_entity"),
+                FabricBlockEntityTypeBuilder.create(DyeableBedBlockEntity::new,
+                        ModBlocks.CUSTOM_BED
+                        ).build(null));
+
 
         public static void registerBlockEntities(){
             Unidye.LOGGER.info("Registering Block Entities for " + Unidye.MOD_ID);

@@ -3,6 +3,7 @@ package net.diemond_player.unidye.block.custom;
 import com.google.common.collect.Maps;
 import net.diemond_player.unidye.Unidye;
 import net.diemond_player.unidye.block.ModBlocks;
+import net.diemond_player.unidye.block.entity.DyeableBedBlockEntity;
 import net.diemond_player.unidye.block.entity.DyeableBlockEntity;
 import net.diemond_player.unidye.block.entity.DyeableShulkerBoxBlockEntity;
 import net.diemond_player.unidye.block.entity.ModBlockEntities;
@@ -244,20 +245,24 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
 
     @Override
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-        ItemStack itemStack = super.getPickStack(world, pos, state);
-        world.getBlockEntity(pos, ModBlockEntities.DYEABLE_SHULKER_BOX_BE).ifPresent(blockEntity -> blockEntity.setStackNbt(itemStack));
         if (DyeableShulkerBoxBlockEntity.getColor(world, pos) != DyeableShulkerBoxBlockEntity.DEFAULT_COLOR) {
-            DyeableShulkerBoxBlockEntity blockEntity = ModBlockEntities.DYEABLE_SHULKER_BOX_BE.get(world,pos);
-            int color = DyeableBlockEntity.DEFAULT_COLOR;
-            if(blockEntity != null){
-                color = blockEntity.color;
-            }
-            NbtCompound subNbt = itemStack.getOrCreateSubNbt("display");
-            subNbt.putInt("color", color);
-            return itemStack;
+            ItemStack stack = super.getPickStack(world, pos, state);
+            return pickBlock(world,pos,stack);
         } else {
-            return itemStack;
+            return new ItemStack(this);
         }
+    }
+
+    @Override
+    public ItemStack pickBlock(BlockView world, BlockPos pos, ItemStack stack) {
+        DyeableShulkerBoxBlockEntity blockEntity = ModBlockEntities.DYEABLE_SHULKER_BOX_BE.get(world,pos);
+        int color = DyeableShulkerBoxBlockEntity.DEFAULT_COLOR;
+        if(blockEntity != null){
+            color = blockEntity.color;
+        }
+        NbtCompound subNbt = stack.getOrCreateSubNbt("display");
+        subNbt.putInt("color", color);
+        return stack;
     }
 
     @Override

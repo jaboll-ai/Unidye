@@ -7,6 +7,7 @@ import net.diemond_player.unidye.block.entity.ModBlockEntities;
 import net.diemond_player.unidye.entity.DyeableFallingBlockEntity;
 import net.diemond_player.unidye.entity.ModEntities;
 import net.diemond_player.unidye.entity.client.model.DyeableShulkerEntityModel;
+import net.diemond_player.unidye.entity.client.renderer.DyeableBedBlockEntityRenderer;
 import net.diemond_player.unidye.entity.client.renderer.DyeableShulkerBoxBlockEntityRenderer;
 import net.diemond_player.unidye.entity.layer.ModModelLayers;
 import net.diemond_player.unidye.item.ModItems;
@@ -33,16 +34,12 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class UnidyeClient implements ClientModInitializer {
-    public static final BlockEntityType<DyeableShulkerBoxBlockEntity> DYEABLE_SHULKER = Registry.register(
-            Registries.BLOCK_ENTITY_TYPE,
-            new Identifier("unidye", "custom_shulker"),
-            FabricBlockEntityTypeBuilder.create(DyeableShulkerBoxBlockEntity::new, ModBlocks.CUSTOM_SHULKER_BOX).build()
-    );
     @Override
     public void onInitializeClient() {
 
         EntityRendererRegistry.register(ModEntities.DYEABLE_FALLING_BLOCK_ENTITY, DyeableFallingBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.DYEABLE_SHULKER_BOX_BE, DyeableShulkerBoxBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.DYEABLE_BED_BE, DyeableBedBlockEntityRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.CUSTOM_SHULKER, DyeableShulkerEntityModel::getTexturedModelData);
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CUSTOM_STAINED_GLASS, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CUSTOM_STAINED_GLASS_PANE, RenderLayer.getTranslucent());

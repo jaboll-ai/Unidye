@@ -1,5 +1,7 @@
-// 1.20	2024-06-16T14:33:56.8373426	Unidye/Tags for minecraft:block
+// 1.20	2024-08-15T15:18:43.9682446	Unidye/Tags for minecraft:block
 aebc6f465041cf3db65750ce5cddbc4a67918629 data\minecraft\tags\blocks\wool.json
+51a0bac1dae2a78d2b6c25f928270ece850d9f39 data\minecraft\tags\blocks\beds.json
 9119460a32cebb69b9e50057fe48640743ffed48 data\minecraft\tags\blocks\candles.json
-d299e64369257533461ede62a9b5988d820fd067 data\minecraft\tags\blocks\wool_carpets.json
 17732eed4842f40bc50baae436fd6b6cfee4c0fa data\minecraft\tags\blocks\terracotta.json
+d299e64369257533461ede62a9b5988d820fd067 data\minecraft\tags\blocks\wool_carpets.json
+f1f5024229e8f17eb392ec2d218d4db8b2f43d3f data\minecraft\tags\blocks\shulker_boxes.json

@@ -26,5 +26,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.CUSTOM_WOOL);
         getOrCreateTagBuilder(BlockTags.WOOL_CARPETS)
                 .add(ModBlocks.CUSTOM_CARPET);
+        getOrCreateTagBuilder(BlockTags.BEDS)
+                .add(ModBlocks.CUSTOM_BED);
+        getOrCreateTagBuilder(BlockTags.SHULKER_BOXES)
+                .add(ModBlocks.CUSTOM_SHULKER_BOX);
     }
 }
