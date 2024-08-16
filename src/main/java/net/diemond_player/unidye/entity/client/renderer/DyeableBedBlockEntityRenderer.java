@@ -5,6 +5,9 @@ import net.diemond_player.unidye.block.custom.DyeableBedBlock;
 import net.diemond_player.unidye.block.entity.DyeableBedBlockEntity;
 import net.diemond_player.unidye.block.entity.DyeableShulkerBoxBlockEntity;
 import net.diemond_player.unidye.block.entity.ModBlockEntities;
+import net.diemond_player.unidye.entity.layer.ModModelLayers;
+import net.diemond_player.unidye.mixin.ModelPartMixin;
+import net.diemond_player.unidye.util.IModel;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
@@ -35,26 +38,29 @@ public class DyeableBedBlockEntityRenderer
     private final ModelPart bedFoot;
 
     public DyeableBedBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
-        this.bedHead = ctx.getLayerModelPart(EntityModelLayers.BED_HEAD);
-        this.bedFoot = ctx.getLayerModelPart(EntityModelLayers.BED_FOOT);
+        this.bedHead = ctx.getLayerModelPart(ModModelLayers.CUSTOM_BED_HEAD);
+        this.bedFoot = ctx.getLayerModelPart(ModModelLayers.CUSTOM_BED_FOOT);
     }
 
     public static TexturedModelData getHeadTexturedModelData() {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
-        modelPartData.addChild("main", ModelPartBuilder.create().uv(0, 0).cuboid(0.0f, 0.0f, 0.0f, 16.0f, 16.0f, 6.0f), ModelTransform.NONE);
+        modelPartData.addChild("main", ModelPartBuilder.create().uv(2, 10).cuboid(0.0f, 8.0f, 0.0f, 16.0f, 8.0f, 4.0f), ModelTransform.NONE);
+        modelPartData.addChild("main1", ModelPartBuilder.create().uv(0, 0).cuboid(0.0f, 0.0f, 0.0f, 16.0f, 8.0f, 6.0f), ModelTransform.NONE);
+        modelPartData.addChild("main2", ModelPartBuilder.create().uv(0, 44).cuboid(0.0f, 8.0f, 4.0f, 16.0f, 8.0f, 2.0f), ModelTransform.NONE);
         modelPartData.addChild(EntityModelPartNames.LEFT_LEG, ModelPartBuilder.create().uv(50, 6).cuboid(0.0f, 6.0f, 0.0f, 3.0f, 3.0f, 3.0f), ModelTransform.rotation(1.5707964f, 0.0f, 1.5707964f));
         modelPartData.addChild(EntityModelPartNames.RIGHT_LEG, ModelPartBuilder.create().uv(50, 18).cuboid(-16.0f, 6.0f, 0.0f, 3.0f, 3.0f, 3.0f), ModelTransform.rotation(1.5707964f, 0.0f, (float)Math.PI));
-        return TexturedModelData.of(modelData, 64, 64);
+        return TexturedModelData.of(modelData, 128, 128);
     }
 
     public static TexturedModelData getFootTexturedModelData() {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
-        modelPartData.addChild("main", ModelPartBuilder.create().uv(0, 22).cuboid(0.0f, 0.0f, 0.0f, 16.0f, 16.0f, 6.0f), ModelTransform.NONE);
+        modelPartData.addChild("main", ModelPartBuilder.create().uv(2, 24).cuboid(0.0f, 0.0f, 0.0f, 16.0f, 16.0f, 4.0f), ModelTransform.NONE);
+        modelPartData.addChild("main1", ModelPartBuilder.create().uv(0, 54).cuboid(0.0f, 0.0f, 4.0f, 16.0f, 16.0f, 2.0f), ModelTransform.NONE);
         modelPartData.addChild(EntityModelPartNames.LEFT_LEG, ModelPartBuilder.create().uv(50, 0).cuboid(0.0f, 6.0f, -16.0f, 3.0f, 3.0f, 3.0f), ModelTransform.rotation(1.5707964f, 0.0f, 0.0f));
         modelPartData.addChild(EntityModelPartNames.RIGHT_LEG, ModelPartBuilder.create().uv(50, 12).cuboid(-16.0f, 6.0f, -16.0f, 3.0f, 3.0f, 3.0f), ModelTransform.rotation(1.5707964f, 0.0f, 4.712389f));
-        return TexturedModelData.of(modelData, 64, 64);
+        return TexturedModelData.of(modelData, 128, 128);
     }
 
     @Override
@@ -85,7 +91,7 @@ public class DyeableBedBlockEntityRenderer
         float red = ((color & 0xFF0000) >> 16) / 255.0f;
         float green = ((color & 0xFF00) >> 8) / 255.0f;
         float blue = ((color & 0xFF) >> 0) / 255.0f;
-        part.render(matrices, vertexConsumer, light, overlay, red, green, blue, 1.0f);
+        ((IModel) (Object) part).unidye$specialRender(matrices, vertexConsumer, light, overlay, red, green, blue, 1.0f);
         matrices.pop();
     }
 }

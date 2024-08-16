@@ -1,6 +1,7 @@
 package net.diemond_player.unidye;
 
 import net.diemond_player.unidye.block.ModBlocks;
+import net.diemond_player.unidye.block.entity.DyeableBedBlockEntity;
 import net.diemond_player.unidye.block.entity.DyeableBlockEntity;
 import net.diemond_player.unidye.block.entity.DyeableShulkerBoxBlockEntity;
 import net.diemond_player.unidye.block.entity.ModBlockEntities;
@@ -26,6 +27,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
+import net.minecraft.data.client.Models;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.DyeableItem;
 import net.minecraft.item.Item;
@@ -41,6 +43,8 @@ public class UnidyeClient implements ClientModInitializer {
         BlockEntityRendererFactories.register(ModBlockEntities.DYEABLE_SHULKER_BOX_BE, DyeableShulkerBoxBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.DYEABLE_BED_BE, DyeableBedBlockEntityRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.CUSTOM_SHULKER, DyeableShulkerEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.CUSTOM_BED_HEAD, DyeableBedBlockEntityRenderer::getHeadTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.CUSTOM_BED_FOOT, DyeableBedBlockEntityRenderer::getFootTexturedModelData);
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CUSTOM_STAINED_GLASS, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CUSTOM_STAINED_GLASS_PANE, RenderLayer.getTranslucent());
         registerItemColor(ModItems.CUSTOM_DYE);

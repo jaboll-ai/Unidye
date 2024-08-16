@@ -37,12 +37,10 @@ public class DyeableBlockItem extends BlockItem implements DyeableItem {
             dyeableBlockEntity.color = getColor(context.getStack());
         }
         if(blockEntity instanceof DyeableShulkerBoxBlockEntity dyeableShulkerBoxBlockEntity
-                && context.getStack().isOf(ModBlocks.CUSTOM_SHULKER_BOX.asItem())
                 && !blockstate.isOf(ModBlocks.CUSTOM_SHULKER_BOX)){
             dyeableShulkerBoxBlockEntity.color = getColor(context.getStack());
         }
         if(blockEntity instanceof DyeableBedBlockEntity dyeableBedBlockEntity
-                && context.getStack().isOf(ModBlocks.CUSTOM_BED.asItem())
                 && !blockstate.isOf(ModBlocks.CUSTOM_BED)){
             dyeableBedBlockEntity.color = getColor(context.getStack());
             DyeableBedBlockEntity dyeableBedBlockEntity1 = (DyeableBedBlockEntity) context.getWorld().getBlockEntity(context.getBlockPos().offset(context.getWorld().getBlockState(context.getBlockPos()).get(FACING)));
