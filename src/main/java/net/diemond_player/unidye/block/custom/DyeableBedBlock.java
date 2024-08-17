@@ -38,8 +38,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class DyeableBedBlock extends HorizontalFacingBlock
-        implements BlockEntityProvider, IDyeableBlock{
+public class DyeableBedBlock extends BedBlock
+        implements IDyeableBlock{
     public static final EnumProperty<BedPart> PART = Properties.BED_PART;
     public static final BooleanProperty OCCUPIED = Properties.OCCUPIED;
     protected static final int field_31009 = 9;
@@ -55,7 +55,7 @@ public class DyeableBedBlock extends HorizontalFacingBlock
     protected static final VoxelShape EAST_SHAPE = VoxelShapes.union(TOP_SHAPE, LEG_3_SHAPE, LEG_4_SHAPE);
 
     public DyeableBedBlock(AbstractBlock.Settings settings) {
-        super(settings);
+        super(DyeColor.CYAN, settings);
         this.setDefaultState((BlockState)((BlockState)((BlockState)this.stateManager.getDefaultState()).with(PART, BedPart.FOOT)).with(OCCUPIED, false));
     }
 
@@ -73,7 +73,7 @@ public class DyeableBedBlock extends HorizontalFacingBlock
         if (state.get(PART) != BedPart.HEAD && !(state = world.getBlockState(pos = pos.offset(state.get(FACING)))).isOf(this)) {
             return ActionResult.CONSUME;
         }
-        if (!BedBlock.isBedWorking(world)) {
+        if (!DyeableBedBlock.isBedWorking(world)) {
             world.removeBlock(pos, false);
             BlockPos blockPos = pos.offset(state.get(FACING).getOpposite());
             if (world.getBlockState(blockPos).isOf(this)) {
@@ -176,7 +176,7 @@ public class DyeableBedBlock extends HorizontalFacingBlock
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction direction = BedBlock.getOppositePartDirection(state).getOpposite();
+        Direction direction = DyeableBedBlock.getOppositePartDirection(state).getOpposite();
         switch (direction) {
             case NORTH: {
                 return NORTH_SHAPE;

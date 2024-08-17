@@ -7,6 +7,7 @@
     "CatEntityMixin",
     "DyeItemMixin",
     "FireworkStarRecipeMixin",
+    "PointOfInterestTypesMixin",
     "SheepEntityMixin",
     "SignBlockEntityMixin",
     "SignTextMixin",
@@ -17,6 +18,7 @@
     "defaultRequire": 1
   },
   "client": [
+    "BuiltinModelItemRendererMixin",
     "CatCollarFeatureRendererMixin",
     "ModelPartMixin",
     "SheepWoolFeatureRendererMixin",

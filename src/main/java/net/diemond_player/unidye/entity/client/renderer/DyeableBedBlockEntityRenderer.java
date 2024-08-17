@@ -8,7 +8,6 @@ import net.diemond_player.unidye.block.entity.ModBlockEntities;
 import net.diemond_player.unidye.entity.layer.ModModelLayers;
 import net.diemond_player.unidye.mixin.ModelPartMixin;
 import net.diemond_player.unidye.util.IModel;
-import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
 import net.minecraft.block.DoubleBlockProperties;
@@ -87,7 +86,7 @@ public class DyeableBedBlockEntityRenderer
         matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(180.0f + direction.asRotation()));
         matrices.translate(-0.5f, -0.5f, -0.5f);
         VertexConsumer vertexConsumer = sprite.getVertexConsumer(vertexConsumers, RenderLayer::getEntitySolid);
-        int color = DyeableBedBlockEntity.getColor(dyeableBedBlockEntity.getWorld(), dyeableBedBlockEntity.getPos());
+        int color = dyeableBedBlockEntity.color;
         float red = ((color & 0xFF0000) >> 16) / 255.0f;
         float green = ((color & 0xFF00) >> 8) / 255.0f;
         float blue = ((color & 0xFF) >> 0) / 255.0f;
