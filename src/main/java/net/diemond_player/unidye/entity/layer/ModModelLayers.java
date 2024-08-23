@@ -16,4 +16,6 @@ public class ModModelLayers {
             new EntityModelLayer(new Identifier(Unidye.MOD_ID, "custom_bed_foot"), "main");
     public static final EntityModelLayer CUSTOM_BED_HEAD =
             new EntityModelLayer(new Identifier(Unidye.MOD_ID, "custom_bed_head"), "main");
+    public static final EntityModelLayer CUSTOM_BANNER =
+            new EntityModelLayer(new Identifier(Unidye.MOD_ID, "custom_banner"), "main");
 }

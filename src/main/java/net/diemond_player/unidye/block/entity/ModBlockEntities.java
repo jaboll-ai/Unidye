@@ -32,6 +32,12 @@ public class ModBlockEntities {
                 FabricBlockEntityTypeBuilder.create(DyeableBedBlockEntity::new,
                         ModBlocks.CUSTOM_BED
                         ).build(null));
+        public static final BlockEntityType<DyeableBannerBlockEntity> DYEABLE_BANNER_BE = Registry.register(
+                Registries.BLOCK_ENTITY_TYPE, new Identifier(Unidye.MOD_ID, "dyeable_banner_block_entity"),
+                FabricBlockEntityTypeBuilder.create(DyeableBannerBlockEntity::new,
+                        ModBlocks.CUSTOM_BANNER,
+                        ModBlocks.CUSTOM_WALL_BANNER
+                        ).build(null));
 
 
         public static void registerBlockEntities(){

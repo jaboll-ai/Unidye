@@ -2,6 +2,7 @@ package net.diemond_player.unidye.block;
 
 import net.diemond_player.unidye.block.custom.*;
 import net.diemond_player.unidye.Unidye;
+import net.diemond_player.unidye.item.custom.DyeableBannerItem;
 import net.diemond_player.unidye.item.custom.DyeableBlockItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -14,6 +15,30 @@ import net.minecraft.util.Identifier;
 
 public class ModBlocks {
 
+    //TODO dye items second layer!
+    //TODO dye blocks second layer!
+    //TODO integration with: DyeDepot, ...
+    //TODO jeb_ dye
+    //TODO naming of classes
+    //TODO CLEAN CODE
+    //TODO CLEAN MIXINS
+    //TODO dye naming system (?)
+    //TODO survival compatibility (recipes, drops and tool effectiveness)
+    //TODO add Llama carpets
+    //TODO add Glazed Terracotta
+    //TODO add Banner Patterns
+    //FIXME sheep do not drop colored wool on death
+    //FIXME when dropped on blocks; wrong particles
+    //FIXME villagers so not use beds
+    //FIXME powder loses color
+    //FIXME shulker colors are off
+    //FIXME candles colors are off
+    //FIXME bed colors are off
+    //FIXME middlemouse + ctrl works not like intended with shulkers
+    //FIXME crafted fireworks display "Custom"
+    //FIXME cant use banners in looms
+    //FIXME check shield banners
+    //FIXME cauldron with banners
     public static final Block CUSTOM_WOOL = registerDyeableBlock("custom_wool",
             new DyeableBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL)));
     public static final Block CUSTOM_CONCRETE = registerDyeableBlock("custom_concrete",
@@ -31,10 +56,13 @@ public class ModBlocks {
     public static final Block CUSTOM_CANDLE = registerDyeableBlock("custom_candle",
             new DyeableCandleBlock(FabricBlockSettings.copyOf(Blocks.WHITE_CANDLE)));
     public static final Block CUSTOM_SHULKER_BOX = registerSingletonDyeableBlock("custom_shulker_box",
-            new DyeableShulkerBoxBlock(FabricBlockSettings.copyOf(Blocks.WHITE_SHULKER_BOX).noBlockBreakParticles()));
+            new DyeableShulkerBoxBlock(FabricBlockSettings.copyOf(Blocks.WHITE_SHULKER_BOX)));
     public static final Block CUSTOM_BED = registerSingletonDyeableBlock("custom_bed",
             new DyeableBedBlock(FabricBlockSettings.copyOf(Blocks.WHITE_BED)));
-
+    public static final Block CUSTOM_BANNER = registerBlockWithoutItem("custom_banner",
+            new DyeableBannerBlock(FabricBlockSettings.copyOf(Blocks.WHITE_BANNER)));
+    public static final Block CUSTOM_WALL_BANNER = registerBlockWithoutItem("custom_wall_banner",
+            new DyeableWallBannerBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WALL_BANNER)));
     private static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, new Identifier(Unidye.MOD_ID, name), block);

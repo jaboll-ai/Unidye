@@ -19,6 +19,7 @@ public class ModItemGroups {
 
                         entries.add(ModItems.CUSTOM_DYE);
 
+                        entries.add(ModBlocks.CUSTOM_WOOL);
                         entries.add(ModBlocks.CUSTOM_CARPET);
                         entries.add(ModBlocks.CUSTOM_CONCRETE_POWDER);
                         entries.add(ModBlocks.CUSTOM_CONCRETE);
@@ -28,6 +29,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.CUSTOM_CANDLE);
                         entries.add(ModBlocks.CUSTOM_SHULKER_BOX);
                         entries.add(ModBlocks.CUSTOM_BED);
+                        entries.add(ModItems.CUSTOM_BANNER);
 
 
                     }).build());
