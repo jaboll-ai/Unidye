@@ -71,21 +71,21 @@ public class CustomDyeItem extends Item implements SignChangingItem, DyeableItem
         if (nbtCompound != null && nbtCompound.contains(CLOSEST_VANILLA_DYE_ID_KEY, NbtElement.NUMBER_TYPE)) {
             id =  nbtCompound.getInt(CLOSEST_VANILLA_DYE_ID_KEY);
         }
-        switch (id){
-            case 0: return 0f;
-            case 1: return 1f/11;
-            case 3: return 2f/11;
-            case 4: return 3f/11;
-            case 8: return 4f/11;
-            case 9: return 5f/11;
-            case 11: return 6f/11;
-            case 12: return 7f/11;
-            case 13: return 8f/11;
-            case 14: return 9f/11;
-            case 15: return 10f/11;
-            case 2, 6, 5, 7, 10: return 1f;
-        }
-        return -1;
+        return switch (id) {
+            case 0 -> 0f;
+            case 1 -> 1f / 11;
+            case 3 -> 2f / 11;
+            case 4 -> 3f / 11;
+            case 8 -> 4f / 11;
+            case 9 -> 5f / 11;
+            case 11 -> 6f / 11;
+            case 12 -> 7f / 11;
+            case 13 -> 8f / 11;
+            case 14 -> 9f / 11;
+            case 15 -> 10f / 11;
+            case 2, 6, 5, 7, 10 -> 1f;
+            default -> -1;
+        };
     }
 
     public Integer getMaterialColor(ItemStack stack, String materialType) {

@@ -39,8 +39,7 @@ public class DyeableBannerBlockEntity extends BlockEntity implements Nameable {
     private NbtList patternListNbt;
     public static final int DEFAULT_COLOR = 16777215;
     public int color = DEFAULT_COLOR;
-    @Nullable
-    private List<Pair<RegistryEntry<BannerPattern>, DyeColor>> patterns;
+    private List<Pair<RegistryEntry<BannerPattern>, ?>> patterns;
 
     public DyeableBannerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.DYEABLE_BANNER_BE, pos, state);
@@ -145,16 +144,16 @@ public class DyeableBannerBlockEntity extends BlockEntity implements Nameable {
         return 0;
     }
 
-    public List<Pair<RegistryEntry<BannerPattern>, DyeColor>> getPatterns() {
+    public List<Pair<RegistryEntry<BannerPattern>, ?>> getPatterns() {
         if (this.patterns == null) {
-            this.patterns = DyeableBannerBlockEntity.getPatternsFromNbt(this.patternListNbt);
+            this.patterns = this.getPatternsFromNbt(this.patternListNbt);
         }
         return this.patterns;
     }
 
-    public static List<Pair<RegistryEntry<BannerPattern>, DyeColor>> getPatternsFromNbt(@Nullable NbtList patternListNbt) {
-        ArrayList<Pair<RegistryEntry<BannerPattern>, DyeColor>> list = Lists.newArrayList();
-        list.add(Pair.of(Registries.BANNER_PATTERN.entryOf(BannerPatterns.BASE), DyeColor.CYAN));
+    public List<Pair<RegistryEntry<BannerPattern>, ?>> getPatternsFromNbt(@Nullable NbtList patternListNbt) {
+        ArrayList<Pair<RegistryEntry<BannerPattern>, ?>> list = Lists.newArrayList();
+        list.add(Pair.of(Registries.BANNER_PATTERN.entryOf(BannerPatterns.BASE), this.color));
         if (patternListNbt != null) {
             for (int i = 0; i < patternListNbt.size(); ++i) {
                 NbtCompound nbtCompound = patternListNbt.getCompound(i);

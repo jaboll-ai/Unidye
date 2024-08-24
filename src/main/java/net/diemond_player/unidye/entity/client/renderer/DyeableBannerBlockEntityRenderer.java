@@ -65,7 +65,7 @@ public class DyeableBannerBlockEntityRenderer
     @Override
     public void render(DyeableBannerBlockEntity bannerBlockEntity, float f, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, int j) {
         long l;
-        List<Pair<RegistryEntry<BannerPattern>, DyeColor>> list = bannerBlockEntity.getPatterns();
+        List<Pair<RegistryEntry<BannerPattern>, ?>> list = bannerBlockEntity.getPatterns();
         float g = 0.6666667f;
         boolean bl = bannerBlockEntity.getWorld() == null;
         matrixStack.push();
@@ -104,22 +104,24 @@ public class DyeableBannerBlockEntityRenderer
         matrixStack.pop();
     }
 
-    public static void renderCanvas(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, ModelPart canvas, SpriteIdentifier baseSprite, boolean isBanner, List<Pair<RegistryEntry<BannerPattern>, DyeColor>> patterns, DyeableBannerBlockEntity dyeableBannerBlockEntity) {
+    public static void renderCanvas(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, ModelPart canvas, SpriteIdentifier baseSprite, boolean isBanner, List<Pair<RegistryEntry<BannerPattern>, ?>> patterns, DyeableBannerBlockEntity dyeableBannerBlockEntity) {
         DyeableBannerBlockEntityRenderer.renderCanvas(matrices, vertexConsumers, light, overlay, canvas, baseSprite, isBanner, patterns, false, dyeableBannerBlockEntity);
     }
 
-    public static void renderCanvas(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, ModelPart canvas, SpriteIdentifier baseSprite, boolean isBanner, List<Pair<RegistryEntry<BannerPattern>, DyeColor>> patterns, boolean glint, DyeableBannerBlockEntity dyeableBannerBlockEntity) {
+    public static void renderCanvas(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, ModelPart canvas, SpriteIdentifier baseSprite, boolean isBanner, List<Pair<RegistryEntry<BannerPattern>, ?>> patterns, boolean glint, DyeableBannerBlockEntity dyeableBannerBlockEntity) {
         canvas.render(matrices, baseSprite.getVertexConsumer(vertexConsumers, RenderLayer::getEntitySolid, glint), light, overlay);
-        RegistryEntry<BannerPattern> registryEntry = patterns.get(0).getFirst();
-        int color = dyeableBannerBlockEntity.color;
-        float red = ((color & 0xFF0000) >> 16) / 255.0f;
-        float green = ((color & 0xFF00) >> 8) / 255.0f;
-        float blue = ((color & 0xFF) >> 0) / 255.0f;
-        registryEntry.getKey().map(key -> isBanner ? TexturedRenderLayers.getBannerPatternTextureId(key) : TexturedRenderLayers.getShieldPatternTextureId(key)).ifPresent(sprite -> canvas.render(matrices, sprite.getVertexConsumer(vertexConsumers, RenderLayer::getEntityNoOutline), light, overlay, red, green, blue, 1.0f));
-        for (int i = 1; i < 17 && i < patterns.size(); ++i) {
-            Pair<RegistryEntry<BannerPattern>, DyeColor> pair = patterns.get(i);
-            float[] fs = pair.getSecond().getColorComponents();
-            pair.getFirst().getKey().map(key -> isBanner ? TexturedRenderLayers.getBannerPatternTextureId(key) : TexturedRenderLayers.getShieldPatternTextureId(key)).ifPresent(sprite -> canvas.render(matrices, sprite.getVertexConsumer(vertexConsumers, RenderLayer::getEntityNoOutline), light, overlay, fs[0], fs[1], fs[2], 1.0f));
+        for (int i = 0; i < 17 && i < patterns.size(); ++i) {
+            Pair<RegistryEntry<BannerPattern>, ?> pair = patterns.get(i);
+            if(pair.getSecond() instanceof DyeColor dyeColor){
+                float[] fs = dyeColor.getColorComponents();
+                pair.getFirst().getKey().map(key -> isBanner ? TexturedRenderLayers.getBannerPatternTextureId(key) : TexturedRenderLayers.getShieldPatternTextureId(key)).ifPresent(sprite -> canvas.render(matrices, sprite.getVertexConsumer(vertexConsumers, RenderLayer::getEntityNoOutline), light, overlay, fs[0], fs[1], fs[2], 1.0f));
+            } else {
+                int color = (int) pair.getSecond();
+                float red = ((color & 0xFF0000) >> 16) / 255.0f;
+                float green = ((color & 0xFF00) >> 8) / 255.0f;
+                float blue = ((color & 0xFF) >> 0) / 255.0f;
+                pair.getFirst().getKey().map(key -> isBanner ? TexturedRenderLayers.getBannerPatternTextureId(key) : TexturedRenderLayers.getShieldPatternTextureId(key)).ifPresent(sprite -> canvas.render(matrices, sprite.getVertexConsumer(vertexConsumers, RenderLayer::getEntityNoOutline), light, overlay, red, green, blue, 1.0f));
+            }
         }
     }
 }

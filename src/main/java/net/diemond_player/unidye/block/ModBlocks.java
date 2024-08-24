@@ -15,30 +15,33 @@ import net.minecraft.util.Identifier;
 
 public class ModBlocks {
 
+    //post-1.0
+    //TODOO jeb_ dye
+    //TODOO dye naming system (?)
+    //TODOO dye recipe saving system (?)
+    //TODOO add Llama carpets
+    //TODOO add Glazed Terracotta
+    //FIXMEE villagers do not use beds
+    //FIXMEE sheep do not drop colored wool on death
+    //FIXMEE when dropped on blocks; wrong particles
+
     //TODO dye items second layer!
     //TODO dye blocks second layer!
     //TODO integration with: DyeDepot, ...
-    //TODO jeb_ dye
     //TODO naming of classes
     //TODO CLEAN CODE
     //TODO CLEAN MIXINS
-    //TODO dye naming system (?)
     //TODO survival compatibility (recipes, drops and tool effectiveness)
-    //TODO add Llama carpets
-    //TODO add Glazed Terracotta
     //TODO add Banner Patterns
-    //FIXME sheep do not drop colored wool on death
-    //FIXME when dropped on blocks; wrong particles
-    //FIXME villagers so not use beds
     //FIXME powder loses color
     //FIXME shulker colors are off
     //FIXME candles colors are off
     //FIXME bed colors are off
+    //FIXME banner colors are off???
     //FIXME middlemouse + ctrl works not like intended with shulkers
-    //FIXME crafted fireworks display "Custom"
     //FIXME cant use banners in looms
     //FIXME check shield banners
-    //FIXME cauldron with banners
+    //FIXME cauldron with banners and shulkers
     public static final Block CUSTOM_WOOL = registerDyeableBlock("custom_wool",
             new DyeableBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL)));
     public static final Block CUSTOM_CONCRETE = registerDyeableBlock("custom_concrete",
