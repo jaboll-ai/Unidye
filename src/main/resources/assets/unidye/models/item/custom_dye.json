@@ -1,8 +1,5 @@
 {
   "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "unidye:item/custom_dye"
-  },
   "overrides": [
     {
       "predicate": {
@@ -12,69 +9,93 @@
     },
     {
       "predicate": {
-        "unidye:dye_id": 0.090909
+        "unidye:dye_id": 0.066666
       },
       "model": "unidye:item/custom_orange_dye"
     },
     {
       "predicate": {
-        "unidye:dye_id": 0.181818
+        "unidye:dye_id": 0.133333
+      },
+      "model": "unidye:item/custom_magenta_dye"
+    },
+    {
+      "predicate": {
+        "unidye:dye_id": 0.2
       },
       "model": "unidye:item/custom_light_blue_dye"
     },
     {
       "predicate": {
-        "unidye:dye_id": 0.272727
+        "unidye:dye_id": 0.266666
       },
       "model": "unidye:item/custom_yellow_dye"
     },
     {
       "predicate": {
-        "unidye:dye_id": 0.363636
+        "unidye:dye_id": 0.333333
+      },
+      "model": "unidye:item/custom_lime_dye"
+    },
+    {
+      "predicate": {
+        "unidye:dye_id": 0.400000
+      },
+      "model": "unidye:item/custom_pink_dye"
+    },
+    {
+      "predicate": {
+        "unidye:dye_id": 0.466666
+      },
+      "model": "unidye:item/custom_gray_dye"
+    },
+    {
+      "predicate": {
+        "unidye:dye_id": 0.533333
       },
       "model": "unidye:item/custom_light_gray_dye"
     },
     {
       "predicate": {
-        "unidye:dye_id": 0.454545
+        "unidye:dye_id": 0.600000
       },
       "model": "unidye:item/custom_cyan_dye"
     },
     {
       "predicate": {
-        "unidye:dye_id": 0.545454
+        "unidye:dye_id": 0.666666
+      },
+      "model": "unidye:item/custom_purple_dye"
+    },
+    {
+      "predicate": {
+        "unidye:dye_id": 0.733333
       },
       "model": "unidye:item/custom_blue_dye"
     },
     {
       "predicate": {
-        "unidye:dye_id": 0.636363
+        "unidye:dye_id": 0.800000
       },
       "model": "unidye:item/custom_brown_dye"
     },
     {
       "predicate": {
-        "unidye:dye_id": 0.727272
+        "unidye:dye_id": 0.866666
       },
       "model": "unidye:item/custom_green_dye"
     },
     {
       "predicate": {
-        "unidye:dye_id": 0.818181
+        "unidye:dye_id": 0.933333
       },
       "model": "unidye:item/custom_red_dye"
     },
     {
       "predicate": {
-        "unidye:dye_id": 0.909090
-      },
-      "model": "unidye:item/custom_black_dye"
-    },
-    {
-      "predicate": {
         "unidye:dye_id": 1
       },
-      "model": "unidye:item/custom_other_dye"
+      "model": "unidye:item/custom_black_dye"
     }
   ]
 }

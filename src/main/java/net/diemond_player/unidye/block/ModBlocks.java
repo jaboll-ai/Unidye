@@ -33,6 +33,7 @@ public class ModBlocks {
     //TODO CLEAN MIXINS
     //TODO survival compatibility (recipes, drops and tool effectiveness)
     //TODO add Banner Patterns
+    //FIXME map colors
     //FIXME powder loses color
     //FIXME shulker colors are off
     //FIXME candles colors are off
