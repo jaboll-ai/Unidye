@@ -25,6 +25,8 @@ public class ModBlocks {
     //FIXMEE sheep do not drop colored wool on death
     //FIXMEE when dropped on blocks; wrong particles
 
+
+    //TODO lowest alpha gray light gray
     //TODO dye blocks second layer!
     //TODO integration with: DyeDepot, ...
     //TODO naming of classes

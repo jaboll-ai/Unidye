@@ -24,7 +24,7 @@ public enum UnidyeColor implements StringIdentifiable
     BROWN(12, "brown", 0x773100,8606770, 0x724728, 0x4d3323, 0x603b1f, 0x664b32),
     GREEN(13, "green", 0x6FBA00,6192150, 0x546d1b, 0x4c532a, 0x495b24, 0x667f32),
     RED(14, "red", 0xFF0000,11546150, 0xa02722, 0x8f3d2e, 0x8e2020, 0x993232),
-    BLACK(15, "black", 0x3E3759,0x1D1D21, 0x141519, 0x251610, 0x080a0f, 0x191919);
+    BLACK(15, "black", 0x565656,0x1D1D21, 0x141519, 0x251610, 0x080a0f, 0x191919);
 
     private static final IntFunction<UnidyeColor> BY_ID;
     public static final StringIdentifiable.Codec<net.minecraft.util.DyeColor> CODEC;
