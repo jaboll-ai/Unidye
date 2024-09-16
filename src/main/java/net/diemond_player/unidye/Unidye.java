@@ -4,6 +4,7 @@ import net.diemond_player.unidye.block.ModBlocks;
 import net.diemond_player.unidye.block.entity.ModBlockEntities;
 import net.diemond_player.unidye.item.ModItemGroups;
 import net.diemond_player.unidye.item.ModItems;
+import net.diemond_player.unidye.util.ModCauldronBehaviors;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -20,5 +21,6 @@ public class Unidye implements ModInitializer {
 		ModItemGroups.registerItemGroups();
 		ModBlocks.registerModBlocks();
 		ModBlockEntities.registerBlockEntities();
+		ModCauldronBehaviors.registerModCauldronBehaviors();
 	}
 }

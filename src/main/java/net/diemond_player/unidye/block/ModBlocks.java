@@ -39,11 +39,10 @@ public class ModBlocks {
     //FIXME shulker colors are off
     //FIXME candles colors are off
     //FIXME bed colors are off
-    //FIXME banner colors are off???
     //FIXME middlemouse + ctrl works not like intended with shulkers
     //FIXME cant use banners in looms
-    //FIXME check shield banners
-    //FIXME cauldron with banners and shulkers
+    //TODO check shield banners
+    //TODO check map markers
     public static final Block CUSTOM_WOOL = registerDyeableBlock("custom_wool",
             new DyeableBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL)));
     public static final Block CUSTOM_CONCRETE = registerDyeableBlock("custom_concrete",
