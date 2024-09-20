@@ -3,16 +3,12 @@ package net.diemond_player.unidye.entity.client.renderer;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.diemond_player.unidye.block.custom.DyeableBedBlock;
 import net.diemond_player.unidye.block.entity.DyeableBedBlockEntity;
-import net.diemond_player.unidye.block.entity.DyeableShulkerBoxBlockEntity;
-import net.diemond_player.unidye.block.entity.ModBlockEntities;
-import net.diemond_player.unidye.entity.layer.ModModelLayers;
-import net.diemond_player.unidye.mixin.ModelPartMixin;
+import net.diemond_player.unidye.block.entity.UnidyeBlockEntities;
+import net.diemond_player.unidye.entity.layer.UnidyeModelLayers;
 import net.diemond_player.unidye.util.IModel;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
 import net.minecraft.block.DoubleBlockProperties;
-import net.minecraft.block.entity.BedBlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.enums.BedPart;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.RenderLayer;
@@ -22,7 +18,6 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.block.entity.LightmapCoordinatesRetriever;
-import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.client.render.entity.model.EntityModelPartNames;
 import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
@@ -37,8 +32,8 @@ public class DyeableBedBlockEntityRenderer
     private final ModelPart bedFoot;
 
     public DyeableBedBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
-        this.bedHead = ctx.getLayerModelPart(ModModelLayers.CUSTOM_BED_HEAD);
-        this.bedFoot = ctx.getLayerModelPart(ModModelLayers.CUSTOM_BED_FOOT);
+        this.bedHead = ctx.getLayerModelPart(UnidyeModelLayers.CUSTOM_BED_HEAD);
+        this.bedFoot = ctx.getLayerModelPart(UnidyeModelLayers.CUSTOM_BED_FOOT);
     }
 
     public static TexturedModelData getHeadTexturedModelData() {
@@ -69,7 +64,7 @@ public class DyeableBedBlockEntityRenderer
         World world2 = bedBlockEntity.getWorld();
         if (world2 != null) {
             BlockState blockState = bedBlockEntity.getCachedState();
-            DoubleBlockProperties.PropertySource<DyeableBedBlockEntity> propertySource = DoubleBlockProperties.toPropertySource(ModBlockEntities.DYEABLE_BED_BE, DyeableBedBlock::getBedPart, DyeableBedBlock::getOppositePartDirection, ChestBlock.FACING, blockState, world2, bedBlockEntity.getPos(), (world, pos) -> false);
+            DoubleBlockProperties.PropertySource<DyeableBedBlockEntity> propertySource = DoubleBlockProperties.toPropertySource(UnidyeBlockEntities.DYEABLE_BED_BE, DyeableBedBlock::getBedPart, DyeableBedBlock::getOppositePartDirection, ChestBlock.FACING, blockState, world2, bedBlockEntity.getPos(), (world, pos) -> false);
             int k = ((Int2IntFunction)propertySource.apply(new LightmapCoordinatesRetriever())).get(i);
             this.renderPart(matrixStack, vertexConsumerProvider, blockState.get(DyeableBedBlock.PART) == BedPart.HEAD ? this.bedHead : this.bedFoot, blockState.get(DyeableBedBlock.FACING), spriteIdentifier, k, j, false, bedBlockEntity);
         } else {

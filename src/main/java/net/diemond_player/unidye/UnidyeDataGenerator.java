@@ -1,9 +1,9 @@
 package net.diemond_player.unidye;
 
-import net.diemond_player.unidye.datagen.ModBlockTagProvider;
-import net.diemond_player.unidye.datagen.ModItemTagProvider;
-import net.diemond_player.unidye.datagen.ModModelProvider;
-import net.diemond_player.unidye.datagen.ModRecipeGenerator;
+import net.diemond_player.unidye.datagen.UnidyeBlockTagProvider;
+import net.diemond_player.unidye.datagen.UnidyeItemTagProvider;
+import net.diemond_player.unidye.datagen.UnidyeModelProvider;
+import net.diemond_player.unidye.datagen.UnidyeRecipeGenerator;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
@@ -12,9 +12,9 @@ public class UnidyeDataGenerator implements DataGeneratorEntrypoint {
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
-		pack.addProvider(ModModelProvider::new);
-		pack.addProvider(ModRecipeGenerator::new);
-		pack.addProvider(ModBlockTagProvider::new);
-		pack.addProvider(ModItemTagProvider::new);
+		pack.addProvider(UnidyeModelProvider::new);
+		pack.addProvider(UnidyeRecipeGenerator::new);
+		pack.addProvider(UnidyeBlockTagProvider::new);
+		pack.addProvider(UnidyeItemTagProvider::new);
 	}
 }

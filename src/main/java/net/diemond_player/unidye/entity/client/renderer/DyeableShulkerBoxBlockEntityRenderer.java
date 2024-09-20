@@ -3,12 +3,10 @@ package net.diemond_player.unidye.entity.client.renderer;
 import net.diemond_player.unidye.block.custom.DyeableShulkerBoxBlock;
 import net.diemond_player.unidye.block.entity.DyeableShulkerBoxBlockEntity;
 import net.diemond_player.unidye.entity.client.model.DyeableShulkerEntityModel;
-import net.diemond_player.unidye.entity.layer.ModModelLayers;
+import net.diemond_player.unidye.entity.layer.UnidyeModelLayers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ShulkerBoxBlock;
-import net.minecraft.block.entity.ShulkerBoxBlockEntity;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
@@ -16,10 +14,8 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
-import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 
@@ -29,7 +25,7 @@ public class DyeableShulkerBoxBlockEntityRenderer
     private final DyeableShulkerEntityModel<?> model;
 
     public DyeableShulkerBoxBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
-        this.model = new DyeableShulkerEntityModel(ctx.getLayerModelPart(ModModelLayers.CUSTOM_SHULKER));
+        this.model = new DyeableShulkerEntityModel(ctx.getLayerModelPart(UnidyeModelLayers.CUSTOM_SHULKER));
     }
 
     @Override

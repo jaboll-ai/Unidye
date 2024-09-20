@@ -14,7 +14,7 @@
     "SheepEntityMixin",
     "SignBlockEntityMixin",
     "SignTextMixin",
-    "UniDyeingMixin",
+    "ArmorDyeRecipeMixin",
     "WolfEntityMixin"
   ],
   "injectors": {

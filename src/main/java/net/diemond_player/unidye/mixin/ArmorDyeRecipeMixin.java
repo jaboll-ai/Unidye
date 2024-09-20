@@ -1,30 +1,20 @@
 package net.diemond_player.unidye.mixin;
 
 import com.google.common.collect.Lists;
-import com.llamalad7.mixinextras.sugar.Local;
-import com.llamalad7.mixinextras.sugar.ref.LocalRef;
-import net.diemond_player.unidye.item.ModItems;
-import net.diemond_player.unidye.item.custom.CustomDyeItem;
+import net.diemond_player.unidye.item.UnidyeItems;
 import net.diemond_player.unidye.item.custom.UnidyeableItem;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.*;
 import net.minecraft.recipe.ArmorDyeRecipe;
 import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.text.Text;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.ArrayList;
 
 @Mixin(ArmorDyeRecipe.class)
-public class UniDyeingMixin {
+public class ArmorDyeRecipeMixin {
 	/**
 	 * @author
 	 * @reason
@@ -42,7 +32,7 @@ public class UniDyeingMixin {
 		if(items.contains(recipeInputInventory.getStack(0).getItem())){
 			for (int i = 1; i < recipeInputInventory.size(); ++i){
 				if(!(recipeInputInventory.getStack(0).getItem() == recipeInputInventory.getStack(i).getItem()
-						|| (recipeInputInventory.getStack(i).getItem() == ModItems.CUSTOM_DYE && i==4))){
+						|| (recipeInputInventory.getStack(i).getItem() == UnidyeItems.CUSTOM_DYE && i==4))){
 					test = false;
 					break;
 				}
@@ -59,11 +49,11 @@ public class UniDyeingMixin {
 					itemStack = itemStack2;
 					continue;
 				}
-				if (itemStack.getItem() == ModItems.CUSTOM_DYE && itemStack2.getItem() != ModItems.CUSTOM_DYE) {
+				if (itemStack.getItem() == UnidyeItems.CUSTOM_DYE && itemStack2.getItem() != UnidyeItems.CUSTOM_DYE) {
 					customColors.add(itemStack);
 					itemStack = itemStack2;
 					continue;
-				} else if(itemStack.getItem() != ModItems.CUSTOM_DYE && itemStack2.getItem() != ModItems.CUSTOM_DYE) {
+				} else if(itemStack.getItem() != UnidyeItems.CUSTOM_DYE && itemStack2.getItem() != UnidyeItems.CUSTOM_DYE) {
 					return false;
 				}
 			}
@@ -71,7 +61,7 @@ public class UniDyeingMixin {
 				list.add(itemStack2);
 				continue;
 			}
-			if (itemStack2.getItem() == ModItems.CUSTOM_DYE) {
+			if (itemStack2.getItem() == UnidyeItems.CUSTOM_DYE) {
 				customColors.add(itemStack2);
 				continue;
 			}
@@ -97,7 +87,7 @@ public class UniDyeingMixin {
 			for (int i = 1; i < recipeInputInventory.size(); ++i){
 				if(recipeInputInventory.getStack(0).getItem() == recipeInputInventory.getStack(i).getItem()){
 					itemStack = recipeInputInventory.getStack(0);
-				} else if (recipeInputInventory.getStack(i).getItem() == ModItems.CUSTOM_DYE && i==4){
+				} else if (recipeInputInventory.getStack(i).getItem() == UnidyeItems.CUSTOM_DYE && i==4){
 					customColors.add(recipeInputInventory.getStack(4));
 				} else {
 					test = false;
@@ -119,11 +109,11 @@ public class UniDyeingMixin {
 					itemStack = itemStack2;
 					continue;
 				}
-				if (itemStack.getItem() == ModItems.CUSTOM_DYE && itemStack2.getItem() != ModItems.CUSTOM_DYE) {
+				if (itemStack.getItem() == UnidyeItems.CUSTOM_DYE && itemStack2.getItem() != UnidyeItems.CUSTOM_DYE) {
 					customColors.add(itemStack);
 					itemStack = itemStack2;
 					continue;
-				} else if(itemStack.getItem() != ModItems.CUSTOM_DYE && itemStack2.getItem() != ModItems.CUSTOM_DYE){
+				} else if(itemStack.getItem() != UnidyeItems.CUSTOM_DYE && itemStack2.getItem() != UnidyeItems.CUSTOM_DYE){
 					return ItemStack.EMPTY;
 				}
 			}
@@ -131,7 +121,7 @@ public class UniDyeingMixin {
 				list.add((DyeItem)item);
 				continue;
 			}
-			if (item == ModItems.CUSTOM_DYE){
+			if (item == UnidyeItems.CUSTOM_DYE){
 				customColors.add(itemStack2);
 				continue;
 			}

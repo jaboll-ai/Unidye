@@ -4,14 +4,10 @@ import com.mojang.datafixers.util.Pair;
 import net.diemond_player.unidye.block.custom.DyeableBannerBlock;
 import net.diemond_player.unidye.block.custom.DyeableWallBannerBlock;
 import net.diemond_player.unidye.block.entity.DyeableBannerBlockEntity;
-import net.diemond_player.unidye.entity.layer.ModModelLayers;
-import net.diemond_player.unidye.item.custom.UnidyeableItem;
+import net.diemond_player.unidye.entity.layer.UnidyeModelLayers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.BannerBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.WallBannerBlock;
-import net.minecraft.block.entity.BannerBlockEntity;
 import net.minecraft.block.entity.BannerPattern;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.RenderLayer;
@@ -20,7 +16,6 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
-import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.client.render.model.ModelLoader;
 import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
@@ -47,7 +42,7 @@ public class DyeableBannerBlockEntityRenderer
     private final ModelPart crossbar;
 
     public DyeableBannerBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
-        ModelPart modelPart = ctx.getLayerModelPart(ModModelLayers.CUSTOM_BANNER);
+        ModelPart modelPart = ctx.getLayerModelPart(UnidyeModelLayers.CUSTOM_BANNER);
         this.banner = modelPart.getChild(BANNER);
         this.pillar = modelPart.getChild(PILLAR);
         this.crossbar = modelPart.getChild(CROSSBAR);

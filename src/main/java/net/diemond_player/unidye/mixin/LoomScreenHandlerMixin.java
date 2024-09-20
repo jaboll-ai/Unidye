@@ -1,18 +1,12 @@
 package net.diemond_player.unidye.mixin;
 
-import com.llamalad7.mixinextras.sugar.Local;
-import net.diemond_player.unidye.Unidye;
-import net.diemond_player.unidye.block.entity.ModBlockEntities;
-import net.diemond_player.unidye.item.ModItems;
+import net.diemond_player.unidye.block.entity.UnidyeBlockEntities;
+import net.diemond_player.unidye.item.UnidyeItems;
 import net.diemond_player.unidye.item.custom.CustomDyeItem;
 import net.diemond_player.unidye.item.custom.DyeableBannerItem;
 import net.minecraft.block.entity.BannerPattern;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.passive.SheepEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -32,7 +26,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(LoomScreenHandler.class)
@@ -115,7 +108,7 @@ public abstract class LoomScreenHandlerMixin extends ScreenHandler{
     @Inject(method = "updateOutputSlot", at = @At(value = "HEAD"), locals = LocalCapture.CAPTURE_FAILHARD)
     private void updateOutputSlottt(RegistryEntry<BannerPattern> pattern, CallbackInfo ci){
         ItemStack itemStack = this.bannerSlot.getStack();
-        if(itemStack.isOf(ModItems.CUSTOM_BANNER)){
+        if(itemStack.isOf(UnidyeItems.CUSTOM_BANNER)){
             ItemStack itemStack2 = this.dyeSlot.getStack();
             ItemStack itemStack3 = ItemStack.EMPTY;
             if (!itemStack.isEmpty() && !itemStack2.isEmpty()) {
@@ -136,7 +129,7 @@ public abstract class LoomScreenHandlerMixin extends ScreenHandler{
                 nbtCompound2.putString("Pattern", pattern.value().getId());
                 nbtCompound2.putInt("Color", dyeColor.getId());
                 nbtList.add(nbtCompound2);
-                BlockItem.setBlockEntityNbt(itemStack3, ModBlockEntities.DYEABLE_BANNER_BE, nbtCompound);
+                BlockItem.setBlockEntityNbt(itemStack3, UnidyeBlockEntities.DYEABLE_BANNER_BE, nbtCompound);
             }
             if (!ItemStack.areEqual(itemStack3, this.outputSlot.getStack())) {
                 this.outputSlot.setStackNoCallbacks(itemStack3);

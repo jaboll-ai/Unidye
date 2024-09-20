@@ -1,29 +1,20 @@
 package net.diemond_player.unidye.mixin;
 
-import com.llamalad7.mixinextras.sugar.Local;
-import net.diemond_player.unidye.block.ModBlocks;
-import net.diemond_player.unidye.block.custom.DyeableBlock;
-import net.diemond_player.unidye.item.custom.CustomDyeItem;
-import net.diemond_player.unidye.item.custom.DyeableBlockItem;
+import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.diemond_player.unidye.item.custom.UnidyeColor;
-import net.diemond_player.unidye.item.custom.UnidyeableItem;
 import net.diemond_player.unidye.util.IEntityAccessor;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.item.DyeableItem;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -31,7 +22,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(SheepEntity.class)
 public abstract class SheepEntityMixin implements IEntityAccessor {
@@ -136,8 +126,8 @@ public abstract class SheepEntityMixin implements IEntityAccessor {
         if(sheep.unidye$getCustomColor() != 0xFFFFFF){
             int i = 1 + ((SheepEntity) (Object) this).getRandom().nextInt(3);
             for(int j = 0; j < i; ++j) {
-                DyeableItem item = (DyeableItem) ModBlocks.CUSTOM_WOOL.asItem();
-                ItemStack itemStack = ModBlocks.CUSTOM_WOOL.asItem().getDefaultStack();
+                DyeableItem item = (DyeableItem) UnidyeBlocks.CUSTOM_WOOL.asItem();
+                ItemStack itemStack = UnidyeBlocks.CUSTOM_WOOL.asItem().getDefaultStack();
                 item.setColor(itemStack, sheep.unidye$getCustomColor());
                 ItemEntity itemEntity = ((SheepEntity) (Object) this).dropStack(itemStack, 1);
                 if (itemEntity != null) {

@@ -1,7 +1,7 @@
 package net.diemond_player.unidye.block.custom;
 
 import net.diemond_player.unidye.block.entity.DyeableBlockEntity;
-import net.diemond_player.unidye.block.entity.ModBlockEntities;
+import net.diemond_player.unidye.block.entity.UnidyeBlockEntities;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -18,7 +18,7 @@ public interface IDyeableBlock extends BlockEntityProvider {
     }
 
     default ItemStack pickBlock(BlockView world, BlockPos pos, ItemStack stack){
-        DyeableBlockEntity blockEntity = ModBlockEntities.DYEABLE_BE.get(world,pos);
+        DyeableBlockEntity blockEntity = UnidyeBlockEntities.DYEABLE_BE.get(world,pos);
         int color = DyeableBlockEntity.DEFAULT_COLOR;
         if(blockEntity != null){
             color = blockEntity.color;

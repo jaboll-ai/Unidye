@@ -1,5 +1,6 @@
 package net.diemond_player.unidye.entity.client.renderer;
 
+import net.diemond_player.unidye.Unidye;
 import net.diemond_player.unidye.entity.DyeableFallingBlockEntity;
 import net.diemond_player.unidye.util.IBlockRenderTint;
 import net.minecraft.block.BlockRenderType;
@@ -48,6 +49,6 @@ public class DyeableFallingBlockEntityRenderer extends EntityRenderer<DyeableFal
 
     @Override
     public Identifier getTexture(DyeableFallingBlockEntity fallingBlockEntity) {
-        return SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE;
+        return new Identifier(Unidye.MOD_ID, "custom_concrete_powder");
     }
 }

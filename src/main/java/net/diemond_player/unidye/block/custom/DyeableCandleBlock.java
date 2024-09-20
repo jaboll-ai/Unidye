@@ -1,20 +1,14 @@
 package net.diemond_player.unidye.block.custom;
 
-import net.diemond_player.unidye.block.ModBlocks;
 import net.diemond_player.unidye.block.entity.DyeableBlockEntity;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CandleBlock;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.WorldView;
 
 public class DyeableCandleBlock extends CandleBlock implements IDyeableBlock {
     public static final String COLOR_KEY = "color";

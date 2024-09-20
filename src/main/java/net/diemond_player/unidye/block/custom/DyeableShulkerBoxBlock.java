@@ -2,19 +2,13 @@ package net.diemond_player.unidye.block.custom;
 
 import com.google.common.collect.Maps;
 import net.diemond_player.unidye.Unidye;
-import net.diemond_player.unidye.block.ModBlocks;
-import net.diemond_player.unidye.block.entity.DyeableBedBlockEntity;
-import net.diemond_player.unidye.block.entity.DyeableBlockEntity;
+import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.diemond_player.unidye.block.entity.DyeableShulkerBoxBlockEntity;
-import net.diemond_player.unidye.block.entity.ModBlockEntities;
-import net.diemond_player.unidye.item.custom.CustomDyeItem;
-import net.diemond_player.unidye.item.custom.DyeableBlockItem;
-import net.diemond_player.unidye.item.custom.UnidyeableItem;
+import net.diemond_player.unidye.block.entity.UnidyeBlockEntities;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.block.entity.ShulkerBoxBlockEntity;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
@@ -82,7 +76,7 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return DyeableShulkerBoxBlock.checkType(type, ModBlockEntities.DYEABLE_SHULKER_BOX_BE, DyeableShulkerBoxBlockEntity::tick);
+        return DyeableShulkerBoxBlock.checkType(type, UnidyeBlockEntities.DYEABLE_SHULKER_BOX_BE, DyeableShulkerBoxBlockEntity::tick);
     }
 
     @Override
@@ -133,7 +127,7 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof DyeableShulkerBoxBlockEntity dyeableShulkerBoxBlockEntity) {
             if (!world.isClient && player.isCreative() && !dyeableShulkerBoxBlockEntity.isEmpty()) {
-                ItemStack itemStack = new ItemStack(ModBlocks.CUSTOM_SHULKER_BOX);
+                ItemStack itemStack = new ItemStack(UnidyeBlocks.CUSTOM_SHULKER_BOX);
                 blockEntity.setStackNbt(itemStack);
                 if (dyeableShulkerBoxBlockEntity.hasCustomName()) {
                     itemStack.setCustomName(dyeableShulkerBoxBlockEntity.getCustomName());
@@ -245,6 +239,7 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
 
     @Override
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+        Unidye.LOGGER.info("called");
         if (DyeableShulkerBoxBlockEntity.getColor(world, pos) != DyeableShulkerBoxBlockEntity.DEFAULT_COLOR) {
             ItemStack stack = super.getPickStack(world, pos, state);
             return pickBlock(world,pos,stack);
@@ -255,7 +250,7 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
 
     @Override
     public ItemStack pickBlock(BlockView world, BlockPos pos, ItemStack stack) {
-        DyeableShulkerBoxBlockEntity blockEntity = ModBlockEntities.DYEABLE_SHULKER_BOX_BE.get(world,pos);
+        DyeableShulkerBoxBlockEntity blockEntity = UnidyeBlockEntities.DYEABLE_SHULKER_BOX_BE.get(world,pos);
         int color = DyeableShulkerBoxBlockEntity.DEFAULT_COLOR;
         if(blockEntity != null){
             color = blockEntity.color;

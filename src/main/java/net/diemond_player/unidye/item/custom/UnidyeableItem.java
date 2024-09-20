@@ -1,13 +1,10 @@
 package net.diemond_player.unidye.item.custom;
 
-import net.diemond_player.unidye.block.ModBlocks;
-import net.diemond_player.unidye.item.ModItems;
+import net.diemond_player.unidye.block.UnidyeBlocks;
+import net.diemond_player.unidye.item.UnidyeItems;
 import net.minecraft.item.*;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
 
 import java.util.*;
-import static net.diemond_player.unidye.item.custom.CustomDyeItem.CONTENTS_KEY;
 
 public interface UnidyeableItem {
     public static final Map<String, UnidyeColor> DYES = new HashMap<String, UnidyeColor>(){{
@@ -220,20 +217,20 @@ public interface UnidyeableItem {
     }
 
     static String getMaterialType(DyeableItem dyeableItem) {
-        if (dyeableItem == ModBlocks.CUSTOM_CONCRETE.asItem()
-                || dyeableItem == ModBlocks.CUSTOM_CONCRETE_POWDER.asItem()
-                || dyeableItem == ModBlocks.CUSTOM_CANDLE.asItem()
-                || dyeableItem == ModBlocks.CUSTOM_SHULKER_BOX.asItem()) {
+        if (dyeableItem == UnidyeBlocks.CUSTOM_CONCRETE.asItem()
+                || dyeableItem == UnidyeBlocks.CUSTOM_CONCRETE_POWDER.asItem()
+                || dyeableItem == UnidyeBlocks.CUSTOM_CANDLE.asItem()
+                || dyeableItem == UnidyeBlocks.CUSTOM_SHULKER_BOX.asItem()) {
             return "concrete";
-        } else if(dyeableItem == ModBlocks.CUSTOM_WOOL.asItem()
-                || dyeableItem == ModBlocks.CUSTOM_CARPET.asItem()){
+        } else if(dyeableItem == UnidyeBlocks.CUSTOM_WOOL.asItem()
+                || dyeableItem == UnidyeBlocks.CUSTOM_CARPET.asItem()){
             return "wool";
-        } else if(dyeableItem == ModBlocks.CUSTOM_TERRACOTTA.asItem()){
+        } else if(dyeableItem == UnidyeBlocks.CUSTOM_TERRACOTTA.asItem()){
             return "terracotta";
-        } else if(dyeableItem == ModBlocks.CUSTOM_STAINED_GLASS.asItem()
-                || dyeableItem == ModBlocks.CUSTOM_STAINED_GLASS_PANE.asItem()){
+        } else if(dyeableItem == UnidyeBlocks.CUSTOM_STAINED_GLASS.asItem()
+                || dyeableItem == UnidyeBlocks.CUSTOM_STAINED_GLASS_PANE.asItem()){
             return "glass";
-        } else if(dyeableItem == ModItems.CUSTOM_DYE){
+        } else if(dyeableItem == UnidyeItems.CUSTOM_DYE){
             return "dye";
         } else {
             return "leather";
@@ -272,11 +269,11 @@ public interface UnidyeableItem {
         int color = customDyeItem.getMaterialColor(customDyeStack, getMaterialType(item));
         DyeableItem dyeableItem = null;
         if (item == Items.GLASS){
-            dyeableItem = (DyeableItem) ModBlocks.CUSTOM_STAINED_GLASS.asItem();
+            dyeableItem = (DyeableItem) UnidyeBlocks.CUSTOM_STAINED_GLASS.asItem();
         } else if (item == Items.WHITE_WOOL){
-            dyeableItem = (DyeableItem) ModBlocks.CUSTOM_WOOL.asItem();
+            dyeableItem = (DyeableItem) UnidyeBlocks.CUSTOM_WOOL.asItem();
         } else if (item == Items.TERRACOTTA){
-            dyeableItem = (DyeableItem) ModBlocks.CUSTOM_TERRACOTTA.asItem();
+            dyeableItem = (DyeableItem) UnidyeBlocks.CUSTOM_TERRACOTTA.asItem();
         }
         ItemStack dyeableItemStack = ((Item) dyeableItem).getDefaultStack();
         dyeableItem.setColor(dyeableItemStack, color);

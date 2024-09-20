@@ -1,10 +1,8 @@
 package net.diemond_player.unidye.entity;
 
-import net.diemond_player.unidye.UnidyeClient;
-import net.diemond_player.unidye.block.ModBlocks;
+import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.entity.data.DataTracker;
@@ -18,14 +16,14 @@ import net.minecraft.world.World;
 
 public class DyeableFallingBlockEntity extends FallingBlockEntity {
 
-    private BlockState block = ModBlocks.CUSTOM_CONCRETE_POWDER.getDefaultState();
+    private BlockState block = UnidyeBlocks.CUSTOM_CONCRETE_POWDER.getDefaultState();
 
     public DyeableFallingBlockEntity(EntityType<? extends FallingBlockEntity> entityType, World world) {
         super(entityType, world);
     }
 
     private DyeableFallingBlockEntity(World world, double x, double y, double z, BlockState block) {
-        this((EntityType<? extends FallingBlockEntity>)ModEntities.DYEABLE_FALLING_BLOCK_ENTITY, world);
+        this((EntityType<? extends FallingBlockEntity>) UnidyeEntities.DYEABLE_FALLING_BLOCK_ENTITY, world);
         this.block = block;
         this.intersectionChecked = true;
         this.setPosition(x, y, z);
@@ -38,7 +36,7 @@ public class DyeableFallingBlockEntity extends FallingBlockEntity {
 
     public static DyeableFallingBlockEntity spawnFromBlock(World world, BlockPos pos, BlockState state) {
         DyeableFallingBlockEntity dyeableFallingBlockEntity = new DyeableFallingBlockEntity(world, (double)pos.getX() + 0.5, pos.getY(), (double)pos.getZ() + 0.5, state.contains(Properties.WATERLOGGED) ? (BlockState)state.with(Properties.WATERLOGGED, false) : state);
-        dyeableFallingBlockEntity.block = ModBlocks.CUSTOM_CONCRETE_POWDER.getDefaultState();
+        dyeableFallingBlockEntity.block = UnidyeBlocks.CUSTOM_CONCRETE_POWDER.getDefaultState();
         world.setBlockState(pos, state.getFluidState().getBlockState(), Block.NOTIFY_ALL);
         world.spawnEntity(dyeableFallingBlockEntity);
         return dyeableFallingBlockEntity;

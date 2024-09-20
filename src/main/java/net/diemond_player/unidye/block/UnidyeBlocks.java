@@ -2,7 +2,6 @@ package net.diemond_player.unidye.block;
 
 import net.diemond_player.unidye.block.custom.*;
 import net.diemond_player.unidye.Unidye;
-import net.diemond_player.unidye.item.custom.DyeableBannerItem;
 import net.diemond_player.unidye.item.custom.DyeableBlockItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -13,7 +12,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
-public class ModBlocks {
+public class UnidyeBlocks {
 
     //post-1.0
     //TODOO jeb_ dye
@@ -24,25 +23,50 @@ public class ModBlocks {
     //FIXMEE villagers do not use beds
     //FIXMEE sheep do not drop colored wool on death
     //FIXMEE when dropped on blocks; wrong particles
+    //FIXMEE middlemouse + ctrl works not like intended
 
 
-    //TODO lowest alpha gray light gray
-    //TODO dye blocks second layer!
-    //TODO integration with: DyeDepot, ...
-    //TODO naming of classes
+    //code optimization
     //TODO CLEAN CODE
     //TODO CLEAN MIXINS
-    //TODO survival compatibility (recipes, drops and tool effectiveness)
-    //TODO add Banner Patterns
-    //FIXME map colors
-    //FIXME powder loses color
+
+    //textures
+    //TODO lowest alpha gray light gray
+    //TODO dye blocks second layer!
+
+    //colors
     //FIXME shulker colors are off
     //FIXME candles colors are off
     //FIXME bed colors are off
-    //FIXME middlemouse + ctrl works not like intended with shulkers
+    //FIXME powder colors are off
+
+    //various fixes
+    //FIXME map colors
+    //FIXME powder loses color
     //FIXME cant use banners in looms
-    //TODO check shield banners
-    //TODO check map markers
+
+    //various to do
+    /*TODO integration with:
+    DyeDepot
+    Create
+    Arts&Crafts
+    Supplementaries
+    SupplementariesSquared
+    ...
+     */
+    //TODO tool effectiveness
+    //TODO block drops
+    //TODO banner recipe (additional color)
+    //TODO candle recipe
+    //TODO circle dyeing recipes
+    //TODO bed recipe (additional color)
+    //TODO custom dye mixing
+    //TODO change mixin for armordyerecipe
+    //TODO add Banner Patterns
+    //TODO shield banners
+    //TODO map markers
+
+
     public static final Block CUSTOM_WOOL = registerDyeableBlock("custom_wool",
             new DyeableBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL)));
     public static final Block CUSTOM_CONCRETE = registerDyeableBlock("custom_concrete",

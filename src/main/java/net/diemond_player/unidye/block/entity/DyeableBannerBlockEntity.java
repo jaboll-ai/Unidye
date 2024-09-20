@@ -2,10 +2,7 @@ package net.diemond_player.unidye.block.entity;
 
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
-import net.diemond_player.unidye.block.ModBlocks;
-import net.diemond_player.unidye.item.custom.UnidyeableItem;
-import net.minecraft.block.AbstractBannerBlock;
-import net.minecraft.block.BannerBlock;
+import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.*;
 import net.minecraft.item.BlockItem;
@@ -13,8 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -42,7 +37,7 @@ public class DyeableBannerBlockEntity extends BlockEntity implements Nameable {
     private List<Pair<RegistryEntry<BannerPattern>, ?>> patterns;
 
     public DyeableBannerBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.DYEABLE_BANNER_BE, pos, state);
+        super(UnidyeBlockEntities.DYEABLE_BANNER_BE, pos, state);
     }
 
     @Override
@@ -179,12 +174,12 @@ public class DyeableBannerBlockEntity extends BlockEntity implements Nameable {
         if (nbtList.isEmpty()) {
             nbtCompound.remove(PATTERNS_KEY);
         }
-        BlockItem.setBlockEntityNbt(stack, ModBlockEntities.DYEABLE_BANNER_BE, nbtCompound);
+        BlockItem.setBlockEntityNbt(stack, UnidyeBlockEntities.DYEABLE_BANNER_BE, nbtCompound);
     }
 
     public ItemStack getPickStack() {
-        ItemStack itemStack = new ItemStack(ModBlocks.CUSTOM_BANNER);
-        DyeableBannerBlockEntity blockEntity = ModBlockEntities.DYEABLE_BANNER_BE.get(world,pos);
+        ItemStack itemStack = new ItemStack(UnidyeBlocks.CUSTOM_BANNER);
+        DyeableBannerBlockEntity blockEntity = UnidyeBlockEntities.DYEABLE_BANNER_BE.get(world,pos);
         int color = DyeableBannerBlockEntity.DEFAULT_COLOR;
         if(blockEntity != null){
             color = blockEntity.color;

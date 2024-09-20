@@ -3,11 +3,8 @@ package net.diemond_player.unidye.block.entity;
 import net.diemond_player.unidye.block.custom.DyeableShulkerBoxBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
-import net.minecraft.block.entity.ShulkerBoxBlockEntity;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MovementType;
@@ -27,7 +24,6 @@ import net.minecraft.screen.ShulkerBoxScreenHandler;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.util.DyeColor;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.*;
 import net.minecraft.world.BlockView;
@@ -58,7 +54,7 @@ public class DyeableShulkerBoxBlockEntity extends LootableContainerBlockEntity
     private float prevAnimationProgress;
 
     public DyeableShulkerBoxBlockEntity(BlockPos pos, BlockState state) {
-            super(ModBlockEntities.DYEABLE_SHULKER_BOX_BE, pos, state);
+            super(UnidyeBlockEntities.DYEABLE_SHULKER_BOX_BE, pos, state);
     }
     public static void tick(World world, BlockPos pos, BlockState state, DyeableShulkerBoxBlockEntity blockEntity) {
         blockEntity.updateAnimation(world, pos, state);

@@ -1,37 +1,24 @@
 package net.diemond_player.unidye.item.custom;
 
-import net.diemond_player.unidye.block.ModBlocks;
-import net.diemond_player.unidye.block.custom.DyeableBannerBlock;
-import net.diemond_player.unidye.block.custom.DyeableWallBannerBlock;
+import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.diemond_player.unidye.block.entity.DyeableBannerBlockEntity;
-import net.diemond_player.unidye.block.entity.DyeableBedBlockEntity;
-import net.diemond_player.unidye.block.entity.DyeableBlockEntity;
-import net.diemond_player.unidye.block.entity.DyeableShulkerBoxBlockEntity;
-import net.minecraft.block.AbstractBannerBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.LeveledCauldronBlock;
-import net.minecraft.block.entity.BannerBlockEntity;
 import net.minecraft.block.entity.BannerPattern;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.Validate;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-
-import static net.minecraft.block.HorizontalFacingBlock.FACING;
 
 public class DyeableBannerItem extends VerticallyAttachableBlockItem implements DyeableItem{
     public static final int DEFAULT_COLOR = 16777215;
@@ -47,8 +34,8 @@ public class DyeableBannerItem extends VerticallyAttachableBlockItem implements 
         ActionResult result = super.place(context);
         BlockEntity blockEntity = context.getWorld().getBlockEntity(context.getBlockPos());
         if(blockEntity instanceof DyeableBannerBlockEntity dyeableBannerBlockEntity
-                && !blockstate.isOf(ModBlocks.CUSTOM_BANNER)
-                && !blockstate.isOf(ModBlocks.CUSTOM_WALL_BANNER)){
+                && !blockstate.isOf(UnidyeBlocks.CUSTOM_BANNER)
+                && !blockstate.isOf(UnidyeBlocks.CUSTOM_WALL_BANNER)){
             dyeableBannerBlockEntity.color = getColor(context.getStack());
         }
         return result;

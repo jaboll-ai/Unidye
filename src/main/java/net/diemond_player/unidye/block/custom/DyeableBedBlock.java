@@ -1,11 +1,8 @@
 package net.diemond_player.unidye.block.custom;
 
 import net.diemond_player.unidye.block.entity.DyeableBedBlockEntity;
-import net.diemond_player.unidye.block.entity.DyeableBlockEntity;
-import net.diemond_player.unidye.block.entity.DyeableShulkerBoxBlockEntity;
-import net.diemond_player.unidye.block.entity.ModBlockEntities;
+import net.diemond_player.unidye.block.entity.UnidyeBlockEntities;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BedBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.enums.BedPart;
 import net.minecraft.entity.Dismounting;
@@ -24,7 +21,6 @@ import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Colors;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -272,7 +268,7 @@ public class DyeableBedBlock extends BedBlock
     }
     @Override
     public ItemStack pickBlock(BlockView world, BlockPos pos, ItemStack stack) {
-        DyeableBedBlockEntity blockEntity = ModBlockEntities.DYEABLE_BED_BE.get(world,pos);
+        DyeableBedBlockEntity blockEntity = UnidyeBlockEntities.DYEABLE_BED_BE.get(world,pos);
         int color = DyeableBedBlockEntity.DEFAULT_COLOR;
         if(blockEntity != null){
             color = blockEntity.color;
