@@ -27,5 +27,14 @@ public class UnidyeBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(UnidyeBlocks.CUSTOM_BED);
         getOrCreateTagBuilder(BlockTags.SHULKER_BOXES)
                 .add(UnidyeBlocks.CUSTOM_SHULKER_BOX);
+        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
+                .add(UnidyeBlocks.CUSTOM_CONCRETE,
+                        UnidyeBlocks.CUSTOM_TERRACOTTA,
+                        UnidyeBlocks.CUSTOM_SHULKER_BOX);
+        getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
+                .add(UnidyeBlocks.CUSTOM_CONCRETE_POWDER);
+        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
+                .add(UnidyeBlocks.CUSTOM_WALL_BANNER,
+                        UnidyeBlocks.CUSTOM_BANNER);
     }
 }

@@ -1,6 +1,6 @@
-// 1.20	2024-08-18T11:30:39.0778643	Unidye/Tags for minecraft:item
+// 1.20	2024-09-21T11:43:20.5783671	Unidye/Tags for minecraft:item
 9119460a32cebb69b9e50057fe48640743ffed48 data\minecraft\tags\items\candles.json
 d299e64369257533461ede62a9b5988d820fd067 data\minecraft\tags\items\wool_carpets.json
 15edfd7bf41541ff1646098cc4bc834c9f157222 data\minecraft\tags\items\dampens_vibrations.json
-aebc6f465041cf3db65750ce5cddbc4a67918629 data\minecraft\tags\items\wool.json
 17732eed4842f40bc50baae436fd6b6cfee4c0fa data\minecraft\tags\items\terracotta.json
+aebc6f465041cf3db65750ce5cddbc4a67918629 data\minecraft\tags\items\wool.json

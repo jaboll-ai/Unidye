@@ -44,6 +44,7 @@ public class UnidyeBlocks {
     //FIXME map colors
     //FIXME powder loses color
     //FIXME cant use banners in looms
+    //FIXME wall banner drops white banner?
 
     //various to do
     /*TODO integration with:
@@ -54,11 +55,10 @@ public class UnidyeBlocks {
     SupplementariesSquared
     ...
      */
-    //TODO tool effectiveness
-    //TODO block drops
     //TODO banner recipe (additional color)
     //TODO candle recipe
     //TODO circle dyeing recipes
+    //TODO candles on cakes
     //TODO bed recipe (additional color)
     //TODO custom dye mixing
     //TODO change mixin for armordyerecipe

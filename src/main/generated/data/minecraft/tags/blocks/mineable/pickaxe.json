@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "unidye:custom_concrete",
+    "unidye:custom_terracotta",
+    "unidye:custom_shulker_box"
+  ]
+}
