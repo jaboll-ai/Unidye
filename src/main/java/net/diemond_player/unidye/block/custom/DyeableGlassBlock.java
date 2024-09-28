@@ -9,7 +9,7 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 
-public class DyeableGlassBlock extends GlassBlock implements IDyeableBlock, Stainable {
+public class DyeableGlassBlock extends GlassBlock implements IDyeableBlock{
     public DyeableGlassBlock(Settings settings) {
         super(settings);
     }
@@ -22,10 +22,5 @@ public class DyeableGlassBlock extends GlassBlock implements IDyeableBlock, Stai
         } else {
             return new ItemStack(this);
         }
-    }
-
-    @Override
-    public DyeColor getColor() {
-        return DyeColor.CYAN;
     }
 }
