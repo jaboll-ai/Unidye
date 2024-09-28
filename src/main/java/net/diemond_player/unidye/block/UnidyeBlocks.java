@@ -44,7 +44,6 @@ public class UnidyeBlocks {
     //FIXME map colors
     //FIXME powder loses color
     //FIXME cant use banners in looms
-    //FIXME wall banner drops white banner?
 
     //various to do
     /*TODO integration with:
@@ -56,15 +55,20 @@ public class UnidyeBlocks {
     ...
      */
     //TODO banner recipe (additional color)
-    //TODO candle recipe
-    //TODO circle dyeing recipes
     //TODO candles on cakes
     //TODO bed recipe (additional color)
     //TODO custom dye mixing
+    //TODO powder recipe
     //TODO change mixin for armordyerecipe
     //TODO add Banner Patterns
     //TODO shield banners
     //TODO map markers
+    //TODO candle recipe ????
+    //TODO carpet single dye ????
+    //TODO wool single dye ????
+    //TODO bed recolor recipe ?????
+    //TODO concrete circle vanilla ?????
+    //TODO concrete circle custom ?????
 
 
     public static final Block CUSTOM_WOOL = registerDyeableBlock("custom_wool",
@@ -90,7 +94,7 @@ public class UnidyeBlocks {
     public static final Block CUSTOM_BANNER = registerBlockWithoutItem("custom_banner",
             new DyeableBannerBlock(FabricBlockSettings.copyOf(Blocks.WHITE_BANNER)));
     public static final Block CUSTOM_WALL_BANNER = registerBlockWithoutItem("custom_wall_banner",
-            new DyeableWallBannerBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WALL_BANNER)));
+            new DyeableWallBannerBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WALL_BANNER).dropsLike(CUSTOM_BANNER)));
     private static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, new Identifier(Unidye.MOD_ID, name), block);

@@ -29,18 +29,18 @@ public class ArmorDyeRecipeMixin {
 		items.add(Items.TERRACOTTA);
 		items.add(Items.WHITE_WOOL);
 		boolean test = true;
-		if(items.contains(recipeInputInventory.getStack(0).getItem())){
-			for (int i = 1; i < recipeInputInventory.size(); ++i){
-				if(!(recipeInputInventory.getStack(0).getItem() == recipeInputInventory.getStack(i).getItem()
-						|| (recipeInputInventory.getStack(i).getItem() == UnidyeItems.CUSTOM_DYE && i==4))){
-					test = false;
-					break;
-				}
-			}
-			if(test){
-				return true;
-			}
-		}
+//		if(items.contains(recipeInputInventory.getStack(0).getItem())){
+//			for (int i = 1; i < recipeInputInventory.size(); ++i){
+//				if(!(recipeInputInventory.getStack(0).getItem() == recipeInputInventory.getStack(i).getItem()
+//						|| (recipeInputInventory.getStack(i).getItem() == UnidyeItems.CUSTOM_DYE && i==4))){
+//					test = false;
+//					break;
+//				}
+//			}
+//			if(test){
+//				return true;
+//			}
+//		}
 		for (int i = 0; i < recipeInputInventory.size(); ++i) {
 			ItemStack itemStack2 = recipeInputInventory.getStack(i);
 			if (itemStack2.isEmpty()) continue;

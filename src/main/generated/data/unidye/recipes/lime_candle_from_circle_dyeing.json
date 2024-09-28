@@ -7,7 +7,7 @@
       "item": "minecraft:lime_dye"
     },
     "W": {
-      "item": "minecraft:candle"
+      "tag": "minecraft:candles"
     }
   },
   "pattern": [

@@ -1,8 +1,11 @@
 package net.diemond_player.unidye.datagen;
 
 import net.diemond_player.unidye.block.UnidyeBlocks;
+import net.diemond_player.unidye.util.UnidyeTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.block.Blocks;
+import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 
@@ -26,5 +29,43 @@ public class UnidyeItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(UnidyeBlocks.CUSTOM_WOOL.asItem());
         getOrCreateTagBuilder(ItemTags.WOOL_CARPETS)
                 .add(UnidyeBlocks.CUSTOM_CARPET.asItem());
+        getOrCreateTagBuilder(UnidyeTags.Items.GLASS)
+                .add(UnidyeBlocks.CUSTOM_STAINED_GLASS.asItem(),
+                        Items.BLACK_STAINED_GLASS,
+                        Items.BLUE_STAINED_GLASS,
+                        Items.BROWN_STAINED_GLASS,
+                        Items.CYAN_STAINED_GLASS,
+                        Items.GRAY_STAINED_GLASS,
+                        Items.GREEN_STAINED_GLASS,
+                        Items.LIGHT_BLUE_STAINED_GLASS,
+                        Items.LIGHT_GRAY_STAINED_GLASS,
+                        Items.LIME_STAINED_GLASS,
+                        Items.MAGENTA_STAINED_GLASS,
+                        Items.ORANGE_STAINED_GLASS,
+                        Items.PINK_STAINED_GLASS,
+                        Items.PURPLE_STAINED_GLASS,
+                        Items.RED_STAINED_GLASS,
+                        Items.WHITE_STAINED_GLASS,
+                        Items.YELLOW_STAINED_GLASS,
+                        Items.GLASS);
+        getOrCreateTagBuilder(UnidyeTags.Items.GLASS_PANE)
+                .add(UnidyeBlocks.CUSTOM_STAINED_GLASS_PANE.asItem(),
+                        Items.BLACK_STAINED_GLASS_PANE,
+                        Items.BLUE_STAINED_GLASS_PANE,
+                        Items.BROWN_STAINED_GLASS_PANE,
+                        Items.CYAN_STAINED_GLASS_PANE,
+                        Items.GRAY_STAINED_GLASS_PANE,
+                        Items.GREEN_STAINED_GLASS_PANE,
+                        Items.LIGHT_BLUE_STAINED_GLASS_PANE,
+                        Items.LIGHT_GRAY_STAINED_GLASS_PANE,
+                        Items.LIME_STAINED_GLASS_PANE,
+                        Items.MAGENTA_STAINED_GLASS_PANE,
+                        Items.ORANGE_STAINED_GLASS_PANE,
+                        Items.PINK_STAINED_GLASS_PANE,
+                        Items.PURPLE_STAINED_GLASS_PANE,
+                        Items.RED_STAINED_GLASS_PANE,
+                        Items.WHITE_STAINED_GLASS_PANE,
+                        Items.YELLOW_STAINED_GLASS_PANE,
+                        Items.GLASS_PANE);
     }
 }

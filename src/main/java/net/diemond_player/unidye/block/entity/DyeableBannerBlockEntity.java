@@ -80,7 +80,7 @@ public class DyeableBannerBlockEntity extends BlockEntity implements Nameable {
         if (this.customName != null) {
             return this.customName;
         }
-        return Text.translatable("block.minecraft.banner");
+        return Text.translatable("block.unidye.custom_banner");
     }
 
     @Override
@@ -155,7 +155,12 @@ public class DyeableBannerBlockEntity extends BlockEntity implements Nameable {
                 RegistryEntry<BannerPattern> registryEntry = BannerPattern.byId(nbtCompound.getString(PATTERN_KEY));
                 if (registryEntry == null) continue;
                 int j = nbtCompound.getInt(COLOR_KEY);
-                list.add(Pair.of(registryEntry, DyeColor.byId(j)));
+                DyeColor dyeColor = DyeColor.byId(j);
+                if(dyeColor==DyeColor.WHITE && j!=0){
+                    list.add(Pair.of(registryEntry, j));
+                } else {
+                    list.add(Pair.of(registryEntry, dyeColor));
+                }
             }
         }
         return list;
