@@ -3,6 +3,7 @@ package net.diemond_player.unidye.block;
 import net.diemond_player.unidye.block.custom.*;
 import net.diemond_player.unidye.Unidye;
 import net.diemond_player.unidye.item.custom.DyeableBlockItem;
+import net.diemond_player.unidye.item.custom.DyeableWoolBlockItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -52,7 +53,6 @@ public class UnidyeBlocks {
     SupplementariesSquared
     ...
      */
-    //TODO banner recipe (additional color)
     //TODO candles on cakes
     //TODO bed recipe (additional color)
     //TODO change mixin for armordyerecipe
@@ -67,8 +67,8 @@ public class UnidyeBlocks {
     //TODO concrete circle custom ?????
 
 
-    public static final Block CUSTOM_WOOL = registerDyeableBlock("custom_wool",
-            new DyeableBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL)));
+    public static final Block CUSTOM_WOOL = registerDyeableWoolBlock("custom_wool",
+            new DyeableWoolBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL)));
     public static final Block CUSTOM_CONCRETE = registerDyeableBlock("custom_concrete",
             new DyeableBlock(FabricBlockSettings.copyOf(Blocks.WHITE_CONCRETE)));
     public static final Block CUSTOM_TERRACOTTA = registerDyeableBlock("custom_terracotta",
@@ -112,6 +112,10 @@ public class UnidyeBlocks {
         registerDyeableBlockItem(name, block);
         return Registry.register(Registries.BLOCK, new Identifier(Unidye.MOD_ID, name), block);
     }
+    private static Block registerDyeableWoolBlock(String name, Block block) {
+        registerDyeableWoolBlockItem(name, block);
+        return Registry.register(Registries.BLOCK, new Identifier(Unidye.MOD_ID, name), block);
+    }
     private static Block registerSingletonDyeableBlock(String name, Block block) {
         registerSingletonDyeableBlockItem(name, block);
         return Registry.register(Registries.BLOCK, new Identifier(Unidye.MOD_ID, name), block);
@@ -121,5 +125,8 @@ public class UnidyeBlocks {
     }
     private static void registerDyeableBlockItem(String name, Block block) {
         Registry.register(Registries.ITEM, new Identifier(Unidye.MOD_ID, name), new DyeableBlockItem(block, new FabricItemSettings()));
+    }
+    private static void registerDyeableWoolBlockItem(String name, Block block) {
+        Registry.register(Registries.ITEM, new Identifier(Unidye.MOD_ID, name), new DyeableWoolBlockItem(block, new FabricItemSettings()));
     }
 }

@@ -1,7 +1,9 @@
 package net.diemond_player.unidye.recipes;
 
 import net.diemond_player.unidye.block.UnidyeBlocks;
+import net.diemond_player.unidye.block.entity.DyeableWoolBlockEntity;
 import net.diemond_player.unidye.item.UnidyeItems;
+import net.diemond_player.unidye.item.custom.DyeableWoolBlockItem;
 import net.diemond_player.unidye.util.UnidyeUtils;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
@@ -36,6 +38,7 @@ public class CustomWoolDyeingRecipe extends SpecialCraftingRecipe {
     public ItemStack craft(RecipeInputInventory inventory, DynamicRegistryManager registryManager) {
         ItemStack itemStack1 = new ItemStack(UnidyeBlocks.CUSTOM_WOOL.asItem());
         UnidyeUtils.setColor(itemStack1, UnidyeUtils.getMaterialColor(inventory.getStack(4), "wool"));
+        DyeableWoolBlockItem.setMaterialColor(itemStack1, UnidyeUtils.getMaterialColor(inventory.getStack(4), "leather"), "leather");
         itemStack1.setCount(8);
         return itemStack1;
     }

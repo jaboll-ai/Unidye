@@ -12,7 +12,6 @@ public class UnidyeBlockEntities {
         public static final BlockEntityType<DyeableBlockEntity> DYEABLE_BE = Registry.register(
                 Registries.BLOCK_ENTITY_TYPE, new Identifier(Unidye.MOD_ID, "dyeable_block_entity"),
                 FabricBlockEntityTypeBuilder.create(DyeableBlockEntity::new,
-                        UnidyeBlocks.CUSTOM_WOOL,
                         UnidyeBlocks.CUSTOM_TERRACOTTA,
                         UnidyeBlocks.CUSTOM_CONCRETE,
                         UnidyeBlocks.CUSTOM_STAINED_GLASS,
@@ -37,6 +36,11 @@ public class UnidyeBlockEntities {
                 FabricBlockEntityTypeBuilder.create(DyeableBannerBlockEntity::new,
                         UnidyeBlocks.CUSTOM_BANNER,
                         UnidyeBlocks.CUSTOM_WALL_BANNER
+                        ).build(null));
+        public static final BlockEntityType<DyeableWoolBlockEntity> DYEABLE_WOOL_BE = Registry.register(
+                Registries.BLOCK_ENTITY_TYPE, new Identifier(Unidye.MOD_ID, "dyeable_wool_block_entity"),
+                FabricBlockEntityTypeBuilder.create(DyeableWoolBlockEntity::new,
+                        UnidyeBlocks.CUSTOM_WOOL
                         ).build(null));
 
 

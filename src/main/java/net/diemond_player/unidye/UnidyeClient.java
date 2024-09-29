@@ -37,7 +37,7 @@ public class UnidyeClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(UnidyeBlocks.CUSTOM_STAINED_GLASS, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(UnidyeBlocks.CUSTOM_STAINED_GLASS_PANE, RenderLayer.getTranslucent());
         registerItemColor(UnidyeItems.CUSTOM_DYE);
-        registerBlockColor(UnidyeBlocks.CUSTOM_WOOL);
+        registerBlockColor2(UnidyeBlocks.CUSTOM_WOOL);
         registerBlockColor(UnidyeBlocks.CUSTOM_CONCRETE);
         registerBlockColor(UnidyeBlocks.CUSTOM_TERRACOTTA);
         registerBlockColor(UnidyeBlocks.CUSTOM_STAINED_GLASS);
@@ -63,5 +63,9 @@ public class UnidyeClient implements ClientModInitializer {
     private void registerBlockColor1(Block block) {
         registerItemColor(block.asItem());
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> DyeableShulkerBoxBlockEntity.getColor(world,pos),block);
+    }
+    private void registerBlockColor2(Block block) {
+        registerItemColor(block.asItem());
+        ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> DyeableWoolBlockEntity.getColor(world,pos),block);
     }
 }

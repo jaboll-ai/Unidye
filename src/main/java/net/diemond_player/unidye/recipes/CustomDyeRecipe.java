@@ -1,6 +1,7 @@
 package net.diemond_player.unidye.recipes;
 
 import com.google.common.collect.Lists;
+import net.diemond_player.unidye.Unidye;
 import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.diemond_player.unidye.item.UnidyeItems;
 import net.diemond_player.unidye.item.custom.UnidyeableItem;
@@ -31,7 +32,6 @@ public class CustomDyeRecipe extends SpecialCraftingRecipe {
     public boolean matches(RecipeInputInventory inventory, World world) {
         boolean stick = false;
         boolean difference = false;
-        boolean polymorph = FabricLoader.getInstance().isModLoaded("polymorph");
         Item item = null;
         for (int i = 0; i < inventory.size(); ++i) {
             ItemStack itemStack2 = inventory.getStack(i);
@@ -55,7 +55,7 @@ public class CustomDyeRecipe extends SpecialCraftingRecipe {
             }
             return false;
         }
-        return (stick || polymorph) && difference;
+        return (stick || Unidye.POLYMORPH) && difference;
     }
 
     @Override
