@@ -26,5 +26,7 @@ public class UnidyeSpecialRecipes {
                 new SpecialRecipeSerializer<CustomWoolDyeingRecipe>(CustomWoolDyeingRecipe::new));
         Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(Unidye.MOD_ID, "custom_concrete_powder"),
                 new SpecialRecipeSerializer<CustomConcretePowderRecipe>(CustomConcretePowderRecipe::new));
+        Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(Unidye.MOD_ID, "custom_dye"),
+                new SpecialRecipeSerializer<CustomDyeRecipe>(CustomDyeRecipe::new));
     }
 }

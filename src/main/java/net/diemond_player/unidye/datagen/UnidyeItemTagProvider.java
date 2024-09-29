@@ -67,5 +67,6 @@ public class UnidyeItemTagProvider extends FabricTagProvider.ItemTagProvider {
                         Items.WHITE_STAINED_GLASS_PANE,
                         Items.YELLOW_STAINED_GLASS_PANE,
                         Items.GLASS_PANE);
+
     }
 }

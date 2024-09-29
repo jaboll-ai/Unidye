@@ -6,8 +6,6 @@ import net.diemond_player.unidye.item.custom.DyeableBlockItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -57,7 +55,6 @@ public class UnidyeBlocks {
     //TODO banner recipe (additional color)
     //TODO candles on cakes
     //TODO bed recipe (additional color)
-    //TODO custom dye mixing
     //TODO change mixin for armordyerecipe
     //TODO add Banner Patterns
     //TODO shield banners
@@ -94,19 +91,19 @@ public class UnidyeBlocks {
             new DyeableBannerBlock(FabricBlockSettings.copyOf(Blocks.WHITE_BANNER)));
     public static final Block CUSTOM_WALL_BANNER = registerBlockWithoutItem("custom_wall_banner",
             new DyeableWallBannerBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WALL_BANNER).dropsLike(CUSTOM_BANNER)));
-    private static Block registerBlock(String name, Block block){
-        registerBlockItem(name, block);
-        return Registry.register(Registries.BLOCK, new Identifier(Unidye.MOD_ID, name), block);
-    }
+//    private static Block registerBlock(String name, Block block){
+//        registerBlockItem(name, block);
+//        return Registry.register(Registries.BLOCK, new Identifier(Unidye.MOD_ID, name), block);
+//    }
 
     private static Block registerBlockWithoutItem(String name, Block block){
         return Registry.register(Registries.BLOCK, new Identifier(Unidye.MOD_ID, name), block);
     }
 
-    private static Item registerBlockItem(String name, Block block){
-        return Registry.register(Registries.ITEM, new Identifier(Unidye.MOD_ID, name),
-                new BlockItem(block, new FabricItemSettings()));
-    }
+//    private static Item registerBlockItem(String name, Block block){
+//        return Registry.register(Registries.ITEM, new Identifier(Unidye.MOD_ID, name),
+//                new BlockItem(block, new FabricItemSettings()));
+//    }
 
     public static void registerModBlocks(){
         Unidye.LOGGER.info("Registering Mod Blocks for" + Unidye.MOD_ID);
