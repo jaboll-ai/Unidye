@@ -31,9 +31,20 @@ public class DyeableWoolBlockItem extends DyeableBlockItem{
         super(block, settings);
     }
     public static Integer getMaterialColor(ItemStack stack, String materialType) {
-        NbtCompound nbtCompound = stack.getSubNbt("1");
-        if (nbtCompound != null && nbtCompound.contains("bannerColor", NbtElement.NUMBER_TYPE)) {
-            return nbtCompound.getInt("bannerColor");
+        NbtCompound nbtCompound;
+        switch(materialType) {
+            case "leather":
+                nbtCompound = stack.getSubNbt("1");
+                if (nbtCompound != null && nbtCompound.contains("bannerColor", NbtElement.NUMBER_TYPE)) {
+                    return nbtCompound.getInt("bannerColor");
+                }
+                break;
+            case "bed":
+                nbtCompound = stack.getSubNbt("2");
+                if (nbtCompound != null && nbtCompound.contains("bedColor", NbtElement.NUMBER_TYPE)) {
+                    return nbtCompound.getInt("bedColor");
+                }
+                break;
         }
         return DEFAULT_COLOR;
     }
@@ -46,12 +57,14 @@ public class DyeableWoolBlockItem extends DyeableBlockItem{
     public static void setMaterialColor(ItemStack itemStack, int n, String materialType) {
         switch (materialType){
             case "leather": itemStack.getOrCreateSubNbt("1").putInt("bannerColor", n); break;
+            case "bed": itemStack.getOrCreateSubNbt("2").putInt("bedColor", n); break;
         }
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if(Screen.hasShiftDown()){
             tooltip.add(Text.translatable("tooltip.unidye.banner_color").append(getMaterialHexColor(stack, "leather")));
+            tooltip.add(Text.translatable("tooltip.unidye.bed_color").append(getMaterialHexColor(stack, "bed")));
         } else {
             tooltip.add(Text.translatable("tooltip.unidye.press_shift"));
         }
@@ -63,6 +76,7 @@ public class DyeableWoolBlockItem extends DyeableBlockItem{
         if(blockEntity instanceof DyeableWoolBlockEntity dyeableBlockEntity){
             dyeableBlockEntity.color = UnidyeUtils.getColor(context.getStack());
             dyeableBlockEntity.bannerColor = getMaterialColor(context.getStack(), "leather");
+            dyeableBlockEntity.bedColor = getMaterialColor(context.getStack(), "bed");
         }
         return result;
     }

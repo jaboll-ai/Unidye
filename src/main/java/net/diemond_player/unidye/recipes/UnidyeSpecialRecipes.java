@@ -30,5 +30,9 @@ public class UnidyeSpecialRecipes {
                 new SpecialRecipeSerializer<CustomDyeRecipe>(CustomDyeRecipe::new));
         Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(Unidye.MOD_ID, "custom_banner"),
                 new SpecialRecipeSerializer<CustomBannerRecipe>(CustomBannerRecipe::new));
+        Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(Unidye.MOD_ID, "custom_bed"),
+                new SpecialRecipeSerializer<CustomBedRecipe>(CustomBedRecipe::new));
+        Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(Unidye.MOD_ID, "custom_bed_dyeing"),
+                new SpecialRecipeSerializer<CustomBedDyeingRecipe>(CustomBedDyeingRecipe::new));
     }
 }

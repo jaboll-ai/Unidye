@@ -39,6 +39,7 @@ public class CustomWoolDyeingRecipe extends SpecialCraftingRecipe {
         ItemStack itemStack1 = new ItemStack(UnidyeBlocks.CUSTOM_WOOL.asItem());
         UnidyeUtils.setColor(itemStack1, UnidyeUtils.getMaterialColor(inventory.getStack(4), "wool"));
         DyeableWoolBlockItem.setMaterialColor(itemStack1, UnidyeUtils.getMaterialColor(inventory.getStack(4), "leather"), "leather");
+        DyeableWoolBlockItem.setMaterialColor(itemStack1, UnidyeUtils.getMaterialColor(inventory.getStack(4), "concrete"), "bed");
         itemStack1.setCount(8);
         return itemStack1;
     }

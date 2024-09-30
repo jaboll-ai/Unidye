@@ -28,6 +28,7 @@ public class UnidyeBlocks {
     //code optimization
     //TODO CLEAN CODE
     //TODO CLEAN MIXINS
+    //TODO final color check
 
     //textures
     //TODO lowest alpha gray light gray
@@ -54,17 +55,10 @@ public class UnidyeBlocks {
     ...
      */
     //TODO candles on cakes
-    //TODO bed recipe (additional color)
     //TODO change mixin for armordyerecipe
     //TODO add Banner Patterns
     //TODO shield banners
     //TODO map markers
-    //TODO candle recipe ????
-    //TODO carpet single dye ????
-    //TODO wool single dye ????
-    //TODO bed recolor recipe ?????
-    //TODO concrete circle vanilla ?????
-    //TODO concrete circle custom ?????
 
 
     public static final Block CUSTOM_WOOL = registerDyeableWoolBlock("custom_wool",
