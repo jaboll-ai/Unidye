@@ -67,6 +67,25 @@ public class UnidyeItemTagProvider extends FabricTagProvider.ItemTagProvider {
                         Items.WHITE_STAINED_GLASS_PANE,
                         Items.YELLOW_STAINED_GLASS_PANE,
                         Items.GLASS_PANE);
+        getOrCreateTagBuilder(UnidyeTags.Items.SHULKER_BOXES)
+                .add(UnidyeBlocks.CUSTOM_SHULKER_BOX.asItem(),
+                        Items.BLACK_SHULKER_BOX,
+                        Items.BLUE_SHULKER_BOX,
+                        Items.BROWN_SHULKER_BOX,
+                        Items.CYAN_SHULKER_BOX,
+                        Items.GRAY_SHULKER_BOX,
+                        Items.GREEN_SHULKER_BOX,
+                        Items.LIGHT_BLUE_SHULKER_BOX,
+                        Items.LIGHT_GRAY_SHULKER_BOX,
+                        Items.LIME_SHULKER_BOX,
+                        Items.MAGENTA_SHULKER_BOX,
+                        Items.ORANGE_SHULKER_BOX,
+                        Items.PINK_SHULKER_BOX,
+                        Items.PURPLE_SHULKER_BOX,
+                        Items.RED_SHULKER_BOX,
+                        Items.WHITE_SHULKER_BOX,
+                        Items.YELLOW_SHULKER_BOX,
+                        Items.SHULKER_BOX);
 
     }
 }

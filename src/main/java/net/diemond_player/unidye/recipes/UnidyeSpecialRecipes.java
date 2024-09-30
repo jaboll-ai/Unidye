@@ -34,5 +34,7 @@ public class UnidyeSpecialRecipes {
                 new SpecialRecipeSerializer<CustomBedRecipe>(CustomBedRecipe::new));
         Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(Unidye.MOD_ID, "custom_bed_dyeing"),
                 new SpecialRecipeSerializer<CustomBedDyeingRecipe>(CustomBedDyeingRecipe::new));
+        Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(Unidye.MOD_ID, "custom_shulker_box_dyeing"),
+                new SpecialRecipeSerializer<CustomShulkerBoxDyeingRecipe>(CustomShulkerBoxDyeingRecipe::new));
     }
 }

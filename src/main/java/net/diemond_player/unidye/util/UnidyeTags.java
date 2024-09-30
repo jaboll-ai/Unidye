@@ -25,6 +25,8 @@ public class UnidyeTags {
                 createItemTag("glass");
         public static final TagKey<Item> GLASS_PANE =
                 createItemTag("glass_pane");
+        public static final TagKey<Item> SHULKER_BOXES =
+                createItemTag("shulker_boxes");
 
         private static TagKey<Item> createItemTag(String name){
             return TagKey.of(RegistryKeys.ITEM, new Identifier(Unidye.MOD_ID, name));
