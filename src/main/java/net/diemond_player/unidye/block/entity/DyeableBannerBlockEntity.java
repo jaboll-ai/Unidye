@@ -141,14 +141,14 @@ public class DyeableBannerBlockEntity extends BlockEntity implements Nameable {
 
     public List<Pair<RegistryEntry<BannerPattern>, ?>> getPatterns() {
         if (this.patterns == null) {
-            this.patterns = this.getPatternsFromNbt(this.patternListNbt);
+            this.patterns = getPatternsFromNbt(this.color, this.patternListNbt);
         }
         return this.patterns;
     }
 
-    public List<Pair<RegistryEntry<BannerPattern>, ?>> getPatternsFromNbt(@Nullable NbtList patternListNbt) {
+    public static List<Pair<RegistryEntry<BannerPattern>, ?>> getPatternsFromNbt(int color, @Nullable NbtList patternListNbt) {
         ArrayList<Pair<RegistryEntry<BannerPattern>, ?>> list = Lists.newArrayList();
-        list.add(Pair.of(Registries.BANNER_PATTERN.entryOf(BannerPatterns.BASE), this.color));
+        list.add(Pair.of(Registries.BANNER_PATTERN.entryOf(BannerPatterns.BASE), color));
         if (patternListNbt != null) {
             for (int i = 0; i < patternListNbt.size(); ++i) {
                 NbtCompound nbtCompound = patternListNbt.getCompound(i);

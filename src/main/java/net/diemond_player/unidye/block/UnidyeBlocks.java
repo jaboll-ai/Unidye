@@ -57,7 +57,6 @@ public class UnidyeBlocks {
     //TODO candles on cakes
     //TODO change mixin for armordyerecipe
     //TODO add Banner Patterns
-    //TODO shield banners
     //TODO map markers
 
 
