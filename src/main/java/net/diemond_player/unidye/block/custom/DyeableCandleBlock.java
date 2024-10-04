@@ -10,10 +10,12 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 
+import static net.diemond_player.unidye.item.custom.DyeableBlockItem.DEFAULT_COLOR;
+import static net.minecraft.item.DyeableItem.COLOR_KEY;
+import static net.minecraft.item.DyeableItem.DISPLAY_KEY;
+
 public class DyeableCandleBlock extends CandleBlock implements IDyeableBlock {
-    public static final String COLOR_KEY = "color";
-    public static final String DISPLAY_KEY = "display";
-    public static final int DEFAULT_COLOR = 10511680;
+
     public DyeableCandleBlock(Settings settings) {
         super(settings);
     }

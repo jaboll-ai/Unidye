@@ -32,7 +32,8 @@ public class DyeableBlockItem extends BlockItem implements DyeableItem {
         if(blockEntity instanceof DyeableBlockEntity dyeableBlockEntity
                 && !blockstate.isOf(UnidyeBlocks.CUSTOM_CARPET)
                 && !blockstate.isOf(UnidyeBlocks.CUSTOM_STAINED_GLASS_PANE)
-                && !blockstate.isOf(UnidyeBlocks.CUSTOM_CANDLE)){
+                && !blockstate.isOf(UnidyeBlocks.CUSTOM_CANDLE)
+                && !blockstate.isOf(UnidyeBlocks.CUSTOM_CANDLE_CAKE)){
             dyeableBlockEntity.color = getColor(context.getStack());
         }
         if(blockEntity instanceof DyeableShulkerBoxBlockEntity dyeableShulkerBoxBlockEntity

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "unidye:block/custom_candle_cake"
+    },
+    "lit=true": {
+      "model": "unidye:block/custom_candle_cake_lit"
+    }
+  }
+}

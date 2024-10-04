@@ -39,5 +39,7 @@ public class UnidyeBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(BlockTags.BANNERS)
                 .add(UnidyeBlocks.CUSTOM_WALL_BANNER,
                         UnidyeBlocks.CUSTOM_BANNER);
+        getOrCreateTagBuilder(BlockTags.CANDLE_CAKES)
+                .add(UnidyeBlocks.CUSTOM_CANDLE_CAKE);
     }
 }

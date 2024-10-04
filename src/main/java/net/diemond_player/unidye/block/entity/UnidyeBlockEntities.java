@@ -18,7 +18,8 @@ public class UnidyeBlockEntities {
                         UnidyeBlocks.CUSTOM_CONCRETE_POWDER,
                         UnidyeBlocks.CUSTOM_CARPET,
                         UnidyeBlocks.CUSTOM_STAINED_GLASS_PANE,
-                        UnidyeBlocks.CUSTOM_CANDLE
+                        UnidyeBlocks.CUSTOM_CANDLE,
+                        UnidyeBlocks.CUSTOM_CANDLE_CAKE
                         ).build(null));
 
         public static final BlockEntityType<DyeableShulkerBoxBlockEntity> DYEABLE_SHULKER_BOX_BE = Registry.register(

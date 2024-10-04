@@ -54,7 +54,6 @@ public class UnidyeBlocks {
     SupplementariesSquared
     ...
      */
-    //TODO candles on cakes
     //TODO change mixin for armordyerecipe
     //TODO add Banner Patterns
 
@@ -80,6 +79,8 @@ public class UnidyeBlocks {
             new DyeablePaneBlock(FabricBlockSettings.copyOf(Blocks.WHITE_STAINED_GLASS_PANE)));
     public static final Block CUSTOM_CANDLE = registerDyeableBlock("custom_candle",
             new DyeableCandleBlock(FabricBlockSettings.copyOf(Blocks.WHITE_CANDLE)));
+    public static final Block CUSTOM_CANDLE_CAKE = registerBlockWithoutItem("custom_candle_cake",
+            new DyeableCandleCakeBlock(CUSTOM_CANDLE, FabricBlockSettings.copyOf(Blocks.WHITE_CANDLE_CAKE)));
     public static final Block CUSTOM_SHULKER_BOX = registerSingletonDyeableBlock("custom_shulker_box",
             new DyeableShulkerBoxBlock(FabricBlockSettings.copyOf(Blocks.WHITE_SHULKER_BOX)));
     public static final Block CUSTOM_BED = registerSingletonDyeableBlock("custom_bed",
