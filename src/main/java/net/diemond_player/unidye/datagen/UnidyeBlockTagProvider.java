@@ -36,5 +36,8 @@ public class UnidyeBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
                 .add(UnidyeBlocks.CUSTOM_WALL_BANNER,
                         UnidyeBlocks.CUSTOM_BANNER);
+        getOrCreateTagBuilder(BlockTags.BANNERS)
+                .add(UnidyeBlocks.CUSTOM_WALL_BANNER,
+                        UnidyeBlocks.CUSTOM_BANNER);
     }
 }

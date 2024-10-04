@@ -35,10 +35,10 @@ public abstract class LoomScreenHandlerMixin extends ScreenHandler{
         this.input = input;
     }
 
-    @Inject(method = "updateOutputSlot", at = @At("HEAD"))
-    private void updateOutputSlot(RegistryEntry<BannerPattern> pattern, CallbackInfo ci){
-
-    }
+//    @Inject(method = "updateOutputSlot", at = @At("HEAD"))
+//    private void updateOutputSlot(RegistryEntry<BannerPattern> pattern, CallbackInfo ci){
+//
+//    }
     @Mutable
     @Final
     @Shadow
@@ -105,7 +105,7 @@ public abstract class LoomScreenHandlerMixin extends ScreenHandler{
 //        }
 //    }
 
-    @Inject(method = "updateOutputSlot", at = @At(value = "HEAD"), locals = LocalCapture.CAPTURE_FAILHARD)
+    @Inject(method = "updateOutputSlot", at = @At(value = "HEAD"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private void updateOutputSlottt(RegistryEntry<BannerPattern> pattern, CallbackInfo ci){
         ItemStack itemStack = this.bannerSlot.getStack();
         if(itemStack.isOf(UnidyeItems.CUSTOM_BANNER)){

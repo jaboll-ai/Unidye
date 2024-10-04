@@ -23,6 +23,7 @@ public class UnidyeBlocks {
     //FIXMEE sheep do not drop colored wool on death
     //FIXMEE when dropped on blocks; wrong particles
     //FIXMEE middlemouse + ctrl works not like intended
+    //FIXMEE proper map markers check MapIcon.Type FilledMapItem map_icons MapRenderer
 
 
     //code optimization
@@ -31,7 +32,6 @@ public class UnidyeBlocks {
     //TODO final color check
 
     //textures
-    //TODO lowest alpha gray light gray
     //TODO dye blocks second layer!
 
     //colors
@@ -57,8 +57,12 @@ public class UnidyeBlocks {
     //TODO candles on cakes
     //TODO change mixin for armordyerecipe
     //TODO add Banner Patterns
-    //TODO map markers
 
+    //JAIZ Essentials
+    //FIXME powder loses color
+    //FIXME cant use banners in looms
+    //TODO add Banner Patterns
+    //TODO change mixin for armordyerecipe
 
     public static final Block CUSTOM_WOOL = registerDyeableWoolBlock("custom_wool",
             new DyeableWoolBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL)));
