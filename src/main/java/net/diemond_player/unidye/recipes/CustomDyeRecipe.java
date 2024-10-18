@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import net.diemond_player.unidye.Unidye;
 import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.diemond_player.unidye.item.UnidyeItems;
+import net.diemond_player.unidye.item.custom.CustomDyeItem;
 import net.diemond_player.unidye.item.custom.UnidyeableItem;
 import net.diemond_player.unidye.util.UnidyeTags;
 import net.diemond_player.unidye.util.UnidyeUtils;
@@ -38,7 +39,7 @@ public class CustomDyeRecipe extends SpecialCraftingRecipe {
             if (itemStack2.isEmpty()) {
                 continue;
             }
-            if (itemStack2.getItem() instanceof DyeItem){
+            if (itemStack2.getItem() instanceof DyeItem && !(itemStack2.getItem() instanceof CustomDyeItem)){
                 if(item==null){
                     item = itemStack2.getItem();
                 }else if(item!=itemStack2.getItem()){
@@ -65,7 +66,7 @@ public class CustomDyeRecipe extends SpecialCraftingRecipe {
             ItemStack itemStack2 = inventory.getStack(i);
             if (itemStack2.isEmpty()) continue;
             Item item = itemStack2.getItem();
-            if (item instanceof DyeItem) {
+            if (item instanceof DyeItem && !(itemStack2.getItem() instanceof CustomDyeItem)) {
                 list.add((DyeItem)item);
             }
         }

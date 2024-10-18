@@ -57,12 +57,12 @@ public class ArmorDyeRecipeMixin {
 					return false;
 				}
 			}
-			if (itemStack2.getItem() instanceof DyeItem) {
-				list.add(itemStack2);
-				continue;
-			}
 			if (itemStack2.getItem() == UnidyeItems.CUSTOM_DYE) {
 				customColors.add(itemStack2);
+				continue;
+			}
+			if (itemStack2.getItem() instanceof DyeItem) {
+				list.add(itemStack2);
 				continue;
 			}
 			return false;
@@ -117,12 +117,12 @@ public class ArmorDyeRecipeMixin {
 					return ItemStack.EMPTY;
 				}
 			}
-			if (item instanceof DyeItem) {
-				list.add((DyeItem)item);
-				continue;
-			}
 			if (item == UnidyeItems.CUSTOM_DYE){
 				customColors.add(itemStack2);
+				continue;
+			}
+			if (item instanceof DyeItem) {
+				list.add((DyeItem)item);
 				continue;
 			}
 			return ItemStack.EMPTY;

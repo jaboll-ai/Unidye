@@ -38,8 +38,6 @@ public class UnidyeBlocks {
     //FIXME bed colors are off
     //FIXME powder colors are off
     //FIXME powder loses color
-    //FIXME recode with CustomDyeItem extending DyeItem
-    //FIXME recode with Dyeablebanner extending banner
     //TODO integration
     //TODO change mixin for armordyerecipe
 

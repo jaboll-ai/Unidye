@@ -39,14 +39,6 @@ public class CustomShulkerBoxDyeingRecipe extends SpecialCraftingRecipe {
             if (itemStack2.isEmpty()) {
                 continue;
             }
-            if (itemStack2.getItem() instanceof DyeItem){
-                if(item==null){
-                    item = itemStack2.getItem();
-                }else if(item!=itemStack2.getItem()){
-                    difference = true;
-                }
-                continue;
-            }
             if (itemStack2.getItem() instanceof CustomDyeItem){
                 count++;
                 if(item==null){
@@ -57,6 +49,14 @@ public class CustomShulkerBoxDyeingRecipe extends SpecialCraftingRecipe {
                 if(itemStack==null){
                     itemStack = itemStack2;
                 }else if(UnidyeUtils.getColor(itemStack)!=UnidyeUtils.getColor(itemStack2)){
+                    difference = true;
+                }
+                continue;
+            }
+            if (itemStack2.getItem() instanceof DyeItem){
+                if(item==null){
+                    item = itemStack2.getItem();
+                }else if(item!=itemStack2.getItem()){
                     difference = true;
                 }
                 continue;
@@ -82,11 +82,13 @@ public class CustomShulkerBoxDyeingRecipe extends SpecialCraftingRecipe {
             ItemStack itemStack2 = inventory.getStack(i);
             if (itemStack2.isEmpty()) continue;
             Item item = itemStack2.getItem();
-            if (item instanceof DyeItem) {
-                dyeList.add((DyeItem)item);
-            }
             if (item instanceof CustomDyeItem) {
                 customDyeList.add(itemStack2);
+                continue;
+            }
+            if (item instanceof DyeItem) {
+                dyeList.add((DyeItem)item);
+                continue;
             }
             if (itemStack2.isIn(UnidyeTags.Items.SHULKER_BOXES) && item!=UnidyeBlocks.CUSTOM_SHULKER_BOX.asItem()){
                 itemStack=itemStack2;

@@ -42,5 +42,9 @@ public class UnidyeSpecialRecipes {
                 new SpecialRecipeSerializer<CustomBannerDuplicateRecipe>(CustomBannerDuplicateRecipe::new));
         Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(Unidye.MOD_ID, "mixed_banner_duplicate"),
                 new SpecialRecipeSerializer<MixedBannerDuplicateRecipe>(MixedBannerDuplicateRecipe::new));
+        Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(Unidye.MOD_ID, "custom_firework_star"),
+                new SpecialRecipeSerializer<CustomFireworkStarRecipe>(CustomFireworkStarRecipe::new));
+        Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(Unidye.MOD_ID, "custom_firework_star_fade"),
+                new SpecialRecipeSerializer<CustomFireworkStarFadeRecipe>(CustomFireworkStarFadeRecipe::new));
     }
 }
