@@ -1,6 +1,7 @@
 package net.diemond_player.unidye.item.custom;
 
 import net.diemond_player.unidye.Unidye;
+import net.diemond_player.unidye.recipes.CustomDyeRecipe;
 import net.diemond_player.unidye.util.IEntityAccessor;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
@@ -31,7 +32,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class CustomDyeItem extends Item implements SignChangingItem, DyeableItem {
+public class CustomDyeItem extends DyeItem implements SignChangingItem, DyeableItem {
     public static final String WOOL_KEY = "wool";
     public static final String WOOL_COLOR_KEY = "wool_color";
     public static final String CONCRETE_KEY = "concrete";
@@ -51,7 +52,7 @@ public class CustomDyeItem extends Item implements SignChangingItem, DyeableItem
 
 
     public CustomDyeItem(Settings settings) {
-        super(settings);
+        super(DyeColor.CYAN, settings);
     }
 
 

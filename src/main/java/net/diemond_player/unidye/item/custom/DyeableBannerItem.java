@@ -2,6 +2,7 @@ package net.diemond_player.unidye.item.custom;
 
 import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.diemond_player.unidye.block.entity.DyeableBannerBlockEntity;
+import net.diemond_player.unidye.util.UnidyeUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BannerPattern;
@@ -20,12 +21,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class DyeableBannerItem extends VerticallyAttachableBlockItem implements DyeableItem{
+public class DyeableBannerItem extends BannerItem implements DyeableItem{
     public static final int DEFAULT_COLOR = 16777215;
     private static final String TRANSLATION_KEY_PREFIX = "block.minecraft.banner.";
 
     public DyeableBannerItem(Block bannerBlock, Block wallBannerBlock, Item.Settings settings) {
-        super(bannerBlock, wallBannerBlock, settings, Direction.DOWN);
+        super(bannerBlock, wallBannerBlock, settings);
     }
 
     @Override
@@ -49,10 +50,15 @@ public class DyeableBannerItem extends VerticallyAttachableBlockItem implements 
         NbtList nbtList = nbtCompound.getList("Patterns", NbtElement.COMPOUND_TYPE);
         for (int i = 0; i < nbtList.size() && i < 6; ++i) {
             NbtCompound nbtCompound2 = nbtList.getCompound(i);
-            DyeColor dyeColor = DyeColor.byId(nbtCompound2.getInt("Color"));
+            int n = nbtCompound2.getInt("Color");
+            DyeColor dyeColor = DyeColor.byId(n);
             RegistryEntry<BannerPattern> registryEntry = BannerPattern.byId(nbtCompound2.getString("Pattern"));
             if (registryEntry == null) continue;
-            registryEntry.getKey().map(key -> key.getValue().toShortTranslationKey()).ifPresent(translationKey -> tooltip.add(Text.translatable(TRANSLATION_KEY_PREFIX + translationKey + "." + dyeColor.getName()).formatted(Formatting.GRAY)));
+            if(DyeColor.WHITE == dyeColor && n!=0){
+                registryEntry.getKey().map(key -> key.getValue().toShortTranslationKey()).ifPresent(translationKey -> tooltip.add(Text.literal("§7#" + Integer.toString(n, 16).toUpperCase() + " ").append(Text.translatable(TRANSLATION_KEY_PREFIX + translationKey).formatted(Formatting.GRAY))));
+            }else{
+                registryEntry.getKey().map(key -> key.getValue().toShortTranslationKey()).ifPresent(translationKey -> tooltip.add(Text.translatable(TRANSLATION_KEY_PREFIX + translationKey + "." + dyeColor.getName()).formatted(Formatting.GRAY)));
+            }
         }
     }
 

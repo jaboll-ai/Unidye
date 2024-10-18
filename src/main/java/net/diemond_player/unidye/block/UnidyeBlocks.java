@@ -24,7 +24,24 @@ public class UnidyeBlocks {
     //FIXMEE when dropped on blocks; wrong particles
     //FIXMEE middlemouse + ctrl works not like intended
     //FIXMEE proper map markers check MapIcon.Type FilledMapItem map_icons MapRenderer
+    //FIXMEE map colors
 
+
+
+    //all of the to dos
+    //TODO CLEAN CODE
+    //TODO CLEAN MIXINS
+    //TODO final color check
+    //TODO dye blocks second layer! (umhhhhh)
+    //FIXME shulker colors are off
+    //FIXME candles colors are off
+    //FIXME bed colors are off
+    //FIXME powder colors are off
+    //FIXME powder loses color
+    //FIXME recode with CustomDyeItem extending DyeItem
+    //FIXME recode with Dyeablebanner extending banner
+    //TODO integration
+    //TODO change mixin for armordyerecipe
 
     //code optimization
     //TODO CLEAN CODE
@@ -41,9 +58,7 @@ public class UnidyeBlocks {
     //FIXME powder colors are off
 
     //various fixes
-    //FIXME map colors
     //FIXME powder loses color
-    //FIXME cant use banners in looms
 
     //various to do
     /*TODO integration with:
@@ -55,12 +70,9 @@ public class UnidyeBlocks {
     ...
      */
     //TODO change mixin for armordyerecipe
-    //TODO add Banner Patterns
 
     //JAIZ Essentials
     //FIXME powder loses color
-    //FIXME cant use banners in looms
-    //TODO add Banner Patterns
     //TODO change mixin for armordyerecipe
 
     public static final Block CUSTOM_WOOL = registerDyeableWoolBlock("custom_wool",

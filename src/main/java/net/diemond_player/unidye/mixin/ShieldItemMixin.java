@@ -14,6 +14,7 @@ import net.diemond_player.unidye.item.custom.DyeableBannerItem;
 import net.diemond_player.unidye.item.custom.DyeableBlockItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BannerPattern;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.render.entity.model.ShieldEntityModel;
@@ -21,16 +22,15 @@ import net.minecraft.client.render.item.BuiltinModelItemRenderer;
 import net.minecraft.client.render.model.ModelLoader;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShieldItem;
+import net.minecraft.item.*;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -42,6 +42,14 @@ public abstract class ShieldItemMixin{
     private void render(ItemStack stack, CallbackInfoReturnable<String> cir) {
         if(BlockItem.getBlockEntityNbt(stack).contains("CustomColored")){
             cir.setReturnValue("item.unidye.shield_custom_color");
+        }
+    }
+    @Redirect(method = "appendTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/BannerItem;appendBannerTooltip(Lnet/minecraft/item/ItemStack;Ljava/util/List;)V"))
+    private void render1(ItemStack stack, List<Text> tooltip) {
+        if(BlockItem.getBlockEntityNbt(stack) != null && BlockItem.getBlockEntityNbt(stack).contains("CustomColored")){
+            DyeableBannerItem.appendBannerTooltip(stack, tooltip);
+        }else{
+            BannerItem.appendBannerTooltip(stack, tooltip);
         }
     }
 }

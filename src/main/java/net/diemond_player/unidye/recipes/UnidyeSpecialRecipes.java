@@ -38,5 +38,9 @@ public class UnidyeSpecialRecipes {
                 new SpecialRecipeSerializer<CustomShulkerBoxDyeingRecipe>(CustomShulkerBoxDyeingRecipe::new));
         Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(Unidye.MOD_ID, "custom_shield_decoration"),
                 new SpecialRecipeSerializer<CustomShieldDecorationRecipe>(CustomShieldDecorationRecipe::new));
+        Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(Unidye.MOD_ID, "custom_banner_duplicate"),
+                new SpecialRecipeSerializer<CustomBannerDuplicateRecipe>(CustomBannerDuplicateRecipe::new));
+        Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(Unidye.MOD_ID, "mixed_banner_duplicate"),
+                new SpecialRecipeSerializer<MixedBannerDuplicateRecipe>(MixedBannerDuplicateRecipe::new));
     }
 }

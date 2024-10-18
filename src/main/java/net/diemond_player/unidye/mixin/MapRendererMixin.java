@@ -5,6 +5,7 @@ import com.llamalad7.mixinextras.sugar.ref.LocalIntRef;
 import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import net.diemond_player.unidye.block.entity.DyeableBannerBlockEntity;
 import net.diemond_player.unidye.util.IEntityAccessor;
+import net.minecraft.block.MapColor;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -114,4 +115,26 @@ public abstract class MapRendererMixin{
 //            ++k;
 //        }
 //    }
+    @Mutable
+    @Final
+    @Shadow
+    private final NativeImageBackedTexture texture;
+    @Shadow
+    private MapState state;
+
+    protected MapRendererMixin(NativeImageBackedTexture texture) {
+        this.texture = texture;
+    }
+
+    @Inject(method = "updateTexture", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/texture/NativeImageBackedTexture;upload()V"))
+    public void updateColors1(CallbackInfo ci) {
+        for (int i = 0; i < 128; ++i) {
+            for (int j = 0; j < 128; ++j) {
+                int k = j + i * 128;
+                if(((IEntityAccessor)(this.state)).unidye$getCustomColor(k) != 0){
+                    this.texture.getImage().setColor(j, i, MapColor.getRenderColor(((IEntityAccessor)(this.state)).unidye$getCustomColor(k)));
+                }
+            }
+        }
+    }
 }

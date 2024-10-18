@@ -4,7 +4,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "ArmorDyeRecipeMixin",
-    "BannerDuplicateRecipeMixin",
+    "BannerDuplicationRecipeMixin",
     "BeaconBlockEntityMixin",
     "CakeBlockMixin",
     "CatEntityMixin",
@@ -13,10 +13,14 @@
     "FireworkStarItemMixin",
     "FireworkStarRecipeMixin",
     "LoomScreenHandlerMixin",
+    "MapUpdateS2CPacketMixin",
+    "PlayerUpdateTrackerMixin",
     "SheepEntityMixin",
+    "ShieldDecorationRecipeMixin",
     "ShieldItemMixin",
     "SignBlockEntityMixin",
     "SignTextMixin",
+    "UpdateDataMixin",
     "WolfEntityMixin"
   ],
   "injectors": {
@@ -26,7 +30,6 @@
     "BuiltinModelItemRendererMixin",
     "CatCollarFeatureRendererMixin",
     "LoomScreenMixin",
-    "MapRendererMixin",
     "ModelPartMixin",
     "SheepWoolFeatureRendererMixin",
     "SignBlockEntityRendererMixin",
