@@ -1,8 +1,10 @@
 package net.diemond_player.unidye.block.custom;
 
+import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.diemond_player.unidye.block.entity.DyeableBlockEntity;
 import net.diemond_player.unidye.entity.DyeableFallingBlockEntity;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.util.ParticleUtil;
 import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.item.ItemPlacementContext;
@@ -20,7 +22,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
-public class DyeableConcretePowderBlock extends Block implements IDyeableBlock, LandingBlock {
+public class DyeableConcretePowderBlock extends FallingBlock implements IDyeableBlock{
     private final BlockState hardenedState;
 
     public DyeableConcretePowderBlock(Block hardened, Settings settings) {
@@ -43,8 +45,9 @@ public class DyeableConcretePowderBlock extends Block implements IDyeableBlock, 
         if (!FallingBlock.canFallThrough(world.getBlockState(pos.down())) || pos.getY() < world.getBottomY()) {
             return;
         }
+        int color = DyeableBlockEntity.getColor(world, pos);
         DyeableFallingBlockEntity dyeableFallingBlockEntity = DyeableFallingBlockEntity.spawnFromBlock(world, pos, state);
-        this.configureFallingBlockEntity(dyeableFallingBlockEntity);
+        this.configureFallingBlockEntity(dyeableFallingBlockEntity, color);
     }
 
     @Override
@@ -97,8 +100,8 @@ public class DyeableConcretePowderBlock extends Block implements IDyeableBlock, 
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
-    protected void configureFallingBlockEntity(DyeableFallingBlockEntity entity) {
-        entity.setCustomColor(0xFF00FF);
+    protected void configureFallingBlockEntity(DyeableFallingBlockEntity entity, int color) {
+        entity.setCustomColor(color);
     }
     @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {

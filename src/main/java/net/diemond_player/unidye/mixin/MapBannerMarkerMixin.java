@@ -19,33 +19,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MapBannerMarker.class)
-public abstract class MapBannerMarkerMixin implements IEntityAccessor {
-
-//    @Unique
-//    private int customColor = 0xFFFFFF;
-//
-//    protected MapBannerMarkerMixin(int customColor) {
-//        this.customColor = customColor;
-//    }
-
+public abstract class MapBannerMarkerMixin{
     @Inject(method = "fromWorldBlock", at = @At(value = "HEAD"), cancellable = true)
     private static void render(BlockView blockView, BlockPos blockPos, CallbackInfoReturnable<MapBannerMarker> cir) {
         BlockEntity blockEntity = blockView.getBlockEntity(blockPos);
         if (blockEntity instanceof DyeableBannerBlockEntity bannerBlockEntity) {
             Text text = bannerBlockEntity.hasCustomName() ? bannerBlockEntity.getCustomName() : null;
             MapBannerMarker mapBannerMarker = new MapBannerMarker(blockPos, DyeColor.WHITE, text);
-//            ((IEntityAccessor) mapBannerMarker).unidye$setCustomColor(DyeableBannerBlockEntity.getColor(blockView, blockPos));
             cir.setReturnValue(mapBannerMarker);
         }
     }
-
-//    @Override
-//    public int unidye$getCustomColor() {
-//        return this.customColor;
-//    }
-//
-//    @Override
-//    public void unidye$setCustomColor(int customColor) {
-//        this.customColor=customColor;
-//    }
 }

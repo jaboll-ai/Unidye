@@ -14,21 +14,20 @@
     "FireworkStarItemMixin",
     "FireworkStarRecipeMixin",
     "LoomScreenHandlerMixin",
-    "MapUpdateS2CPacketMixin",
-    "PlayerUpdateTrackerMixin",
+    "MapBannerMarkerMixin",
     "SheepEntityMixin",
     "ShieldDecorationRecipeMixin",
     "ShieldItemMixin",
     "ShulkerBoxColoringRecipeMixin",
     "SignBlockEntityMixin",
     "SignTextMixin",
-    "UpdateDataMixin",
     "WolfEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
+    "BlockModelRendererMixin",
     "BuiltinModelItemRendererMixin",
     "CatCollarFeatureRendererMixin",
     "LoomScreenMixin",
