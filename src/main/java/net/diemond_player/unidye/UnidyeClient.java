@@ -40,10 +40,10 @@ public class UnidyeClient implements ClientModInitializer {
         registerBlockColor2(UnidyeBlocks.CUSTOM_WOOL);
         registerBlockColor(UnidyeBlocks.CUSTOM_CONCRETE);
         registerBlockColor(UnidyeBlocks.CUSTOM_TERRACOTTA);
-        registerBlockColor(UnidyeBlocks.CUSTOM_STAINED_GLASS);
-        registerBlockColor(UnidyeBlocks.CUSTOM_CONCRETE_POWDER);
+        registerBlockColor3(UnidyeBlocks.CUSTOM_STAINED_GLASS);
+        registerBlockColor(UnidyeBlocks.CUSTOM_CONCRETE_POWDER, 15);
         registerBlockColor(UnidyeBlocks.CUSTOM_CARPET);
-        registerBlockColor(UnidyeBlocks.CUSTOM_STAINED_GLASS_PANE);
+        registerBlockColor3(UnidyeBlocks.CUSTOM_STAINED_GLASS_PANE);
         registerBlockColor(UnidyeBlocks.CUSTOM_CANDLE);
         registerBlockColor(UnidyeBlocks.CUSTOM_CANDLE_CAKE);
         registerBlockColor1(UnidyeBlocks.CUSTOM_SHULKER_BOX);
@@ -54,6 +54,9 @@ public class UnidyeClient implements ClientModInitializer {
 
     private void registerItemColor(Item item) {
         ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : ((DyeableItem) ((Object) stack.getItem())).getColor(stack), item);
+    }
+    private void registerItemColor(Item item, int adjust) {
+        ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : adjust(((DyeableItem) ((Object) stack.getItem())).getColor(stack), adjust), item);
     }
 
     private void registerBlockColor(Block block) {
@@ -68,5 +71,23 @@ public class UnidyeClient implements ClientModInitializer {
     private void registerBlockColor2(Block block) {
         registerItemColor(block.asItem());
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> DyeableWoolBlockEntity.getColor(world,pos),block);
+    }
+    private void registerBlockColor3(Block block) {
+        registerItemColor(block.asItem());
+        ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> DyeableGlassBlockEntity.getColor(world,pos),block);
+    }
+    private void registerBlockColor(Block block, int adjust) {
+        registerItemColor(block.asItem(), adjust);
+        ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> adjust(DyeableBlockEntity.getColor(world,pos), adjust),block);
+    }
+
+    public static int adjust(int color, int i) {
+        int j = Math.min(((color & 0xFF0000) >> 16) + i, 255);
+        int k = Math.min(((color & 0xFF00) >> 8) + i, 255);
+        int l = Math.min(((color & 0xFF) >> 0) + i, 255);
+        int res = j;
+        res = (res << 8) + k;
+        res = (res << 8) + l;
+        return res;
     }
 }

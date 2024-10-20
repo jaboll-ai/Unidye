@@ -1,8 +1,8 @@
 package net.diemond_player.unidye.entity.client.renderer;
 
 import net.diemond_player.unidye.Unidye;
+import net.diemond_player.unidye.UnidyeClient;
 import net.diemond_player.unidye.entity.DyeableFallingBlockEntity;
-import net.diemond_player.unidye.util.IBlockRenderTint;
 import net.diemond_player.unidye.util.IEntityAccessor;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -12,10 +12,7 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.BlockRenderManager;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.FallingBlockEntityRenderer;
-import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -43,7 +40,7 @@ public class DyeableFallingBlockEntityRenderer extends EntityRenderer<DyeableFal
         matrixStack.push();
         BlockPos blockPos = BlockPos.ofFloored(fallingBlockEntity.getX(), fallingBlockEntity.getBoundingBox().maxY, fallingBlockEntity.getZ());
         matrixStack.translate(-0.5, -1.0, -0.5);
-        ((IEntityAccessor)this.blockRenderManager.getModelRenderer()).unidye$render(world, this.blockRenderManager.getModel(blockState), blockState, blockPos, matrixStack, vertexConsumerProvider.getBuffer(RenderLayers.getMovingBlockLayer(blockState)), false, Random.create(), blockState.getRenderingSeed(fallingBlockEntity.getFallingBlockPos()), OverlayTexture.DEFAULT_UV, fallingBlockEntity.getCustomColor());
+        ((IEntityAccessor)this.blockRenderManager.getModelRenderer()).unidye$render(world, this.blockRenderManager.getModel(blockState), blockState, blockPos, matrixStack, vertexConsumerProvider.getBuffer(RenderLayers.getMovingBlockLayer(blockState)), false, Random.create(), blockState.getRenderingSeed(fallingBlockEntity.getFallingBlockPos()), OverlayTexture.DEFAULT_UV, UnidyeClient.adjust(fallingBlockEntity.getCustomColor(), 15));
         matrixStack.pop();
         super.render(fallingBlockEntity, f, g, matrixStack, vertexConsumerProvider, i);
     }

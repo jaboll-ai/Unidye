@@ -43,6 +43,10 @@ public class CustomDyeItem extends DyeItem implements SignChangingItem, DyeableI
     public static final String GLASS_COLOR_KEY = "glass_color";
     public static final String LEATHER_KEY = "leather";
     public static final String LEATHER_COLOR_KEY = "leather_color";
+    public static final String SIGN_KEY = "sign";
+    public static final String SIGN_COLOR_KEY = "sign_color";
+    public static final String FIREWORK_KEY = "firework";
+    public static final String FIREWORK_COLOR_KEY = "firework_color";
     public static final String CONTENTS_KEY = "contents";
     public static final String CONTENTS_LIST_KEY = "contents_list";
     public static final String CLOSEST_VANILLA_DYE_KEY = "closest_vanilla_dye";
@@ -116,6 +120,18 @@ public class CustomDyeItem extends DyeItem implements SignChangingItem, DyeableI
                     return nbtCompound.getInt(COLOR_KEY);
                 }
                 break;
+            case "sign":
+                nbtCompound = stack.getSubNbt(SIGN_KEY);
+                if (nbtCompound != null && nbtCompound.contains(SIGN_COLOR_KEY, NbtElement.NUMBER_TYPE)) {
+                    return nbtCompound.getInt(SIGN_COLOR_KEY);
+                }
+                break;
+            case "firework":
+                nbtCompound = stack.getSubNbt(FIREWORK_KEY);
+                if (nbtCompound != null && nbtCompound.contains(FIREWORK_COLOR_KEY, NbtElement.NUMBER_TYPE)) {
+                    return nbtCompound.getInt(FIREWORK_COLOR_KEY);
+                }
+                break;
         }
         return DEFAULT_COLOR;
     }
@@ -133,6 +149,8 @@ public class CustomDyeItem extends DyeItem implements SignChangingItem, DyeableI
             case "terracotta": itemStack.getOrCreateSubNbt(TERRACOTTA_KEY).putInt(TERRACOTTA_COLOR_KEY, n); break;
             case "leather": itemStack.getOrCreateSubNbt(LEATHER_KEY).putInt(LEATHER_COLOR_KEY, n); break;
             case "dye": itemStack.getOrCreateSubNbt(DISPLAY_KEY).putInt(COLOR_KEY, n); break;
+            case "sign": itemStack.getOrCreateSubNbt(SIGN_KEY).putInt(SIGN_COLOR_KEY, n); break;
+            case "firework": itemStack.getOrCreateSubNbt(FIREWORK_KEY).putInt(FIREWORK_COLOR_KEY, n); break;
         }
     }
 
@@ -144,6 +162,8 @@ public class CustomDyeItem extends DyeItem implements SignChangingItem, DyeableI
             tooltip.add(Text.translatable("tooltip.unidye.leather_color").append(getMaterialHexColor(stack, "leather")));
             tooltip.add(Text.translatable("tooltip.unidye.concrete_color").append(getMaterialHexColor(stack, "concrete")));
             tooltip.add(Text.translatable("tooltip.unidye.terracotta_color").append(getMaterialHexColor(stack, "terracotta")));
+            tooltip.add(Text.translatable("tooltip.unidye.sign_color").append(getMaterialHexColor(stack, "sign")));
+            tooltip.add(Text.translatable("tooltip.unidye.firework_color").append(getMaterialHexColor(stack, "firework")));
         } else {
             tooltip.add(Text.translatable("tooltip.unidye.press_shift"));
         }
@@ -172,7 +192,8 @@ public class CustomDyeItem extends DyeItem implements SignChangingItem, DyeableI
                     SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0f, 1.0f);
             if (!user.getWorld().isClient) {
                 IEntityAccessor sheep = (IEntityAccessor) sheepEntity;
-                sheep.unidye$setCustomColor(getMaterialColor(stack, "wool"));
+                sheep.unidye$setCustomColor(getMaterialColor(stack, "leather"));
+                sheep.unidye$setCustomColorBack(getMaterialColor(stack, "wool"));
                 stack.decrement(1);
             }
             return ActionResult.success(user.getWorld().isClient);
@@ -183,12 +204,12 @@ public class CustomDyeItem extends DyeItem implements SignChangingItem, DyeableI
     @Override
     public boolean useOnSign(World world, SignBlockEntity signBlockEntity, boolean front, PlayerEntity player) {
         IEntityAccessor iEntityAccessor = (IEntityAccessor) signBlockEntity;
-        if (iEntityAccessor.unidye$getCustomColor() != getMaterialColor(player.getStackInHand(player.getActiveHand()), "concrete")) {
+        if (iEntityAccessor.unidye$getCustomColor() != getMaterialColor(player.getStackInHand(player.getActiveHand()), "sign")) {
             world.playSound(null, signBlockEntity.getPos(), SoundEvents.ITEM_DYE_USE, SoundCategory.BLOCKS, 1.0f, 1.0f);
             if(front){
-                iEntityAccessor.unidye$setCustomColor(getMaterialColor(player.getStackInHand(player.getActiveHand()), "concrete"));
+                iEntityAccessor.unidye$setCustomColor(getMaterialColor(player.getStackInHand(player.getActiveHand()), "sign"));
             }else{
-                iEntityAccessor.unidye$setCustomColorBack(getMaterialColor(player.getStackInHand(player.getActiveHand()), "concrete"));
+                iEntityAccessor.unidye$setCustomColorBack(getMaterialColor(player.getStackInHand(player.getActiveHand()), "sign"));
             }
             signBlockEntity.markDirty();
             world.updateListeners(signBlockEntity.getPos(), world.getBlockState(signBlockEntity.getPos()), world.getBlockState(signBlockEntity.getPos()), Block.NOTIFY_LISTENERS);

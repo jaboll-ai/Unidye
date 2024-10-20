@@ -59,6 +59,18 @@ public class UnidyeUtils {
                     return nbtCompound.getInt(COLOR_KEY);
                 }
                 break;
+            case "sign":
+                nbtCompound = stack.getSubNbt(SIGN_KEY);
+                if (nbtCompound != null && nbtCompound.contains(SIGN_COLOR_KEY, NbtElement.NUMBER_TYPE)) {
+                    return nbtCompound.getInt(SIGN_COLOR_KEY);
+                }
+                break;
+            case "firework":
+                nbtCompound = stack.getSubNbt(FIREWORK_KEY);
+                if (nbtCompound != null && nbtCompound.contains(FIREWORK_COLOR_KEY, NbtElement.NUMBER_TYPE)) {
+                    return nbtCompound.getInt(FIREWORK_COLOR_KEY);
+                }
+                break;
         }
         return DEFAULT_COLOR;
     }

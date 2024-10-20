@@ -37,6 +37,17 @@
                   "op": "replace"
                 }
               ]
+            },
+            {
+              "function": "minecraft:copy_nbt",
+              "source": "block_entity",
+              "ops": [
+                {
+                  "source": "beaconColor",
+                  "target": "1.beaconColor",
+                  "op": "replace"
+                }
+              ]
             }
           ]
         }

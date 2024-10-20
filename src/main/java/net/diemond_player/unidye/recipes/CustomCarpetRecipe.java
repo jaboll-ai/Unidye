@@ -1,6 +1,7 @@
 package net.diemond_player.unidye.recipes;
 
 import net.diemond_player.unidye.block.UnidyeBlocks;
+import net.diemond_player.unidye.item.custom.DyeableWoolBlockItem;
 import net.diemond_player.unidye.util.UnidyeUtils;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
@@ -9,6 +10,8 @@ import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
+
+import java.util.Objects;
 
 public class CustomCarpetRecipe extends SpecialCraftingRecipe {
     public CustomCarpetRecipe(Identifier id, CraftingRecipeCategory category) {
@@ -28,7 +31,9 @@ public class CustomCarpetRecipe extends SpecialCraftingRecipe {
                 positions[count]=i;
                 count++;
                 if(!itemStack.isEmpty()){
-                    if(UnidyeUtils.getColor(itemStack2)==UnidyeUtils.getColor(itemStack)){
+                    if(UnidyeUtils.getColor(itemStack2)==UnidyeUtils.getColor(itemStack)
+                            && (Objects.equals(DyeableWoolBlockItem.getMaterialColor(itemStack2, "leather"), DyeableWoolBlockItem.getMaterialColor(itemStack, "leather")))
+                            && (Objects.equals(DyeableWoolBlockItem.getMaterialColor(itemStack2, "bed"), DyeableWoolBlockItem.getMaterialColor(itemStack, "bed")))){
                         continue;
                     }else{
                         return false;

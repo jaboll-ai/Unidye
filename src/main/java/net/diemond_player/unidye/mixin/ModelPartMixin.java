@@ -1,10 +1,9 @@
 package net.diemond_player.unidye.mixin;
 
-import net.diemond_player.unidye.util.IModel;
+import net.diemond_player.unidye.util.IEntityAccessor;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.passive.SheepEntity;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Mixin(ModelPart.class)
-public abstract class ModelPartMixin implements IModel {
+public abstract class ModelPartMixin implements IEntityAccessor {
 
     @Mutable
     @Final

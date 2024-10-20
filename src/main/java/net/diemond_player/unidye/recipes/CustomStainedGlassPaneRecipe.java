@@ -1,6 +1,7 @@
 package net.diemond_player.unidye.recipes;
 
 import net.diemond_player.unidye.block.UnidyeBlocks;
+import net.diemond_player.unidye.item.custom.DyeableGlassBlockItem;
 import net.diemond_player.unidye.util.UnidyeUtils;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
@@ -11,6 +12,8 @@ import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
+
+import java.util.Objects;
 
 public class CustomStainedGlassPaneRecipe extends SpecialCraftingRecipe {
     public CustomStainedGlassPaneRecipe(Identifier id, CraftingRecipeCategory category) {
@@ -28,7 +31,8 @@ public class CustomStainedGlassPaneRecipe extends SpecialCraftingRecipe {
                 if (count == 6) return false;
                 count++;
                 if(!itemStack.isEmpty()){
-                    if(UnidyeUtils.getColor(itemStack2)==UnidyeUtils.getColor(itemStack)){
+                    if(UnidyeUtils.getColor(itemStack2)==UnidyeUtils.getColor(itemStack)
+                    && Objects.equals(DyeableGlassBlockItem.getBeaconColor(itemStack2), DyeableGlassBlockItem.getBeaconColor(itemStack))){
                         continue;
                     }else{
                         return false;
@@ -61,6 +65,7 @@ public class CustomStainedGlassPaneRecipe extends SpecialCraftingRecipe {
             }
         }
         UnidyeUtils.setColor(itemStack1, UnidyeUtils.getColor(itemStack));
+        DyeableGlassBlockItem.setBeaconColor(itemStack1, DyeableGlassBlockItem.getBeaconColor(itemStack));
         itemStack1.setCount(16);
         return itemStack1;
     }

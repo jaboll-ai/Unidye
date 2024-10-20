@@ -5,7 +5,7 @@ import net.diemond_player.unidye.block.custom.DyeableBedBlock;
 import net.diemond_player.unidye.block.entity.DyeableBedBlockEntity;
 import net.diemond_player.unidye.block.entity.UnidyeBlockEntities;
 import net.diemond_player.unidye.entity.layer.UnidyeModelLayers;
-import net.diemond_player.unidye.util.IModel;
+import net.diemond_player.unidye.util.IEntityAccessor;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
 import net.minecraft.block.DoubleBlockProperties;
@@ -85,7 +85,7 @@ public class DyeableBedBlockEntityRenderer
         float red = ((color & 0xFF0000) >> 16) / 255.0f;
         float green = ((color & 0xFF00) >> 8) / 255.0f;
         float blue = ((color & 0xFF) >> 0) / 255.0f;
-        ((IModel) (Object) part).unidye$specialRender(matrices, vertexConsumer, light, overlay, red, green, blue, 1.0f);
+        ((IEntityAccessor) (Object) part).unidye$specialRender(matrices, vertexConsumer, light, overlay, red, green, blue, 1.0f);
         matrices.pop();
     }
 }

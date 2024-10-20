@@ -2,6 +2,7 @@ package net.diemond_player.unidye.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import net.diemond_player.unidye.block.custom.DyeableGlassBlock;
+import net.diemond_player.unidye.block.custom.DyeablePaneBlock;
 import net.diemond_player.unidye.block.entity.UnidyeBlockEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -21,9 +22,9 @@ public abstract class BeaconBlockEntityMixin{
         BlockState blockState = world.getBlockState(pos);
         Block block = blockState.getBlock();
         float[] fsI = new float[3];
-        if(block instanceof DyeableGlassBlock){
-            if(UnidyeBlockEntities.DYEABLE_BE.get(world,pos) != null) {
-                int color = UnidyeBlockEntities.DYEABLE_BE.get(world, pos).color;
+        if(block instanceof DyeableGlassBlock || block instanceof DyeablePaneBlock){
+            if(UnidyeBlockEntities.DYEABLE_GLASS_BE.get(world,pos) != null) {
+                int color = UnidyeBlockEntities.DYEABLE_GLASS_BE.get(world, pos).beaconColor;
                 fsI[0] = ((color & 0xFF0000) >> 16) / 255.0f;
                 fsI[1] = ((color & 0xFF00) >> 8) / 255.0f;
                 fsI[2] = (color & 0xFF) / 255.0f;

@@ -27,6 +27,7 @@ public abstract class DyeItemMixin {
     private void useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         IEntityAccessor sheep = (IEntityAccessor) entity;
         sheep.unidye$setCustomColor(0xFFFFFF);
+        sheep.unidye$setCustomColorBack(0xFFFFFF);
     }
 
     @Inject(method = "useOnEntity", at = @At("HEAD"), cancellable = true)
@@ -38,6 +39,7 @@ public abstract class DyeItemMixin {
                 sheepEntity.setColor(((DyeItem) (Object) this).getColor());
                 IEntityAccessor sheep = (IEntityAccessor) entity;
                 sheep.unidye$setCustomColor(0xFFFFFF);
+                sheep.unidye$setCustomColorBack(0xFFFFFF);
                 stack.decrement(1);
             }
             cir.setReturnValue(ActionResult.success(user.getWorld().isClient));

@@ -31,7 +31,6 @@ public class DyeableBlockItem extends BlockItem implements DyeableItem {
         BlockEntity blockEntity = context.getWorld().getBlockEntity(context.getBlockPos());
         if(blockEntity instanceof DyeableBlockEntity dyeableBlockEntity
                 && !blockstate.isOf(UnidyeBlocks.CUSTOM_CARPET)
-                && !blockstate.isOf(UnidyeBlocks.CUSTOM_STAINED_GLASS_PANE)
                 && !blockstate.isOf(UnidyeBlocks.CUSTOM_CANDLE)
                 && !blockstate.isOf(UnidyeBlocks.CUSTOM_CANDLE_CAKE)){
             dyeableBlockEntity.color = getColor(context.getStack());

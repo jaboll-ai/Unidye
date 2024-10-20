@@ -62,12 +62,8 @@ public class DyeableWoolBlockItem extends DyeableBlockItem{
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        if(Screen.hasShiftDown()){
-            tooltip.add(Text.translatable("tooltip.unidye.banner_color").append(getMaterialHexColor(stack, "leather")));
-            tooltip.add(Text.translatable("tooltip.unidye.bed_color").append(getMaterialHexColor(stack, "bed")));
-        } else {
-            tooltip.add(Text.translatable("tooltip.unidye.press_shift"));
-        }
+        tooltip.add(Text.translatable("tooltip.unidye.banner_color").append(getMaterialHexColor(stack, "leather")));
+        tooltip.add(Text.translatable("tooltip.unidye.bed_color").append(getMaterialHexColor(stack, "bed")));
     }
     @Override
     public ActionResult place(ItemPlacementContext context) {

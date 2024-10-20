@@ -6,6 +6,7 @@
     "ArmorDyeRecipeMixin",
     "BannerDuplicationRecipeMixin",
     "BeaconBlockEntityMixin",
+    "BlockMixin",
     "CakeBlockMixin",
     "CatEntityMixin",
     "DyeableItemMixin",

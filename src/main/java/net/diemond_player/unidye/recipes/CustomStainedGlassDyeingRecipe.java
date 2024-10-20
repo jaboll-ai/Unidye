@@ -2,6 +2,7 @@ package net.diemond_player.unidye.recipes;
 
 import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.diemond_player.unidye.item.UnidyeItems;
+import net.diemond_player.unidye.item.custom.DyeableGlassBlockItem;
 import net.diemond_player.unidye.util.UnidyeTags;
 import net.diemond_player.unidye.util.UnidyeUtils;
 import net.minecraft.inventory.RecipeInputInventory;
@@ -36,6 +37,7 @@ public class CustomStainedGlassDyeingRecipe extends SpecialCraftingRecipe {
     public ItemStack craft(RecipeInputInventory inventory, DynamicRegistryManager registryManager) {
         ItemStack itemStack1 = new ItemStack(UnidyeBlocks.CUSTOM_STAINED_GLASS.asItem());
         UnidyeUtils.setColor(itemStack1, UnidyeUtils.getMaterialColor(inventory.getStack(4), "glass"));
+        DyeableGlassBlockItem.setBeaconColor(itemStack1, UnidyeUtils.getMaterialColor(inventory.getStack(4), "leather"));
         itemStack1.setCount(8);
         return itemStack1;
     }

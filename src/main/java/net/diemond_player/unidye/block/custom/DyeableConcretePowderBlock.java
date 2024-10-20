@@ -2,6 +2,7 @@ package net.diemond_player.unidye.block.custom;
 
 import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.diemond_player.unidye.block.entity.DyeableBlockEntity;
+import net.diemond_player.unidye.block.entity.UnidyeBlockEntities;
 import net.diemond_player.unidye.entity.DyeableFallingBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -22,12 +23,10 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
-public class DyeableConcretePowderBlock extends FallingBlock implements IDyeableBlock{
-    private final BlockState hardenedState;
+public class DyeableConcretePowderBlock extends ConcretePowderBlock implements IDyeableBlock{
 
     public DyeableConcretePowderBlock(Block hardened, Settings settings) {
-        super(settings);
-        this.hardenedState = hardened.getDefaultState();
+        super(hardened, settings);
     }
 
     @Override
@@ -50,80 +49,16 @@ public class DyeableConcretePowderBlock extends FallingBlock implements IDyeable
         this.configureFallingBlockEntity(dyeableFallingBlockEntity, color);
     }
 
-    @Override
-    public void onLanding(World world, BlockPos pos, BlockState fallingBlockState, BlockState currentStateInPos, FallingBlockEntity fallingBlockEntity) {
-        if (DyeableConcretePowderBlock.shouldHarden(world, pos, currentStateInPos)) {
-            world.setBlockState(pos, this.hardenedState, Block.NOTIFY_ALL);
-        }
-    }
-
-    @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        BlockState blockState;
-        BlockPos blockPos;
-        World blockView = ctx.getWorld();
-        if (DyeableConcretePowderBlock.shouldHarden(blockView, blockPos = ctx.getBlockPos(), blockState = blockView.getBlockState(blockPos))) {
-            return this.hardenedState;
-        }
-        return super.getPlacementState(ctx);
-    }
-
-    private static boolean shouldHarden(BlockView world, BlockPos pos, BlockState state) {
-        return DyeableConcretePowderBlock.hardensIn(state) || DyeableConcretePowderBlock.hardensOnAnySide(world, pos);
-    }
-
-    private static boolean hardensOnAnySide(BlockView world, BlockPos pos) {
-        boolean bl = false;
-        BlockPos.Mutable mutable = pos.mutableCopy();
-        for (Direction direction : Direction.values()) {
-            BlockState blockState = world.getBlockState(mutable);
-            if (direction == Direction.DOWN && !DyeableConcretePowderBlock.hardensIn(blockState)) continue;
-            mutable.set((Vec3i)pos, direction);
-            blockState = world.getBlockState(mutable);
-            if (!DyeableConcretePowderBlock.hardensIn(blockState) || blockState.isSideSolidFullSquare(world, pos, direction.getOpposite())) continue;
-            bl = true;
-            break;
-        }
-        return bl;
-    }
-
-    private static boolean hardensIn(BlockState state) {
-        return state.getFluidState().isIn(FluidTags.WATER);
-    }
-
-    @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (DyeableConcretePowderBlock.hardensOnAnySide(world, pos)) {
-            return this.hardenedState;
-        }
-        world.scheduleBlockTick(pos, this, this.getFallDelay());
-        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
-    }
-
     protected void configureFallingBlockEntity(DyeableFallingBlockEntity entity, int color) {
         entity.setCustomColor(color);
     }
     @Override
-    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        world.scheduleBlockTick(pos, this, this.getFallDelay());
-    }
-
-    /**
-     * Gets the amount of time in ticks this block will wait before attempting to start falling.
-     */
-    protected int getFallDelay() {
-        return 2;
-    }
-
-    public static boolean canFallThrough(BlockState state) {
-        return state.isAir() || state.isIn(BlockTags.FIRE) || state.isLiquid() || state.isReplaceable();
+    public int getColor(BlockState state, BlockView world, BlockPos pos) {
+        DyeableBlockEntity blockEntity = UnidyeBlockEntities.DYEABLE_BE.get(world,pos);
+        return blockEntity.color;
     }
 
     @Override
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        BlockPos blockPos;
-        if (random.nextInt(16) == 0 && FallingBlock.canFallThrough(world.getBlockState(blockPos = pos.down()))) {
-            ParticleUtil.spawnParticle(world, pos, random, new BlockStateParticleEffect(ParticleTypes.FALLING_DUST, state));
-        }
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
     }
 }

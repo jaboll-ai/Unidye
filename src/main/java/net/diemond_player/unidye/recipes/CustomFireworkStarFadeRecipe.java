@@ -111,7 +111,7 @@ public class CustomFireworkStarFadeRecipe extends SpecialCraftingRecipe {
                 continue;
             }
             if(itemStack2.getItem() instanceof CustomDyeItem) {
-                list.add(UnidyeUtils.getMaterialColor(itemStack2, "leather"));
+                list.add(UnidyeUtils.getMaterialColor(itemStack2, "firework"));
                 continue;
             }
             if(itemStack2.getItem() instanceof DyeItem) {

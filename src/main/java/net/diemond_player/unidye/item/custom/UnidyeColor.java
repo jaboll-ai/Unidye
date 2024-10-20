@@ -9,25 +9,24 @@ import java.util.function.IntFunction;
 
 public enum UnidyeColor implements StringIdentifiable
 {
-    WHITE(0, "white", 0xF5F4FF, 0xF9FFFE, 0xe9ecec, 0xd1b2a1, 0xcfd5d6, 0xffffff),
-    ORANGE(1, "orange", 0xEA8800, 16351261, 0xf07613, 0xa15325, 0xe06100, 0xd77f32),
-    MAGENTA(2, "magenta", 0xCC28C3,13061821, 0xbd44b3, 0x95586c, 0xa9309f, 0xb24bd7),
-    LIGHT_BLUE(3, "light_blue", 0x3287FF,3847130, 0x3aafd9, 0x716c89,0x2389c6, 0x6699d7),
-    YELLOW(4, "yellow", 0xF7DA00,16701501, 0xf8c527, 0xba8523, 0xf0af15, 0xe5e532),
-    LIME(5, "lime", 0x73D800,8439583, 0x70b919, 0x677534, 0x5ea818, 0x7fcc19),
-    PINK(6, "pink", 0xEA4DA1,15961002, 0xF995B7, 0xa14e4e, 0xd5658e, 0xf27fa4),
-    GRAY(7, "gray", 0x898989,4673362, 0x3e4447, 0x392a23, 0x36393d, 0x4b4b4b),
-    LIGHT_GRAY(8, "light_gray", 0xD4D2DB,0x9D9D97, 0x8e8e86, 0x876a61, 0x7d7d73, 0x999999),
-    CYAN(9, "cyan", 0x1183AF,1481884, 0x158991, 0x565b5b, 0x157788, 0x4b7f99),
-    PURPLE(10, "purple", 0x851CCC,8991416, 0x792aac, 0x764656, 0x641f9c, 0x7f3fb2),
-    BLUE(11, "blue", 0x0055FF,3949738, 0x35399d, 0x4a3b5b, 0x2c2e8f, 0x324bb2),
-    BROWN(12, "brown", 0x773100,8606770, 0x724728, 0x4d3323, 0x603b1f, 0x664b32),
-    GREEN(13, "green", 0x6FBA00,6192150, 0x546d1b, 0x4c532a, 0x495b24, 0x667f32),
-    RED(14, "red", 0xFF0000,11546150, 0xa02722, 0x8f3d2e, 0x8e2020, 0x993232),
-    BLACK(15, "black", 0x565656,0x1D1D21, 0x141519, 0x251610, 0x080a0f, 0x191919);
+    WHITE(0, "white", 0xF5F4FF, 0xF9FFFE, 0xe9ecec, 0xFFDAC6, 0xcfd5d6, 0xffffff, 0xF0F0F0, 0xFFFFFF),
+    ORANGE(1, "orange", 0xEA8800, 16351261, 0xf07613, 0xC66831, 0xe06100, 0xd77f32, 15435844, 16738335),
+    MAGENTA(2, "magenta", 0xCC28C3,13061821, 0xbd44b3, 0xC4758F, 0xa9309f, 0xb24bd7, 12801229, 0xFF00FF),
+    LIGHT_BLUE(3, "light_blue", 0x3287FF,3847130, 0x3aafd9, 0x918EAF,0x2389c6, 0x6699d7, 6719955, 10141901),
+    YELLOW(4, "yellow", 0xF7DA00,16701501, 0xf8c527, 0xE5A330, 0xf0af15, 0xe5e532, 14602026, 0xFFFF00),
+    LIME(5, "lime", 0x73D800,8439583, 0x70b919, 0x839144, 0x5ea818, 0x7fcc19, 4312372, 0xBFFF00),
+    PINK(6, "pink", 0xEA4DA1,15961002, 0xF38AAA, 0xC66161, 0xd5658e, 0xf27fa4, 14188952, 16738740),
+    GRAY(7, "gray", 0x898989,4673362, 0x3e4447, 0x49352D, 0x36393d, 0x4b4b4b, 0x434343, 0x808080),
+    LIGHT_GRAY(8, "light_gray", 0xD4D2DB,0x9D9D97, 0x8e8e86, 0xAF8B7E, 0x7d7d73, 0x999999, 0xABABAB, 0xD3D3D3),
+    CYAN(9, "cyan", 0x1183AF,1481884, 0x17949B, 0x707272, 0x157788, 0x4b7f99, 2651799, 65535),
+    PURPLE(10, "purple", 0x851CCC,8991416, 0x792aac, 0x96586D, 0x641f9c, 0x7f3fb2, 8073150, 10494192),
+    BLUE(11, "blue", 0x0055FF,3949738, 0x3D41AF, 0x614F75, 0x2c2e8f, 0x324bb2, 2437522, 255),
+    BROWN(12, "brown", 0x773100,8606770, 0x7A4E2F, 0x664430, 0x603b1f, 0x664b32, 5320730, 9127187),
+    GREEN(13, "green", 0x6FBA00,6192150, 0x546d1b, 0x626B38, 0x495b24, 0x667f32, 3887386, 65280),
+    RED(14, "red", 0xFF0000,11546150, 0xa02722, 0xB24C3C, 0x8e2020, 0x993232, 11743532, 0xFF0000),
+    BLACK(15, "black", 0x565656,0x1D1D21, 0x252529, 0x301E16, 0x080a0f, 0x191919, 0x1E1B1B, 0);
 
     private static final IntFunction<UnidyeColor> BY_ID;
-    public static final StringIdentifiable.Codec<net.minecraft.util.DyeColor> CODEC;
     private final int id;
     private final String name;
     private final int dyeColor;
@@ -36,9 +35,11 @@ public enum UnidyeColor implements StringIdentifiable
     private final int terracottaColor;
     private final int concreteColor;
     private final int glassColor;
+    private final int fireworkColor;
+    private final int signColor;
     private float[] colorComponents;
 
-    private UnidyeColor(int id, String name, int dyeColor, int leatherColor, int woolColor, int terracottaColor, int concreteColor, int glassColor) {
+    private UnidyeColor(int id, String name, int dyeColor, int leatherColor, int woolColor, int terracottaColor, int concreteColor, int glassColor, int fireworkColor, int signColor) {
         this.id = id;
         this.name = name;
         this.dyeColor = dyeColor;
@@ -47,6 +48,8 @@ public enum UnidyeColor implements StringIdentifiable
         this.terracottaColor = terracottaColor;
         this.concreteColor = concreteColor;
         this.glassColor = glassColor;
+        this.fireworkColor = fireworkColor;
+        this.signColor = signColor;
         int j = (leatherColor & 0xFF0000) >> 16;
         int k = (leatherColor & 0xFF00) >> 8;
         int l = (leatherColor & 0xFF) >> 0;
@@ -87,6 +90,16 @@ public enum UnidyeColor implements StringIdentifiable
             int k = (dyeColor & 0xFF00) >> 8;
             int l = (dyeColor & 0xFF) >> 0;
             colorComponents = new float[]{(float)j / 255.0f, (float)k / 255.0f, (float)l / 255.0f};
+        } else if(Objects.equals(materialType, "sign")){
+            int j = (signColor & 0xFF0000) >> 16;
+            int k = (signColor & 0xFF00) >> 8;
+            int l = (signColor & 0xFF) >> 0;
+            colorComponents = new float[]{(float)j / 255.0f, (float)k / 255.0f, (float)l / 255.0f};
+        } else if(Objects.equals(materialType, "firework")){
+            int j = (fireworkColor & 0xFF0000) >> 16;
+            int k = (fireworkColor & 0xFF00) >> 8;
+            int l = (fireworkColor & 0xFF) >> 0;
+            colorComponents = new float[]{(float)j / 255.0f, (float)k / 255.0f, (float)l / 255.0f};
         } else {
             int j = (leatherColor & 0xFF0000) >> 16;
             int k = (leatherColor & 0xFF00) >> 8;
@@ -112,6 +125,5 @@ public enum UnidyeColor implements StringIdentifiable
 
     static {
         BY_ID = ValueLists.createIdToValueFunction(UnidyeColor::getId, UnidyeColor.values(), ValueLists.OutOfBoundsHandling.ZERO);
-        CODEC = StringIdentifiable.createCodec(net.minecraft.util.DyeColor::values);
     }
 }

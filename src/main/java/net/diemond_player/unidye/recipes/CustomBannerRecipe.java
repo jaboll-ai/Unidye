@@ -31,8 +31,9 @@ public class CustomBannerRecipe extends SpecialCraftingRecipe {
             if (itemStack2.getItem() == Items.STICK && i==7) continue;
             if (itemStack2.getItem() == UnidyeBlocks.CUSTOM_WOOL.asItem() && i<=5) {
                 if(!itemStack.isEmpty()){
-                    if((UnidyeUtils.getColor(itemStack2)==UnidyeUtils.getColor(itemStack))
-                            && (Objects.equals(DyeableWoolBlockItem.getMaterialColor(itemStack2, "leather"), DyeableWoolBlockItem.getMaterialColor(itemStack, "leather")))){
+                    if(UnidyeUtils.getColor(itemStack2)==UnidyeUtils.getColor(itemStack)
+                            && (Objects.equals(DyeableWoolBlockItem.getMaterialColor(itemStack2, "leather"), DyeableWoolBlockItem.getMaterialColor(itemStack, "leather")))
+                            && (Objects.equals(DyeableWoolBlockItem.getMaterialColor(itemStack2, "bed"), DyeableWoolBlockItem.getMaterialColor(itemStack, "bed")))){
                         continue;
                     }else{
                         return false;

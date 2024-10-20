@@ -93,6 +93,8 @@ public interface UnidyeableItem {
         blendAndSetMaterialColor(stack, itemStack, colors, customColors, "concrete", customDyeItem);
         blendAndSetMaterialColor(stack, itemStack, colors, customColors, "terracotta", customDyeItem);
         blendAndSetMaterialColor(stack, itemStack, colors, customColors, "glass", customDyeItem);
+        blendAndSetMaterialColor(stack, itemStack, colors, customColors, "sign", customDyeItem);
+        blendAndSetMaterialColor(stack, itemStack, colors, customColors, "firework", customDyeItem);
         itemStack.setCount(colors.size()+customColors.size()+1);
         defineClosestVanillaDye(itemStack);
         //customDyeItem.setContents(itemStack, getContents(stack, colors, customColors));
@@ -237,18 +239,6 @@ public interface UnidyeableItem {
         }
     }
 
-    static String getMaterialType(Item item) {
-        if (item == Items.TERRACOTTA) {
-            return "terracotta";
-        } else if(item == Items.WHITE_WOOL){
-            return "wool";
-        } else if(item == Items.GLASS){
-            return "glass";
-        } else {
-            return "unknown";
-        }
-    }
-
     static float[] getColorArray(String materialType, String dyeType){
         return DYES.get(dyeType).getColorComponents(materialType);
     }
@@ -260,24 +250,5 @@ public interface UnidyeableItem {
         int k = (color & 0xFF00) >> 8;
         int l = (color & 0xFF) >> 0;
         return new float[]{(float)j / 255.0f, (float)k / 255.0f, (float)l / 255.0f};
-    }
-
-    static ItemStack dyeVanillaItems(ItemStack itemStack, ArrayList<ItemStack> customColors) {
-        Item item = itemStack.getItem();
-        ItemStack customDyeStack = customColors.get(0);
-        CustomDyeItem customDyeItem = (CustomDyeItem)customDyeStack.getItem();
-        int color = customDyeItem.getMaterialColor(customDyeStack, getMaterialType(item));
-        DyeableItem dyeableItem = null;
-        if (item == Items.GLASS){
-            dyeableItem = (DyeableItem) UnidyeBlocks.CUSTOM_STAINED_GLASS.asItem();
-        } else if (item == Items.WHITE_WOOL){
-            dyeableItem = (DyeableItem) UnidyeBlocks.CUSTOM_WOOL.asItem();
-        } else if (item == Items.TERRACOTTA){
-            dyeableItem = (DyeableItem) UnidyeBlocks.CUSTOM_TERRACOTTA.asItem();
-        }
-        ItemStack dyeableItemStack = ((Item) dyeableItem).getDefaultStack();
-        dyeableItem.setColor(dyeableItemStack, color);
-        dyeableItemStack.setCount(8);
-        return dyeableItemStack;
     }
 }

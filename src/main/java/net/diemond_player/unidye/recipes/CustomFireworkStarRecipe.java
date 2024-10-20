@@ -61,7 +61,7 @@ public class CustomFireworkStarRecipe extends SpecialCraftingRecipe {
             ItemStack itemStack2 = recipeInputInventory.getStack(i);
             Item item = itemStack2.getItem();
             if (item instanceof CustomDyeItem) {
-                list.add(UnidyeUtils.getMaterialColor(itemStack2, "leather"));
+                list.add(UnidyeUtils.getMaterialColor(itemStack2, "firework"));
                 continue;
             }
             if (item instanceof DyeItem) {

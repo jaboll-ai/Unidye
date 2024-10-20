@@ -3,6 +3,7 @@ package net.diemond_player.unidye.block;
 import net.diemond_player.unidye.block.custom.*;
 import net.diemond_player.unidye.Unidye;
 import net.diemond_player.unidye.item.custom.DyeableBlockItem;
+import net.diemond_player.unidye.item.custom.DyeableGlassBlockItem;
 import net.diemond_player.unidye.item.custom.DyeableWoolBlockItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -32,28 +33,14 @@ public class UnidyeBlocks {
     //all of the to dos
     //TODO CLEAN CODE
     //TODO CLEAN MIXINS
-    //TODO final color check
-    //TODO integration
-    //FIXME shulker colors are off
-    //FIXME candles colors are off
-    //FIXME bed colors are off
-    //FIXME powder colors are off
+    //TODO Bed Colors
+    //TODO Sheep Bed and Banner Colors
+    //TODO Candle Colors
+    //TODO Glass Colors (Panes)
+    //TODO Shulker Box Colors
+    //TODO ArmorDyeRecipe when Glass and Wool recolor (!)
 
 
-    //code optimization
-    //TODO CLEAN CODE
-    //TODO CLEAN MIXINS
-    //TODO final color check
-
-
-    //colors
-    //FIXME shulker colors are off
-    //FIXME candles colors are off
-    //FIXME bed colors are off
-    //FIXME powder colors are off
-
-
-    //various to do
     /*TODO integration with:
     DyeDepot
     Create
@@ -69,13 +56,13 @@ public class UnidyeBlocks {
             new DyeableBlock(FabricBlockSettings.copyOf(Blocks.WHITE_CONCRETE)));
     public static final Block CUSTOM_TERRACOTTA = registerDyeableBlock("custom_terracotta",
             new DyeableBlock(FabricBlockSettings.copyOf(Blocks.TERRACOTTA)));
-    public static final Block CUSTOM_STAINED_GLASS = registerDyeableBlock("custom_stained_glass",
+    public static final Block CUSTOM_STAINED_GLASS = registerDyeableGlassBlock("custom_stained_glass",
             new DyeableGlassBlock(FabricBlockSettings.copyOf(Blocks.GLASS)));
     public static final Block CUSTOM_CONCRETE_POWDER = registerDyeableBlock("custom_concrete_powder",
             new DyeableConcretePowderBlock(CUSTOM_CONCRETE, FabricBlockSettings.copyOf(Blocks.WHITE_CONCRETE_POWDER)));
     public static final Block CUSTOM_CARPET = registerDyeableBlock("custom_carpet",
             new DyeableCarpetBlock(FabricBlockSettings.copyOf(Blocks.WHITE_CARPET)));
-    public static final Block CUSTOM_STAINED_GLASS_PANE = registerDyeableBlock("custom_stained_glass_pane",
+    public static final Block CUSTOM_STAINED_GLASS_PANE = registerDyeableGlassBlock("custom_stained_glass_pane",
             new DyeablePaneBlock(FabricBlockSettings.copyOf(Blocks.WHITE_STAINED_GLASS_PANE)));
     public static final Block CUSTOM_CANDLE = registerDyeableBlock("custom_candle",
             new DyeableCandleBlock(FabricBlockSettings.copyOf(Blocks.WHITE_CANDLE)));
@@ -114,6 +101,10 @@ public class UnidyeBlocks {
         registerDyeableWoolBlockItem(name, block);
         return Registry.register(Registries.BLOCK, new Identifier(Unidye.MOD_ID, name), block);
     }
+    private static Block registerDyeableGlassBlock(String name, Block block) {
+        registerDyeableGlassBlockItem(name, block);
+        return Registry.register(Registries.BLOCK, new Identifier(Unidye.MOD_ID, name), block);
+    }
     private static Block registerSingletonDyeableBlock(String name, Block block) {
         registerSingletonDyeableBlockItem(name, block);
         return Registry.register(Registries.BLOCK, new Identifier(Unidye.MOD_ID, name), block);
@@ -126,5 +117,8 @@ public class UnidyeBlocks {
     }
     private static void registerDyeableWoolBlockItem(String name, Block block) {
         Registry.register(Registries.ITEM, new Identifier(Unidye.MOD_ID, name), new DyeableWoolBlockItem(block, new FabricItemSettings()));
+    }
+    private static void registerDyeableGlassBlockItem(String name, Block block) {
+        Registry.register(Registries.ITEM, new Identifier(Unidye.MOD_ID, name), new DyeableGlassBlockItem(block, new FabricItemSettings()));
     }
 }

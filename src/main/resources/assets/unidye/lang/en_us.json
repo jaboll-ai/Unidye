@@ -21,8 +21,12 @@
   "tooltip.unidye.glass_color": "§7Glass Color: ",
   "tooltip.unidye.leather_color": "§7Leather Color: ",
   "tooltip.unidye.banner_color": "§7Banner Color: ",
+  "tooltip.unidye.beacon_beam_color": "§7Beacon Beam Color: ",
   "tooltip.unidye.concrete_color": "§7Concrete Color: ",
   "tooltip.unidye.terracotta_color": "§7Terracotta Color: ",
+  "tooltip.unidye.sign_color": "§7Sign Color: ",
+  "tooltip.unidye.firework_color": "§7Firework Color: ",
+  "tooltip.unidye.beacon_color": "§7Beacon Beam Color: ",
   "tooltip.unidye.press_shift": "§7Press §fShift§r §7for more info§r",
   "tooltip.unidye.contents": "§7Contents:",
 
