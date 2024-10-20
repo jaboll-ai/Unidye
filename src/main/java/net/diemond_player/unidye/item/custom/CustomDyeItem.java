@@ -47,6 +47,8 @@ public class CustomDyeItem extends DyeItem implements SignChangingItem, DyeableI
     public static final String SIGN_COLOR_KEY = "sign_color";
     public static final String FIREWORK_KEY = "firework";
     public static final String FIREWORK_COLOR_KEY = "firework_color";
+    public static final String SHULKER_BOX_KEY = "shulker_box";
+    public static final String SHULKER_BOX_COLOR_KEY = "shulker_box_color";
     public static final String CONTENTS_KEY = "contents";
     public static final String CONTENTS_LIST_KEY = "contents_list";
     public static final String CLOSEST_VANILLA_DYE_KEY = "closest_vanilla_dye";
@@ -90,7 +92,7 @@ public class CustomDyeItem extends DyeItem implements SignChangingItem, DyeableI
                     return nbtCompound.getInt(WOOL_COLOR_KEY);
                 }
                 break;
-            case "concrete":
+            case "concrete", "bed":
                 nbtCompound = stack.getSubNbt(CONCRETE_KEY);
                 if (nbtCompound != null && nbtCompound.contains(CONCRETE_COLOR_KEY, NbtElement.NUMBER_TYPE)) {
                     return nbtCompound.getInt(CONCRETE_COLOR_KEY);
@@ -132,6 +134,12 @@ public class CustomDyeItem extends DyeItem implements SignChangingItem, DyeableI
                     return nbtCompound.getInt(FIREWORK_COLOR_KEY);
                 }
                 break;
+            case "shulker_box":
+                nbtCompound = stack.getSubNbt(SHULKER_BOX_KEY);
+                if (nbtCompound != null && nbtCompound.contains(SHULKER_BOX_COLOR_KEY, NbtElement.NUMBER_TYPE)) {
+                    return nbtCompound.getInt(SHULKER_BOX_COLOR_KEY);
+                }
+                break;
         }
         return DEFAULT_COLOR;
     }
@@ -151,6 +159,7 @@ public class CustomDyeItem extends DyeItem implements SignChangingItem, DyeableI
             case "dye": itemStack.getOrCreateSubNbt(DISPLAY_KEY).putInt(COLOR_KEY, n); break;
             case "sign": itemStack.getOrCreateSubNbt(SIGN_KEY).putInt(SIGN_COLOR_KEY, n); break;
             case "firework": itemStack.getOrCreateSubNbt(FIREWORK_KEY).putInt(FIREWORK_COLOR_KEY, n); break;
+            case "shulker_box": itemStack.getOrCreateSubNbt(SHULKER_BOX_KEY).putInt(SHULKER_BOX_COLOR_KEY, n); break;
         }
     }
 
@@ -164,6 +173,7 @@ public class CustomDyeItem extends DyeItem implements SignChangingItem, DyeableI
             tooltip.add(Text.translatable("tooltip.unidye.terracotta_color").append(getMaterialHexColor(stack, "terracotta")));
             tooltip.add(Text.translatable("tooltip.unidye.sign_color").append(getMaterialHexColor(stack, "sign")));
             tooltip.add(Text.translatable("tooltip.unidye.firework_color").append(getMaterialHexColor(stack, "firework")));
+            tooltip.add(Text.translatable("tooltip.unidye.shulker_box_color").append(getMaterialHexColor(stack, "shulker_box")));
         } else {
             tooltip.add(Text.translatable("tooltip.unidye.press_shift"));
         }

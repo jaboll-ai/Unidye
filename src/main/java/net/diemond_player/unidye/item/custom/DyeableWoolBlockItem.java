@@ -45,6 +45,12 @@ public class DyeableWoolBlockItem extends DyeableBlockItem{
                     return nbtCompound.getInt("bedColor");
                 }
                 break;
+            case "wool":
+                nbtCompound = stack.getSubNbt("display");
+                if (nbtCompound != null && nbtCompound.contains("color", NbtElement.NUMBER_TYPE)) {
+                    return nbtCompound.getInt("color");
+                }
+                break;
         }
         return DEFAULT_COLOR;
     }

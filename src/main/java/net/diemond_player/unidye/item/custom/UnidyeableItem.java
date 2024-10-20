@@ -30,6 +30,12 @@ public interface UnidyeableItem {
         if (stack.getItem() instanceof CustomDyeItem){
             return blendAndSetCustomDyeColor(stack, colors, customColors);
         }
+        if (stack.isOf(UnidyeBlocks.CUSTOM_WOOL.asItem())){
+            return blendAndSetCustomWoolColor(stack, colors, customColors);
+        }
+        if (stack.isOf(UnidyeBlocks.CUSTOM_STAINED_GLASS.asItem()) || stack.isOf(UnidyeBlocks.CUSTOM_STAINED_GLASS_PANE.asItem())){
+            return blendAndSetCustomGlassColor(stack, colors, customColors);
+        }
         ItemStack itemStack = ItemStack.EMPTY;
         int n;
         int[] is = new int[3];
@@ -83,6 +89,114 @@ public interface UnidyeableItem {
         return itemStack;
     }
 
+    static ItemStack blendAndSetCustomGlassColor(ItemStack stack, List<DyeItem> colors, List<ItemStack> customColors) {
+        ItemStack itemStack = stack.copyWithCount(1);
+        blendAndSetMaterialColor2(stack, itemStack, colors, customColors, "leather");
+        blendAndSetMaterialColor2(stack, itemStack, colors, customColors, "glass");
+        return itemStack;
+    }
+
+    static ItemStack blendAndSetCustomWoolColor(ItemStack stack, List<DyeItem> colors, List<ItemStack> customColors) {
+        ItemStack itemStack = stack.copyWithCount(1);
+        blendAndSetMaterialColor1(stack, itemStack, colors, customColors, "leather");
+        blendAndSetMaterialColor1(stack, itemStack, colors, customColors, "wool");
+        blendAndSetMaterialColor1(stack, itemStack, colors, customColors, "bed");
+        return itemStack;
+    }
+
+    static void blendAndSetMaterialColor1(ItemStack stack, ItemStack itemStack, List<DyeItem> colors, List<ItemStack> customColors, String materialType) {
+        int n;
+        int[] is = new int[3];
+        int j = 0;
+        if (((DyeableItem)stack.getItem()).hasColor(stack)) {
+            int k = DyeableWoolBlockItem.getMaterialColor(itemStack, materialType);
+            float f = (float)(k >> 16 & 0xFF);
+            float g = (float)(k >> 8 & 0xFF);
+            float h = (float)(k & 0xFF);
+            is[0] = is[0] + (int)(f * f );
+            is[1] = is[1] + (int)(g * g);
+            is[2] = is[2] + (int)(h * h);
+            ++j;
+        }
+        for (DyeItem dyeItem : colors) {
+            float[] fs = getColorArray(materialType, getDyeType(dyeItem));
+            int l = (int)(fs[0] * 255.0f * fs[0] * 255.0f);
+            int m = (int)(fs[1] * 255.0f * fs[1] * 255.0f);
+            n = (int)(fs[2] * 255.0f * fs[2] * 255.0f);
+            is[0] = is[0] + l;
+            is[1] = is[1] + m;
+            is[2] = is[2] + n;
+            ++j;
+        }
+        for (ItemStack customDye : customColors){
+            float[] fs = getCustomColorArray(materialType, customDye);
+            int l = (int)(fs[0] * 255.0f * fs[0] * 255.0f);
+            int m = (int)(fs[1] * 255.0f * fs[1] * 255.0f);
+            n = (int)(fs[2] * 255.0f * fs[2] * 255.0f);
+            is[0] = is[0] + l;
+            is[1] = is[1] + m;
+            is[2] = is[2] + n;
+            ++j;
+        }
+        int k = (int) Math.sqrt((double) is[0] / j);
+        int o = (int) Math.sqrt((double) is[1] / j);
+        int p = (int) Math.sqrt((double) is[2] / j);
+        n = k;
+        n = (n << 8) + o;
+        n = (n << 8) + p;
+        if(Objects.equals(materialType, "wool")){
+            ((DyeableItem)stack.getItem()).setColor(itemStack, n);
+        }else{
+            DyeableWoolBlockItem.setMaterialColor(itemStack, n, materialType);
+        }
+    }
+    static void blendAndSetMaterialColor2(ItemStack stack, ItemStack itemStack, List<DyeItem> colors, List<ItemStack> customColors, String materialType) {
+        int n;
+        int[] is = new int[3];
+        int j = 0;
+        if (((DyeableItem)stack.getItem()).hasColor(stack)) {
+            int k = DyeableGlassBlockItem.getMaterialColor(itemStack, materialType);
+            float f = (float)(k >> 16 & 0xFF);
+            float g = (float)(k >> 8 & 0xFF);
+            float h = (float)(k & 0xFF);
+            is[0] = is[0] + (int)(f * f );
+            is[1] = is[1] + (int)(g * g);
+            is[2] = is[2] + (int)(h * h);
+            ++j;
+        }
+        for (DyeItem dyeItem : colors) {
+            float[] fs = getColorArray(materialType, getDyeType(dyeItem));
+            int l = (int)(fs[0] * 255.0f * fs[0] * 255.0f);
+            int m = (int)(fs[1] * 255.0f * fs[1] * 255.0f);
+            n = (int)(fs[2] * 255.0f * fs[2] * 255.0f);
+            is[0] = is[0] + l;
+            is[1] = is[1] + m;
+            is[2] = is[2] + n;
+            ++j;
+        }
+        for (ItemStack customDye : customColors){
+            float[] fs = getCustomColorArray(materialType, customDye);
+            int l = (int)(fs[0] * 255.0f * fs[0] * 255.0f);
+            int m = (int)(fs[1] * 255.0f * fs[1] * 255.0f);
+            n = (int)(fs[2] * 255.0f * fs[2] * 255.0f);
+            is[0] = is[0] + l;
+            is[1] = is[1] + m;
+            is[2] = is[2] + n;
+            ++j;
+        }
+        int k = (int) Math.sqrt((double) is[0] / j);
+        int o = (int) Math.sqrt((double) is[1] / j);
+        int p = (int) Math.sqrt((double) is[2] / j);
+        n = k;
+        n = (n << 8) + o;
+        n = (n << 8) + p;
+        if(Objects.equals(materialType, "glass")){
+            ((DyeableItem)stack.getItem()).setColor(itemStack, n);
+        }else{
+            DyeableGlassBlockItem.setBeaconColor(itemStack, n);
+        }
+    }
+
     static ItemStack blendAndSetCustomDyeColor(ItemStack stack, List<DyeItem> colors, List<ItemStack> customColors) {
         Item item = stack.getItem();
         CustomDyeItem customDyeItem = (CustomDyeItem)((Object)item);
@@ -95,7 +209,7 @@ public interface UnidyeableItem {
         blendAndSetMaterialColor(stack, itemStack, colors, customColors, "glass", customDyeItem);
         blendAndSetMaterialColor(stack, itemStack, colors, customColors, "sign", customDyeItem);
         blendAndSetMaterialColor(stack, itemStack, colors, customColors, "firework", customDyeItem);
-        itemStack.setCount(colors.size()+customColors.size()+1);
+        blendAndSetMaterialColor(stack, itemStack, colors, customColors, "shulker_box", customDyeItem);
         defineClosestVanillaDye(itemStack);
         //customDyeItem.setContents(itemStack, getContents(stack, colors, customColors));
         return itemStack;
@@ -221,8 +335,7 @@ public interface UnidyeableItem {
     static String getMaterialType(DyeableItem dyeableItem) {
         if (dyeableItem == UnidyeBlocks.CUSTOM_CONCRETE.asItem()
                 || dyeableItem == UnidyeBlocks.CUSTOM_CONCRETE_POWDER.asItem()
-                || dyeableItem == UnidyeBlocks.CUSTOM_CANDLE.asItem()
-                || dyeableItem == UnidyeBlocks.CUSTOM_SHULKER_BOX.asItem()) {
+                || dyeableItem == UnidyeBlocks.CUSTOM_CANDLE.asItem()) {
             return "concrete";
         } else if(dyeableItem == UnidyeBlocks.CUSTOM_WOOL.asItem()
                 || dyeableItem == UnidyeBlocks.CUSTOM_CARPET.asItem()){
@@ -234,6 +347,8 @@ public interface UnidyeableItem {
             return "glass";
         } else if(dyeableItem == UnidyeItems.CUSTOM_DYE){
             return "dye";
+        } else if(dyeableItem == UnidyeBlocks.CUSTOM_SHULKER_BOX.asItem()){
+            return "shulker_box";
         } else {
             return "leather";
         }

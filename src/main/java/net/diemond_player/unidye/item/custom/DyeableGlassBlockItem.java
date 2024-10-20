@@ -32,6 +32,24 @@ public class DyeableGlassBlockItem extends DyeableBlockItem{
         }
         return DEFAULT_COLOR;
     }
+    public static Integer getMaterialColor(ItemStack stack, String materialType) {
+        NbtCompound nbtCompound;
+        switch(materialType) {
+            case "leather":
+                nbtCompound = stack.getSubNbt("1");
+                if (nbtCompound != null && nbtCompound.contains("beaconColor", NbtElement.NUMBER_TYPE)) {
+                    return nbtCompound.getInt("beaconColor");
+                }
+                break;
+            case "glass":
+                nbtCompound = stack.getSubNbt("display");
+                if (nbtCompound != null && nbtCompound.contains("color", NbtElement.NUMBER_TYPE)) {
+                    return nbtCompound.getInt("color");
+                }
+                break;
+        }
+        return DEFAULT_COLOR;
+    }
 
     public String getMaterialHexColor(ItemStack stack) {
         Integer color = getBeaconColor(stack);

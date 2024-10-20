@@ -89,6 +89,10 @@ public abstract class ArmorDyeRecipeMixin {
 			}
 			return ItemStack.EMPTY;
 		}
-		return UnidyeableItem.blendAndSetColor(itemStack, list, customColors);
+		ItemStack itemStack1 = UnidyeableItem.blendAndSetColor(itemStack, list, customColors);
+		if(itemStack1.isOf(UnidyeItems.CUSTOM_DYE)){
+			itemStack1.setCount(list.size() + customColors.size() + 1);
+		}
+		return itemStack1;
 	}
 }

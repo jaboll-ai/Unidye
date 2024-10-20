@@ -74,7 +74,7 @@ public class CustomDyeRecipe extends SpecialCraftingRecipe {
             return ItemStack.EMPTY;
         }
         ItemStack itemStack = UnidyeableItem.blendAndSetColor(new ItemStack(UnidyeItems.CUSTOM_DYE), list, Lists.newArrayList());
-        itemStack.decrement(1);
+        itemStack.setCount(list.size());
         return itemStack;
     }
 
