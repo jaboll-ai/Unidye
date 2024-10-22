@@ -33,9 +33,6 @@ public class UnidyeBlocks {
     //all of the to dos
     //TODO CLEAN CODE
     //TODO CLEAN MIXINS
-    //TODO Sheep Bed Colors
-    //TODO Candle Colors
-    //TODO Glass Colors (Panes)
 
     /*TODO integration with:
     DyeDepot

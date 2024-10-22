@@ -39,12 +39,6 @@ public class DyeableWoolBlockItem extends DyeableBlockItem{
                     return nbtCompound.getInt("bannerColor");
                 }
                 break;
-            case "bed":
-                nbtCompound = stack.getSubNbt("2");
-                if (nbtCompound != null && nbtCompound.contains("bedColor", NbtElement.NUMBER_TYPE)) {
-                    return nbtCompound.getInt("bedColor");
-                }
-                break;
             case "wool":
                 nbtCompound = stack.getSubNbt("display");
                 if (nbtCompound != null && nbtCompound.contains("color", NbtElement.NUMBER_TYPE)) {
@@ -63,13 +57,11 @@ public class DyeableWoolBlockItem extends DyeableBlockItem{
     public static void setMaterialColor(ItemStack itemStack, int n, String materialType) {
         switch (materialType){
             case "leather": itemStack.getOrCreateSubNbt("1").putInt("bannerColor", n); break;
-            case "bed": itemStack.getOrCreateSubNbt("2").putInt("bedColor", n); break;
         }
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.translatable("tooltip.unidye.banner_color").append(getMaterialHexColor(stack, "leather")));
-        tooltip.add(Text.translatable("tooltip.unidye.bed_color").append(getMaterialHexColor(stack, "bed")));
     }
     @Override
     public ActionResult place(ItemPlacementContext context) {
@@ -78,7 +70,6 @@ public class DyeableWoolBlockItem extends DyeableBlockItem{
         if(blockEntity instanceof DyeableWoolBlockEntity dyeableBlockEntity){
             dyeableBlockEntity.color = UnidyeUtils.getColor(context.getStack());
             dyeableBlockEntity.bannerColor = getMaterialColor(context.getStack(), "leather");
-            dyeableBlockEntity.bedColor = getMaterialColor(context.getStack(), "bed");
         }
         return result;
     }

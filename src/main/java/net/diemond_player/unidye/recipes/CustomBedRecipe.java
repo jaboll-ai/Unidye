@@ -39,8 +39,7 @@ public class CustomBedRecipe extends SpecialCraftingRecipe {
                 woolCount++;
                 if(!itemStack.isEmpty()){
                     if(UnidyeUtils.getColor(itemStack2)==UnidyeUtils.getColor(itemStack)
-                            && (Objects.equals(DyeableWoolBlockItem.getMaterialColor(itemStack2, "leather"), DyeableWoolBlockItem.getMaterialColor(itemStack, "leather")))
-                            && (Objects.equals(DyeableWoolBlockItem.getMaterialColor(itemStack2, "bed"), DyeableWoolBlockItem.getMaterialColor(itemStack, "bed")))){
+                            && (Objects.equals(DyeableWoolBlockItem.getMaterialColor(itemStack2, "leather"), DyeableWoolBlockItem.getMaterialColor(itemStack, "leather")))){
                         continue;
                     }else{
                         return false;
@@ -73,7 +72,7 @@ public class CustomBedRecipe extends SpecialCraftingRecipe {
                 break;
             }
         }
-        UnidyeUtils.setColor(itemStack1, DyeableWoolBlockItem.getMaterialColor(itemStack, "bed"));
+        UnidyeUtils.setColor(itemStack1, DyeableWoolBlockItem.getMaterialColor(itemStack, "leather"));
         return itemStack1;
     }
 

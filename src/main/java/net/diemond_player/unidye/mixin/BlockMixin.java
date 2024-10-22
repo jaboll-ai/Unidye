@@ -2,6 +2,7 @@ package net.diemond_player.unidye.mixin;
 
 import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.diemond_player.unidye.block.entity.DyeableBlockEntity;
+import net.diemond_player.unidye.block.entity.DyeableGlassBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -23,12 +24,12 @@ public abstract class BlockMixin {
     private static void render(BlockState state, BlockView world, BlockPos pos, Direction side, BlockPos otherPos, CallbackInfoReturnable<Boolean> cir) {
         BlockState blockState = world.getBlockState(otherPos);
         if (state.isOf(UnidyeBlocks.CUSTOM_STAINED_GLASS) && blockState.isOf(UnidyeBlocks.CUSTOM_STAINED_GLASS)) {
-            if(DyeableBlockEntity.getColor(world, pos) != DyeableBlockEntity.getColor(world, otherPos)){
+            if(DyeableGlassBlockEntity.getColor(world, pos) != DyeableGlassBlockEntity.getColor(world, otherPos)){
                 cir.setReturnValue(true);
             }
         }
         if (state.isOf(UnidyeBlocks.CUSTOM_STAINED_GLASS_PANE) && blockState.isOf(UnidyeBlocks.CUSTOM_STAINED_GLASS_PANE)) {
-            if(DyeableBlockEntity.getColor(world, pos) != DyeableBlockEntity.getColor(world, otherPos)){
+            if(DyeableGlassBlockEntity.getColor(world, pos) != DyeableGlassBlockEntity.getColor(world, otherPos)){
                 cir.setReturnValue(true);
             }
         }

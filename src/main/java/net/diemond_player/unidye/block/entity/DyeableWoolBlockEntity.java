@@ -18,7 +18,6 @@ public class DyeableWoolBlockEntity extends BlockEntity{
     public static final int DEFAULT_COLOR = 16777215;
     public int color = DEFAULT_COLOR;
     public int bannerColor = DEFAULT_COLOR;
-    public int bedColor = DEFAULT_COLOR;
 
     @Override
     public void writeNbt(NbtCompound nbt) {
@@ -27,9 +26,6 @@ public class DyeableWoolBlockEntity extends BlockEntity{
         }
         if (bannerColor != DEFAULT_COLOR) {
             nbt.putInt("bannerColor", bannerColor);
-        }
-        if (bedColor != DEFAULT_COLOR) {
-            nbt.putInt("bedColor", bedColor);
         }
         super.writeNbt(nbt);
     }
@@ -45,11 +41,6 @@ public class DyeableWoolBlockEntity extends BlockEntity{
             bannerColor = DEFAULT_COLOR;
         } else {
             bannerColor = nbt.getInt("bannerColor");
-        }
-        if (nbt.getInt("bedColor") == 0) {
-            bedColor = DEFAULT_COLOR;
-        } else {
-            bedColor = nbt.getInt("bedColor");
         }
     }
 

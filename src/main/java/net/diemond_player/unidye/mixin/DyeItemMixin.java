@@ -5,7 +5,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.SheepEntity;
-import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
@@ -19,15 +18,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.lang.reflect.Field;
-
 @Mixin(DyeItem.class)
 public abstract class DyeItemMixin {
     @Inject(method = "useOnEntity", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/SheepEntity;setColor(Lnet/minecraft/util/DyeColor;)V"))
     private void useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         IEntityAccessor sheep = (IEntityAccessor) entity;
         sheep.unidye$setCustomColor(0xFFFFFF);
-        sheep.unidye$setCustomColorBack(0xFFFFFF);
+        sheep.unidye$setSecondaryCustomColor(0xFFFFFF);
     }
 
     @Inject(method = "useOnEntity", at = @At("HEAD"), cancellable = true)
@@ -39,7 +36,7 @@ public abstract class DyeItemMixin {
                 sheepEntity.setColor(((DyeItem) (Object) this).getColor());
                 IEntityAccessor sheep = (IEntityAccessor) entity;
                 sheep.unidye$setCustomColor(0xFFFFFF);
-                sheep.unidye$setCustomColorBack(0xFFFFFF);
+                sheep.unidye$setSecondaryCustomColor(0xFFFFFF);
                 stack.decrement(1);
             }
             cir.setReturnValue(ActionResult.success(user.getWorld().isClient));
@@ -65,10 +62,10 @@ public abstract class DyeItemMixin {
                 cir.setReturnValue(true);
             }
         }else{
-            if(iEntityAccessor.unidye$getCustomColorBack() != 0xFFFFFF){
-                iEntityAccessor.unidye$setCustomColorBack(0xFFFFFF);
+            if(iEntityAccessor.unidye$getSecondaryCustomColor() != 0xFFFFFF){
+                iEntityAccessor.unidye$setSecondaryCustomColor(0xFFFFFF);
                 if (signBlockEntity.changeText(text -> text.withColor(((DyeItem) (Object) this).getColor()), front)) {
-                    iEntityAccessor.unidye$setCustomColorBack(0xFFFFFF);
+                    iEntityAccessor.unidye$setSecondaryCustomColor(0xFFFFFF);
                     signBlockEntity.markDirty();
                     world.updateListeners(signBlockEntity.getPos(), world.getBlockState(signBlockEntity.getPos()), world.getBlockState(signBlockEntity.getPos()), Block.NOTIFY_LISTENERS);
                     world.playSound(null, signBlockEntity.getPos(), SoundEvents.ITEM_DYE_USE, SoundCategory.BLOCKS, 1.0f, 1.0f);

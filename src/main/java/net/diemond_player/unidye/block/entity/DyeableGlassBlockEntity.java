@@ -81,7 +81,7 @@ public class DyeableGlassBlockEntity extends BlockEntity{
         }
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof DyeableGlassBlockEntity dyeableBlockEntity) {
-            return dyeableBlockEntity.beaconColor;
+            return dyeableBlockEntity.color;
         } else {
             return DyeableGlassBlockEntity.DEFAULT_COLOR;
         }

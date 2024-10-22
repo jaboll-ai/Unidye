@@ -17,10 +17,9 @@
   "block.unidye.custom_bed": "Custom Bed",
 
   "tooltip.unidye.wool_color": "§7Wool Color: ",
-  "tooltip.unidye.bed_color": "§7Bed Color: ",
   "tooltip.unidye.glass_color": "§7Glass Color: ",
-  "tooltip.unidye.leather_color": "§7Leather Color: ",
-  "tooltip.unidye.banner_color": "§7Banner Color: ",
+  "tooltip.unidye.leather_color": "§7Leather/Etc. Color: ",
+  "tooltip.unidye.banner_color": "§7Banner/Bed Color: ",
   "tooltip.unidye.beacon_beam_color": "§7Beacon Beam Color: ",
   "tooltip.unidye.concrete_color": "§7Concrete Color: ",
   "tooltip.unidye.terracotta_color": "§7Terracotta Color: ",
@@ -28,6 +27,8 @@
   "tooltip.unidye.firework_color": "§7Firework Color: ",
   "tooltip.unidye.beacon_color": "§7Beacon Beam Color: ",
   "tooltip.unidye.shulker_box_color": "§7Shulker Box Color: ",
+  "tooltip.unidye.candle_color": "§7Candle Color: ",
+
   "tooltip.unidye.press_shift": "§7Press §fShift§r §7for more info§r",
   "tooltip.unidye.contents": "§7Contents:",
 

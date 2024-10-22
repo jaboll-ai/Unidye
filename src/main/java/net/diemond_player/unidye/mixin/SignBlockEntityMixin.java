@@ -43,12 +43,12 @@ public abstract class SignBlockEntityMixin implements IEntityAccessor {
     }
 
     @Override
-    public int unidye$getCustomColorBack() {
+    public int unidye$getSecondaryCustomColor() {
         return customColorBack;
     }
 
     @Override
-    public void unidye$setCustomColorBack(int customColorBack) {
+    public void unidye$setSecondaryCustomColor(int customColorBack) {
         this.customColorBack = customColorBack;
     }
 }

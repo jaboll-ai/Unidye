@@ -210,6 +210,7 @@ public interface UnidyeableItem {
         blendAndSetMaterialColor(stack, itemStack, colors, customColors, "sign", customDyeItem);
         blendAndSetMaterialColor(stack, itemStack, colors, customColors, "firework", customDyeItem);
         blendAndSetMaterialColor(stack, itemStack, colors, customColors, "shulker_box", customDyeItem);
+        blendAndSetMaterialColor(stack, itemStack, colors, customColors, "candle", customDyeItem);
         defineClosestVanillaDye(itemStack);
         //customDyeItem.setContents(itemStack, getContents(stack, colors, customColors));
         return itemStack;
@@ -334,8 +335,7 @@ public interface UnidyeableItem {
 
     static String getMaterialType(DyeableItem dyeableItem) {
         if (dyeableItem == UnidyeBlocks.CUSTOM_CONCRETE.asItem()
-                || dyeableItem == UnidyeBlocks.CUSTOM_CONCRETE_POWDER.asItem()
-                || dyeableItem == UnidyeBlocks.CUSTOM_CANDLE.asItem()) {
+                || dyeableItem == UnidyeBlocks.CUSTOM_CONCRETE_POWDER.asItem()) {
             return "concrete";
         } else if(dyeableItem == UnidyeBlocks.CUSTOM_WOOL.asItem()
                 || dyeableItem == UnidyeBlocks.CUSTOM_CARPET.asItem()){
@@ -349,7 +349,9 @@ public interface UnidyeableItem {
             return "dye";
         } else if(dyeableItem == UnidyeBlocks.CUSTOM_SHULKER_BOX.asItem()){
             return "shulker_box";
-        } else {
+        } else if(dyeableItem == UnidyeBlocks.CUSTOM_CANDLE.asItem()){
+            return "candle";
+        }else {
             return "leather";
         }
     }

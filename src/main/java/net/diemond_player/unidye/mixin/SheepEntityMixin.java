@@ -1,6 +1,7 @@
 package net.diemond_player.unidye.mixin;
 
 import net.diemond_player.unidye.block.UnidyeBlocks;
+import net.diemond_player.unidye.item.custom.DyeableWoolBlockItem;
 import net.diemond_player.unidye.item.custom.UnidyeColor;
 import net.diemond_player.unidye.util.IEntityAccessor;
 import net.minecraft.entity.EntityType;
@@ -33,7 +34,7 @@ public abstract class SheepEntityMixin implements IEntityAccessor {
     @Inject(method = "writeCustomDataToNbt", at = @At("HEAD"))
     private void writeCustomDataToNbt(NbtCompound nbt, CallbackInfo ci) {
         nbt.putInt("unidye.custom_color", unidye$getCustomColor());
-        nbt.putInt("unidye.secondary_custom_color", unidye$getCustomColorBack());
+        nbt.putInt("unidye.secondary_custom_color", unidye$getSecondaryCustomColor());
     }
 
     @Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))
@@ -42,7 +43,7 @@ public abstract class SheepEntityMixin implements IEntityAccessor {
             unidye$setCustomColor(nbt.getInt("unidye.custom_color"));
         }
         if (nbt.contains("unidye.secondary_custom_color")) {
-            unidye$setCustomColorBack(nbt.getInt("unidye.secondary_custom_color"));
+            unidye$setSecondaryCustomColor(nbt.getInt("unidye.secondary_custom_color"));
         }
     }
 
@@ -84,11 +85,11 @@ public abstract class SheepEntityMixin implements IEntityAccessor {
                 customColor3 = (customColor3 << 8) + green3;
                 customColor3 = (customColor3 << 8) + blue3;
                 sheep.unidye$setCustomColor(customColor3);
-                int customColor11 = firstSheep.unidye$getCustomColorBack();
+                int customColor11 = firstSheep.unidye$getSecondaryCustomColor();
                 int red11 =  (customColor11 >> 16 & 0xFF);
                 int green11 = (customColor11 >> 8 & 0xFF);
                 int blue11 = (customColor11 & 0xFF);
-                int customColor22 = secondSheep.unidye$getCustomColorBack();
+                int customColor22 = secondSheep.unidye$getSecondaryCustomColor();
                 int red22 = (customColor22 >> 16 & 0xFF);
                 int green22 = (customColor22 >> 8 & 0xFF);
                 int blue22 = (customColor22 & 0xFF);
@@ -99,7 +100,7 @@ public abstract class SheepEntityMixin implements IEntityAccessor {
                 customColor33 = red33;
                 customColor33 = (customColor33 << 8) + green33;
                 customColor33 = (customColor33 << 8) + blue33;
-                sheep.unidye$setCustomColorBack(customColor33);
+                sheep.unidye$setSecondaryCustomColor(customColor33);
                 cir.setReturnValue(sheepEntity);
             } else if(firstSheep.unidye$getCustomColor() != 0xFFFFFF && secondSheep.unidye$getCustomColor() == 0xFFFFFF){
                 int customColor1 = firstSheep.unidye$getCustomColor();
@@ -119,7 +120,7 @@ public abstract class SheepEntityMixin implements IEntityAccessor {
                 customColor3 = (customColor3 << 8) + green3;
                 customColor3 = (customColor3 << 8) + blue3;
                 sheep.unidye$setCustomColor(customColor3);
-                int customColor11 = firstSheep.unidye$getCustomColorBack();
+                int customColor11 = firstSheep.unidye$getSecondaryCustomColor();
                 int red11 = (customColor11 >> 16 & 0xFF);
                 int green11 = (customColor11 >> 8 & 0xFF);
                 int blue11 = (customColor11 & 0xFF);
@@ -134,7 +135,7 @@ public abstract class SheepEntityMixin implements IEntityAccessor {
                 customColor33 = red33;
                 customColor33 = (customColor33 << 8) + green33;
                 customColor33 = (customColor33 << 8) + blue33;
-                sheep.unidye$setCustomColorBack(customColor33);
+                sheep.unidye$setSecondaryCustomColor(customColor33);
                 cir.setReturnValue(sheepEntity);
             } else if(secondSheep.unidye$getCustomColor() != 0xFFFFFF && firstSheep.unidye$getCustomColor() == 0xFFFFFF){
                 int customColor1 = secondSheep.unidye$getCustomColor();
@@ -154,7 +155,7 @@ public abstract class SheepEntityMixin implements IEntityAccessor {
                 customColor3 = (customColor3 << 8) + green3;
                 customColor3 = (customColor3 << 8) + blue3;
                 sheep.unidye$setCustomColor(customColor3);
-                int customColor11 = secondSheep.unidye$getCustomColorBack();
+                int customColor11 = secondSheep.unidye$getSecondaryCustomColor();
                 int red11 = (customColor11 >> 16 & 0xFF);
                 int green11 = (customColor11 >> 8 & 0xFF);
                 int blue11 = (customColor11 & 0xFF);
@@ -169,7 +170,7 @@ public abstract class SheepEntityMixin implements IEntityAccessor {
                 customColor33 = red33;
                 customColor33 = (customColor33 << 8) + green33;
                 customColor33 = (customColor33 << 8) + blue33;
-                sheep.unidye$setCustomColorBack(customColor33);
+                sheep.unidye$setSecondaryCustomColor(customColor33);
                 cir.setReturnValue(sheepEntity);
             }
         }
@@ -183,7 +184,8 @@ public abstract class SheepEntityMixin implements IEntityAccessor {
             for(int j = 0; j < i; ++j) {
                 DyeableItem item = (DyeableItem) UnidyeBlocks.CUSTOM_WOOL.asItem();
                 ItemStack itemStack = UnidyeBlocks.CUSTOM_WOOL.asItem().getDefaultStack();
-                item.setColor(itemStack, sheep.unidye$getCustomColorBack());
+                item.setColor(itemStack, sheep.unidye$getSecondaryCustomColor());
+                DyeableWoolBlockItem.setMaterialColor(itemStack, sheep.unidye$getCustomColor(), "leather");
                 ItemEntity itemEntity = ((SheepEntity) (Object) this).dropStack(itemStack, 1);
                 if (itemEntity != null) {
                     itemEntity.setVelocity(itemEntity.getVelocity().add((double)((((SheepEntity) (Object) this).getRandom().nextFloat() - ((SheepEntity) (Object) this).getRandom().nextFloat()) * 0.1F), (double)(((SheepEntity) (Object) this).getRandom().nextFloat() * 0.05F), (double)((((SheepEntity) (Object) this).getRandom().nextFloat() - ((SheepEntity) (Object) this).getRandom().nextFloat()) * 0.1F)));
@@ -203,12 +205,12 @@ public abstract class SheepEntityMixin implements IEntityAccessor {
         ((SheepEntity) (Object) this).getDataTracker().set(CUSTOM_COLOR, color);
     }
     @Override
-    public int unidye$getCustomColorBack() {
+    public int unidye$getSecondaryCustomColor() {
         return ((SheepEntity) (Object) this).getDataTracker().get(SECONDARY_CUSTOM_COLOR);
     }
 
     @Override
-    public void unidye$setCustomColorBack(int color) {
+    public void unidye$setSecondaryCustomColor(int color) {
         ((SheepEntity) (Object) this).getDataTracker().set(SECONDARY_CUSTOM_COLOR, color);
     }
 }

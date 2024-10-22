@@ -32,18 +32,14 @@ public class DyeableWoolBlock extends DyeableBlock{
         DyeableWoolBlockEntity blockEntity = UnidyeBlockEntities.DYEABLE_WOOL_BE.get(world,pos);
         int color = DEFAULT_COLOR;
         int bannerColor = DEFAULT_COLOR;
-        int bedColor = DEFAULT_COLOR;
         if(blockEntity != null){
             color = blockEntity.color;
             bannerColor = blockEntity.bannerColor;
-            bedColor = blockEntity.bedColor;
         }
         NbtCompound subNbt = stack.getOrCreateSubNbt("display");
         subNbt.putInt("color", color);
         NbtCompound subNbt2 = stack.getOrCreateSubNbt("1");
         subNbt2.putInt("bannerColor", bannerColor);
-        NbtCompound subNbt3 = stack.getOrCreateSubNbt("2");
-        subNbt3.putInt("bedColor", bedColor);
         return stack;
     }
 

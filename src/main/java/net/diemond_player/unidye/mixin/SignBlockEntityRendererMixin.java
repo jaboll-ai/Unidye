@@ -1,14 +1,10 @@
 package net.diemond_player.unidye.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import net.diemond_player.unidye.Unidye;
 import net.diemond_player.unidye.util.IEntityAccessor;
 import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.block.entity.SignText;
-import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.SignBlockEntityRenderer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ColorHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
@@ -55,7 +51,7 @@ public abstract class SignBlockEntityRendererMixin{
     private SignText render1(SignText signText, @Local(argsOnly = true) SignBlockEntity signBlockEntity){
         IEntityAccessor iEntityAccessor = (IEntityAccessor) signText;
         IEntityAccessor iEntityAccessor2 = (IEntityAccessor) signBlockEntity;
-        iEntityAccessor.unidye$setCustomColor(iEntityAccessor2.unidye$getCustomColorBack());
+        iEntityAccessor.unidye$setCustomColor(iEntityAccessor2.unidye$getSecondaryCustomColor());
         return signText;
     }
 }

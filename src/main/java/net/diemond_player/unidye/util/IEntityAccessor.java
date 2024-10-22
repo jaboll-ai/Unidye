@@ -2,14 +2,10 @@ package net.diemond_player.unidye.util;
 
 
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.SignText;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.map.MapState;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockRenderView;
@@ -28,9 +24,9 @@ public interface IEntityAccessor {
 
     void unidye$setCustomColorArray(int[] customColorArray);
 
-    int unidye$getCustomColorBack();
+    int unidye$getSecondaryCustomColor();
 
-    void unidye$setCustomColorBack(int customColor);
+    void unidye$setSecondaryCustomColor(int customColor);
 
     boolean unidye$putColor(int x, int z, int customColor);
 
