@@ -1,25 +1,19 @@
 package net.diemond_player.unidye.mixin;
 
 import net.diemond_player.unidye.block.entity.DyeableBannerBlockEntity;
-import net.diemond_player.unidye.util.IEntityAccessor;
-import net.minecraft.block.entity.BannerBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShieldItem;
 import net.minecraft.item.map.MapBannerMarker;
 import net.minecraft.text.Text;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MapBannerMarker.class)
-public abstract class MapBannerMarkerMixin{
+public abstract class MapBannerMarkerMixin {
     @Inject(method = "fromWorldBlock", at = @At(value = "HEAD"), cancellable = true)
     private static void render(BlockView blockView, BlockPos blockPos, CallbackInfoReturnable<MapBannerMarker> cir) {
         BlockEntity blockEntity = blockView.getBlockEntity(blockPos);

@@ -2,27 +2,24 @@ package net.diemond_player.unidye.recipes;
 
 import com.google.common.collect.Lists;
 import net.diemond_player.unidye.Unidye;
-import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.diemond_player.unidye.item.UnidyeItems;
 import net.diemond_player.unidye.item.custom.CustomDyeItem;
-import net.diemond_player.unidye.item.custom.UnidyeableItem;
-import net.diemond_player.unidye.util.UnidyeTags;
 import net.diemond_player.unidye.util.UnidyeUtils;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.inventory.RecipeInputInventory;
-import net.minecraft.item.*;
+import net.minecraft.item.DyeItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CustomDyeRecipe extends SpecialCraftingRecipe {
     public CustomDyeRecipe(Identifier id, CraftingRecipeCategory category) {
@@ -39,19 +36,19 @@ public class CustomDyeRecipe extends SpecialCraftingRecipe {
             if (itemStack2.isEmpty()) {
                 continue;
             }
-            if (itemStack2.getItem() instanceof DyeItem && !(itemStack2.getItem() instanceof CustomDyeItem)){
-                if(item==null){
+            if (itemStack2.getItem() instanceof DyeItem && !(itemStack2.getItem() instanceof CustomDyeItem)) {
+                if (item == null) {
                     item = itemStack2.getItem();
-                }else if(item!=itemStack2.getItem()){
+                } else if (item != itemStack2.getItem()) {
                     difference = true;
                 }
                 continue;
             }
-            if(itemStack2.getItem() == Items.STICK){
-                if(stick){
+            if (itemStack2.getItem() == Items.STICK) {
+                if (stick) {
                     return false;
                 }
-                stick=true;
+                stick = true;
                 continue;
             }
             return false;
@@ -67,13 +64,13 @@ public class CustomDyeRecipe extends SpecialCraftingRecipe {
             if (itemStack2.isEmpty()) continue;
             Item item = itemStack2.getItem();
             if (item instanceof DyeItem && !(itemStack2.getItem() instanceof CustomDyeItem)) {
-                list.add((DyeItem)item);
+                list.add((DyeItem) item);
             }
         }
         if (list.isEmpty()) {
             return ItemStack.EMPTY;
         }
-        ItemStack itemStack = UnidyeableItem.blendAndSetColor(new ItemStack(UnidyeItems.CUSTOM_DYE), list, Lists.newArrayList());
+        ItemStack itemStack = UnidyeUtils.blendAndSetColor(new ItemStack(UnidyeItems.CUSTOM_DYE), list, Lists.newArrayList());
         itemStack.setCount(list.size());
         return itemStack;
     }
@@ -93,7 +90,7 @@ public class CustomDyeRecipe extends SpecialCraftingRecipe {
         DefaultedList<ItemStack> defaultedList = DefaultedList.ofSize(inventory.size(), ItemStack.EMPTY);
         for (int i = 0; i < defaultedList.size(); ++i) {
             Item item = inventory.getStack(i).getItem();
-            if (item == Items.STICK){
+            if (item == Items.STICK) {
                 defaultedList.set(i, new ItemStack(Items.STICK));
             }
         }

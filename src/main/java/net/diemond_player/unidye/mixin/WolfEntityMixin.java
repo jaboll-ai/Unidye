@@ -1,27 +1,21 @@
 package net.diemond_player.unidye.mixin;
 
 import net.diemond_player.unidye.item.custom.CustomDyeItem;
-import net.diemond_player.unidye.item.custom.UnidyeableItem;
-import net.diemond_player.unidye.util.IEntityAccessor;
+import net.diemond_player.unidye.util.UnidyeAccessor;
 import net.diemond_player.unidye.util.UnidyeUtils;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Hand;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -29,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(WolfEntity.class)
-public abstract class WolfEntityMixin implements IEntityAccessor {
+public abstract class WolfEntityMixin implements UnidyeAccessor {
     @Unique
     private static final TrackedData<Integer> CUSTOM_COLOR = DataTracker.registerData(WolfEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
@@ -46,23 +40,23 @@ public abstract class WolfEntityMixin implements IEntityAccessor {
     }
 
     @Inject(method = "initDataTracker", at = @At("HEAD"))
-    private void initDataTracker(CallbackInfo ci){
+    private void initDataTracker(CallbackInfo ci) {
         ((WolfEntity) (Object) this).getDataTracker().startTracking(CUSTOM_COLOR, 0xFFFFFF);
     }
 
 
     @Inject(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/WolfEntity;setCollarColor(Lnet/minecraft/util/DyeColor;)V"))
-    private void interactMobReset(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir){
-        IEntityAccessor wolf = (IEntityAccessor) ((WolfEntity) (Object) this);
+    private void interactMobReset(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+        UnidyeAccessor wolf = (UnidyeAccessor) ((WolfEntity) (Object) this);
         wolf.unidye$setCustomColor(0xFFFFFF);
     }
 
     @Inject(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/DyeItem;getColor()Lnet/minecraft/util/DyeColor;", shift = At.Shift.AFTER), cancellable = true)
-    private void interactMobCheck(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir){
+    private void interactMobCheck(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         ItemStack itemStack = player.getStackInHand(hand);
         Item item = itemStack.getItem();
-        IEntityAccessor wolf = (IEntityAccessor) ((WolfEntity) (Object) this);
-        DyeColor dyeColor = ((DyeItem)item).getColor();
+        UnidyeAccessor wolf = (UnidyeAccessor) ((WolfEntity) (Object) this);
+        DyeColor dyeColor = ((DyeItem) item).getColor();
         if (wolf.unidye$getCustomColor() != 0xFFFFFF) {
             ((WolfEntity) (Object) this).setCollarColor(dyeColor);
             wolf.unidye$setCustomColor(0xFFFFFF);
@@ -73,10 +67,10 @@ public abstract class WolfEntityMixin implements IEntityAccessor {
     }
 
     @Inject(method = "interactMob", at = @At("HEAD"), cancellable = true)
-    private void interactMobSet(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir){
+    private void interactMobSet(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         ItemStack itemStack = player.getStackInHand(hand);
         Item item = itemStack.getItem();
-        IEntityAccessor wolf = (IEntityAccessor) ((WolfEntity) (Object) this);
+        UnidyeAccessor wolf = (UnidyeAccessor) ((WolfEntity) (Object) this);
         if (!(((WolfEntity) (Object) this).getWorld().isClient)) {
             if (((WolfEntity) (Object) this).isTamed()) {
                 if (item instanceof CustomDyeItem && ((WolfEntity) (Object) this).isOwner(player)) {

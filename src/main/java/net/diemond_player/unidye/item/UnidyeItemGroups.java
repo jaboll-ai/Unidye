@@ -1,7 +1,7 @@
 package net.diemond_player.unidye.item;
 
-import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.diemond_player.unidye.Unidye;
+import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -17,22 +17,21 @@ public class UnidyeItemGroups {
                     .icon(() -> new ItemStack(UnidyeItems.CUSTOM_DYE)).entries((displayContext, entries) -> {
 
                         entries.add(UnidyeItems.CUSTOM_DYE);
-
                         entries.add(UnidyeBlocks.CUSTOM_WOOL);
                         entries.add(UnidyeBlocks.CUSTOM_CARPET);
-                        entries.add(UnidyeBlocks.CUSTOM_CONCRETE_POWDER);
-                        entries.add(UnidyeBlocks.CUSTOM_CONCRETE);
                         entries.add(UnidyeBlocks.CUSTOM_TERRACOTTA);
+                        entries.add(UnidyeBlocks.CUSTOM_CONCRETE);
+                        entries.add(UnidyeBlocks.CUSTOM_CONCRETE_POWDER);
                         entries.add(UnidyeBlocks.CUSTOM_STAINED_GLASS);
                         entries.add(UnidyeBlocks.CUSTOM_STAINED_GLASS_PANE);
-                        entries.add(UnidyeBlocks.CUSTOM_CANDLE);
                         entries.add(UnidyeBlocks.CUSTOM_SHULKER_BOX);
                         entries.add(UnidyeBlocks.CUSTOM_BED);
+                        entries.add(UnidyeBlocks.CUSTOM_CANDLE);
                         entries.add(UnidyeItems.CUSTOM_BANNER);
 
-
                     }).build());
-    public static void registerItemGroups(){
+
+    public static void registerItemGroups() {
         Unidye.LOGGER.info("Registering Item Groups for" + Unidye.MOD_ID);
     }
 }

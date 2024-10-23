@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.Nullable;
 
-public class DyeableWoolBlockEntity extends BlockEntity{
+public class DyeableWoolBlockEntity extends BlockEntity {
     public DyeableWoolBlockEntity(BlockPos pos, BlockState state) {
         super(UnidyeBlockEntities.DYEABLE_WOOL_BE, pos, state);
     }

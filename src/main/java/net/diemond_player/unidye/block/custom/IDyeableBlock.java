@@ -17,10 +17,10 @@ public interface IDyeableBlock extends BlockEntityProvider {
         return new DyeableBlockEntity(pos, state);
     }
 
-    default ItemStack pickBlock(BlockView world, BlockPos pos, ItemStack stack){
-        DyeableBlockEntity blockEntity = UnidyeBlockEntities.DYEABLE_BE.get(world,pos);
+    default ItemStack pickBlock(BlockView world, BlockPos pos, ItemStack stack) {
+        DyeableBlockEntity blockEntity = UnidyeBlockEntities.DYEABLE_BE.get(world, pos);
         int color = DyeableBlockEntity.DEFAULT_COLOR;
-        if(blockEntity != null){
+        if (blockEntity != null) {
             color = blockEntity.color;
         }
         NbtCompound subNbt = stack.getOrCreateSubNbt("display");

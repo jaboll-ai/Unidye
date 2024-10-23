@@ -23,8 +23,8 @@ public class CustomCarpetDyeingRecipe extends SpecialCraftingRecipe {
     public boolean matches(RecipeInputInventory inventory, World world) {
         for (int i = 0; i < inventory.size(); ++i) {
             ItemStack itemStack2 = inventory.getStack(i);
-            if ((itemStack2.isIn(ItemTags.WOOL_CARPETS) && i!=4)
-                    ||(itemStack2.getItem() == UnidyeItems.CUSTOM_DYE && i==4)) {
+            if ((itemStack2.isIn(ItemTags.WOOL_CARPETS) && i != 4)
+                    || (itemStack2.getItem() == UnidyeItems.CUSTOM_DYE && i == 4)) {
                 continue;
             }
             return false;

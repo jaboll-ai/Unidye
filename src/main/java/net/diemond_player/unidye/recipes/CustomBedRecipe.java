@@ -29,7 +29,7 @@ public class CustomBedRecipe extends SpecialCraftingRecipe {
         for (int i = 0; i < inventory.size(); ++i) {
             ItemStack itemStack2 = inventory.getStack(i);
             if (itemStack2.isEmpty()) continue;
-            if (itemStack2.isIn(ItemTags.PLANKS) && woolCount==3) {
+            if (itemStack2.isIn(ItemTags.PLANKS) && woolCount == 3) {
                 if (planksCount == 3) return false;
                 planksCount++;
                 continue;
@@ -37,11 +37,11 @@ public class CustomBedRecipe extends SpecialCraftingRecipe {
             if (itemStack2.getItem() == UnidyeBlocks.CUSTOM_WOOL.asItem()) {
                 if (woolCount == 3) return false;
                 woolCount++;
-                if(!itemStack.isEmpty()){
-                    if(UnidyeUtils.getColor(itemStack2)==UnidyeUtils.getColor(itemStack)
-                            && (Objects.equals(DyeableWoolBlockItem.getMaterialColor(itemStack2, "leather"), DyeableWoolBlockItem.getMaterialColor(itemStack, "leather")))){
+                if (!itemStack.isEmpty()) {
+                    if (UnidyeUtils.getColor(itemStack2) == UnidyeUtils.getColor(itemStack)
+                            && (Objects.equals(DyeableWoolBlockItem.getMaterialColor(itemStack2, "leather"), DyeableWoolBlockItem.getMaterialColor(itemStack, "leather")))) {
                         continue;
-                    }else{
+                    } else {
                         return false;
                     }
                 }
@@ -58,7 +58,7 @@ public class CustomBedRecipe extends SpecialCraftingRecipe {
                 && inventory.getStack(8).isEmpty()))) {
             return false;
         }
-        return !itemStack.isEmpty() && planksCount==3;
+        return !itemStack.isEmpty() && planksCount == 3;
     }
 
     @Override

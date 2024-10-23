@@ -16,13 +16,14 @@ import org.spongepowered.asm.mixin.injection.At;
 public abstract class ShieldDecorationRecipeMixin {
     @ModifyReturnValue(method = "matches(Lnet/minecraft/inventory/RecipeInputInventory;Lnet/minecraft/world/World;)Z", at = @At(value = "RETURN"))
     private boolean matches(boolean original, @Local(argsOnly = true) RecipeInputInventory recipeInputInventory, @Local(argsOnly = true) World world) {
-        if(original) {
+        if (original) {
             return doesItActuallyMatchThough(recipeInputInventory, world);
         }
         return false;
     }
+
     @Unique
-    private boolean doesItActuallyMatchThough(RecipeInputInventory recipeInputInventory, World world){
+    private boolean doesItActuallyMatchThough(RecipeInputInventory recipeInputInventory, World world) {
         for (int i = 0; i < recipeInputInventory.size(); ++i) {
             ItemStack itemStack3 = recipeInputInventory.getStack(i);
             if (itemStack3.isEmpty()) continue;

@@ -1,6 +1,6 @@
 package net.diemond_player.unidye.mixin;
 
-import net.diemond_player.unidye.item.custom.UnidyeableItem;
+import net.diemond_player.unidye.util.UnidyeUtils;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.DyeableItem;
 import net.minecraft.item.ItemStack;
@@ -18,6 +18,6 @@ public interface DyeableItemMixin {
      */
     @Overwrite
     public static ItemStack blendAndSetColor(ItemStack stack, List<DyeItem> colors) {
-        return UnidyeableItem.blendAndSetColor(stack, colors, Lists.newArrayList());
+        return UnidyeUtils.blendAndSetColor(stack, colors, Lists.newArrayList());
     }
 }

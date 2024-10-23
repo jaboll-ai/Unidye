@@ -36,7 +36,7 @@ public class MixedBannerDuplicateRecipe extends SpecialCraftingRecipe {
                     return false;
                 }
                 continue;
-            } else if (item instanceof DyeableBannerItem){
+            } else if (item instanceof DyeableBannerItem) {
                 return false;
             }
 
@@ -47,25 +47,25 @@ public class MixedBannerDuplicateRecipe extends SpecialCraftingRecipe {
                 }
                 itemStack2 = itemStack3;
                 continue;
-            } else if (item instanceof BannerItem){
+            } else if (item instanceof BannerItem) {
                 return false;
             }
 
             return false;
         }
-        if(itemStack != null && itemStack2 != null) {
+        if (itemStack != null && itemStack2 != null) {
             int color = UnidyeUtils.getColor(itemStack);
-            float[] a = ((BannerItem)itemStack2.getItem()).getColor().getColorComponents();
-            int n = (int) (a[0]*255);
-            n = (n << 8) + (int) (a[1]*255);
-            n = (n << 8) + (int) (a[2]*255);
+            float[] a = ((BannerItem) itemStack2.getItem()).getColor().getColorComponents();
+            int n = (int) (a[0] * 255);
+            n = (n << 8) + (int) (a[1] * 255);
+            n = (n << 8) + (int) (a[2] * 255);
             bl = (n == color);
         }
         return bl;
     }
 
     public ItemStack craft(RecipeInputInventory recipeInputInventory, DynamicRegistryManager dynamicRegistryManager) {
-        for(int i = 0; i < recipeInputInventory.size(); ++i) {
+        for (int i = 0; i < recipeInputInventory.size(); ++i) {
             ItemStack itemStack = recipeInputInventory.getStack(i);
             if (!itemStack.isEmpty()) {
                 int j = DyeableBannerBlockEntity.getPatternCount(itemStack);
@@ -81,7 +81,7 @@ public class MixedBannerDuplicateRecipe extends SpecialCraftingRecipe {
     public DefaultedList<ItemStack> getRemainder(RecipeInputInventory recipeInputInventory) {
         DefaultedList<ItemStack> defaultedList = DefaultedList.ofSize(recipeInputInventory.size(), ItemStack.EMPTY);
 
-        for(int i = 0; i < defaultedList.size(); ++i) {
+        for (int i = 0; i < defaultedList.size(); ++i) {
             ItemStack itemStack = recipeInputInventory.getStack(i);
             if (!itemStack.isEmpty()) {
                 if (itemStack.getItem().hasRecipeRemainder()) {

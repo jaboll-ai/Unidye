@@ -28,7 +28,7 @@ import net.minecraft.util.math.RotationPropertyHelper;
 
 import java.util.List;
 
-@Environment(value= EnvType.CLIENT)
+@Environment(value = EnvType.CLIENT)
 public class DyeableBannerBlockEntityRenderer
         implements BlockEntityRenderer<DyeableBannerBlockEntity> {
     private static final int WIDTH = 20;
@@ -91,8 +91,8 @@ public class DyeableBannerBlockEntityRenderer
         this.pillar.render(matrixStack, vertexConsumer, i, j);
         this.crossbar.render(matrixStack, vertexConsumer, i, j);
         BlockPos blockPos = bannerBlockEntity.getPos();
-        float k = ((float)Math.floorMod((long)(blockPos.getX() * 7 + blockPos.getY() * 9 + blockPos.getZ() * 13) + l, 100L) + f) / 100.0f;
-        this.banner.pitch = (-0.0125f + 0.01f * MathHelper.cos((float)Math.PI * 2 * k)) * (float)Math.PI;
+        float k = ((float) Math.floorMod((long) (blockPos.getX() * 7 + blockPos.getY() * 9 + blockPos.getZ() * 13) + l, 100L) + f) / 100.0f;
+        this.banner.pitch = (-0.0125f + 0.01f * MathHelper.cos((float) Math.PI * 2 * k)) * (float) Math.PI;
         this.banner.pivotY = -32.0f;
         DyeableBannerBlockEntityRenderer.renderCanvas(matrixStack, vertexConsumerProvider, i, j, this.banner, ModelLoader.BANNER_BASE, true, list);
         matrixStack.pop();
@@ -107,7 +107,7 @@ public class DyeableBannerBlockEntityRenderer
         canvas.render(matrices, baseSprite.getVertexConsumer(vertexConsumers, RenderLayer::getEntitySolid, glint), light, overlay);
         for (int i = 0; i < 17 && i < patterns.size(); ++i) {
             Pair<RegistryEntry<BannerPattern>, ?> pair = patterns.get(i);
-            if(pair.getSecond() instanceof DyeColor dyeColor){
+            if (pair.getSecond() instanceof DyeColor dyeColor) {
                 float[] fs = dyeColor.getColorComponents();
                 pair.getFirst().getKey().map(key -> isBanner ? TexturedRenderLayers.getBannerPatternTextureId(key) : TexturedRenderLayers.getShieldPatternTextureId(key)).ifPresent(sprite -> canvas.render(matrices, sprite.getVertexConsumer(vertexConsumers, RenderLayer::getEntityNoOutline), light, overlay, fs[0], fs[1], fs[2], 1.0f));
             } else {

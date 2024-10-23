@@ -23,13 +23,13 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
-public class DyeableBannerBlock extends BannerBlock{
+public class DyeableBannerBlock extends BannerBlock {
     public static final IntProperty ROTATION = Properties.ROTATION;
     private static final VoxelShape SHAPE = Block.createCuboidShape(4.0, 0.0, 4.0, 12.0, 16.0, 12.0);
 
     public DyeableBannerBlock(AbstractBlock.Settings settings) {
         super(DyeColor.CYAN, settings);
-        this.setDefaultState((BlockState)((BlockState)this.stateManager.getDefaultState()).with(ROTATION, 0));
+        this.setDefaultState((BlockState) ((BlockState) this.stateManager.getDefaultState()).with(ROTATION, 0));
     }
 
     @Override
@@ -55,7 +55,7 @@ public class DyeableBannerBlock extends BannerBlock{
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof DyeableBannerBlockEntity) {
-            return ((DyeableBannerBlockEntity)blockEntity).getPickStack();
+            return ((DyeableBannerBlockEntity) blockEntity).getPickStack();
         }
         return super.getPickStack(world, pos, state);
     }
@@ -72,7 +72,7 @@ public class DyeableBannerBlock extends BannerBlock{
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return (BlockState)this.getDefaultState().with(ROTATION, RotationPropertyHelper.fromYaw(ctx.getPlayerYaw() + 180.0f));
+        return (BlockState) this.getDefaultState().with(ROTATION, RotationPropertyHelper.fromYaw(ctx.getPlayerYaw() + 180.0f));
     }
 
     @Override
@@ -85,12 +85,12 @@ public class DyeableBannerBlock extends BannerBlock{
 
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation) {
-        return (BlockState)state.with(ROTATION, rotation.rotate(state.get(ROTATION), 16));
+        return (BlockState) state.with(ROTATION, rotation.rotate(state.get(ROTATION), 16));
     }
 
     @Override
     public BlockState mirror(BlockState state, BlockMirror mirror) {
-        return (BlockState)state.with(ROTATION, mirror.mirror(state.get(ROTATION), 16));
+        return (BlockState) state.with(ROTATION, mirror.mirror(state.get(ROTATION), 16));
     }
 
     @Override

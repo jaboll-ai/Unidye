@@ -15,15 +15,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(BeaconBlockEntity.class)
-public abstract class BeaconBlockEntityMixin{
+public abstract class BeaconBlockEntityMixin {
     @ModifyVariable(method = "tick", at = @At(value = "INVOKE_ASSIGN",
             target = "Lnet/minecraft/util/DyeColor;getColorComponents()[F"), ordinal = 0)
     private static float[] tick(float[] fs, World world, BlockPos BlockPos, BlockState state, BeaconBlockEntity blockEntity, @Local(ordinal = 1) BlockPos pos) {
         BlockState blockState = world.getBlockState(pos);
         Block block = blockState.getBlock();
         float[] fsI = new float[3];
-        if(block instanceof DyeableGlassBlock || block instanceof DyeablePaneBlock){
-            if(UnidyeBlockEntities.DYEABLE_GLASS_BE.get(world,pos) != null) {
+        if (block instanceof DyeableGlassBlock || block instanceof DyeablePaneBlock) {
+            if (UnidyeBlockEntities.DYEABLE_GLASS_BE.get(world, pos) != null) {
                 int color = UnidyeBlockEntities.DYEABLE_GLASS_BE.get(world, pos).beaconColor;
                 fsI[0] = ((color & 0xFF0000) >> 16) / 255.0f;
                 fsI[1] = ((color & 0xFF00) >> 8) / 255.0f;
@@ -31,6 +31,6 @@ public abstract class BeaconBlockEntityMixin{
                 return fsI;
             }
         }
-        return ((Stainable)((Object)block)).getColor().getColorComponents();
+        return ((Stainable) ((Object) block)).getColor().getColorComponents();
     }
 }

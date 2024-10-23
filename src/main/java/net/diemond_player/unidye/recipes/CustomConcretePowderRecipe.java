@@ -12,7 +12,6 @@ import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -31,24 +30,24 @@ public class CustomConcretePowderRecipe extends SpecialCraftingRecipe {
             if (item == Items.SAND) {
                 sandCount++;
                 continue;
-            } else if (item == Items.GRAVEL){
+            } else if (item == Items.GRAVEL) {
                 gravelCount++;
                 continue;
-            } else if (item == UnidyeItems.CUSTOM_DYE){
+            } else if (item == UnidyeItems.CUSTOM_DYE) {
                 dye = true;
                 continue;
             }
             return false;
         }
-        return sandCount==4 && gravelCount==4 && dye;
+        return sandCount == 4 && gravelCount == 4 && dye;
     }
 
     @Override
     public ItemStack craft(RecipeInputInventory inventory, DynamicRegistryManager registryManager) {
         ItemStack itemStack = ItemStack.EMPTY;
         for (int i = 0; i < inventory.size(); ++i) {
-            if(inventory.getStack(i).getItem() == UnidyeItems.CUSTOM_DYE){
-                itemStack=inventory.getStack(i);
+            if (inventory.getStack(i).getItem() == UnidyeItems.CUSTOM_DYE) {
+                itemStack = inventory.getStack(i);
             }
         }
         ItemStack itemStack1 = new ItemStack(UnidyeBlocks.CUSTOM_CONCRETE_POWDER.asItem());

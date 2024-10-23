@@ -110,16 +110,16 @@ public class CustomFireworkStarFadeRecipe extends SpecialCraftingRecipe {
                 nbtCompound.putBoolean("Trail", true);
                 continue;
             }
-            if(itemStack2.getItem() instanceof CustomDyeItem) {
+            if (itemStack2.getItem() instanceof CustomDyeItem) {
                 list.add(UnidyeUtils.getMaterialColor(itemStack2, "firework"));
                 continue;
             }
-            if(itemStack2.getItem() instanceof DyeItem) {
+            if (itemStack2.getItem() instanceof DyeItem) {
                 list.add(((DyeItem) itemStack2.getItem()).getColor().getFireworkColor());
             }
         }
         nbtCompound.putIntArray("Colors", list);
-        nbtCompound.putByte("Type", (byte)type.getId());
+        nbtCompound.putByte("Type", (byte) type.getId());
         return itemStack;
     }
 

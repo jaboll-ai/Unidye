@@ -38,17 +38,6 @@
                   "op": "replace"
                 }
               ]
-            },
-            {
-              "function": "minecraft:copy_nbt",
-              "source": "block_entity",
-              "ops": [
-                {
-                  "source": "bedColor",
-                  "target": "2.bedColor",
-                  "op": "replace"
-                }
-              ]
             }
           ]
         }

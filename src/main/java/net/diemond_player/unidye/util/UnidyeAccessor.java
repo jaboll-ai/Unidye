@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockRenderView;
 
-public interface IEntityAccessor {
+public interface UnidyeAccessor {
 
     int unidye$getCustomColor();
 
@@ -35,6 +35,7 @@ public interface IEntityAccessor {
     void unidye$setCustomColorsTo(MapState mapState);
 
     void unidye$render(BlockRenderView world, BakedModel model, BlockState state, BlockPos pos, MatrixStack matrices, VertexConsumer vertexConsumer, boolean cull, Random random, long seed, int overlay, int color);
+
     void unidye$specialRender(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha);
 
 }

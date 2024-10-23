@@ -1,14 +1,13 @@
 package net.diemond_player.unidye.recipes;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.diemond_player.unidye.item.custom.CustomDyeItem;
-import net.diemond_player.unidye.item.custom.DyeableWoolBlockItem;
 import net.diemond_player.unidye.util.UnidyeUtils;
 import net.minecraft.inventory.RecipeInputInventory;
-import net.minecraft.item.*;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.item.DyeItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
@@ -16,12 +15,9 @@ import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.Util;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.Objects;
 
 public class CustomFireworkStarRecipe extends SpecialCraftingRecipe {
     public CustomFireworkStarRecipe(Identifier id, CraftingRecipeCategory category) {
@@ -65,7 +61,7 @@ public class CustomFireworkStarRecipe extends SpecialCraftingRecipe {
                 continue;
             }
             if (item instanceof DyeItem) {
-                list.add(((DyeItem)item).getColor().getFireworkColor());
+                list.add(((DyeItem) item).getColor().getFireworkColor());
                 continue;
             }
             if (!INPUT_STAR.test(itemStack2)) continue;

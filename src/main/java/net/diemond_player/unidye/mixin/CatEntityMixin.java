@@ -1,13 +1,12 @@
 package net.diemond_player.unidye.mixin;
 
 import net.diemond_player.unidye.item.custom.CustomDyeItem;
-import net.diemond_player.unidye.util.IEntityAccessor;
+import net.diemond_player.unidye.util.UnidyeAccessor;
 import net.diemond_player.unidye.util.UnidyeUtils;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.passive.CatEntity;
-import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
@@ -24,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(CatEntity.class)
-public abstract class CatEntityMixin implements IEntityAccessor {
+public abstract class CatEntityMixin implements UnidyeAccessor {
     @Unique
     private static final TrackedData<Integer> CUSTOM_COLOR = DataTracker.registerData(CatEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
@@ -41,23 +40,23 @@ public abstract class CatEntityMixin implements IEntityAccessor {
     }
 
     @Inject(method = "initDataTracker", at = @At("HEAD"))
-    private void initDataTracker(CallbackInfo ci){
+    private void initDataTracker(CallbackInfo ci) {
         ((CatEntity) (Object) this).getDataTracker().startTracking(CUSTOM_COLOR, 0xFFFFFF);
     }
 
 
     @Inject(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/CatEntity;setCollarColor(Lnet/minecraft/util/DyeColor;)V"))
-    private void interactMobReset(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir){
-        IEntityAccessor cat = (IEntityAccessor) ((CatEntity) (Object) this);
+    private void interactMobReset(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+        UnidyeAccessor cat = (UnidyeAccessor) ((CatEntity) (Object) this);
         cat.unidye$setCustomColor(0xFFFFFF);
     }
 
     @Inject(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/DyeItem;getColor()Lnet/minecraft/util/DyeColor;", shift = At.Shift.AFTER), cancellable = true)
-    private void interactMobCheck(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir){
+    private void interactMobCheck(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         ItemStack itemStack = player.getStackInHand(hand);
         Item item = itemStack.getItem();
-        IEntityAccessor cat = (IEntityAccessor) ((CatEntity) (Object) this);
-        DyeColor dyeColor = ((DyeItem)item).getColor();
+        UnidyeAccessor cat = (UnidyeAccessor) ((CatEntity) (Object) this);
+        DyeColor dyeColor = ((DyeItem) item).getColor();
         if (cat.unidye$getCustomColor() != 0xFFFFFF) {
             ((CatEntity) (Object) this).setCollarColor(dyeColor);
             cat.unidye$setCustomColor(0xFFFFFF);
@@ -71,10 +70,10 @@ public abstract class CatEntityMixin implements IEntityAccessor {
     }
 
     @Inject(method = "interactMob", at = @At("HEAD"), cancellable = true)
-    private void interactMobSet(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir){
+    private void interactMobSet(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         ItemStack itemStack = player.getStackInHand(hand);
         Item item = itemStack.getItem();
-        IEntityAccessor cat = (IEntityAccessor) ((CatEntity) (Object) this);
+        UnidyeAccessor cat = (UnidyeAccessor) ((CatEntity) (Object) this);
         if (!(((CatEntity) (Object) this).getWorld().isClient)) {
             if (((CatEntity) (Object) this).isTamed()) {
                 if (item instanceof CustomDyeItem && ((CatEntity) (Object) this).isOwner(player)) {

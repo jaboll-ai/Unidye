@@ -35,7 +35,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class DyeableBedBlock extends BedBlock
-        implements IDyeableBlock{
+        implements IDyeableBlock {
     public static final EnumProperty<BedPart> PART = Properties.BED_PART;
     public static final BooleanProperty OCCUPIED = Properties.OCCUPIED;
     protected static final int field_31009 = 9;
@@ -52,7 +52,7 @@ public class DyeableBedBlock extends BedBlock
 
     public DyeableBedBlock(AbstractBlock.Settings settings) {
         super(DyeColor.CYAN, settings);
-        this.setDefaultState((BlockState)((BlockState)((BlockState)this.stateManager.getDefaultState()).with(PART, BedPart.FOOT)).with(OCCUPIED, false));
+        this.setDefaultState((BlockState) ((BlockState) ((BlockState) this.stateManager.getDefaultState()).with(PART, BedPart.FOOT)).with(OCCUPIED, false));
     }
 
     @Nullable
@@ -126,7 +126,7 @@ public class DyeableBedBlock extends BedBlock
         Vec3d vec3d = entity.getVelocity();
         if (vec3d.y < 0.0) {
             double d = entity instanceof LivingEntity ? 1.0 : 0.8;
-            entity.setVelocity(vec3d.x, -vec3d.y * (double)0.66f * d, vec3d.z);
+            entity.setVelocity(vec3d.x, -vec3d.y * (double) 0.66f * d, vec3d.z);
         }
     }
 
@@ -134,7 +134,7 @@ public class DyeableBedBlock extends BedBlock
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (direction == DyeableBedBlock.getDirectionTowardsOtherPart(state.get(PART), state.get(FACING))) {
             if (neighborState.isOf(this) && neighborState.get(PART) != state.get(PART)) {
-                return (BlockState)state.with(OCCUPIED, neighborState.get(OCCUPIED));
+                return (BlockState) state.with(OCCUPIED, neighborState.get(OCCUPIED));
             }
             return Blocks.AIR.getDefaultState();
         }
@@ -165,7 +165,7 @@ public class DyeableBedBlock extends BedBlock
         BlockPos blockPos2 = blockPos.offset(direction);
         World world = ctx.getWorld();
         if (world.getBlockState(blockPos2).canReplace(ctx) && world.getWorldBorder().contains(blockPos2)) {
-            return (BlockState)this.getDefaultState().with(FACING, direction);
+            return (BlockState) this.getDefaultState().with(FACING, direction);
         }
         return null;
     }
@@ -266,11 +266,12 @@ public class DyeableBedBlock extends BedBlock
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING, PART, OCCUPIED);
     }
+
     @Override
     public ItemStack pickBlock(BlockView world, BlockPos pos, ItemStack stack) {
-        DyeableBedBlockEntity blockEntity = UnidyeBlockEntities.DYEABLE_BED_BE.get(world,pos);
+        DyeableBedBlockEntity blockEntity = UnidyeBlockEntities.DYEABLE_BED_BE.get(world, pos);
         int color = DyeableBedBlockEntity.DEFAULT_COLOR;
-        if(blockEntity != null){
+        if (blockEntity != null) {
             color = blockEntity.color;
         }
         NbtCompound subNbt = stack.getOrCreateSubNbt("display");
@@ -282,7 +283,7 @@ public class DyeableBedBlock extends BedBlock
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
         if (DyeableBedBlockEntity.getColor(world, pos) != DyeableBedBlockEntity.DEFAULT_COLOR) {
             ItemStack stack = super.getPickStack(world, pos, state);
-            return pickBlock(world,pos,stack);
+            return pickBlock(world, pos, stack);
         } else {
             return new ItemStack(this);
         }
@@ -298,7 +299,7 @@ public class DyeableBedBlock extends BedBlock
         super.onPlaced(world, pos, state, placer, itemStack);
         if (!world.isClient) {
             BlockPos blockPos = pos.offset(state.get(FACING));
-            world.setBlockState(blockPos, (BlockState)state.with(PART, BedPart.HEAD), Block.NOTIFY_ALL);
+            world.setBlockState(blockPos, (BlockState) state.with(PART, BedPart.HEAD), Block.NOTIFY_ALL);
             world.updateNeighbors(pos, Blocks.AIR);
             state.updateNeighbors(world, pos, Block.NOTIFY_ALL);
         }

@@ -5,10 +5,11 @@ import net.diemond_player.unidye.item.UnidyeItems;
 import net.diemond_player.unidye.item.custom.CustomDyeItem;
 import net.diemond_player.unidye.item.custom.DyeableBannerItem;
 import net.minecraft.block.entity.BannerPattern;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.item.*;
+import net.minecraft.item.BannerItem;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.DyeItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
@@ -18,23 +19,23 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.util.DyeColor;
 import org.jetbrains.annotations.Nullable;
-import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Mutable;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(LoomScreenHandler.class)
-public abstract class LoomScreenHandlerMixin extends ScreenHandler{
+public abstract class LoomScreenHandlerMixin extends ScreenHandler {
     protected LoomScreenHandlerMixin(@Nullable ScreenHandlerType<?> type, int syncId, Inventory input) {
         super(type, syncId);
         this.input = input;
     }
 
-//    @Inject(method = "updateOutputSlot", at = @At("HEAD"))
+    //    @Inject(method = "updateOutputSlot", at = @At("HEAD"))
 //    private void updateOutputSlot(RegistryEntry<BannerPattern> pattern, CallbackInfo ci){
 //
 //    }
@@ -61,7 +62,9 @@ public abstract class LoomScreenHandlerMixin extends ScreenHandler{
     @Shadow
     private final Inventory input;
 
-    @Shadow @Final private ScreenHandlerContext context;
+    @Shadow
+    @Final
+    private ScreenHandlerContext context;
 
 //    @Inject(method = "<init>(ILnet/minecraft/entity/player/PlayerInventory;Lnet/minecraft/screen/ScreenHandlerContext;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/screen/LoomScreenHandler;addSlot(Lnet/minecraft/screen/slot/Slot;)Lnet/minecraft/screen/slot/Slot;", ordinal = 1))
 //    private void canInsert(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context, CallbackInfo ci){
@@ -105,10 +108,10 @@ public abstract class LoomScreenHandlerMixin extends ScreenHandler{
 //    }
 
     @Inject(method = "updateOutputSlot", at = @At(value = "HEAD"), cancellable = true)
-    private void updateOutputSlottt(RegistryEntry<BannerPattern> pattern, CallbackInfo ci){
+    private void updateOutputSlottt(RegistryEntry<BannerPattern> pattern, CallbackInfo ci) {
         ItemStack itemStack = this.bannerSlot.getStack();
         ItemStack itemStack2 = this.dyeSlot.getStack();
-        if(itemStack.isOf(UnidyeItems.CUSTOM_BANNER)){
+        if (itemStack.isOf(UnidyeItems.CUSTOM_BANNER)) {
             ItemStack itemStack3 = ItemStack.EMPTY;
             if (!itemStack.isEmpty() && !itemStack2.isEmpty()) {
                 NbtList nbtList;
@@ -125,9 +128,9 @@ public abstract class LoomScreenHandlerMixin extends ScreenHandler{
                 }
                 NbtCompound nbtCompound2 = new NbtCompound();
                 nbtCompound2.putString("Pattern", pattern.value().getId());
-                if(itemStack2.getItem() instanceof CustomDyeItem) {
+                if (itemStack2.getItem() instanceof CustomDyeItem) {
                     nbtCompound2.putInt("Color", ((CustomDyeItem) itemStack2.getItem()).getMaterialColor(itemStack2, "leather"));
-                }else{
+                } else {
                     nbtCompound2.putInt("Color", ((DyeItem) itemStack2.getItem()).getColor().getId());
                 }
                 nbtList.add(nbtCompound2);
@@ -137,16 +140,16 @@ public abstract class LoomScreenHandlerMixin extends ScreenHandler{
                 this.outputSlot.setStackNoCallbacks(itemStack3);
             }
             ci.cancel();
-        } else if(itemStack2.getItem() instanceof CustomDyeItem) {
+        } else if (itemStack2.getItem() instanceof CustomDyeItem) {
             ItemStack itemStack3 = new ItemStack(UnidyeItems.CUSTOM_BANNER, 1);
             if (!itemStack.isEmpty() && !itemStack2.isEmpty()) {
                 NbtList nbtList;
                 itemStack3.setNbt(itemStack.getNbt());
-                float[] a = ((BannerItem)itemStack.getItem()).getColor().getColorComponents();
-                int n = (int) (a[0]*255);
-                n = (n << 8) + (int) (a[1]*255);
-                n = (n << 8) + (int) (a[2]*255);
-                ((DyeableBannerItem)itemStack3.getItem()).setColor(itemStack3, n);
+                float[] a = ((BannerItem) itemStack.getItem()).getColor().getColorComponents();
+                int n = (int) (a[0] * 255);
+                n = (n << 8) + (int) (a[1] * 255);
+                n = (n << 8) + (int) (a[2] * 255);
+                ((DyeableBannerItem) itemStack3.getItem()).setColor(itemStack3, n);
                 NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(itemStack3);
                 if (nbtCompound != null && nbtCompound.contains("Patterns", NbtElement.LIST_TYPE)) {
                     nbtList = nbtCompound.getList("Patterns", NbtElement.COMPOUND_TYPE);

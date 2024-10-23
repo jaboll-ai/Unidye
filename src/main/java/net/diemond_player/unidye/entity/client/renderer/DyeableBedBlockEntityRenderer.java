@@ -5,7 +5,7 @@ import net.diemond_player.unidye.block.custom.DyeableBedBlock;
 import net.diemond_player.unidye.block.entity.DyeableBedBlockEntity;
 import net.diemond_player.unidye.block.entity.UnidyeBlockEntities;
 import net.diemond_player.unidye.entity.layer.UnidyeModelLayers;
-import net.diemond_player.unidye.util.IEntityAccessor;
+import net.diemond_player.unidye.util.UnidyeAccessor;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
 import net.minecraft.block.DoubleBlockProperties;
@@ -27,7 +27,7 @@ import net.minecraft.util.math.RotationAxis;
 import net.minecraft.world.World;
 
 public class DyeableBedBlockEntityRenderer
-        implements BlockEntityRenderer<DyeableBedBlockEntity>{
+        implements BlockEntityRenderer<DyeableBedBlockEntity> {
     private final ModelPart bedHead;
     private final ModelPart bedFoot;
 
@@ -43,7 +43,7 @@ public class DyeableBedBlockEntityRenderer
         modelPartData.addChild("main1", ModelPartBuilder.create().uv(0, 0).cuboid(0.0f, 0.0f, 0.0f, 16.0f, 8.0f, 6.0f), ModelTransform.NONE);
         modelPartData.addChild("main2", ModelPartBuilder.create().uv(0, 44).cuboid(0.0f, 8.0f, 4.0f, 16.0f, 8.0f, 2.0f), ModelTransform.NONE);
         modelPartData.addChild(EntityModelPartNames.LEFT_LEG, ModelPartBuilder.create().uv(50, 6).cuboid(0.0f, 6.0f, 0.0f, 3.0f, 3.0f, 3.0f), ModelTransform.rotation(1.5707964f, 0.0f, 1.5707964f));
-        modelPartData.addChild(EntityModelPartNames.RIGHT_LEG, ModelPartBuilder.create().uv(50, 18).cuboid(-16.0f, 6.0f, 0.0f, 3.0f, 3.0f, 3.0f), ModelTransform.rotation(1.5707964f, 0.0f, (float)Math.PI));
+        modelPartData.addChild(EntityModelPartNames.RIGHT_LEG, ModelPartBuilder.create().uv(50, 18).cuboid(-16.0f, 6.0f, 0.0f, 3.0f, 3.0f, 3.0f), ModelTransform.rotation(1.5707964f, 0.0f, (float) Math.PI));
         return TexturedModelData.of(modelData, 128, 128);
     }
 
@@ -59,13 +59,13 @@ public class DyeableBedBlockEntityRenderer
 
     @Override
     public void render(DyeableBedBlockEntity bedBlockEntity, float f, MatrixStack matrixStack, VertexConsumerProvider
-        vertexConsumerProvider, int i, int j) {
+            vertexConsumerProvider, int i, int j) {
         SpriteIdentifier spriteIdentifier = new SpriteIdentifier(TexturedRenderLayers.BEDS_ATLAS_TEXTURE, new Identifier("entity/bed/custom"));
         World world2 = bedBlockEntity.getWorld();
         if (world2 != null) {
             BlockState blockState = bedBlockEntity.getCachedState();
             DoubleBlockProperties.PropertySource<DyeableBedBlockEntity> propertySource = DoubleBlockProperties.toPropertySource(UnidyeBlockEntities.DYEABLE_BED_BE, DyeableBedBlock::getBedPart, DyeableBedBlock::getOppositePartDirection, ChestBlock.FACING, blockState, world2, bedBlockEntity.getPos(), (world, pos) -> false);
-            int k = ((Int2IntFunction)propertySource.apply(new LightmapCoordinatesRetriever())).get(i);
+            int k = ((Int2IntFunction) propertySource.apply(new LightmapCoordinatesRetriever())).get(i);
             this.renderPart(matrixStack, vertexConsumerProvider, blockState.get(DyeableBedBlock.PART) == BedPart.HEAD ? this.bedHead : this.bedFoot, blockState.get(DyeableBedBlock.FACING), spriteIdentifier, k, j, false, bedBlockEntity);
         } else {
             this.renderPart(matrixStack, vertexConsumerProvider, this.bedHead, Direction.SOUTH, spriteIdentifier, i, j, false, bedBlockEntity);
@@ -85,7 +85,7 @@ public class DyeableBedBlockEntityRenderer
         float red = ((color & 0xFF0000) >> 16) / 255.0f;
         float green = ((color & 0xFF00) >> 8) / 255.0f;
         float blue = ((color & 0xFF) >> 0) / 255.0f;
-        ((IEntityAccessor) (Object) part).unidye$specialRender(matrices, vertexConsumer, light, overlay, red, green, blue, 1.0f);
+        ((UnidyeAccessor) (Object) part).unidye$specialRender(matrices, vertexConsumer, light, overlay, red, green, blue, 1.0f);
         matrices.pop();
     }
 }

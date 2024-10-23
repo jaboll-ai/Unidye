@@ -25,13 +25,13 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 
-public class DyeableWallBannerBlock extends WallBannerBlock{
+public class DyeableWallBannerBlock extends WallBannerBlock {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     private static final Map<Direction, VoxelShape> FACING_TO_SHAPE = Maps.newEnumMap(ImmutableMap.of(Direction.NORTH, Block.createCuboidShape(0.0, 0.0, 14.0, 16.0, 12.5, 16.0), Direction.SOUTH, Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 12.5, 2.0), Direction.WEST, Block.createCuboidShape(14.0, 0.0, 0.0, 16.0, 12.5, 16.0), Direction.EAST, Block.createCuboidShape(0.0, 0.0, 0.0, 2.0, 12.5, 16.0)));
 
     public DyeableWallBannerBlock(AbstractBlock.Settings settings) {
         super(DyeColor.CYAN, settings);
-        this.setDefaultState((BlockState)((BlockState)this.stateManager.getDefaultState()).with(FACING, Direction.NORTH));
+        this.setDefaultState((BlockState) ((BlockState) this.stateManager.getDefaultState()).with(FACING, Direction.NORTH));
     }
 
     @Override
@@ -65,7 +65,8 @@ public class DyeableWallBannerBlock extends WallBannerBlock{
         BlockPos blockPos = ctx.getBlockPos();
         for (Direction direction : directions = ctx.getPlacementDirections()) {
             Direction direction2;
-            if (!direction.getAxis().isHorizontal() || !(blockState = (BlockState)blockState.with(FACING, direction2 = direction.getOpposite())).canPlaceAt(worldView, blockPos)) continue;
+            if (!direction.getAxis().isHorizontal() || !(blockState = (BlockState) blockState.with(FACING, direction2 = direction.getOpposite())).canPlaceAt(worldView, blockPos))
+                continue;
             return blockState;
         }
         return null;
@@ -73,7 +74,7 @@ public class DyeableWallBannerBlock extends WallBannerBlock{
 
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation) {
-        return (BlockState)state.with(FACING, rotation.rotate(state.get(FACING)));
+        return (BlockState) state.with(FACING, rotation.rotate(state.get(FACING)));
     }
 
     @Override
@@ -85,6 +86,7 @@ public class DyeableWallBannerBlock extends WallBannerBlock{
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
+
     @Override
     public boolean canMobSpawnInside(BlockState state) {
         return true;
@@ -108,7 +110,7 @@ public class DyeableWallBannerBlock extends WallBannerBlock{
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof DyeableBannerBlockEntity) {
-            return ((DyeableBannerBlockEntity)blockEntity).getPickStack();
+            return ((DyeableBannerBlockEntity) blockEntity).getPickStack();
         }
         return super.getPickStack(world, pos, state);
     }

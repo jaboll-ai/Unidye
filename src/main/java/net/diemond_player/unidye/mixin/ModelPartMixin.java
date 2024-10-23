@@ -1,6 +1,6 @@
 package net.diemond_player.unidye.mixin;
 
-import net.diemond_player.unidye.util.IEntityAccessor;
+import net.diemond_player.unidye.util.UnidyeAccessor;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Mixin(ModelPart.class)
-public abstract class ModelPartMixin implements IEntityAccessor {
+public abstract class ModelPartMixin implements UnidyeAccessor {
 
     @Mutable
     @Final
@@ -36,7 +36,8 @@ public abstract class ModelPartMixin implements IEntityAccessor {
 
     }
 
-    @Shadow public abstract boolean hasChild(String child);
+    @Shadow
+    public abstract boolean hasChild(String child);
 
     @Override
     public void unidye$specialRender(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
@@ -54,10 +55,10 @@ public abstract class ModelPartMixin implements IEntityAccessor {
         this.children.get("left_leg").render(matrices, vertices, light, overlay);
         this.children.get("right_leg").render(matrices, vertices, light, overlay);
         this.children.get("main").render(matrices, vertices, light, overlay, red, green, blue, alpha);
-        if(this.children.containsKey("main1")){
+        if (this.children.containsKey("main1")) {
             this.children.get("main1").render(matrices, vertices, light, overlay);
         }
-        if(this.children.containsKey("main2")){
+        if (this.children.containsKey("main2")) {
             this.children.get("main2").render(matrices, vertices, light, overlay);
         }
         matrices.pop();

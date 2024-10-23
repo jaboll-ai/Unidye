@@ -30,11 +30,11 @@ public class CustomStainedGlassPaneRecipe extends SpecialCraftingRecipe {
             if (itemStack2.getItem() == UnidyeBlocks.CUSTOM_STAINED_GLASS.asItem()) {
                 if (count == 6) return false;
                 count++;
-                if(!itemStack.isEmpty()){
-                    if(UnidyeUtils.getColor(itemStack2)==UnidyeUtils.getColor(itemStack)
-                    && Objects.equals(DyeableGlassBlockItem.getBeaconColor(itemStack2), DyeableGlassBlockItem.getBeaconColor(itemStack))){
+                if (!itemStack.isEmpty()) {
+                    if (UnidyeUtils.getColor(itemStack2) == UnidyeUtils.getColor(itemStack)
+                            && Objects.equals(DyeableGlassBlockItem.getBeaconColor(itemStack2), DyeableGlassBlockItem.getBeaconColor(itemStack))) {
                         continue;
-                    }else{
+                    } else {
                         return false;
                     }
                 }
@@ -51,7 +51,7 @@ public class CustomStainedGlassPaneRecipe extends SpecialCraftingRecipe {
                 && inventory.getStack(8).isEmpty()))) {
             return false;
         }
-        return !itemStack.isEmpty() && count==6;
+        return !itemStack.isEmpty() && count == 6;
     }
 
     @Override

@@ -1,13 +1,9 @@
 package net.diemond_player.unidye.recipes;
 
-import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.diemond_player.unidye.block.entity.UnidyeBlockEntities;
 import net.diemond_player.unidye.item.custom.DyeableBannerItem;
-import net.diemond_player.unidye.item.custom.DyeableWoolBlockItem;
 import net.diemond_player.unidye.util.UnidyeUtils;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.inventory.RecipeInputInventory;
-import net.minecraft.item.BannerItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -17,11 +13,8 @@ import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
-
-import java.util.Objects;
 
 public class CustomShieldDecorationRecipe extends SpecialCraftingRecipe {
     public CustomShieldDecorationRecipe(Identifier id, CraftingRecipeCategory category) {

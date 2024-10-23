@@ -17,7 +17,10 @@ import net.minecraft.entity.mob.ShulkerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.item.*;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.DyeableItem;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.nbt.NbtCompound;
@@ -43,7 +46,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Map;
 
-public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableBlock{
+public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableBlock {
     private static final float field_41075 = 1.0f;
     private static final VoxelShape UP_SHAPE = Block.createCuboidShape(0.0, 15.0, 0.0, 16.0, 16.0, 16.0);
     private static final VoxelShape DOWN_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 1.0, 16.0);
@@ -65,7 +68,7 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
 
     public DyeableShulkerBoxBlock(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState((BlockState)((BlockState)this.stateManager.getDefaultState()).with(FACING, Direction.UP));
+        this.setDefaultState((BlockState) ((BlockState) this.stateManager.getDefaultState()).with(FACING, Direction.UP));
     }
 
     @Override
@@ -114,7 +117,7 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return (BlockState)this.getDefaultState().with(FACING, ctx.getSide());
+        return (BlockState) this.getDefaultState().with(FACING, ctx.getSide());
     }
 
     @Override
@@ -132,11 +135,11 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
                 if (dyeableShulkerBoxBlockEntity.hasCustomName()) {
                     itemStack.setCustomName(dyeableShulkerBoxBlockEntity.getCustomName());
                 }
-                if (dyeableShulkerBoxBlockEntity.color != DyeableShulkerBoxBlockEntity.DEFAULT_COLOR){
-                    DyeableItem dyeableItem = (DyeableItem)((Object)itemStack.getItem());
+                if (dyeableShulkerBoxBlockEntity.color != DyeableShulkerBoxBlockEntity.DEFAULT_COLOR) {
+                    DyeableItem dyeableItem = (DyeableItem) ((Object) itemStack.getItem());
                     dyeableItem.setColor(itemStack, dyeableShulkerBoxBlockEntity.color);
                 }
-                ItemEntity itemEntity = new ItemEntity(world, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, itemStack);
+                ItemEntity itemEntity = new ItemEntity(world, (double) pos.getX() + 0.5, (double) pos.getY() + 0.5, (double) pos.getZ() + 0.5, itemStack);
                 itemEntity.setToDefaultPickupDelay();
                 world.spawnEntity(itemEntity);
             } else {
@@ -163,7 +166,7 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
         BlockEntity blockEntity;
         if (itemStack.hasCustomName() && (blockEntity = world.getBlockEntity(pos)) instanceof DyeableShulkerBoxBlockEntity) {
-            ((DyeableShulkerBoxBlockEntity)blockEntity).setCustomName(itemStack.getName());
+            ((DyeableShulkerBoxBlockEntity) blockEntity).setCustomName(itemStack.getName());
         }
     }
 
@@ -212,7 +215,7 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
     public VoxelShape getSidesShape(BlockState state, BlockView world, BlockPos pos) {
         DyeableShulkerBoxBlockEntity dyeableShulkerBoxBlockEntity;
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof DyeableShulkerBoxBlockEntity && !(dyeableShulkerBoxBlockEntity = (DyeableShulkerBoxBlockEntity)blockEntity).suffocates()) {
+        if (blockEntity instanceof DyeableShulkerBoxBlockEntity && !(dyeableShulkerBoxBlockEntity = (DyeableShulkerBoxBlockEntity) blockEntity).suffocates()) {
             return SIDES_SHAPES.get(state.get(FACING).getOpposite());
         }
         return VoxelShapes.fullCube();
@@ -222,7 +225,7 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof DyeableShulkerBoxBlockEntity) {
-            return VoxelShapes.cuboid(((DyeableShulkerBoxBlockEntity)blockEntity).getBoundingBox(state));
+            return VoxelShapes.cuboid(((DyeableShulkerBoxBlockEntity) blockEntity).getBoundingBox(state));
         }
         return VoxelShapes.fullCube();
     }
@@ -234,7 +237,7 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
 
     @Override
     public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
-        return ScreenHandler.calculateComparatorOutput((Inventory)((Object)world.getBlockEntity(pos)));
+        return ScreenHandler.calculateComparatorOutput((Inventory) ((Object) world.getBlockEntity(pos)));
     }
 
     @Override
@@ -242,7 +245,7 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
         Unidye.LOGGER.info("called");
         if (DyeableShulkerBoxBlockEntity.getColor(world, pos) != DyeableShulkerBoxBlockEntity.DEFAULT_COLOR) {
             ItemStack stack = super.getPickStack(world, pos, state);
-            return pickBlock(world,pos,stack);
+            return pickBlock(world, pos, stack);
         } else {
             return new ItemStack(this);
         }
@@ -250,9 +253,9 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
 
     @Override
     public ItemStack pickBlock(BlockView world, BlockPos pos, ItemStack stack) {
-        DyeableShulkerBoxBlockEntity blockEntity = UnidyeBlockEntities.DYEABLE_SHULKER_BOX_BE.get(world,pos);
+        DyeableShulkerBoxBlockEntity blockEntity = UnidyeBlockEntities.DYEABLE_SHULKER_BOX_BE.get(world, pos);
         int color = DyeableShulkerBoxBlockEntity.DEFAULT_COLOR;
-        if(blockEntity != null){
+        if (blockEntity != null) {
             color = blockEntity.color;
         }
         NbtCompound subNbt = stack.getOrCreateSubNbt("display");
@@ -262,7 +265,7 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
 
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation) {
-        return (BlockState)state.with(FACING, rotation.rotate(state.get(FACING)));
+        return (BlockState) state.with(FACING, rotation.rotate(state.get(FACING)));
     }
 
     @Override

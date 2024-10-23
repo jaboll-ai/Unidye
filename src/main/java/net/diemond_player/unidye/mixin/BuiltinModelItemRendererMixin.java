@@ -8,29 +8,23 @@ import net.diemond_player.unidye.block.custom.DyeableShulkerBoxBlock;
 import net.diemond_player.unidye.block.custom.DyeableWallBannerBlock;
 import net.diemond_player.unidye.block.entity.DyeableBannerBlockEntity;
 import net.diemond_player.unidye.block.entity.DyeableBedBlockEntity;
-import net.diemond_player.unidye.block.entity.DyeableBlockEntity;
 import net.diemond_player.unidye.block.entity.DyeableShulkerBoxBlockEntity;
 import net.diemond_player.unidye.entity.client.renderer.DyeableBannerBlockEntityRenderer;
 import net.diemond_player.unidye.item.custom.DyeableBannerItem;
 import net.diemond_player.unidye.item.custom.DyeableBlockItem;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.BannerBlockEntity;
+import net.minecraft.block.Block;
 import net.minecraft.block.entity.BannerPattern;
 import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.block.entity.BannerBlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.render.entity.model.ShieldEntityModel;
 import net.minecraft.client.render.item.BuiltinModelItemRenderer;
 import net.minecraft.client.render.model.ModelLoader;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
-import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShieldItem;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
@@ -81,10 +75,11 @@ public abstract class BuiltinModelItemRendererMixin {
             }
         }
     }
+
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/entity/BannerBlockEntity;getPatternListNbt(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/nbt/NbtList;"), cancellable = true)
     private void render1(ItemStack stack, ModelTransformationMode mode, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, CallbackInfo ci) {
-        if(BlockItem.getBlockEntityNbt(stack).contains("CustomColored")){
-            List<Pair<RegistryEntry<BannerPattern>, ?>> list = DyeableBannerBlockEntity.getPatternsFromNbt(BlockItem.getBlockEntityNbt(stack).getInt("Base"),DyeableBannerBlockEntity.getPatternListNbt(stack));
+        if (BlockItem.getBlockEntityNbt(stack).contains("CustomColored")) {
+            List<Pair<RegistryEntry<BannerPattern>, ?>> list = DyeableBannerBlockEntity.getPatternsFromNbt(BlockItem.getBlockEntityNbt(stack).getInt("Base"), DyeableBannerBlockEntity.getPatternListNbt(stack));
             DyeableBannerBlockEntityRenderer.renderCanvas(matrices, vertexConsumers, light, overlay, this.modelShield.getPlate(), ModelLoader.SHIELD_BASE, false, list, stack.hasGlint());
             matrices.pop();
             ci.cancel();

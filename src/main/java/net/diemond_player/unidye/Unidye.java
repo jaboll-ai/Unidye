@@ -7,25 +7,24 @@ import net.diemond_player.unidye.item.UnidyeItems;
 import net.diemond_player.unidye.recipes.UnidyeSpecialRecipes;
 import net.diemond_player.unidye.util.UnidyeCauldronBehaviors;
 import net.fabricmc.api.ModInitializer;
-
 import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Unidye implements ModInitializer {
 
-	public static final boolean POLYMORPH = FabricLoader.getInstance().isModLoaded("polymorph");
-	public static final String MOD_ID = "unidye";
+    public static final boolean POLYMORPH = FabricLoader.getInstance().isModLoaded("polymorph");
+    public static final String MOD_ID = "unidye";
 
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	@Override
-	public void onInitialize() {
-		UnidyeItems.registerModItems();
-		UnidyeItemGroups.registerItemGroups();
-		UnidyeBlocks.registerModBlocks();
-		UnidyeBlockEntities.registerBlockEntities();
-		UnidyeCauldronBehaviors.registerCauldronBehaviors();
-		UnidyeSpecialRecipes.registerSpecialRecipes();
-	}
+    @Override
+    public void onInitialize() {
+        UnidyeItems.registerModItems();
+        UnidyeItemGroups.registerItemGroups();
+        UnidyeBlocks.registerModBlocks();
+        UnidyeBlockEntities.registerBlockEntities();
+        UnidyeCauldronBehaviors.registerCauldronBehaviors();
+        UnidyeSpecialRecipes.registerSpecialRecipes();
+    }
 }

@@ -2,7 +2,8 @@ package net.diemond_player.unidye.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
-import net.minecraft.data.client.*;
+import net.minecraft.data.client.BlockStateModelGenerator;
+import net.minecraft.data.client.ItemModelGenerator;
 
 public class UnidyeModelProvider extends FabricModelProvider {
     public UnidyeModelProvider(FabricDataOutput output) {

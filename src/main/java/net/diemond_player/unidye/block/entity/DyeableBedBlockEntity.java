@@ -17,6 +17,7 @@ public class DyeableBedBlockEntity extends BlockEntity {
     public DyeableBedBlockEntity(BlockPos pos, BlockState state) {
         super(UnidyeBlockEntities.DYEABLE_BED_BE, pos, state);
     }
+
     @Override
     public void writeNbt(NbtCompound nbt) {
         if (color != DEFAULT_COLOR) {

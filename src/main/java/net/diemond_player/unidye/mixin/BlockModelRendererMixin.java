@@ -1,6 +1,6 @@
 package net.diemond_player.unidye.mixin;
 
-import net.diemond_player.unidye.util.IEntityAccessor;
+import net.diemond_player.unidye.util.UnidyeAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
@@ -30,7 +30,7 @@ import java.util.List;
 import static net.minecraft.client.render.WorldRenderer.DIRECTIONS;
 
 @Mixin(BlockModelRenderer.class)
-public abstract class BlockModelRendererMixin implements IEntityAccessor {
+public abstract class BlockModelRendererMixin implements UnidyeAccessor {
     @Shadow
     private void getQuadDimensions(BlockRenderView world, BlockState state, BlockPos pos, int[] vertexData, Direction face, @Nullable float[] box, BitSet flags) {
 
@@ -61,7 +61,7 @@ public abstract class BlockModelRendererMixin implements IEntityAccessor {
             random.setSeed(seed);
             List<BakedQuad> list = model.getQuads(state, direction, random);
             if (list.isEmpty()) continue;
-            mutable.set((Vec3i)pos, direction);
+            mutable.set((Vec3i) pos, direction);
             if (cull && !Block.shouldDrawSide(state, world, pos, direction, mutable)) continue;
             int i = WorldRenderer.getLightmapCoordinates(world, state, mutable);
             this.unidye$renderQuadsFlat(world, state, pos, i, overlay, false, matrices, vertexConsumer, list, bitSet, color);
@@ -72,6 +72,7 @@ public abstract class BlockModelRendererMixin implements IEntityAccessor {
             this.unidye$renderQuadsFlat(world, state, pos, -1, overlay, true, matrices, vertexConsumer, list2, bitSet, color);
         }
     }
+
     @Unique
     private void unidye$renderQuadsFlat(BlockRenderView world, BlockState state, BlockPos pos, int light, int overlay, boolean useWorldLight, MatrixStack matrices, VertexConsumer vertexConsumer, List<BakedQuad> quads, BitSet flags, int color) {
         for (BakedQuad bakedQuad : quads) {
@@ -84,6 +85,7 @@ public abstract class BlockModelRendererMixin implements IEntityAccessor {
             this.unidye$renderQuad(world, state, pos, vertexConsumer, matrices.peek(), bakedQuad, f, f, f, f, light, light, light, light, overlay, color);
         }
     }
+
     @Unique
     private void unidye$renderQuad(BlockRenderView world, BlockState state, BlockPos pos, VertexConsumer vertexConsumer, MatrixStack.Entry matrixEntry, BakedQuad quad, float brightness0, float brightness1, float brightness2, float brightness3, int light0, int light1, int light2, int light3, int overlay, int color) {
         float f = (float) (color >> 16 & 0xFF) / 255.0f;

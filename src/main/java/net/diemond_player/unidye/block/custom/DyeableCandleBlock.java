@@ -30,8 +30,8 @@ public class DyeableCandleBlock extends CandleBlock implements IDyeableBlock {
 
     @Override
     public boolean canReplace(BlockState state, ItemPlacementContext context) {
-        if(getColor(context.getStack())
-                != getColor(getPickStack(context.getWorld(), context.getBlockPos(), state))){
+        if (getColor(context.getStack())
+                != getColor(getPickStack(context.getWorld(), context.getBlockPos(), state))) {
             return false;
         }
         return super.canReplace(state, context);
@@ -41,7 +41,7 @@ public class DyeableCandleBlock extends CandleBlock implements IDyeableBlock {
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
         if (DyeableBlockEntity.getColor(world, pos) != DyeableBlockEntity.DEFAULT_COLOR) {
             ItemStack stack = super.getPickStack(world, pos, state);
-            return pickBlock(world,pos,stack);
+            return pickBlock(world, pos, stack);
         } else {
             return new ItemStack(this);
         }

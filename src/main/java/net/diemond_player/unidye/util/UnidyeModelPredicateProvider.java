@@ -7,7 +7,7 @@ import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.util.Identifier;
 
 public class UnidyeModelPredicateProvider {
-    public static void registerModModels(){
+    public static void registerModModels() {
         ModelPredicateProviderRegistry.register(UnidyeItems.CUSTOM_DYE, new Identifier(Unidye.MOD_ID, "dye_id"),
                 (stack, world, entity, seed) -> CustomDyeItem.getClosestVanillaDyeId(stack));
     }

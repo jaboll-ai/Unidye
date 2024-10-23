@@ -3,7 +3,6 @@ package net.diemond_player.unidye.recipes;
 import com.google.common.collect.Lists;
 import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.diemond_player.unidye.item.custom.CustomDyeItem;
-import net.diemond_player.unidye.item.custom.UnidyeableItem;
 import net.diemond_player.unidye.util.UnidyeTags;
 import net.diemond_player.unidye.util.UnidyeUtils;
 import net.minecraft.inventory.RecipeInputInventory;
@@ -15,8 +14,6 @@ import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -39,38 +36,38 @@ public class CustomShulkerBoxDyeingRecipe extends SpecialCraftingRecipe {
             if (itemStack2.isEmpty()) {
                 continue;
             }
-            if (itemStack2.getItem() instanceof CustomDyeItem){
+            if (itemStack2.getItem() instanceof CustomDyeItem) {
                 count++;
-                if(item==null){
+                if (item == null) {
                     item = itemStack2.getItem();
-                }else if(item!=itemStack2.getItem()){
+                } else if (item != itemStack2.getItem()) {
                     difference = true;
                 }
-                if(itemStack==null){
+                if (itemStack == null) {
                     itemStack = itemStack2;
-                }else if(UnidyeUtils.getColor(itemStack)!=UnidyeUtils.getColor(itemStack2)){
+                } else if (UnidyeUtils.getColor(itemStack) != UnidyeUtils.getColor(itemStack2)) {
                     difference = true;
                 }
                 continue;
             }
-            if (itemStack2.getItem() instanceof DyeItem){
-                if(item==null){
+            if (itemStack2.getItem() instanceof DyeItem) {
+                if (item == null) {
                     item = itemStack2.getItem();
-                }else if(item!=itemStack2.getItem()){
+                } else if (item != itemStack2.getItem()) {
                     difference = true;
                 }
                 continue;
             }
-            if(itemStack2.isIn(UnidyeTags.Items.SHULKER_BOXES) && itemStack2.getItem() != UnidyeBlocks.CUSTOM_SHULKER_BOX.asItem()){
-                if(shulkerBox){
+            if (itemStack2.isIn(UnidyeTags.Items.SHULKER_BOXES) && itemStack2.getItem() != UnidyeBlocks.CUSTOM_SHULKER_BOX.asItem()) {
+                if (shulkerBox) {
                     return false;
                 }
-                shulkerBox=true;
+                shulkerBox = true;
                 continue;
             }
             return false;
         }
-        return shulkerBox && (difference || count==1);
+        return shulkerBox && (difference || count == 1);
     }
 
     @Override
@@ -87,11 +84,11 @@ public class CustomShulkerBoxDyeingRecipe extends SpecialCraftingRecipe {
                 continue;
             }
             if (item instanceof DyeItem) {
-                dyeList.add((DyeItem)item);
+                dyeList.add((DyeItem) item);
                 continue;
             }
-            if (itemStack2.isIn(UnidyeTags.Items.SHULKER_BOXES) && item!=UnidyeBlocks.CUSTOM_SHULKER_BOX.asItem()){
-                itemStack=itemStack2;
+            if (itemStack2.isIn(UnidyeTags.Items.SHULKER_BOXES) && item != UnidyeBlocks.CUSTOM_SHULKER_BOX.asItem()) {
+                itemStack = itemStack2;
             }
         }
         if (customDyeList.isEmpty() && dyeList.isEmpty()) {
@@ -99,7 +96,7 @@ public class CustomShulkerBoxDyeingRecipe extends SpecialCraftingRecipe {
         }
         ItemStack itemStack1 = new ItemStack(UnidyeBlocks.CUSTOM_SHULKER_BOX);
         itemStack1.setNbt(itemStack.getNbt());
-        return UnidyeableItem.blendAndSetColor(itemStack1, dyeList, customDyeList);
+        return UnidyeUtils.blendAndSetColor(itemStack1, dyeList, customDyeList);
     }
 
     @Override

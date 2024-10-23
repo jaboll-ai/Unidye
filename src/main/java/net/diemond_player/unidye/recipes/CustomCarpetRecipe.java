@@ -5,7 +5,9 @@ import net.diemond_player.unidye.item.custom.DyeableWoolBlockItem;
 import net.diemond_player.unidye.util.UnidyeUtils;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.*;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.SpecialCraftingRecipe;
+import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.util.Identifier;
@@ -28,14 +30,14 @@ public class CustomCarpetRecipe extends SpecialCraftingRecipe {
             if (itemStack2.isEmpty()) continue;
             if (itemStack2.getItem() == UnidyeBlocks.CUSTOM_WOOL.asItem()) {
                 if (count == 2) return false;
-                positions[count]=i;
+                positions[count] = i;
                 count++;
-                if(!itemStack.isEmpty()){
-                    if(UnidyeUtils.getColor(itemStack2)==UnidyeUtils.getColor(itemStack)
+                if (!itemStack.isEmpty()) {
+                    if (UnidyeUtils.getColor(itemStack2) == UnidyeUtils.getColor(itemStack)
                             && (Objects.equals(DyeableWoolBlockItem.getMaterialColor(itemStack2, "leather"), DyeableWoolBlockItem.getMaterialColor(itemStack, "leather")))
-                            && (Objects.equals(DyeableWoolBlockItem.getMaterialColor(itemStack2, "bed"), DyeableWoolBlockItem.getMaterialColor(itemStack, "bed")))){
+                            && (Objects.equals(DyeableWoolBlockItem.getMaterialColor(itemStack2, "bed"), DyeableWoolBlockItem.getMaterialColor(itemStack, "bed")))) {
                         continue;
-                    }else{
+                    } else {
                         return false;
                     }
                 }
@@ -44,17 +46,17 @@ public class CustomCarpetRecipe extends SpecialCraftingRecipe {
             }
             return false;
         }
-        if(inventory.size() == 9) {
-            if (positions[0]==2 || positions[0]==5) {
+        if (inventory.size() == 9) {
+            if (positions[0] == 2 || positions[0] == 5) {
                 return false;
             }
         }
-        if(inventory.size() == 4){
-            if(positions[0]==1){
+        if (inventory.size() == 4) {
+            if (positions[0] == 1) {
                 return false;
             }
         }
-        return !itemStack.isEmpty() && positions[0]+1==positions[1];
+        return !itemStack.isEmpty() && positions[0] + 1 == positions[1];
     }
 
     @Override

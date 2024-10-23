@@ -4,7 +4,10 @@ import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
 import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.*;
+import net.minecraft.block.entity.BannerBlockEntity;
+import net.minecraft.block.entity.BannerPattern;
+import net.minecraft.block.entity.BannerPatterns;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -172,7 +175,7 @@ public class DyeableBannerBlockEntity extends BlockEntity implements Nameable {
                 if (registryEntry == null) continue;
                 int j = nbtCompound.getInt(COLOR_KEY);
                 DyeColor dyeColor = DyeColor.byId(j);
-                if(dyeColor==DyeColor.WHITE && j!=0){
+                if (dyeColor == DyeColor.WHITE && j != 0) {
                     list.add(Pair.of(registryEntry, j));
                 } else {
                     list.add(Pair.of(registryEntry, dyeColor));
@@ -181,6 +184,7 @@ public class DyeableBannerBlockEntity extends BlockEntity implements Nameable {
         }
         return list;
     }
+
     public static List<Pair<RegistryEntry<BannerPattern>, ?>> getPatternsFromNbt(DyeColor color, @Nullable NbtList patternListNbt) {
         ArrayList<Pair<RegistryEntry<BannerPattern>, ?>> list = Lists.newArrayList();
         list.add(Pair.of(Registries.BANNER_PATTERN.entryOf(BannerPatterns.BASE), color));
@@ -191,7 +195,7 @@ public class DyeableBannerBlockEntity extends BlockEntity implements Nameable {
                 if (registryEntry == null) continue;
                 int j = nbtCompound.getInt(COLOR_KEY);
                 DyeColor dyeColor = DyeColor.byId(j);
-                if(dyeColor==DyeColor.WHITE && j!=0){
+                if (dyeColor == DyeColor.WHITE && j != 0) {
                     list.add(Pair.of(registryEntry, j));
                 } else {
                     list.add(Pair.of(registryEntry, dyeColor));
@@ -219,9 +223,9 @@ public class DyeableBannerBlockEntity extends BlockEntity implements Nameable {
 
     public ItemStack getPickStack() {
         ItemStack itemStack = new ItemStack(UnidyeBlocks.CUSTOM_BANNER);
-        DyeableBannerBlockEntity blockEntity = UnidyeBlockEntities.DYEABLE_BANNER_BE.get(world,pos);
+        DyeableBannerBlockEntity blockEntity = UnidyeBlockEntities.DYEABLE_BANNER_BE.get(world, pos);
         int color = DyeableBannerBlockEntity.DEFAULT_COLOR;
-        if(blockEntity != null){
+        if (blockEntity != null) {
             color = blockEntity.color;
         }
         NbtCompound subNbt = itemStack.getOrCreateSubNbt("display");

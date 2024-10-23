@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.Nullable;
 
-public class DyeableGlassBlockEntity extends BlockEntity{
+public class DyeableGlassBlockEntity extends BlockEntity {
     public DyeableGlassBlockEntity(BlockPos pos, BlockState state) {
         super(UnidyeBlockEntities.DYEABLE_GLASS_BE, pos, state);
     }

@@ -8,17 +8,14 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LeveledCauldronBlock;
 import net.minecraft.block.cauldron.CauldronBehavior;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
 
 import static net.minecraft.block.cauldron.CauldronBehavior.WATER_CAULDRON_BEHAVIOR;
 
 public class UnidyeCauldronBehaviors {
-    public static void registerCauldronBehaviors(){
+    public static void registerCauldronBehaviors() {
         WATER_CAULDRON_BEHAVIOR.put(UnidyeItems.CUSTOM_BANNER, CLEAN_CUSTOM_BANNER);
 
         WATER_CAULDRON_BEHAVIOR.put(UnidyeBlocks.CUSTOM_SHULKER_BOX.asItem(), CLEAN_CUSTOM_SHULKER_BOX);
@@ -163,6 +160,7 @@ public class UnidyeCauldronBehaviors {
         WATER_CAULDRON_BEHAVIOR.put(Blocks.GREEN_BED.asItem(), CLEAN_BED);
         WATER_CAULDRON_BEHAVIOR.put(Blocks.LIME_BED.asItem(), CLEAN_BED);
     }
+
     public static final CauldronBehavior CLEAN_CUSTOM_BANNER = (state, world, pos, player, hand, stack) -> {
         if (DyeableBannerBlockEntity.getPatternCount(stack) <= 0) {
             return ActionResult.PASS;

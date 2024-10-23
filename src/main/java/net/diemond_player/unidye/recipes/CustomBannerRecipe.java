@@ -1,7 +1,6 @@
 package net.diemond_player.unidye.recipes;
 
 import net.diemond_player.unidye.block.UnidyeBlocks;
-import net.diemond_player.unidye.item.custom.DyeableBannerItem;
 import net.diemond_player.unidye.item.custom.DyeableWoolBlockItem;
 import net.diemond_player.unidye.util.UnidyeUtils;
 import net.minecraft.inventory.RecipeInputInventory;
@@ -27,15 +26,15 @@ public class CustomBannerRecipe extends SpecialCraftingRecipe {
         ItemStack itemStack = ItemStack.EMPTY;
         for (int i = 0; i < inventory.size(); ++i) {
             ItemStack itemStack2 = inventory.getStack(i);
-            if (itemStack2.isEmpty() && (i==8 || i==6)) continue;
-            if (itemStack2.getItem() == Items.STICK && i==7) continue;
-            if (itemStack2.getItem() == UnidyeBlocks.CUSTOM_WOOL.asItem() && i<=5) {
-                if(!itemStack.isEmpty()){
-                    if(UnidyeUtils.getColor(itemStack2)==UnidyeUtils.getColor(itemStack)
+            if (itemStack2.isEmpty() && (i == 8 || i == 6)) continue;
+            if (itemStack2.getItem() == Items.STICK && i == 7) continue;
+            if (itemStack2.getItem() == UnidyeBlocks.CUSTOM_WOOL.asItem() && i <= 5) {
+                if (!itemStack.isEmpty()) {
+                    if (UnidyeUtils.getColor(itemStack2) == UnidyeUtils.getColor(itemStack)
                             && (Objects.equals(DyeableWoolBlockItem.getMaterialColor(itemStack2, "leather"), DyeableWoolBlockItem.getMaterialColor(itemStack, "leather")))
-                            && (Objects.equals(DyeableWoolBlockItem.getMaterialColor(itemStack2, "bed"), DyeableWoolBlockItem.getMaterialColor(itemStack, "bed")))){
+                            && (Objects.equals(DyeableWoolBlockItem.getMaterialColor(itemStack2, "bed"), DyeableWoolBlockItem.getMaterialColor(itemStack, "bed")))) {
                         continue;
-                    }else{
+                    } else {
                         return false;
                     }
                 }
