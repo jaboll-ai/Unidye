@@ -1,12 +1,15 @@
-// 1.20	2024-10-04T23:15:24.3686545	Unidye/Tags for minecraft:block
-4db95061784c10eb661af7c75bf691495deb6d8c data\minecraft\tags\blocks\candle_cakes.json
-aebc6f465041cf3db65750ce5cddbc4a67918629 data\minecraft\tags\blocks\wool.json
-51a0bac1dae2a78d2b6c25f928270ece850d9f39 data\minecraft\tags\blocks\beds.json
-ed3c38d3532c25cad0b8f084c8071f5ff3478e83 data\minecraft\tags\blocks\mineable\pickaxe.json
-9119460a32cebb69b9e50057fe48640743ffed48 data\minecraft\tags\blocks\candles.json
-d299e64369257533461ede62a9b5988d820fd067 data\minecraft\tags\blocks\wool_carpets.json
-17732eed4842f40bc50baae436fd6b6cfee4c0fa data\minecraft\tags\blocks\terracotta.json
-49461e4bc5b68a5a5efd207c22ea35768bdce5cd data\minecraft\tags\blocks\mineable\shovel.json
+// 1.20	2024-10-24T20:47:46.2362588	Unidye/Tags for minecraft:block
 a7e37e8ed4736eb58903061b80ec99a475dc3f4e data\minecraft\tags\blocks\banners.json
-f1f5024229e8f17eb392ec2d218d4db8b2f43d3f data\minecraft\tags\blocks\shulker_boxes.json
+f1f5024229e8f17eb392ec2d218d4db8b2f43d3f data\c\tags\blocks\shulker_boxes.json
 a7e37e8ed4736eb58903061b80ec99a475dc3f4e data\minecraft\tags\blocks\mineable\axe.json
+50b4176f5a11ca96386c14b1c06090d0d8132dd1 data\c\tags\blocks\glass_blocks.json
+d299e64369257533461ede62a9b5988d820fd067 data\minecraft\tags\blocks\wool_carpets.json
+4db95061784c10eb661af7c75bf691495deb6d8c data\minecraft\tags\blocks\candle_cakes.json
+1cb6de9d71caebcaa7ad711a4194a15cd434ba34 data\c\tags\blocks\glass_panes.json
+49461e4bc5b68a5a5efd207c22ea35768bdce5cd data\minecraft\tags\blocks\mineable\shovel.json
+aebc6f465041cf3db65750ce5cddbc4a67918629 data\minecraft\tags\blocks\wool.json
+ed3c38d3532c25cad0b8f084c8071f5ff3478e83 data\minecraft\tags\blocks\mineable\pickaxe.json
+51a0bac1dae2a78d2b6c25f928270ece850d9f39 data\minecraft\tags\blocks\beds.json
+17732eed4842f40bc50baae436fd6b6cfee4c0fa data\minecraft\tags\blocks\terracotta.json
+f1f5024229e8f17eb392ec2d218d4db8b2f43d3f data\minecraft\tags\blocks\shulker_boxes.json
+9119460a32cebb69b9e50057fe48640743ffed48 data\minecraft\tags\blocks\candles.json

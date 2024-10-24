@@ -32,52 +32,19 @@ public class UnidyeBlocks {
     //all of the to dos
     //TODO CLEAN CODE
     /*
-DyeableBannerBlock
-DyeableBedBlock
-DyeableBlock
-DyeableCandleBlock
-DyeableCandleCakeBlock
-DyeableCarpetBlock
-DyeableConcretePowderBlock
 DyeableGlassBlock
 DyeablePaneBlock
-DyeableShulkerBoxBlock
-DyeableWallBannerBlock
 DyeableWoolBlock
-IDyeableBlock
 
-DyeableBannerBE
-DyeableBedBE
-DyeableBE
 DyeableGlassBE
-DyeableShulkerBoxBE
 DyeableWoolBE
-UnidyeBlockEntities
-UnidyeBlocks
 
-UnidyeBlockLootTable
-UnidyeBlocktag
-UnidyeItemTag
-UnidyeModelProvider
-UnidyeRecipeGenerator
-
-DyeableSBEM
-DyeableBBER
-DyeableFBER
-DyeableSBBER
-DyeableFallingBE
-
-CustomDyeItem
-DyeableBannerItem
 DyeableBlockItem
 DyeableGlassBlockItem
 DyeableWoolBlockItem
 
 recipes...
 
-UnidyeAccessor
-UnidyeCauldronBehaviors
-UnidyeTags
 UnidyeUtils
 
 UnidyeClient

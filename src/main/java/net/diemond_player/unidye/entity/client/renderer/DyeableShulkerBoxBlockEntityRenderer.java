@@ -48,6 +48,7 @@ public class DyeableShulkerBoxBlockEntityRenderer
         modelPart.yaw = 270.0f * shulkerBoxBlockEntity.getAnimationProgress(f) * ((float) Math.PI / 180);
         VertexConsumer vertexConsumer = spriteIdentifier.getVertexConsumer(vertexConsumerProvider, RenderLayer::getEntityCutoutNoCull);
         int color = shulkerBoxBlockEntity.color;
+        //todo use util here
         float red = ((color & 0xFF0000) >> 16) / 255.0f;
         float green = ((color & 0xFF00) >> 8) / 255.0f;
         float blue = ((color & 0xFF) >> 0) / 255.0f;

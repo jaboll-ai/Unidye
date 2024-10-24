@@ -46,8 +46,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Map;
 
-public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableBlock {
-    private static final float field_41075 = 1.0f;
+public class DyeableShulkerBoxBlock extends ShulkerBoxBlock implements IDyeableBlock {
     private static final VoxelShape UP_SHAPE = Block.createCuboidShape(0.0, 15.0, 0.0, 16.0, 16.0, 16.0);
     private static final VoxelShape DOWN_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 1.0, 16.0);
     private static final VoxelShape WEST_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 1.0, 16.0, 16.0);
@@ -65,10 +64,8 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
     public static final EnumProperty<Direction> FACING = FacingBlock.FACING;
     public static final Identifier CONTENTS_DYNAMIC_DROP_ID = new Identifier("contents");
 
-
     public DyeableShulkerBoxBlock(AbstractBlock.Settings settings) {
-        super(settings);
-        this.setDefaultState((BlockState) ((BlockState) this.stateManager.getDefaultState()).with(FACING, Direction.UP));
+        super(DyeColor.CYAN, settings);
     }
 
     @Override
@@ -80,11 +77,6 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return DyeableShulkerBoxBlock.checkType(type, UnidyeBlockEntities.DYEABLE_SHULKER_BOX_BE, DyeableShulkerBoxBlockEntity::tick);
-    }
-
-    @Override
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 
     @Override
@@ -113,16 +105,6 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
         }
         Box box = ShulkerEntity.calculateBoundingBox(state.get(FACING), 0.0f, 0.5f).offset(pos).contract(1.0E-6);
         return world.isSpaceEmpty(box);
-    }
-
-    @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return (BlockState) this.getDefaultState().with(FACING, ctx.getSide());
-    }
-
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
     }
 
     @Override
@@ -183,35 +165,6 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        super.appendTooltip(stack, world, tooltip, options);
-        NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(stack);
-        if (nbtCompound != null) {
-            if (nbtCompound.contains("LootTable", NbtElement.STRING_TYPE)) {
-                tooltip.add(Text.literal("???????"));
-            }
-            if (nbtCompound.contains("Items", NbtElement.LIST_TYPE)) {
-                DefaultedList<ItemStack> defaultedList = DefaultedList.ofSize(27, ItemStack.EMPTY);
-                Inventories.readNbt(nbtCompound, defaultedList);
-                int i = 0;
-                int j = 0;
-                for (ItemStack itemStack : defaultedList) {
-                    if (itemStack.isEmpty()) continue;
-                    ++j;
-                    if (i > 4) continue;
-                    ++i;
-                    MutableText mutableText = itemStack.getName().copy();
-                    mutableText.append(" x").append(String.valueOf(itemStack.getCount()));
-                    tooltip.add(mutableText);
-                }
-                if (j - i > 0) {
-                    tooltip.add(Text.translatable("container.shulkerBox.more", j - i).formatted(Formatting.ITALIC));
-                }
-            }
-        }
-    }
-
-    @Override
     public VoxelShape getSidesShape(BlockState state, BlockView world, BlockPos pos) {
         DyeableShulkerBoxBlockEntity dyeableShulkerBoxBlockEntity;
         BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -228,16 +181,6 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
             return VoxelShapes.cuboid(((DyeableShulkerBoxBlockEntity) blockEntity).getBoundingBox(state));
         }
         return VoxelShapes.fullCube();
-    }
-
-    @Override
-    public boolean hasComparatorOutput(BlockState state) {
-        return true;
-    }
-
-    @Override
-    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
-        return ScreenHandler.calculateComparatorOutput((Inventory) ((Object) world.getBlockEntity(pos)));
     }
 
     @Override
@@ -261,15 +204,5 @@ public class DyeableShulkerBoxBlock extends BlockWithEntity implements IDyeableB
         NbtCompound subNbt = stack.getOrCreateSubNbt("display");
         subNbt.putInt("color", color);
         return stack;
-    }
-
-    @Override
-    public BlockState rotate(BlockState state, BlockRotation rotation) {
-        return (BlockState) state.with(FACING, rotation.rotate(state.get(FACING)));
-    }
-
-    @Override
-    public BlockState mirror(BlockState state, BlockMirror mirror) {
-        return state.rotate(mirror.getRotation(state.get(FACING)));
     }
 }

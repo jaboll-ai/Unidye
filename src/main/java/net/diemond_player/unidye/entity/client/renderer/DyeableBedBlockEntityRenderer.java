@@ -82,10 +82,11 @@ public class DyeableBedBlockEntityRenderer
         matrices.translate(-0.5f, -0.5f, -0.5f);
         VertexConsumer vertexConsumer = sprite.getVertexConsumer(vertexConsumers, RenderLayer::getEntitySolid);
         int color = dyeableBedBlockEntity.color;
+        //todo use util here
         float red = ((color & 0xFF0000) >> 16) / 255.0f;
         float green = ((color & 0xFF00) >> 8) / 255.0f;
         float blue = ((color & 0xFF) >> 0) / 255.0f;
-        ((UnidyeAccessor) (Object) part).unidye$specialRender(matrices, vertexConsumer, light, overlay, red, green, blue, 1.0f);
+        ((UnidyeAccessor) (Object) part).unidye$renderCustomBed(matrices, vertexConsumer, light, overlay, red, green, blue, 1.0f);
         matrices.pop();
     }
 }

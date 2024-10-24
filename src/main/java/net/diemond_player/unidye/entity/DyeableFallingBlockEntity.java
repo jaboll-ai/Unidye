@@ -68,7 +68,7 @@ public class DyeableFallingBlockEntity extends FallingBlockEntity {
     }
 
     private DyeableFallingBlockEntity(World world, double x, double y, double z, BlockState block) {
-        this((EntityType<? extends DyeableFallingBlockEntity>) UnidyeEntities.DYEABLE_FALLING_BLOCK_ENTITY, world);
+        this(UnidyeEntities.DYEABLE_FALLING_BLOCK_ENTITY, world);
         this.block = block;
         this.intersectionChecked = true;
         this.setPosition(x, y, z);
@@ -87,11 +87,6 @@ public class DyeableFallingBlockEntity extends FallingBlockEntity {
         return fallingBlockEntity;
     }
 
-    @Override
-    public boolean isAttackable() {
-        return false;
-    }
-
     public void setFallingBlockPos(BlockPos pos) {
         this.dataTracker.set(BLOCK_POS, pos);
     }
@@ -101,19 +96,9 @@ public class DyeableFallingBlockEntity extends FallingBlockEntity {
     }
 
     @Override
-    protected Entity.MoveEffect getMoveEffect() {
-        return Entity.MoveEffect.NONE;
-    }
-
-    @Override
     protected void initDataTracker() {
         this.dataTracker.startTracking(BLOCK_POS, BlockPos.ORIGIN);
         this.dataTracker.startTracking(CUSTOM_COLOR, 0xFFFFFF);
-    }
-
-    @Override
-    public boolean canHit() {
-        return !this.isRemoved();
     }
 
     @Override
@@ -207,12 +192,6 @@ public class DyeableFallingBlockEntity extends FallingBlockEntity {
         this.setVelocity(this.getVelocity().multiply(0.98));
     }
 
-    public void onDestroyedOnLanding(Block block, BlockPos pos) {
-        if (block instanceof LandingBlock) {
-            ((LandingBlock) ((Object) block)).onDestroyedOnLanding(this.getWorld(), pos, this);
-        }
-    }
-
     @Override
     public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
         DamageSource damageSource2;
@@ -298,11 +277,6 @@ public class DyeableFallingBlockEntity extends FallingBlockEntity {
     }
 
     @Override
-    public boolean doesRenderOnFire() {
-        return false;
-    }
-
-    @Override
     public void populateCrashReport(CrashReportSection section) {
         super.populateCrashReport(section);
         section.add("Immitating BlockState", this.block.toString());
@@ -315,11 +289,6 @@ public class DyeableFallingBlockEntity extends FallingBlockEntity {
     @Override
     protected Text getDefaultName() {
         return Text.translatable("entity.minecraft.falling_block_type", this.block.getBlock().getName());
-    }
-
-    @Override
-    public boolean entityDataRequiresOperator() {
-        return true;
     }
 
     @Override

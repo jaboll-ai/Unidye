@@ -77,7 +77,7 @@ public abstract class CatEntityMixin implements UnidyeAccessor {
         if (!(((CatEntity) (Object) this).getWorld().isClient)) {
             if (((CatEntity) (Object) this).isTamed()) {
                 if (item instanceof CustomDyeItem && ((CatEntity) (Object) this).isOwner(player)) {
-                    cat.unidye$setCustomColor(UnidyeUtils.getMaterialColor(itemStack, "leather"));
+                    cat.unidye$setCustomColor(CustomDyeItem.getMaterialColor(itemStack, "leather"));
                     if (!player.getAbilities().creativeMode) {
                         itemStack.decrement(1);
                     }

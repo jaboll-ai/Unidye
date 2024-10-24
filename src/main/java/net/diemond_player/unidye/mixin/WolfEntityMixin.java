@@ -74,7 +74,7 @@ public abstract class WolfEntityMixin implements UnidyeAccessor {
         if (!(((WolfEntity) (Object) this).getWorld().isClient)) {
             if (((WolfEntity) (Object) this).isTamed()) {
                 if (item instanceof CustomDyeItem && ((WolfEntity) (Object) this).isOwner(player)) {
-                    wolf.unidye$setCustomColor(UnidyeUtils.getMaterialColor(itemStack, "leather"));
+                    wolf.unidye$setCustomColor(CustomDyeItem.getMaterialColor(itemStack, "leather"));
                     if (!player.getAbilities().creativeMode) {
                         itemStack.decrement(1);
                     }

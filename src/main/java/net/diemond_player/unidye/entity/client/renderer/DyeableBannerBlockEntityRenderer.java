@@ -31,9 +31,6 @@ import java.util.List;
 @Environment(value = EnvType.CLIENT)
 public class DyeableBannerBlockEntityRenderer
         implements BlockEntityRenderer<DyeableBannerBlockEntity> {
-    private static final int WIDTH = 20;
-    private static final int HEIGHT = 40;
-    private static final int ROTATIONS = 16;
     public static final String BANNER = "flag";
     private static final String PILLAR = "pole";
     private static final String CROSSBAR = "bar";
@@ -61,7 +58,6 @@ public class DyeableBannerBlockEntityRenderer
     public void render(DyeableBannerBlockEntity bannerBlockEntity, float f, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, int j) {
         long l;
         List<Pair<RegistryEntry<BannerPattern>, ?>> list = bannerBlockEntity.getPatterns();
-        float g = 0.6666667f;
         boolean bl = bannerBlockEntity.getWorld() == null;
         matrixStack.push();
         if (bl) {
@@ -112,6 +108,7 @@ public class DyeableBannerBlockEntityRenderer
                 pair.getFirst().getKey().map(key -> isBanner ? TexturedRenderLayers.getBannerPatternTextureId(key) : TexturedRenderLayers.getShieldPatternTextureId(key)).ifPresent(sprite -> canvas.render(matrices, sprite.getVertexConsumer(vertexConsumers, RenderLayer::getEntityNoOutline), light, overlay, fs[0], fs[1], fs[2], 1.0f));
             } else {
                 int color = (int) pair.getSecond();
+                //todo use util here
                 float red = ((color & 0xFF0000) >> 16) / 255.0f;
                 float green = ((color & 0xFF00) >> 8) / 255.0f;
                 float blue = ((color & 0xFF) >> 0) / 255.0f;

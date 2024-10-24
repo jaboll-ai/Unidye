@@ -14,6 +14,8 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
+import static net.minecraft.item.DyeableItem.DEFAULT_COLOR;
+
 public class DyeableConcretePowderBlock extends ConcretePowderBlock implements IDyeableBlock {
 
     public DyeableConcretePowderBlock(Block hardened, Settings settings) {
@@ -47,7 +49,11 @@ public class DyeableConcretePowderBlock extends ConcretePowderBlock implements I
     @Override
     public int getColor(BlockState state, BlockView world, BlockPos pos) {
         DyeableBlockEntity blockEntity = UnidyeBlockEntities.DYEABLE_BE.get(world, pos);
-        return blockEntity.color;
+        if(blockEntity != null) {
+            return blockEntity.color;
+        } else {
+            return DEFAULT_COLOR;
+        }
     }
 
     @Override

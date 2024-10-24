@@ -2,9 +2,10 @@ package net.diemond_player.unidye.recipes;
 
 import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.diemond_player.unidye.item.UnidyeItems;
+import net.diemond_player.unidye.item.custom.CustomDyeItem;
 import net.diemond_player.unidye.item.custom.DyeableGlassBlockItem;
-import net.diemond_player.unidye.util.UnidyeTags;
 import net.diemond_player.unidye.util.UnidyeUtils;
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeSerializer;
@@ -24,7 +25,7 @@ public class CustomStainedGlassPaneDyeingRecipe extends SpecialCraftingRecipe {
     public boolean matches(RecipeInputInventory inventory, World world) {
         for (int i = 0; i < inventory.size(); ++i) {
             ItemStack itemStack2 = inventory.getStack(i);
-            if ((itemStack2.isIn(UnidyeTags.Items.GLASS_PANE) && i != 4)
+            if ((itemStack2.isIn(ConventionalItemTags.GLASS_PANES) && i != 4)
                     || (itemStack2.getItem() == UnidyeItems.CUSTOM_DYE && i == 4)) {
                 continue;
             }
@@ -36,8 +37,8 @@ public class CustomStainedGlassPaneDyeingRecipe extends SpecialCraftingRecipe {
     @Override
     public ItemStack craft(RecipeInputInventory inventory, DynamicRegistryManager registryManager) {
         ItemStack itemStack1 = new ItemStack(UnidyeBlocks.CUSTOM_STAINED_GLASS_PANE.asItem());
-        UnidyeUtils.setColor(itemStack1, UnidyeUtils.getMaterialColor(inventory.getStack(4), "glass"));
-        DyeableGlassBlockItem.setBeaconColor(itemStack1, UnidyeUtils.getMaterialColor(inventory.getStack(4), "leather"));
+        UnidyeUtils.setColor(itemStack1, CustomDyeItem.getMaterialColor(inventory.getStack(4), "glass"));
+        DyeableGlassBlockItem.setBeaconColor(itemStack1, CustomDyeItem.getMaterialColor(inventory.getStack(4), "leather"));
         itemStack1.setCount(8);
         return itemStack1;
     }

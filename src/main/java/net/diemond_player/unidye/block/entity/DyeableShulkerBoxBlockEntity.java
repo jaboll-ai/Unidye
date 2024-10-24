@@ -38,13 +38,6 @@ public class DyeableShulkerBoxBlockEntity extends LootableContainerBlockEntity
         implements SidedInventory {
     public static final int DEFAULT_COLOR = 16777215;
     public int color = DEFAULT_COLOR;
-    public static final int field_31354 = 9;
-    public static final int field_31355 = 3;
-    public static final int INVENTORY_SIZE = 27;
-    public static final int field_31357 = 1;
-    public static final int field_31358 = 10;
-    public static final float field_31359 = 0.5f;
-    public static final float field_31360 = 270.0f;
     public static final String ITEMS_KEY = "Items";
     private static final int[] AVAILABLE_SLOTS = IntStream.range(0, 27).toArray();
     private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(27, ItemStack.EMPTY);
@@ -272,11 +265,10 @@ public class DyeableShulkerBoxBlockEntity extends LootableContainerBlockEntity
         return this.animationStage == DyeableShulkerBoxBlockEntity.AnimationStage.CLOSED;
     }
 
-    public static enum AnimationStage {
+    public enum AnimationStage {
         CLOSED,
         OPENING,
         OPENED,
         CLOSING;
-
     }
 }

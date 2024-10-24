@@ -3,8 +3,8 @@ package net.diemond_player.unidye.recipes;
 import com.google.common.collect.Lists;
 import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.diemond_player.unidye.item.custom.CustomDyeItem;
-import net.diemond_player.unidye.util.UnidyeTags;
 import net.diemond_player.unidye.util.UnidyeUtils;
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
@@ -58,7 +58,7 @@ public class CustomShulkerBoxDyeingRecipe extends SpecialCraftingRecipe {
                 }
                 continue;
             }
-            if (itemStack2.isIn(UnidyeTags.Items.SHULKER_BOXES) && itemStack2.getItem() != UnidyeBlocks.CUSTOM_SHULKER_BOX.asItem()) {
+            if (itemStack2.isIn(ConventionalItemTags.SHULKER_BOXES) && itemStack2.getItem() != UnidyeBlocks.CUSTOM_SHULKER_BOX.asItem()) {
                 if (shulkerBox) {
                     return false;
                 }
@@ -87,7 +87,7 @@ public class CustomShulkerBoxDyeingRecipe extends SpecialCraftingRecipe {
                 dyeList.add((DyeItem) item);
                 continue;
             }
-            if (itemStack2.isIn(UnidyeTags.Items.SHULKER_BOXES) && item != UnidyeBlocks.CUSTOM_SHULKER_BOX.asItem()) {
+            if (itemStack2.isIn(ConventionalItemTags.SHULKER_BOXES) && item != UnidyeBlocks.CUSTOM_SHULKER_BOX.asItem()) {
                 itemStack = itemStack2;
             }
         }

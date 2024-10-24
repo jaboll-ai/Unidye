@@ -21,6 +21,4 @@ public class DyeableBlock extends Block implements IDyeableBlock {
             return new ItemStack(this);
         }
     }
-
-
 }
