@@ -42,9 +42,9 @@ public class CustomDyeItem extends DyeItem implements SignChangingItem, DyeableI
     }
 
     public static float getClosestVanillaDyeId(ItemStack stack) {
-        NbtCompound nbtCompound = stack.getNbt();
+        NbtCompound nbtCompound = stack.getOrCreateNbt();
         float id;
-        if (nbtCompound != null && nbtCompound.contains(CLOSEST_VANILLA_DYE_ID_KEY, NbtElement.NUMBER_TYPE)) {
+        if (nbtCompound.contains(CLOSEST_VANILLA_DYE_ID_KEY, NbtElement.NUMBER_TYPE)) {
             id = nbtCompound.getInt(CLOSEST_VANILLA_DYE_ID_KEY);
         } else {
             return 0;
@@ -60,16 +60,14 @@ public class CustomDyeItem extends DyeItem implements SignChangingItem, DyeableI
         return DEFAULT_COLOR;
     }
 
-    public String getMaterialHexColor(ItemStack stack, String materialType) {
+    public static String getMaterialHexColor(ItemStack stack, String materialType) {
         Integer color = getMaterialColor(stack, materialType);
-        return "#" + Integer.toString(color, 16).toUpperCase();
+        return String.format("#%06X", (0xFFFFFF & color));
     }
 
-    public void setMaterialColor(ItemStack itemStack, int n, String materialType) {
-        NbtCompound nbtCompound = itemStack.getNbt();
-        if(nbtCompound != null) {
-            nbtCompound.putInt(materialType, n);
-        }
+    public static void setMaterialColor(ItemStack itemStack, int n, String materialType) {
+        NbtCompound nbtCompound = itemStack.getOrCreateNbt();
+        nbtCompound.putInt(materialType, n);
     }
 
     @Override

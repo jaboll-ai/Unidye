@@ -53,7 +53,7 @@ public abstract class BuiltinModelItemRendererMixin {
     }
 
     @Inject(method = "render", at = @At(value = "HEAD"), cancellable = true)
-    private void render(ItemStack stack, ModelTransformationMode mode, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, CallbackInfo ci) {
+    private void unidye$render(ItemStack stack, ModelTransformationMode mode, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, CallbackInfo ci) {
         Item item = stack.getItem();
         if (item instanceof BlockItem) {
             Block block = ((BlockItem) item).getBlock();
@@ -77,7 +77,7 @@ public abstract class BuiltinModelItemRendererMixin {
     }
 
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/entity/BannerBlockEntity;getPatternListNbt(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/nbt/NbtList;"), cancellable = true)
-    private void render1(ItemStack stack, ModelTransformationMode mode, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, CallbackInfo ci) {
+    private void unidye$render1(ItemStack stack, ModelTransformationMode mode, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, CallbackInfo ci) {
         if (BlockItem.getBlockEntityNbt(stack).contains("CustomColored")) {
             List<Pair<RegistryEntry<BannerPattern>, ?>> list = DyeableBannerBlockEntity.getPatternsFromNbt(BlockItem.getBlockEntityNbt(stack).getInt("Base"), DyeableBannerBlockEntity.getPatternListNbt(stack));
             DyeableBannerBlockEntityRenderer.renderCanvas(matrices, vertexConsumers, light, overlay, this.modelShield.getPlate(), ModelLoader.SHIELD_BASE, false, list, stack.hasGlint());

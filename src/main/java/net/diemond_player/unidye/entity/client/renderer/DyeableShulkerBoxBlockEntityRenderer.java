@@ -4,6 +4,7 @@ import net.diemond_player.unidye.block.custom.DyeableShulkerBoxBlock;
 import net.diemond_player.unidye.block.entity.DyeableShulkerBoxBlockEntity;
 import net.diemond_player.unidye.entity.client.model.DyeableShulkerEntityModel;
 import net.diemond_player.unidye.entity.layer.UnidyeModelLayers;
+import net.diemond_player.unidye.util.UnidyeUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
@@ -47,12 +48,8 @@ public class DyeableShulkerBoxBlockEntityRenderer
         modelPart.setPivot(0.0f, 24.0f - shulkerBoxBlockEntity.getAnimationProgress(f) * 0.5f * 16.0f, 0.0f);
         modelPart.yaw = 270.0f * shulkerBoxBlockEntity.getAnimationProgress(f) * ((float) Math.PI / 180);
         VertexConsumer vertexConsumer = spriteIdentifier.getVertexConsumer(vertexConsumerProvider, RenderLayer::getEntityCutoutNoCull);
-        int color = shulkerBoxBlockEntity.color;
-        //todo use util here
-        float red = ((color & 0xFF0000) >> 16) / 255.0f;
-        float green = ((color & 0xFF00) >> 8) / 255.0f;
-        float blue = ((color & 0xFF) >> 0) / 255.0f;
-        this.model.render(matrixStack, vertexConsumer, i, j, red, green, blue, 1.0f);
+        float[] fs = UnidyeUtils.getColorArray(shulkerBoxBlockEntity.color);
+        this.model.render(matrixStack, vertexConsumer, i, j, fs[0], fs[1], fs[2], 1.0f);
         matrixStack.pop();
     }
 }

@@ -15,15 +15,15 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(FireworkStarRecipe.class)
 public abstract class FireworkStarRecipeMixin {
     @ModifyReturnValue(method = "matches(Lnet/minecraft/inventory/RecipeInputInventory;Lnet/minecraft/world/World;)Z", at = @At(value = "RETURN"))
-    private boolean matches(boolean original, @Local(argsOnly = true) RecipeInputInventory recipeInputInventory, @Local(argsOnly = true) World world) {
+    private boolean unidye$matches(boolean original, @Local(argsOnly = true) RecipeInputInventory recipeInputInventory, @Local(argsOnly = true) World world) {
         if (original) {
-            return doesItActuallyMatchThough(recipeInputInventory, world);
+            return checkForUnidyeItems(recipeInputInventory, world);
         }
         return false;
     }
 
     @Unique
-    private boolean doesItActuallyMatchThough(RecipeInputInventory recipeInputInventory, World world) {
+    private boolean checkForUnidyeItems(RecipeInputInventory recipeInputInventory, World world) {
         for (int i = 0; i < recipeInputInventory.size(); ++i) {
             ItemStack itemStack3 = recipeInputInventory.getStack(i);
             if (itemStack3.isEmpty()) continue;

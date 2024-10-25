@@ -1,7 +1,7 @@
 package net.diemond_player.unidye.recipes;
 
 import net.diemond_player.unidye.block.UnidyeBlocks;
-import net.diemond_player.unidye.item.custom.DyeableWoolBlockItem;
+import net.diemond_player.unidye.item.custom.DyeableLeatheryBlockItem;
 import net.diemond_player.unidye.util.UnidyeUtils;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
@@ -31,8 +31,7 @@ public class CustomBannerRecipe extends SpecialCraftingRecipe {
             if (itemStack2.getItem() == UnidyeBlocks.CUSTOM_WOOL.asItem() && i <= 5) {
                 if (!itemStack.isEmpty()) {
                     if (UnidyeUtils.getColor(itemStack2) == UnidyeUtils.getColor(itemStack)
-                            && (Objects.equals(DyeableWoolBlockItem.getMaterialColor(itemStack2, "leather"), DyeableWoolBlockItem.getMaterialColor(itemStack, "leather")))
-                            && (Objects.equals(DyeableWoolBlockItem.getMaterialColor(itemStack2, "bed"), DyeableWoolBlockItem.getMaterialColor(itemStack, "bed")))) {
+                            && DyeableLeatheryBlockItem.getLeatherColor(itemStack2) == DyeableLeatheryBlockItem.getLeatherColor(itemStack)) {
                         continue;
                     } else {
                         return false;
@@ -49,7 +48,7 @@ public class CustomBannerRecipe extends SpecialCraftingRecipe {
     @Override
     public ItemStack craft(RecipeInputInventory inventory, DynamicRegistryManager registryManager) {
         ItemStack itemStack1 = new ItemStack(UnidyeBlocks.CUSTOM_BANNER.asItem());
-        UnidyeUtils.setColor(itemStack1, DyeableWoolBlockItem.getMaterialColor(inventory.getStack(0), "leather"));
+        UnidyeUtils.setColor(itemStack1, DyeableLeatheryBlockItem.getLeatherColor(inventory.getStack(0)));
         return itemStack1;
     }
 

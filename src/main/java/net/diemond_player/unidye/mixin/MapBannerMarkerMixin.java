@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(MapBannerMarker.class)
 public abstract class MapBannerMarkerMixin {
     @Inject(method = "fromWorldBlock", at = @At(value = "HEAD"), cancellable = true)
-    private static void render(BlockView blockView, BlockPos blockPos, CallbackInfoReturnable<MapBannerMarker> cir) {
+    private static void unidye$fromWorldBlock(BlockView blockView, BlockPos blockPos, CallbackInfoReturnable<MapBannerMarker> cir) {
         BlockEntity blockEntity = blockView.getBlockEntity(blockPos);
         if (blockEntity instanceof DyeableBannerBlockEntity bannerBlockEntity) {
             Text text = bannerBlockEntity.hasCustomName() ? bannerBlockEntity.getCustomName() : null;

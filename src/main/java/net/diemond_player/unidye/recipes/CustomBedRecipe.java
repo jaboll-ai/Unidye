@@ -1,7 +1,7 @@
 package net.diemond_player.unidye.recipes;
 
 import net.diemond_player.unidye.block.UnidyeBlocks;
-import net.diemond_player.unidye.item.custom.DyeableWoolBlockItem;
+import net.diemond_player.unidye.item.custom.DyeableLeatheryBlockItem;
 import net.diemond_player.unidye.util.UnidyeUtils;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
@@ -39,7 +39,7 @@ public class CustomBedRecipe extends SpecialCraftingRecipe {
                 woolCount++;
                 if (!itemStack.isEmpty()) {
                     if (UnidyeUtils.getColor(itemStack2) == UnidyeUtils.getColor(itemStack)
-                            && (Objects.equals(DyeableWoolBlockItem.getMaterialColor(itemStack2, "leather"), DyeableWoolBlockItem.getMaterialColor(itemStack, "leather")))) {
+                            && DyeableLeatheryBlockItem.getLeatherColor(itemStack2) == DyeableLeatheryBlockItem.getLeatherColor(itemStack)) {
                         continue;
                     } else {
                         return false;
@@ -72,7 +72,7 @@ public class CustomBedRecipe extends SpecialCraftingRecipe {
                 break;
             }
         }
-        UnidyeUtils.setColor(itemStack1, DyeableWoolBlockItem.getMaterialColor(itemStack, "leather"));
+        UnidyeUtils.setColor(itemStack1, DyeableLeatheryBlockItem.getLeatherColor(itemStack));
         return itemStack1;
     }
 

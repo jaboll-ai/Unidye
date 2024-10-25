@@ -20,8 +20,8 @@ import java.util.ArrayList;
 @Mixin(ArmorDyeRecipe.class)
 public abstract class ArmorDyeRecipeMixin {
     /**
-     * @author
-     * @reason
+     * @author Diemond_Player
+     * @reason allows for Unidye logic
      */
     @Overwrite
     public boolean matches(RecipeInputInventory recipeInputInventory, World world) {
@@ -58,8 +58,8 @@ public abstract class ArmorDyeRecipeMixin {
     }
 
     /**
-     * @author
-     * @reason
+     * @author Diemond_Player
+     * @reason allows for Unidye logic
      */
     @Overwrite
     public ItemStack craft(RecipeInputInventory recipeInputInventory, DynamicRegistryManager dynamicRegistryManager) {

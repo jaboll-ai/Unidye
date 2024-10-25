@@ -1,6 +1,7 @@
 package net.diemond_player.unidye.mixin;
 
 import net.diemond_player.unidye.util.UnidyeAccessor;
+import net.diemond_player.unidye.util.UnidyeUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
@@ -88,9 +89,7 @@ public abstract class BlockModelRendererMixin implements UnidyeAccessor {
 
     @Unique
     private void unidye$renderQuad(BlockRenderView world, BlockState state, BlockPos pos, VertexConsumer vertexConsumer, MatrixStack.Entry matrixEntry, BakedQuad quad, float brightness0, float brightness1, float brightness2, float brightness3, int light0, int light1, int light2, int light3, int overlay, int color) {
-        float f = (float) (color >> 16 & 0xFF) / 255.0f;
-        float g = (float) (color >> 8 & 0xFF) / 255.0f;
-        float h = (float) (color & 0xFF) / 255.0f;
-        vertexConsumer.quad(matrixEntry, quad, new float[]{brightness0, brightness1, brightness2, brightness3}, f, g, h, new int[]{light0, light1, light2, light3}, overlay, true);
+        float[] fs = UnidyeUtils.getColorArray(color);
+        vertexConsumer.quad(matrixEntry, quad, new float[]{brightness0, brightness1, brightness2, brightness3}, fs[0], fs[1], fs[2], new int[]{light0, light1, light2, light3}, overlay, true);
     }
 }

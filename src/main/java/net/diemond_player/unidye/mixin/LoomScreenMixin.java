@@ -43,7 +43,7 @@ public abstract class LoomScreenMixin {
     }
 
     @Redirect(method = "drawBackground", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/block/entity/BannerBlockEntityRenderer;renderCanvas(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/model/ModelPart;Lnet/minecraft/client/util/SpriteIdentifier;ZLjava/util/List;)V"))
-    private void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, ModelPart canvas, SpriteIdentifier baseSprite, boolean isBanner, List<Pair<RegistryEntry<BannerPattern>, DyeColor>> patterns) {
+    private void unidye$drawBackground(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, ModelPart canvas, SpriteIdentifier baseSprite, boolean isBanner, List<Pair<RegistryEntry<BannerPattern>, DyeColor>> patterns) {
         if (banner.isOf(UnidyeItems.CUSTOM_BANNER)) {
             DyeableBannerBlockEntityRenderer.renderCanvas(matrices, vertexConsumers, light, overlay, canvas, baseSprite, isBanner, bannerPatterns);
         } else if (dye.isOf(UnidyeItems.CUSTOM_DYE)) {
@@ -54,7 +54,7 @@ public abstract class LoomScreenMixin {
     }
 
     @Inject(method = "onInventoryChanged", at = @At(value = "TAIL"))
-    private void onInventoryChanged(CallbackInfo ci, @Local(ordinal = 0) ItemStack itemStack) {
+    private void unidye$onInventoryChanged(CallbackInfo ci, @Local(ordinal = 0) ItemStack itemStack) {
         if (itemStack.isOf(UnidyeItems.CUSTOM_BANNER)) {
             bannerPatterns = DyeableBannerBlockEntity.getPatternsFromNbt(((DyeableBannerItem) itemStack.getItem()).getColor(itemStack), DyeableBannerBlockEntity.getPatternListNbt(itemStack));
         }

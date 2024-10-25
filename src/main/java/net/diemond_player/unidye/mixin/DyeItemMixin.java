@@ -21,14 +21,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(DyeItem.class)
 public abstract class DyeItemMixin {
     @Inject(method = "useOnEntity", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/SheepEntity;setColor(Lnet/minecraft/util/DyeColor;)V"))
-    private void useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+    private void unidye$useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         UnidyeAccessor sheep = (UnidyeAccessor) entity;
         sheep.unidye$setCustomColor(0xFFFFFF);
         sheep.unidye$setSecondaryCustomColor(0xFFFFFF);
     }
 
     @Inject(method = "useOnEntity", at = @At("HEAD"), cancellable = true)
-    private void useOnEntityCheck(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) throws NoSuchFieldException {
+    private void unidye$useOnEntityCheck(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) throws NoSuchFieldException {
         SheepEntity sheepEntity;
         if (entity instanceof SheepEntity && (sheepEntity = (SheepEntity) entity).isAlive() && !sheepEntity.isSheared()) {
             sheepEntity.getWorld().playSoundFromEntity(user, sheepEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0f, 1.0f);
@@ -44,7 +44,7 @@ public abstract class DyeItemMixin {
     }
 
     @Inject(method = "useOnSign", at = @At("HEAD"), cancellable = true)
-    private void useOnSign(World world, SignBlockEntity signBlockEntity, boolean front, PlayerEntity player, CallbackInfoReturnable<Boolean> cir) throws NoSuchFieldException {
+    private void unidye$useOnSign(World world, SignBlockEntity signBlockEntity, boolean front, PlayerEntity player, CallbackInfoReturnable<Boolean> cir) throws NoSuchFieldException {
         UnidyeAccessor unidyeAccessor = (UnidyeAccessor) signBlockEntity;
         if (front) {
             if (unidyeAccessor.unidye$getCustomColor() != 0xFFFFFF) {

@@ -1,7 +1,7 @@
 package net.diemond_player.unidye.recipes;
 
 import net.diemond_player.unidye.block.UnidyeBlocks;
-import net.diemond_player.unidye.item.custom.DyeableGlassBlockItem;
+import net.diemond_player.unidye.item.custom.DyeableLeatheryBlockItem;
 import net.diemond_player.unidye.util.UnidyeUtils;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
@@ -32,7 +32,7 @@ public class CustomStainedGlassPaneRecipe extends SpecialCraftingRecipe {
                 count++;
                 if (!itemStack.isEmpty()) {
                     if (UnidyeUtils.getColor(itemStack2) == UnidyeUtils.getColor(itemStack)
-                            && Objects.equals(DyeableGlassBlockItem.getBeaconColor(itemStack2), DyeableGlassBlockItem.getBeaconColor(itemStack))) {
+                            && Objects.equals(DyeableLeatheryBlockItem.getLeatherColor(itemStack2), DyeableLeatheryBlockItem.getLeatherColor(itemStack))) {
                         continue;
                     } else {
                         return false;
@@ -65,7 +65,7 @@ public class CustomStainedGlassPaneRecipe extends SpecialCraftingRecipe {
             }
         }
         UnidyeUtils.setColor(itemStack1, UnidyeUtils.getColor(itemStack));
-        DyeableGlassBlockItem.setBeaconColor(itemStack1, DyeableGlassBlockItem.getBeaconColor(itemStack));
+        DyeableLeatheryBlockItem.setLeatherColor(itemStack1, DyeableLeatheryBlockItem.getLeatherColor(itemStack));
         itemStack1.setCount(16);
         return itemStack1;
     }

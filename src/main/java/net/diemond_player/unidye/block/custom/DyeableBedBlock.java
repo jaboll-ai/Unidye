@@ -40,4 +40,8 @@ public class DyeableBedBlock extends BedBlock
     public DyeableBedBlock(AbstractBlock.Settings settings) {
         super(DyeColor.CYAN, settings);
     }
+    @Override
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new DyeableBedBlockEntity(pos, state);
+    }
 }

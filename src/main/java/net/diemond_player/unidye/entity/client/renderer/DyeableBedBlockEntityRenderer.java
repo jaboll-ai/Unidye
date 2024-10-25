@@ -6,6 +6,7 @@ import net.diemond_player.unidye.block.entity.DyeableBedBlockEntity;
 import net.diemond_player.unidye.block.entity.UnidyeBlockEntities;
 import net.diemond_player.unidye.entity.layer.UnidyeModelLayers;
 import net.diemond_player.unidye.util.UnidyeAccessor;
+import net.diemond_player.unidye.util.UnidyeUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
 import net.minecraft.block.DoubleBlockProperties;
@@ -81,12 +82,8 @@ public class DyeableBedBlockEntityRenderer
         matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(180.0f + direction.asRotation()));
         matrices.translate(-0.5f, -0.5f, -0.5f);
         VertexConsumer vertexConsumer = sprite.getVertexConsumer(vertexConsumers, RenderLayer::getEntitySolid);
-        int color = dyeableBedBlockEntity.color;
-        //todo use util here
-        float red = ((color & 0xFF0000) >> 16) / 255.0f;
-        float green = ((color & 0xFF00) >> 8) / 255.0f;
-        float blue = ((color & 0xFF) >> 0) / 255.0f;
-        ((UnidyeAccessor) (Object) part).unidye$renderCustomBed(matrices, vertexConsumer, light, overlay, red, green, blue, 1.0f);
+        float[] fs = UnidyeUtils.getColorArray(dyeableBedBlockEntity.color);
+        ((UnidyeAccessor) (Object) part).unidye$renderCustomBed(matrices, vertexConsumer, light, overlay, fs[0], fs[1], fs[2], 1.0f);
         matrices.pop();
     }
 }

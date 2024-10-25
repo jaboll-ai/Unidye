@@ -11,10 +11,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(FireworkStarItem.class)
 public abstract class FireworkStarItemMixin {
     @Inject(method = "getColorText", at = @At(value = "HEAD"), cancellable = true)
-    private static void matches2(int color, CallbackInfoReturnable<Text> cir) {
+    private static void unidye$getColorText(int color, CallbackInfoReturnable<Text> cir) {
         DyeColor dyeColor = DyeColor.byFireworkColor(color);
         if (dyeColor == null) {
-            cir.setReturnValue(Text.literal("#" + Integer.toString(color, 16).toUpperCase()));
+            cir.setReturnValue(Text.literal(String.format("#%06X", (0xFFFFFF & color))));
         }
     }
 }

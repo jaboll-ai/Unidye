@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 public abstract class SignBlockEntityRendererMixin {
 
     @ModifyArg(method = "renderText", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/text/OrderedText;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/client/font/TextRenderer$TextLayerType;II)I"), index = 3)
-    private int renderText1(int color, @Local(argsOnly = true) SignText signText) {
+    private int unidye$renderText1(int color, @Local(argsOnly = true) SignText signText) {
         UnidyeAccessor unidyeAccessor = (UnidyeAccessor) signText;
         if (unidyeAccessor.unidye$getCustomColor() != 0xFFFFFF) {
             int color2 = unidyeAccessor.unidye$getCustomColor();
@@ -29,7 +29,7 @@ public abstract class SignBlockEntityRendererMixin {
     }
 
     @ModifyArgs(method = "renderText", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;drawWithOutline(Lnet/minecraft/text/OrderedText;FFIILorg/joml/Matrix4f;Lnet/minecraft/client/render/VertexConsumerProvider;I)V"))
-    private void renderText(Args args, @Local(argsOnly = true) SignText signText) {
+    private void unidye$renderText(Args args, @Local(argsOnly = true) SignText signText) {
         UnidyeAccessor unidyeAccessor = (UnidyeAccessor) signText;
         if (unidyeAccessor.unidye$getCustomColor() != 0xFFFFFF) {
             int color2 = unidyeAccessor.unidye$getCustomColor();
@@ -42,7 +42,7 @@ public abstract class SignBlockEntityRendererMixin {
     }
 
     @ModifyArg(method = "render(Lnet/minecraft/block/entity/SignBlockEntity;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/block/BlockState;Lnet/minecraft/block/AbstractSignBlock;Lnet/minecraft/block/WoodType;Lnet/minecraft/client/model/Model;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/block/entity/SignBlockEntityRenderer;renderText(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/SignText;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IIIZ)V", ordinal = 0), index = 1)
-    private SignText render(SignText signText, @Local(argsOnly = true) SignBlockEntity signBlockEntity) {
+    private SignText unidye$render(SignText signText, @Local(argsOnly = true) SignBlockEntity signBlockEntity) {
         UnidyeAccessor unidyeAccessor = (UnidyeAccessor) signText;
         UnidyeAccessor unidyeAccessor2 = (UnidyeAccessor) signBlockEntity;
         unidyeAccessor.unidye$setCustomColor(unidyeAccessor2.unidye$getCustomColor());
@@ -50,7 +50,7 @@ public abstract class SignBlockEntityRendererMixin {
     }
 
     @ModifyArg(method = "render(Lnet/minecraft/block/entity/SignBlockEntity;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/block/BlockState;Lnet/minecraft/block/AbstractSignBlock;Lnet/minecraft/block/WoodType;Lnet/minecraft/client/model/Model;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/block/entity/SignBlockEntityRenderer;renderText(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/SignText;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IIIZ)V", ordinal = 1), index = 1)
-    private SignText render1(SignText signText, @Local(argsOnly = true) SignBlockEntity signBlockEntity) {
+    private SignText unidye$render1(SignText signText, @Local(argsOnly = true) SignBlockEntity signBlockEntity) {
         UnidyeAccessor unidyeAccessor = (UnidyeAccessor) signText;
         UnidyeAccessor unidyeAccessor2 = (UnidyeAccessor) signBlockEntity;
         unidyeAccessor.unidye$setCustomColor(unidyeAccessor2.unidye$getSecondaryCustomColor());

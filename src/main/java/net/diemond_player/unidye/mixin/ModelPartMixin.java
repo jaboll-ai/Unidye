@@ -36,9 +36,6 @@ public abstract class ModelPartMixin implements UnidyeAccessor {
 
     }
 
-    @Shadow
-    public abstract boolean hasChild(String child);
-
     @Override
     public void unidye$renderCustomBed(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
         if (!((ModelPart) (Object) this).visible) {

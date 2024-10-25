@@ -5,6 +5,7 @@ import net.diemond_player.unidye.block.custom.DyeableBannerBlock;
 import net.diemond_player.unidye.block.custom.DyeableWallBannerBlock;
 import net.diemond_player.unidye.block.entity.DyeableBannerBlockEntity;
 import net.diemond_player.unidye.entity.layer.UnidyeModelLayers;
+import net.diemond_player.unidye.util.UnidyeUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
@@ -107,12 +108,8 @@ public class DyeableBannerBlockEntityRenderer
                 float[] fs = dyeColor.getColorComponents();
                 pair.getFirst().getKey().map(key -> isBanner ? TexturedRenderLayers.getBannerPatternTextureId(key) : TexturedRenderLayers.getShieldPatternTextureId(key)).ifPresent(sprite -> canvas.render(matrices, sprite.getVertexConsumer(vertexConsumers, RenderLayer::getEntityNoOutline), light, overlay, fs[0], fs[1], fs[2], 1.0f));
             } else {
-                int color = (int) pair.getSecond();
-                //todo use util here
-                float red = ((color & 0xFF0000) >> 16) / 255.0f;
-                float green = ((color & 0xFF00) >> 8) / 255.0f;
-                float blue = ((color & 0xFF) >> 0) / 255.0f;
-                pair.getFirst().getKey().map(key -> isBanner ? TexturedRenderLayers.getBannerPatternTextureId(key) : TexturedRenderLayers.getShieldPatternTextureId(key)).ifPresent(sprite -> canvas.render(matrices, sprite.getVertexConsumer(vertexConsumers, RenderLayer::getEntityNoOutline), light, overlay, red, green, blue, 1.0f));
+                float[] fs = UnidyeUtils.getColorArray((int) pair.getSecond());
+                pair.getFirst().getKey().map(key -> isBanner ? TexturedRenderLayers.getBannerPatternTextureId(key) : TexturedRenderLayers.getShieldPatternTextureId(key)).ifPresent(sprite -> canvas.render(matrices, sprite.getVertexConsumer(vertexConsumers, RenderLayer::getEntityNoOutline), light, overlay, fs[0], fs[1], fs[2], 1.0f));
             }
         }
     }

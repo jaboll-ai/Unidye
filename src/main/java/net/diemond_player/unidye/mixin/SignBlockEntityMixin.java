@@ -17,13 +17,13 @@ public abstract class SignBlockEntityMixin implements UnidyeAccessor {
     private int customColorBack = 0xFFFFFF;
 
     @Inject(method = "writeNbt", at = @At("HEAD"))
-    protected void injectWriteMethod(NbtCompound nbt, CallbackInfo ci) {
+    protected void unidye$writeNbt(NbtCompound nbt, CallbackInfo ci) {
         nbt.putInt("unidye.custom_color_front", customColorFront);
         nbt.putInt("unidye.custom_color_back", customColorBack);
     }
 
     @Inject(method = "readNbt", at = @At("HEAD"))
-    protected void injectReadMethod(NbtCompound nbt, CallbackInfo info) {
+    protected void unidye$readNbt(NbtCompound nbt, CallbackInfo info) {
         if (nbt.contains("unidye.custom_color_front")) {
             this.customColorFront = nbt.getInt("unidye.custom_color_front");
         }

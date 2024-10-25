@@ -1,7 +1,7 @@
 package net.diemond_player.unidye.mixin;
 
 import net.diemond_player.unidye.block.UnidyeBlocks;
-import net.diemond_player.unidye.item.custom.DyeableWoolBlockItem;
+import net.diemond_player.unidye.item.custom.DyeableLeatheryBlockItem;
 import net.diemond_player.unidye.util.UnidyeAccessor;
 import net.diemond_player.unidye.util.UnidyeColor;
 import net.minecraft.entity.EntityType;
@@ -185,7 +185,7 @@ public abstract class SheepEntityMixin implements UnidyeAccessor {
                 DyeableItem item = (DyeableItem) UnidyeBlocks.CUSTOM_WOOL.asItem();
                 ItemStack itemStack = UnidyeBlocks.CUSTOM_WOOL.asItem().getDefaultStack();
                 item.setColor(itemStack, sheep.unidye$getSecondaryCustomColor());
-                DyeableWoolBlockItem.setMaterialColor(itemStack, sheep.unidye$getCustomColor(), "leather");
+                DyeableLeatheryBlockItem.setLeatherColor(itemStack, sheep.unidye$getCustomColor());
                 ItemEntity itemEntity = ((SheepEntity) (Object) this).dropStack(itemStack, 1);
                 if (itemEntity != null) {
                     itemEntity.setVelocity(itemEntity.getVelocity().add((double) ((((SheepEntity) (Object) this).getRandom().nextFloat() - ((SheepEntity) (Object) this).getRandom().nextFloat()) * 0.1F), (double) (((SheepEntity) (Object) this).getRandom().nextFloat() * 0.05F), (double) ((((SheepEntity) (Object) this).getRandom().nextFloat() - ((SheepEntity) (Object) this).getRandom().nextFloat()) * 0.1F)));

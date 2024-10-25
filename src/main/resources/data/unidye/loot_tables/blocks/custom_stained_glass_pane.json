@@ -43,8 +43,8 @@
               "source": "block_entity",
               "ops": [
                 {
-                  "source": "beaconColor",
-                  "target": "1.beaconColor",
+                  "source": "leather",
+                  "target": "leather",
                   "op": "replace"
                 }
               ]

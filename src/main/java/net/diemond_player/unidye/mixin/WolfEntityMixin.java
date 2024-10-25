@@ -28,31 +28,31 @@ public abstract class WolfEntityMixin implements UnidyeAccessor {
     private static final TrackedData<Integer> CUSTOM_COLOR = DataTracker.registerData(WolfEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
     @Inject(method = "writeCustomDataToNbt", at = @At("HEAD"))
-    private void writeCustomDataToNbt(NbtCompound nbt, CallbackInfo ci) {
+    private void unidye$writeCustomDataToNbt(NbtCompound nbt, CallbackInfo ci) {
         nbt.putInt("unidye.custom_color", unidye$getCustomColor());
     }
 
     @Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))
-    private void readCustomDataFromNbt(NbtCompound nbt, CallbackInfo ci) {
+    private void unidye$readCustomDataFromNbt(NbtCompound nbt, CallbackInfo ci) {
         if (nbt.contains("unidye.custom_color")) {
             unidye$setCustomColor(nbt.getInt("unidye.custom_color"));
         }
     }
 
     @Inject(method = "initDataTracker", at = @At("HEAD"))
-    private void initDataTracker(CallbackInfo ci) {
+    private void unidye$initDataTracker(CallbackInfo ci) {
         ((WolfEntity) (Object) this).getDataTracker().startTracking(CUSTOM_COLOR, 0xFFFFFF);
     }
 
 
     @Inject(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/WolfEntity;setCollarColor(Lnet/minecraft/util/DyeColor;)V"))
-    private void interactMobReset(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+    private void unidye$interactMobReset(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         UnidyeAccessor wolf = (UnidyeAccessor) ((WolfEntity) (Object) this);
         wolf.unidye$setCustomColor(0xFFFFFF);
     }
 
     @Inject(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/DyeItem;getColor()Lnet/minecraft/util/DyeColor;", shift = At.Shift.AFTER), cancellable = true)
-    private void interactMobCheck(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+    private void unidye$interactMobCheck(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         ItemStack itemStack = player.getStackInHand(hand);
         Item item = itemStack.getItem();
         UnidyeAccessor wolf = (UnidyeAccessor) ((WolfEntity) (Object) this);
@@ -67,7 +67,7 @@ public abstract class WolfEntityMixin implements UnidyeAccessor {
     }
 
     @Inject(method = "interactMob", at = @At("HEAD"), cancellable = true)
-    private void interactMobSet(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+    private void unidye$interactMobSet(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         ItemStack itemStack = player.getStackInHand(hand);
         Item item = itemStack.getItem();
         UnidyeAccessor wolf = (UnidyeAccessor) ((WolfEntity) (Object) this);

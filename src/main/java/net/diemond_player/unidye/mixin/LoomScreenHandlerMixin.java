@@ -35,10 +35,6 @@ public abstract class LoomScreenHandlerMixin extends ScreenHandler {
         this.input = input;
     }
 
-    //    @Inject(method = "updateOutputSlot", at = @At("HEAD"))
-//    private void updateOutputSlot(RegistryEntry<BannerPattern> pattern, CallbackInfo ci){
-//
-//    }
     @Mutable
     @Final
     @Shadow
@@ -49,9 +45,6 @@ public abstract class LoomScreenHandlerMixin extends ScreenHandler {
     @Shadow
     Slot bannerSlot;
 
-    @Final
-    @Shadow
-    private Slot patternSlot;
 
     @Final
     @Shadow
@@ -62,53 +55,9 @@ public abstract class LoomScreenHandlerMixin extends ScreenHandler {
     @Shadow
     private final Inventory input;
 
-    @Shadow
-    @Final
-    private ScreenHandlerContext context;
-
-//    @Inject(method = "<init>(ILnet/minecraft/entity/player/PlayerInventory;Lnet/minecraft/screen/ScreenHandlerContext;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/screen/LoomScreenHandler;addSlot(Lnet/minecraft/screen/slot/Slot;)Lnet/minecraft/screen/slot/Slot;", ordinal = 1))
-//    private void canInsert(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context, CallbackInfo ci){
-//        this.dyeSlot = this.addSlot(new Slot(this.input, 1, 33, 26){
-//
-//            @Override
-//            public boolean canInsert(ItemStack stack) {
-//                return stack.getItem() instanceof CustomDyeItem || stack.getItem() instanceof DyeItem;
-//            }
-//        });
-//    }
-
-//    @Inject(method = "<init>(ILnet/minecraft/entity/player/PlayerInventory;Lnet/minecraft/screen/ScreenHandlerContext;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/screen/LoomScreenHandler;addSlot(Lnet/minecraft/screen/slot/Slot;)Lnet/minecraft/screen/slot/Slot;", ordinal = 0))
-//    private void canInsert1(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context, CallbackInfo ci){
-//        this.bannerSlot = this.addSlot(new Slot(this.input, 0, 13, 26){
-//
-//            @Override
-//            public boolean canInsert(ItemStack stack) {
-//                return stack.getItem() instanceof BannerItem || stack.getItem() instanceof DyeableBannerItem;
-//            }
-//        });
-//    }
-
-//    @Inject(method = "quickMove", at = @At(value = "RETURN", ordinal = 1), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
-//    private void quickMove(PlayerEntity player, int slot, CallbackInfoReturnable<ItemStack> cir, @Local(ordinal = 1) ItemStack itemStack2){
-//        if (slot == this.dyeSlot.id || slot == this.bannerSlot.id || slot == this.patternSlot.id ? !this.insertItem(itemStack2, 4, 40, false) : (itemStack2.getItem() instanceof BannerItem ? !this.insertItem(itemStack2, this.bannerSlot.id, this.bannerSlot.id + 1, false) : (itemStack2.getItem() instanceof CustomDyeItem ? !this.insertItem(itemStack2, this.dyeSlot.id, this.dyeSlot.id + 1, false) : (itemStack2.getItem() instanceof BannerPatternItem ? !this.insertItem(itemStack2, this.patternSlot.id, this.patternSlot.id + 1, false) : (slot >= 4 && slot < 31 ? !this.insertItem(itemStack2, 31, 40, false) : slot >= 31 && slot < 40 && !this.insertItem(itemStack2, 4, 31, false)))))) {
-//            cir.setReturnValue(Items.ACACIA_LOG.getDefaultStack());
-//        } else {
-//            cir.cancel();
-//        }
-//    }
-
-//    @Inject(method = "updateOutputSlot", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/DyeItem;getColor()Lnet/minecraft/util/DyeColor;"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
-//    private void updateOutputSlott(RegistryEntry<BannerPattern> pattern, CallbackInfo ci, @Local(ordinal = 2) ItemStack itemStack3, @Local(ordinal = 1) ItemStack itemStack2){
-//        if(itemStack2.getItem() instanceof CustomDyeItem) {
-//            if (!ItemStack.areEqual(itemStack3, this.outputSlot.getStack())) {
-//                this.outputSlot.setStackNoCallbacks(itemStack3);
-//            }
-//            ci.cancel();
-//        }
-//    }
 
     @Inject(method = "updateOutputSlot", at = @At(value = "HEAD"), cancellable = true)
-    private void updateOutputSlottt(RegistryEntry<BannerPattern> pattern, CallbackInfo ci) {
+    private void unidye$updateOutputSlot(RegistryEntry<BannerPattern> pattern, CallbackInfo ci) {
         ItemStack itemStack = this.bannerSlot.getStack();
         ItemStack itemStack2 = this.dyeSlot.getStack();
         if (itemStack.isOf(UnidyeItems.CUSTOM_BANNER)) {
@@ -172,26 +121,4 @@ public abstract class LoomScreenHandlerMixin extends ScreenHandler {
             ci.cancel();
         }
     }
-
-//    @Inject(method = "quickMove", at = @At(value = "TAIL"), cancellable = true)
-//    private void updateO(PlayerEntity player, int slot, CallbackInfoReturnable<ItemStack> cir){
-//        Slot slot2 = (Slot)this.slots.get(slot);
-//        ItemStack itemStack2 = slot2.getStack();
-//        ItemStack itemStack = itemStack2.copy();
-//        if (slot == this.dyeSlot.id || slot == this.bannerSlot.id || slot == this.patternSlot.id ? !this.insertItem(itemStack2, 4, 40, false) : (itemStack2.getItem() instanceof BannerItem ? !this.insertItem(itemStack2, this.bannerSlot.id, this.bannerSlot.id + 1, false) : (itemStack2.getItem() instanceof CustomDyeItem ? !this.insertItem(itemStack2, this.dyeSlot.id, this.dyeSlot.id + 1, false) : (itemStack2.getItem() instanceof BannerPatternItem ? !this.insertItem(itemStack2, this.patternSlot.id, this.patternSlot.id + 1, false) : (slot >= 4 && slot < 31 ? !this.insertItem(itemStack2, 31, 40, false) : slot >= 31 && slot < 40 && !this.insertItem(itemStack2, 4, 31, false)))))) {
-//            if (itemStack2.isEmpty()) {
-//                slot2.setStack(ItemStack.EMPTY);
-//            } else {
-//                slot2.markDirty();
-//            }
-//            if (itemStack2.getCount() == itemStack.getCount()) {
-//                cir.setReturnValue(ItemStack.EMPTY);
-//                cir.cancel();
-//            } else {
-//                slot2.onTakeItem(player, itemStack2);
-//                cir.setReturnValue(itemStack);
-//                cir.cancel();
-//            }
-//        }
-//    }
 }

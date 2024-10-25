@@ -13,11 +13,11 @@ import java.util.List;
 @Mixin(DyeableItem.class)
 public interface DyeableItemMixin {
     /**
-     * @author
-     * @reason
+     * @author Diemond_Player
+     * @reason redirects to Unidye algorithm
      */
     @Overwrite
-    public static ItemStack blendAndSetColor(ItemStack stack, List<DyeItem> colors) {
+    static ItemStack blendAndSetColor(ItemStack stack, List<DyeItem> colors) {
         return UnidyeUtils.blendAndSetColor(stack, colors, Lists.newArrayList());
     }
 }

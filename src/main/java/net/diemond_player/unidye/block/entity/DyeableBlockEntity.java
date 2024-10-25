@@ -22,8 +22,8 @@ public class DyeableBlockEntity extends BlockEntity {
     public void writeNbt(NbtCompound nbt) {
         if (color != DEFAULT_COLOR) {
             nbt.putInt("color", color);
-            super.writeNbt(nbt);
         }
+        super.writeNbt(nbt);
     }
 
     @Override

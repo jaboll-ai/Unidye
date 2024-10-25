@@ -17,14 +17,14 @@ import java.util.List;
 @Mixin(ShieldItem.class)
 public abstract class ShieldItemMixin {
     @Inject(method = "getTranslationKey", at = @At(value = "RETURN", ordinal = 0), cancellable = true)
-    private void render(ItemStack stack, CallbackInfoReturnable<String> cir) {
+    private void unidye$getTranslationKey(ItemStack stack, CallbackInfoReturnable<String> cir) {
         if (BlockItem.getBlockEntityNbt(stack).contains("CustomColored")) {
             cir.setReturnValue("item.unidye.shield_custom_color");
         }
     }
 
     @Redirect(method = "appendTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/BannerItem;appendBannerTooltip(Lnet/minecraft/item/ItemStack;Ljava/util/List;)V"))
-    private void render1(ItemStack stack, List<Text> tooltip) {
+    private void unidye$appendTooltip(ItemStack stack, List<Text> tooltip) {
         if (BlockItem.getBlockEntityNbt(stack) != null && BlockItem.getBlockEntityNbt(stack).contains("CustomColored")) {
             DyeableBannerItem.appendBannerTooltip(stack, tooltip);
         } else {

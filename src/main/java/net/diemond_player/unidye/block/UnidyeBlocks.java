@@ -3,8 +3,7 @@ package net.diemond_player.unidye.block;
 import net.diemond_player.unidye.Unidye;
 import net.diemond_player.unidye.block.custom.*;
 import net.diemond_player.unidye.item.custom.DyeableBlockItem;
-import net.diemond_player.unidye.item.custom.DyeableGlassBlockItem;
-import net.diemond_player.unidye.item.custom.DyeableWoolBlockItem;
+import net.diemond_player.unidye.item.custom.DyeableLeatheryBlockItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -27,34 +26,7 @@ public class UnidyeBlocks {
     //FIXMEE proper map markers check MapIcon.Type FilledMapItem map_icons MapRenderer
     //FIXMEE map colors
     //TODOO dye blocks second layer! (umhhhhh)
-
-
-    //all of the to dos
-    //TODO CLEAN CODE
-    /*
-DyeableGlassBlock
-DyeablePaneBlock
-DyeableWoolBlock
-
-DyeableGlassBE
-DyeableWoolBE
-
-DyeableBlockItem
-DyeableGlassBlockItem
-DyeableWoolBlockItem
-
-recipes...
-
-UnidyeUtils
-
-UnidyeClient
-     */
-    //TODO CLEAN MIXINS
-    /*
-
-     */
-
-    /*TODO integration with:
+    /*TODOO integration with:
     DyeDepot
     Create
     Arts&Crafts
@@ -63,7 +35,7 @@ UnidyeClient
     ...
      */
 
-    public static final Block CUSTOM_WOOL = registerDyeableWoolBlock("custom_wool",
+    public static final Block CUSTOM_WOOL = registerDyeableLeatheryBlock("custom_wool",
             new DyeableWoolBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL)));
 
     public static final Block CUSTOM_CONCRETE = registerDyeableBlock("custom_concrete",
@@ -72,7 +44,7 @@ UnidyeClient
     public static final Block CUSTOM_TERRACOTTA = registerDyeableBlock("custom_terracotta",
             new DyeableBlock(FabricBlockSettings.copyOf(Blocks.TERRACOTTA)));
 
-    public static final Block CUSTOM_STAINED_GLASS = registerDyeableGlassBlock("custom_stained_glass",
+    public static final Block CUSTOM_STAINED_GLASS = registerDyeableLeatheryBlock("custom_stained_glass",
             new DyeableGlassBlock(FabricBlockSettings.copyOf(Blocks.GLASS)));
 
     public static final Block CUSTOM_CONCRETE_POWDER = registerDyeableBlock("custom_concrete_powder",
@@ -81,7 +53,7 @@ UnidyeClient
     public static final Block CUSTOM_CARPET = registerDyeableBlock("custom_carpet",
             new DyeableCarpetBlock(FabricBlockSettings.copyOf(Blocks.WHITE_CARPET)));
 
-    public static final Block CUSTOM_STAINED_GLASS_PANE = registerDyeableGlassBlock("custom_stained_glass_pane",
+    public static final Block CUSTOM_STAINED_GLASS_PANE = registerDyeableLeatheryBlock("custom_stained_glass_pane",
             new DyeablePaneBlock(FabricBlockSettings.copyOf(Blocks.WHITE_STAINED_GLASS_PANE)));
 
     public static final Block CUSTOM_CANDLE = registerDyeableBlock("custom_candle",
@@ -128,21 +100,12 @@ UnidyeClient
         Registry.register(Registries.ITEM, new Identifier(Unidye.MOD_ID, name), new DyeableBlockItem(block, fabricItemSettings));
     }
 
-    private static Block registerDyeableWoolBlock(String name, Block block) {
-        registerDyeableWoolBlockItem(name, block);
+    private static Block registerDyeableLeatheryBlock(String name, Block block) {
+        registerDyeableLeatheryBlockItem(name, block);
         return Registry.register(Registries.BLOCK, new Identifier(Unidye.MOD_ID, name), block);
     }
 
-    private static Block registerDyeableGlassBlock(String name, Block block) {
-        registerDyeableGlassBlockItem(name, block);
-        return Registry.register(Registries.BLOCK, new Identifier(Unidye.MOD_ID, name), block);
-    }
-
-    private static void registerDyeableWoolBlockItem(String name, Block block) {
-        Registry.register(Registries.ITEM, new Identifier(Unidye.MOD_ID, name), new DyeableWoolBlockItem(block, new FabricItemSettings()));
-    }
-
-    private static void registerDyeableGlassBlockItem(String name, Block block) {
-        Registry.register(Registries.ITEM, new Identifier(Unidye.MOD_ID, name), new DyeableGlassBlockItem(block, new FabricItemSettings()));
+    private static void registerDyeableLeatheryBlockItem(String name, Block block) {
+        Registry.register(Registries.ITEM, new Identifier(Unidye.MOD_ID, name), new DyeableLeatheryBlockItem(block, new FabricItemSettings()));
     }
 }
