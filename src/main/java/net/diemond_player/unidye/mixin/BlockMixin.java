@@ -2,7 +2,6 @@ package net.diemond_player.unidye.mixin;
 
 import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.diemond_player.unidye.block.entity.DyeableLeatheryBlockEntity;
-import net.diemond_player.unidye.item.custom.DyeableLeatheryBlockItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;

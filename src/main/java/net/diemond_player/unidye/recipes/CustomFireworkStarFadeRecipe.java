@@ -3,7 +3,6 @@ package net.diemond_player.unidye.recipes;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.diemond_player.unidye.item.custom.CustomDyeItem;
-import net.diemond_player.unidye.util.UnidyeUtils;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;

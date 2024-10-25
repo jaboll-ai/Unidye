@@ -1,7 +1,10 @@
 package net.diemond_player.unidye;
 
 import net.diemond_player.unidye.block.UnidyeBlocks;
-import net.diemond_player.unidye.block.entity.*;
+import net.diemond_player.unidye.block.entity.DyeableBlockEntity;
+import net.diemond_player.unidye.block.entity.DyeableLeatheryBlockEntity;
+import net.diemond_player.unidye.block.entity.DyeableShulkerBoxBlockEntity;
+import net.diemond_player.unidye.block.entity.UnidyeBlockEntities;
 import net.diemond_player.unidye.entity.UnidyeEntities;
 import net.diemond_player.unidye.entity.client.model.DyeableShulkerEntityModel;
 import net.diemond_player.unidye.entity.client.renderer.DyeableBannerBlockEntityRenderer;

@@ -14,8 +14,6 @@ import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-import java.util.Objects;
-
 public class CustomBannerRecipe extends SpecialCraftingRecipe {
     public CustomBannerRecipe(Identifier id, CraftingRecipeCategory category) {
         super(id, category);

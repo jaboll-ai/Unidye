@@ -13,8 +13,6 @@ import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-import java.util.Objects;
-
 public class CustomCarpetRecipe extends SpecialCraftingRecipe {
     public CustomCarpetRecipe(Identifier id, CraftingRecipeCategory category) {
         super(id, category);

@@ -35,6 +35,7 @@ public class UnidyeBlocks {
     ...
      */
 
+
     public static final Block CUSTOM_WOOL = registerDyeableLeatheryBlock("custom_wool",
             new DyeableWoolBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL)));
 

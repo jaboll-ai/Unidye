@@ -8,8 +8,7 @@
 		"Diemond_Player"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/DiemondPlayer/Unidye"
 	},
 	"license": "MIT",
 	"icon": "assets/unidye/icon.png",
@@ -35,6 +34,6 @@
 		"fabric-api": "*"
 	},
 	"suggests": {
-		"another-mod": "*"
+		"polymorph": "*"
 	}
 }

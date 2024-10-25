@@ -16,7 +16,6 @@ import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.screen.LoomScreenHandler;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
 import org.jetbrains.annotations.Nullable;
@@ -78,7 +77,7 @@ public abstract class LoomScreenHandlerMixin extends ScreenHandler {
                 NbtCompound nbtCompound2 = new NbtCompound();
                 nbtCompound2.putString("Pattern", pattern.value().getId());
                 if (itemStack2.getItem() instanceof CustomDyeItem) {
-                    nbtCompound2.putInt("Color", ((CustomDyeItem) itemStack2.getItem()).getMaterialColor(itemStack2, "leather"));
+                    nbtCompound2.putInt("Color", CustomDyeItem.getMaterialColor(itemStack2, "leather"));
                 } else {
                     nbtCompound2.putInt("Color", ((DyeItem) itemStack2.getItem()).getColor().getId());
                 }
@@ -93,13 +92,13 @@ public abstract class LoomScreenHandlerMixin extends ScreenHandler {
             ItemStack itemStack3 = new ItemStack(UnidyeItems.CUSTOM_BANNER, 1);
             if (!itemStack.isEmpty() && !itemStack2.isEmpty()) {
                 NbtList nbtList;
-                itemStack3.setNbt(itemStack.getNbt());
-                float[] a = ((BannerItem) itemStack.getItem()).getColor().getColorComponents();
+                ItemStack itemStack1 = itemStack.copy();
+                NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(itemStack1);
+                float[] a = ((BannerItem) itemStack1.getItem()).getColor().getColorComponents();
                 int n = (int) (a[0] * 255);
                 n = (n << 8) + (int) (a[1] * 255);
                 n = (n << 8) + (int) (a[2] * 255);
                 ((DyeableBannerItem) itemStack3.getItem()).setColor(itemStack3, n);
-                NbtCompound nbtCompound = BlockItem.getBlockEntityNbt(itemStack3);
                 if (nbtCompound != null && nbtCompound.contains("Patterns", NbtElement.LIST_TYPE)) {
                     nbtList = nbtCompound.getList("Patterns", NbtElement.COMPOUND_TYPE);
                 } else {
@@ -111,7 +110,7 @@ public abstract class LoomScreenHandlerMixin extends ScreenHandler {
                 }
                 NbtCompound nbtCompound2 = new NbtCompound();
                 nbtCompound2.putString("Pattern", pattern.value().getId());
-                nbtCompound2.putInt("Color", ((CustomDyeItem) itemStack2.getItem()).getMaterialColor(itemStack2, "leather"));
+                nbtCompound2.putInt("Color", CustomDyeItem.getMaterialColor(itemStack2, "leather"));
                 nbtList.add(nbtCompound2);
                 BlockItem.setBlockEntityNbt(itemStack3, UnidyeBlockEntities.DYEABLE_BANNER_BE, nbtCompound);
             }

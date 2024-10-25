@@ -10,8 +10,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.Nullable;
 
-import static net.diemond_player.unidye.block.entity.DyeableBlockEntity.DEFAULT_COLOR;
-
 public class DyeableLeatheryBlockEntity extends BlockEntity {
     public DyeableLeatheryBlockEntity(BlockPos pos, BlockState state) {
         super(UnidyeBlockEntities.DYEABLE_LEATHERY_BE, pos, state);
