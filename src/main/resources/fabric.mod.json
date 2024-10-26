@@ -3,7 +3,7 @@
 	"id": "unidye",
 	"version": "${version}",
 	"name": "Unidye",
-	"description": "Unidye adds a way to make any dye your mind can think of!",
+	"description": "Unidye adds a way to make any dye your mind can think of! Mix any dyes with crafting table and get new custom blends! Polymorph is recommended, otherwise use stick item when crafting custom dyes from vanilla ones.",
 	"authors": [
 		"Diemond_Player"
 	],
