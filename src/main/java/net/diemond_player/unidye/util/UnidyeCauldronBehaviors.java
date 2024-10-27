@@ -1,5 +1,6 @@
 package net.diemond_player.unidye.util;
 
+import net.diemond_player.unidye.Unidye;
 import net.diemond_player.unidye.block.UnidyeBlocks;
 import net.diemond_player.unidye.block.custom.DyeableShulkerBoxBlock;
 import net.diemond_player.unidye.block.entity.DyeableBannerBlockEntity;
@@ -159,6 +160,10 @@ public class UnidyeCauldronBehaviors {
         WATER_CAULDRON_BEHAVIOR.put(Blocks.ORANGE_BED.asItem(), CLEAN_BED);
         WATER_CAULDRON_BEHAVIOR.put(Blocks.GREEN_BED.asItem(), CLEAN_BED);
         WATER_CAULDRON_BEHAVIOR.put(Blocks.LIME_BED.asItem(), CLEAN_BED);
+
+        if(Unidye.SIMPLE_CONCRETE){
+            WATER_CAULDRON_BEHAVIOR.put(UnidyeBlocks.CUSTOM_CONCRETE_POWDER.asItem(), HARDEN_CUSTOM_CONCRETE_POWDER);
+        }
     }
 
     public static final CauldronBehavior CLEAN_CUSTOM_BANNER = (state, world, pos, player, hand, stack) -> {
@@ -283,6 +288,18 @@ public class UnidyeCauldronBehaviors {
     public static final CauldronBehavior CLEAN_BED = (state, world, pos, player, hand, stack) -> {
         if (!world.isClient) {
             ItemStack itemStack = new ItemStack(Blocks.WHITE_BED);
+            player.setStackInHand(hand, itemStack);
+            player.incrementStat(Stats.USE_CAULDRON);
+            LeveledCauldronBlock.decrementFluidLevel(state, world, pos);
+        }
+        return ActionResult.success(world.isClient);
+    };
+
+    public static final CauldronBehavior HARDEN_CUSTOM_CONCRETE_POWDER = (state, world, pos, player, hand, stack) -> {
+        if (!world.isClient) {
+            ItemStack itemStack = new ItemStack(UnidyeBlocks.CUSTOM_CONCRETE);
+            itemStack.setCount(stack.getCount());
+            UnidyeUtils.setColor(itemStack, UnidyeUtils.getColor(stack));
             player.setStackInHand(hand, itemStack);
             player.incrementStat(Stats.USE_CAULDRON);
             LeveledCauldronBlock.decrementFluidLevel(state, world, pos);

@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 public class Unidye implements ModInitializer {
 
     public static final boolean POLYMORPH = FabricLoader.getInstance().isModLoaded("polymorph");
+    public static final boolean SIMPLE_CONCRETE = FabricLoader.getInstance().isModLoaded("simpleconcrete");
     public static final String MOD_ID = "unidye";
 
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
