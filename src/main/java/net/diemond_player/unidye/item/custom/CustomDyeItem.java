@@ -16,6 +16,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DyeColor;
@@ -76,15 +77,24 @@ public class CustomDyeItem extends DyeItem implements SignChangingItem, DyeableI
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if (Screen.hasShiftDown()) {
-            tooltip.add(Text.translatable("tooltip.unidye.wool_color").append(getMaterialHexColor(stack, "wool")).formatted(Formatting.GRAY));
-            tooltip.add(Text.translatable("tooltip.unidye.sign_color").append(getMaterialHexColor(stack, "sign")).formatted(Formatting.GRAY));
-            tooltip.add(Text.translatable("tooltip.unidye.glass_color").append(getMaterialHexColor(stack, "glass")).formatted(Formatting.GRAY));
-            tooltip.add(Text.translatable("tooltip.unidye.candle_color").append(getMaterialHexColor(stack, "candle")).formatted(Formatting.GRAY));
-            tooltip.add(Text.translatable("tooltip.unidye.firework_color").append(getMaterialHexColor(stack, "firework")).formatted(Formatting.GRAY));
-            tooltip.add(Text.translatable("tooltip.unidye.concrete_color").append(getMaterialHexColor(stack, "concrete")).formatted(Formatting.GRAY));
-            tooltip.add(Text.translatable("tooltip.unidye.terracotta_color").append(getMaterialHexColor(stack, "terracotta")).formatted(Formatting.GRAY));
-            tooltip.add(Text.translatable("tooltip.unidye.shulker_box_color").append(getMaterialHexColor(stack, "shulker_box")).formatted(Formatting.GRAY));
-            tooltip.add(Text.translatable("tooltip.unidye.leather_color").append(getMaterialHexColor(stack, "leather")).formatted(Formatting.GRAY));
+            MutableText mutableText = Text.literal("■ ");
+            tooltip.add(mutableText.setStyle(mutableText.getStyle().withColor(getMaterialColor(stack, "wool"))).append(Text.translatable("tooltip.unidye.wool_color").append(getMaterialHexColor(stack, "wool")).formatted(Formatting.GRAY)));
+            mutableText = Text.literal("■ ");
+            tooltip.add(mutableText.setStyle(mutableText.getStyle().withColor(getMaterialColor(stack, "sign"))).append(Text.translatable("tooltip.unidye.sign_color").append(getMaterialHexColor(stack, "sign")).formatted(Formatting.GRAY)));
+            mutableText = Text.literal("■ ");
+            tooltip.add(mutableText.setStyle(mutableText.getStyle().withColor(getMaterialColor(stack, "glass"))).append(Text.translatable("tooltip.unidye.glass_color").append(getMaterialHexColor(stack, "glass")).formatted(Formatting.GRAY)));
+            mutableText = Text.literal("■ ");
+            tooltip.add(mutableText.setStyle(mutableText.getStyle().withColor(getMaterialColor(stack, "candle"))).append(Text.translatable("tooltip.unidye.candle_color").append(getMaterialHexColor(stack, "candle")).formatted(Formatting.GRAY)));
+            mutableText = Text.literal("■ ");
+            tooltip.add(mutableText.setStyle(mutableText.getStyle().withColor(getMaterialColor(stack, "firework"))).append(Text.translatable("tooltip.unidye.firework_color").append(getMaterialHexColor(stack, "firework")).formatted(Formatting.GRAY)));
+            mutableText = Text.literal("■ ");
+            tooltip.add(mutableText.setStyle(mutableText.getStyle().withColor(getMaterialColor(stack, "concrete"))).append(Text.translatable("tooltip.unidye.concrete_color").append(getMaterialHexColor(stack, "concrete")).formatted(Formatting.GRAY)));
+            mutableText = Text.literal("■ ");
+            tooltip.add(mutableText.setStyle(mutableText.getStyle().withColor(getMaterialColor(stack, "terracotta"))).append(Text.translatable("tooltip.unidye.terracotta_color").append(getMaterialHexColor(stack, "terracotta")).formatted(Formatting.GRAY)));
+            mutableText = Text.literal("■ ");
+            tooltip.add(mutableText.setStyle(mutableText.getStyle().withColor(getMaterialColor(stack, "shulker_box"))).append(Text.translatable("tooltip.unidye.shulker_box_color").append(getMaterialHexColor(stack, "shulker_box")).formatted(Formatting.GRAY)));
+            mutableText = Text.literal("■ ");
+            tooltip.add(mutableText.setStyle(mutableText.getStyle().withColor(getMaterialColor(stack, "leather"))).append(Text.translatable("tooltip.unidye.leather_color").append(getMaterialHexColor(stack, "leather")).formatted(Formatting.GRAY)));
         } else {
             tooltip.add(Text.translatable("tooltip.unidye.press_shift"));
         }

@@ -12,6 +12,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DyeColor;
@@ -55,7 +56,9 @@ public class DyeableBannerItem extends BannerItem implements DyeableItem {
             RegistryEntry<BannerPattern> registryEntry = BannerPattern.byId(nbtCompound2.getString("Pattern"));
             if (registryEntry == null) continue;
             if (DyeColor.WHITE == dyeColor && n != 0) {
-                registryEntry.getKey().map(key -> key.getValue().toShortTranslationKey()).ifPresent(translationKey -> tooltip.add(Text.literal("§7#" + Integer.toString(n, 16).toUpperCase() + " ").append(Text.translatable(TRANSLATION_KEY_PREFIX + translationKey).formatted(Formatting.GRAY))));
+                MutableText mutableText = Text.literal("■ ");
+                mutableText.setStyle(mutableText.getStyle().withColor(n));
+                registryEntry.getKey().map(key -> key.getValue().toShortTranslationKey()).ifPresent(translationKey -> tooltip.add(mutableText.append(Text.literal("§7#" + Integer.toString(n, 16).toUpperCase() + " ").append(Text.translatable(TRANSLATION_KEY_PREFIX + translationKey).formatted(Formatting.GRAY)))));
             } else {
                 registryEntry.getKey().map(key -> key.getValue().toShortTranslationKey()).ifPresent(translationKey -> tooltip.add(Text.translatable(TRANSLATION_KEY_PREFIX + translationKey + "." + dyeColor.getName()).formatted(Formatting.GRAY)));
             }

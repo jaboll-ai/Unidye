@@ -14,19 +14,23 @@ import net.minecraft.util.Identifier;
 
 public class UnidyeBlocks {
     //post-1.0
-    //TODOO jeb_ dye
-    //TODOO dye naming system (?)
-    //TODOO dye recipe saving system (?)
-    //TODOO add Llama carpets
-    //TODOO add Glazed Terracotta
-    //FIXMEE villagers do not use beds
-    //FIXMEE sheep do not drop colored wool on death
-    //FIXMEE when dropped on blocks; wrong particles
-    //FIXMEE middlemouse + ctrl works not like intended
-    //FIXMEE proper map markers check MapIcon.Type FilledMapItem map_icons MapRenderer
-    //FIXMEE map colors
-    //TODOO dye blocks second layer! (umhhhhh)
-    /*TODOO integration with:
+    //TODO jeb_ dye
+    //TODO dye naming system (?)
+    //TODO dye recipe saving system (?)
+    //TODO add Llama carpets
+    //TODO add Glazed Terracotta
+    //FIXME villagers do not use beds
+    //FIXME sheep do not drop colored wool on death
+    //FIXME when dropped on blocks; wrong particles
+    //FIXME middlemouse + ctrl works not like intended
+    //FIXME proper map markers check MapIcon.Type FilledMapItem map_icons MapRenderer
+    //FIXME map colors
+    //TODO dye blocks second layer! (umhhhhh)
+    //TODO tooltip colors
+    //TODO vanilla tooltip colors
+    //FIXME bed and shulker middlemouse click
+    //TODO en_gb and ru_ru translations
+    /*TODO integration with:
     DyeDepot
     Create
     Arts&Crafts

@@ -10,6 +10,7 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
@@ -42,10 +43,11 @@ public class DyeableLeatheryBlockItem extends DyeableBlockItem {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        MutableText mutableText = Text.literal("■ ");
         if(stack.isOf(UnidyeBlocks.CUSTOM_WOOL.asItem())) {
-            tooltip.add(Text.translatable("tooltip.unidye.banner_color").append(getLeatherHexColor(stack)).formatted(Formatting.GRAY));
+            tooltip.add(mutableText.setStyle(mutableText.getStyle().withColor(getLeatherColor(stack))).append(Text.translatable("tooltip.unidye.banner_color").append(getLeatherHexColor(stack)).formatted(Formatting.GRAY)));
         }else{
-            tooltip.add(Text.translatable("tooltip.unidye.beacon_color").append(getLeatherHexColor(stack)).formatted(Formatting.GRAY));
+            tooltip.add(mutableText.setStyle(mutableText.getStyle().withColor(getLeatherColor(stack))).append(Text.translatable("tooltip.unidye.beacon_color").append(getLeatherHexColor(stack)).formatted(Formatting.GRAY)));
         }
     }
 
