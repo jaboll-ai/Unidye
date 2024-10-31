@@ -17,6 +17,7 @@
     "ItemStackMixin",
     "LoomScreenHandlerMixin",
     "MapBannerMarkerMixin",
+    "PointOfInterestTypesMixin",
     "SheepEntityMixin",
     "ShieldDecorationRecipeMixin",
     "ShieldItemMixin",

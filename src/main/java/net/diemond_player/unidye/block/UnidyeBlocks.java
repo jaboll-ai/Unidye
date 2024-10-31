@@ -26,8 +26,6 @@ public class UnidyeBlocks {
     //FIXME proper map markers check MapIcon.Type FilledMapItem map_icons MapRenderer
     //FIXME map colors
     //TODO dye blocks second layer! (umhhhhh)
-    //TODO tooltip colors
-    //TODO vanilla tooltip colors
     //FIXME bed and shulker middlemouse click
     //TODO en_gb and ru_ru translations
     /*TODO integration with:
