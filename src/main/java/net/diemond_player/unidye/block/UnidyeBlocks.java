@@ -40,7 +40,7 @@ public class UnidyeBlocks {
     //1.1.0 changelog
     //colorful tooltips
     //villager bed fix
-    //langs:
+    //langs
 
 
     public static final Block CUSTOM_WOOL = registerDyeableLeatheryBlock("custom_wool",
