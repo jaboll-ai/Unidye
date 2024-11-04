@@ -97,7 +97,7 @@ public class MixedBannerDuplicateRecipe extends SpecialCraftingRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return new SpecialRecipeSerializer<MixedBannerDuplicateRecipe>(MixedBannerDuplicateRecipe::new);
+        return UnidyeSpecialRecipes.MIXED_BANNER_DUPLICATE;
     }
 
     public boolean fits(int width, int height) {

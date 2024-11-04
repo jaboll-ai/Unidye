@@ -48,6 +48,6 @@ public class CustomTerracottaDyeingRecipe extends SpecialCraftingRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return new SpecialRecipeSerializer<CustomTerracottaDyeingRecipe>(CustomTerracottaDyeingRecipe::new);
+        return UnidyeSpecialRecipes.CUSTOM_TERRACOTTA_DYEING;
     }
 }

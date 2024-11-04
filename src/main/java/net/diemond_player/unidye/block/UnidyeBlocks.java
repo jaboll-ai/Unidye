@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -19,15 +20,20 @@ public class UnidyeBlocks {
     //TODO dye recipe saving system (?)
     //TODO add Llama carpets
     //TODO add Glazed Terracotta
-    //FIXME villagers do not use beds
     //FIXME sheep do not drop colored wool on death
     //FIXME when dropped on blocks; wrong particles
     //FIXME middlemouse + ctrl works not like intended
     //FIXME proper map markers check MapIcon.Type FilledMapItem map_icons MapRenderer
     //FIXME map colors
+    //FIXME sign display issue
+    //FIXME pistons
+    //FIXME duality of recipes (shulker bed coloring)
     //TODO dye blocks second layer! (umhhhhh)
     //FIXME bed and shulker middlemouse click
     //TODO en_gb and ru_ru translations
+    //TODO colorful tooltip for regular dyes
+    //FIXME shulker box does not break when moved by pistons
+    //FIXME bed bouble drops when broken by moving the head part with a piston
     /*TODO integration with:
     DyeDepot
     Create
@@ -40,6 +46,7 @@ public class UnidyeBlocks {
     //1.1.0 changelog
     //colorful tooltips
     //villager bed fix
+    //multiplayer crash
     //langs
 
 

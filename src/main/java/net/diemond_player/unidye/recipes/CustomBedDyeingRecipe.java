@@ -99,6 +99,6 @@ public class CustomBedDyeingRecipe extends SpecialCraftingRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return new SpecialRecipeSerializer<CustomBedDyeingRecipe>(CustomBedDyeingRecipe::new);
+        return UnidyeSpecialRecipes.CUSTOM_BED_DYEING;
     }
 }

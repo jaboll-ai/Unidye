@@ -50,6 +50,6 @@ public class CustomStainedGlassDyeingRecipe extends SpecialCraftingRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return new SpecialRecipeSerializer<CustomStainedGlassDyeingRecipe>(CustomStainedGlassDyeingRecipe::new);
+        return UnidyeSpecialRecipes.CUSTOM_STAINED_GLASS_DYEING;
     }
 }

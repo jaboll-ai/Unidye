@@ -82,7 +82,7 @@ public class CustomDyeRecipe extends SpecialCraftingRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return new SpecialRecipeSerializer<CustomDyeRecipe>(CustomDyeRecipe::new);
+        return UnidyeSpecialRecipes.CUSTOM_DYE;
     }
 
     @Override

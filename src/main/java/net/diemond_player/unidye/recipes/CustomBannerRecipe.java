@@ -57,6 +57,6 @@ public class CustomBannerRecipe extends SpecialCraftingRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return new SpecialRecipeSerializer<CustomBannerRecipe>(CustomBannerRecipe::new);
+        return UnidyeSpecialRecipes.CUSTOM_BANNER;
     }
 }

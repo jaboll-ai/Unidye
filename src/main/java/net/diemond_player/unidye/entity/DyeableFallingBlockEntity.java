@@ -276,12 +276,6 @@ public class DyeableFallingBlockEntity extends FallingBlockEntity {
         this.destroyedOnLanding = true;
     }
 
-    @Override
-    public void populateCrashReport(CrashReportSection section) {
-        super.populateCrashReport(section);
-        section.add("Immitating BlockState", this.block.toString());
-    }
-
     public BlockState getBlockState() {
         return this.block;
     }

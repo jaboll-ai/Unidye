@@ -48,6 +48,6 @@ public class CustomCandleDyeingRecipe extends SpecialCraftingRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return new SpecialRecipeSerializer<CustomCandleDyeingRecipe>(CustomCandleDyeingRecipe::new);
+        return UnidyeSpecialRecipes.CUSTOM_CANDLE_DYEING;
     }
 }

@@ -78,6 +78,6 @@ public class CustomCarpetRecipe extends SpecialCraftingRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return new SpecialRecipeSerializer<CustomCarpetRecipe>(CustomCarpetRecipe::new);
+        return UnidyeSpecialRecipes.CUSTOM_CARPET;
     }
 }

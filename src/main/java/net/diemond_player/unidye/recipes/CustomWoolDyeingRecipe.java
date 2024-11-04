@@ -50,6 +50,6 @@ public class CustomWoolDyeingRecipe extends SpecialCraftingRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return new SpecialRecipeSerializer<CustomWoolDyeingRecipe>(CustomWoolDyeingRecipe::new);
+        return UnidyeSpecialRecipes.CUSTOM_WOOL_DYEING;
     }
 }

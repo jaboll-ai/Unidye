@@ -129,6 +129,6 @@ public class CustomFireworkStarFadeRecipe extends SpecialCraftingRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return new SpecialRecipeSerializer<CustomFireworkStarFadeRecipe>(CustomFireworkStarFadeRecipe::new);
+        return UnidyeSpecialRecipes.CUSTOM_FIREWORK_STAR_FADE;
     }
 }

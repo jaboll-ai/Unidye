@@ -106,6 +106,6 @@ public class CustomShulkerBoxDyeingRecipe extends SpecialCraftingRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return new SpecialRecipeSerializer<CustomShulkerBoxDyeingRecipe>(CustomShulkerBoxDyeingRecipe::new);
+        return UnidyeSpecialRecipes.CUSTOM_SHULKER_BOX_DYEING;
     }
 }

@@ -82,6 +82,6 @@ public class CustomShieldDecorationRecipe extends SpecialCraftingRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return new SpecialRecipeSerializer<CustomShieldDecorationRecipe>(CustomShieldDecorationRecipe::new);
+        return UnidyeSpecialRecipes.CUSTOM_SHIELD_DECORATION;
     }
 }

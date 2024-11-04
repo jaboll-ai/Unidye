@@ -80,6 +80,6 @@ public class CustomFireworkStarRecipe extends SpecialCraftingRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return new SpecialRecipeSerializer<CustomFireworkStarRecipe>(CustomFireworkStarRecipe::new);
+        return UnidyeSpecialRecipes.CUSTOM_FIREWORK_STAR;
     }
 }

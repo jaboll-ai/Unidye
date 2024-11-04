@@ -77,6 +77,6 @@ public class CustomStainedGlassPaneRecipe extends SpecialCraftingRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return new SpecialRecipeSerializer<CustomStainedGlassPaneRecipe>(CustomStainedGlassPaneRecipe::new);
+        return UnidyeSpecialRecipes.CUSTOM_STAINED_GLASS_PANE;
     }
 }

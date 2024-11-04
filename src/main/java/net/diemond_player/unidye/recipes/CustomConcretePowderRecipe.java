@@ -64,6 +64,6 @@ public class CustomConcretePowderRecipe extends SpecialCraftingRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return new SpecialRecipeSerializer<CustomConcretePowderRecipe>(CustomConcretePowderRecipe::new);
+        return UnidyeSpecialRecipes.CUSTOM_CONCRETE_POWDER;
     }
 }
