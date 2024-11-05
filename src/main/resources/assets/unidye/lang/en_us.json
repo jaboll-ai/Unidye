@@ -16,11 +16,11 @@
   "block.unidye.custom_shulker_box": "Custom Shulker Box",
   "block.unidye.custom_bed": "Custom Bed",
 
+  "tooltip.unidye.dye_color": "Dye Color: ",
   "tooltip.unidye.wool_color": "Wool Color: ",
   "tooltip.unidye.glass_color": "Glass Color: ",
   "tooltip.unidye.leather_color": "Leather/Etc. Color: ",
   "tooltip.unidye.banner_color": "Banner/Bed Color: ",
-  "tooltip.unidye.beacon_beam_color": "Beacon Beam Color: ",
   "tooltip.unidye.concrete_color": "Concrete Color: ",
   "tooltip.unidye.terracotta_color": "Terracotta Color: ",
   "tooltip.unidye.sign_color": "Sign Color: ",

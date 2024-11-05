@@ -27,16 +27,16 @@ public enum UnidyeColor {
     private static final IntFunction<UnidyeColor> BY_ID;
     private final int id;
     private final String name;
-    private final int dyeColor;
-    private final int woolColor;
-    private final int leatherColor;
-    private final int terracottaColor;
-    private final int concreteColor;
-    private final int glassColor;
-    private final int fireworkColor;
-    private final int signColor;
-    private final int shulkerBoxColor;
-    private final int candleColor;
+    public final int dyeColor;
+    public final int woolColor;
+    public final int leatherColor;
+    public final int terracottaColor;
+    public final int concreteColor;
+    public final int glassColor;
+    public final int fireworkColor;
+    public final int signColor;
+    public final int shulkerBoxColor;
+    public final int candleColor;
     private float[] colorComponents;
 
     private UnidyeColor(int id, String name, int dyeColor, int leatherColor, int woolColor, int terracottaColor, int concreteColor, int glassColor, int fireworkColor, int signColor, int shulkerBoxColor, int candleColor) {

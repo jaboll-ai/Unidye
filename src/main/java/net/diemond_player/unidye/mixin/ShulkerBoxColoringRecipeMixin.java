@@ -3,6 +3,8 @@ package net.diemond_player.unidye.mixin;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.diemond_player.unidye.item.custom.CustomDyeItem;
+import net.minecraft.block.Block;
+import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -28,7 +30,7 @@ public abstract class ShulkerBoxColoringRecipeMixin {
             ItemStack itemStack3 = recipeInputInventory.getStack(i);
             if (itemStack3.isEmpty()) continue;
             Item item = itemStack3.getItem();
-            if (item instanceof CustomDyeItem) {
+            if (item instanceof CustomDyeItem || Block.getBlockFromItem(item) instanceof ShulkerBoxBlock) {
                 return false;
             }
         }

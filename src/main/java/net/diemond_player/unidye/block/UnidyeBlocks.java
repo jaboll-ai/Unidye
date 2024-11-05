@@ -25,15 +25,7 @@ public class UnidyeBlocks {
     //FIXME middlemouse + ctrl works not like intended
     //FIXME proper map markers check MapIcon.Type FilledMapItem map_icons MapRenderer
     //FIXME map colors
-    //FIXME sign display issue
-    //FIXME pistons
-    //FIXME duality of recipes (shulker bed coloring)
     //TODO dye blocks second layer! (umhhhhh)
-    //FIXME bed and shulker middlemouse click
-    //TODO en_gb and ru_ru translations
-    //TODO colorful tooltip for regular dyes
-    //FIXME shulker box does not break when moved by pistons
-    //FIXME bed bouble drops when broken by moving the head part with a piston
     /*TODO integration with:
     DyeDepot
     Create
@@ -45,9 +37,14 @@ public class UnidyeBlocks {
 
     //1.1.0 changelog
     //colorful tooltips
+    // for vanilla dyes too!
     //villager bed fix
     //multiplayer crash
     //langs
+    //sign display issue
+    //shulker box and bed middle mouse issue
+    //shulker box piston interaction
+    //bed piston interaction
 
 
     public static final Block CUSTOM_WOOL = registerDyeableLeatheryBlock("custom_wool",
@@ -78,10 +75,10 @@ public class UnidyeBlocks {
             new DyeableCandleCakeBlock(CUSTOM_CANDLE, FabricBlockSettings.copyOf(Blocks.WHITE_CANDLE_CAKE)));
 
     public static final Block CUSTOM_SHULKER_BOX = registerDyeableBlock("custom_shulker_box",
-            new DyeableShulkerBoxBlock(FabricBlockSettings.copyOf(Blocks.WHITE_SHULKER_BOX)), new FabricItemSettings().maxCount(1));
+            new DyeableShulkerBoxBlock(FabricBlockSettings.copyOf(Blocks.WHITE_SHULKER_BOX).pistonBehavior(PistonBehavior.DESTROY)), new FabricItemSettings().maxCount(1));
 
     public static final Block CUSTOM_BED = registerDyeableBlock("custom_bed",
-            new DyeableBedBlock(FabricBlockSettings.copyOf(Blocks.WHITE_BED)), new FabricItemSettings().maxCount(1));
+            new DyeableBedBlock(FabricBlockSettings.copyOf(Blocks.WHITE_BED).pistonBehavior(PistonBehavior.DESTROY)), new FabricItemSettings().maxCount(1));
 
     public static final Block CUSTOM_BANNER = registerBlockWithoutItem("custom_banner",
             new DyeableBannerBlock(FabricBlockSettings.copyOf(Blocks.WHITE_BANNER)));

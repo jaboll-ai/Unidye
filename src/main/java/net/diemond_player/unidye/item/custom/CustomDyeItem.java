@@ -33,7 +33,7 @@ public class CustomDyeItem extends DyeItem implements SignChangingItem, DyeableI
     public static final int DEFAULT_COLOR = 16777215;
 
     public CustomDyeItem(Settings settings) {
-        super(DyeColor.CYAN, settings);
+        super(DyeColor.WHITE, settings);
     }
 
     @Override

@@ -54,6 +54,7 @@ public class DyeableBedBlockEntity extends BlockEntity {
         return createNbt();
     }
 
+
     public static int getColor(BlockView world, BlockPos pos) {
         if (world == null) {
             return DyeableBedBlockEntity.DEFAULT_COLOR;

@@ -174,13 +174,12 @@ public class DyeableShulkerBoxBlock extends ShulkerBoxBlock implements IDyeableB
 
     @Override
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-        Unidye.LOGGER.info("called");
+        ItemStack itemStack = super.getPickStack(world, pos, state);
+        world.getBlockEntity(pos, UnidyeBlockEntities.DYEABLE_SHULKER_BOX_BE).ifPresent(blockEntity -> blockEntity.setStackNbt(itemStack));
         if (DyeableShulkerBoxBlockEntity.getColor(world, pos) != DyeableShulkerBoxBlockEntity.DEFAULT_COLOR) {
-            ItemStack stack = super.getPickStack(world, pos, state);
-            return pickBlock(world, pos, stack);
-        } else {
-            return new ItemStack(this);
+            return pickBlock(world, pos, itemStack);
         }
+        return itemStack;
     }
 
     @Override
