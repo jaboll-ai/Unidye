@@ -1,0 +1,7 @@
+{
+  "parent": "unidye:block/template_three_candles",
+  "textures": {
+    "all": "unidye:block/custom_candle",
+    "particle": "unidye:block/custom_candle"
+  }
+}
