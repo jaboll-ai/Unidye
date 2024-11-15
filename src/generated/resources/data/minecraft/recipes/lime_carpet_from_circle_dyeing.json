@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "carpet_circle_dyeing",
+  "key": {
+    "D": {
+      "item": "minecraft:lime_dye"
+    },
+    "W": {
+      "tag": "minecraft:wool_carpets"
+    }
+  },
+  "pattern": [
+    "WWW",
+    "WDW",
+    "WWW"
+  ],
+  "result": {
+    "count": 8,
+    "item": "minecraft:lime_carpet"
+  },
+  "show_notification": true
+}

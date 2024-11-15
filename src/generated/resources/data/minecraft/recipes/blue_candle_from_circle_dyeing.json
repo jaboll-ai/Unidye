@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "candle_circle_dyeing",
+  "key": {
+    "D": {
+      "item": "minecraft:blue_dye"
+    },
+    "W": {
+      "tag": "minecraft:candles"
+    }
+  },
+  "pattern": [
+    "WWW",
+    "WDW",
+    "WWW"
+  ],
+  "result": {
+    "count": 8,
+    "item": "minecraft:blue_candle"
+  },
+  "show_notification": true
+}

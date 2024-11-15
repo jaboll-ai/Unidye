@@ -1,14 +1,17 @@
 package net.diemond_player.unidye;
 
 import com.mojang.logging.LogUtils;
+import net.diemond_player.unidye.block.UnidyeBlocks;
+import net.diemond_player.unidye.block.entity.UnidyeBlockEntities;
 import net.diemond_player.unidye.item.UnidyeItems;
+import net.diemond_player.unidye.recipes.UnidyeSpecialRecipes;
 import net.diemond_player.unidye.util.UnidyeModelPredicateProvider;
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -21,6 +24,8 @@ public class Unidye
 {
     public static final String MOD_ID = "unidye";
     public static final Logger LOGGER = LogUtils.getLogger();
+    public static final boolean POLYMORPH = ModList.get().isLoaded("polymorph");
+
 
 //    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
 //    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
@@ -42,13 +47,14 @@ public class Unidye
     public Unidye()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
-//        BLOCKS.register(modEventBus);
+        UnidyeBlocks.registerModBlocks(modEventBus);
+        UnidyeBlockEntities.registerBlockEntities(modEventBus);
         UnidyeItems.registerModItems(modEventBus);
         UnidyeItemGroups.registerItemGroups(modEventBus);
+        UnidyeSpecialRecipes.registerSpecialRecipes(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -73,13 +79,15 @@ public class Unidye
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents
-    {
+    public static class ClientModEvents {
         @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event)
-        {
+        public static void onClientSetup(FMLClientSetupEvent event) {
             // Some client setup code
             UnidyeModelPredicateProvider.registerModModels();
         }
+
+
+
+
     }
 }

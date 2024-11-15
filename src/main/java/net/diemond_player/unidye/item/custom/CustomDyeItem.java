@@ -1,6 +1,7 @@
 package net.diemond_player.unidye.item.custom;
 
 
+import net.diemond_player.unidye.Unidye;
 import net.diemond_player.unidye.util.UnidyeAccessor;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
