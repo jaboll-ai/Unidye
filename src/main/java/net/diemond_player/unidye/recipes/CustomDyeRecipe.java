@@ -53,7 +53,6 @@ public class CustomDyeRecipe extends CustomRecipe {
             }
             return false;
         }
-        Unidye.LOGGER.debug("matches"+String.valueOf((stick || Unidye.POLYMORPH) && difference));
         return (stick || Unidye.POLYMORPH) && difference;
     }
 
@@ -72,7 +71,6 @@ public class CustomDyeRecipe extends CustomRecipe {
             return ItemStack.EMPTY;
         }
         ItemStack itemStack = UnidyeUtils.blendAndSetColor(new ItemStack(UnidyeItems.CUSTOM_DYE.get()), list, Lists.newArrayList());
-        Unidye.LOGGER.info(itemStack.getTag().toString());
         itemStack.setCount(list.size());
         return itemStack;
     }
