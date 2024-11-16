@@ -128,7 +128,6 @@ mixin {
     // MixinGradle Settings
     add sourceSets.main, "unidye.refmap.json"
     config "unidye.mixins.json"
-    debug.export = true
 }
 
 dependencies {
