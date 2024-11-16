@@ -1,5 +1,6 @@
 {
   "ambientocclusion": false,
+  "render_type": "translucent",
   "textures": {
     "particle": "unidye:block/custom_stained_glass",
     "edge": "unidye:block/custom_stained_glass_pane_top"

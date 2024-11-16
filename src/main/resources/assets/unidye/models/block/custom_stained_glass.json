@@ -1,5 +1,6 @@
 {
   "parent": "unidye:block/tintable_block",
+  "render_type": "translucent",
   "textures": {
     "tint": "unidye:block/custom_stained_glass"
   }
