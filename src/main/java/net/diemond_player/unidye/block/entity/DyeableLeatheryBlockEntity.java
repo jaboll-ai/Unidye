@@ -9,25 +9,33 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
+public class DyeableLeatheryBlockEntity extends BlockEntity {
+    public DyeableLeatheryBlockEntity(BlockPos pPos, BlockState pBlockState) {
+        super(UnidyeBlockEntities.DYEABLE_LEATHERY_BE.get(), pPos, pBlockState);
+    }
 
-public class DyeableBlockEntity extends BlockEntity {
     public static final int DEFAULT_COLOR = 16777215;
     public int color = DEFAULT_COLOR;
-
-    public DyeableBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(UnidyeBlockEntities.DYEABLE_BE.get(), pPos, pBlockState);
-    }
+    public int leatherColor = DEFAULT_COLOR;
 
     @Override
     protected void saveAdditional(CompoundTag pTag) {
         if (color != DEFAULT_COLOR) {
             pTag.putInt("color", color);
         }
+        if (leatherColor != DEFAULT_COLOR) {
+            pTag.putInt("leather", leatherColor);
+        }
         super.saveAdditional(pTag);
     }
 
     @Override
     public void load(CompoundTag pTag) {
+        if (pTag.getInt("leather") == 0) {
+            leatherColor = DEFAULT_COLOR;
+        } else {
+            leatherColor = pTag.getInt("leather");
+        }
         if (pTag.getInt("color") == 0) {
             color = DEFAULT_COLOR;
         } else {
@@ -45,17 +53,15 @@ public class DyeableBlockEntity extends BlockEntity {
         return saveWithoutMetadata();
     }
 
-    public static int getColor(BlockGetter world, BlockPos pos) {
-        if (world == null) {
+    public static int getColor(BlockGetter level, BlockPos pos) {
+        if (level == null) {
             return DyeableBlockEntity.DEFAULT_COLOR;
         }
-        BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof DyeableBlockEntity dyeableBlockEntity) {
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        if (blockEntity instanceof DyeableLeatheryBlockEntity dyeableBlockEntity) {
             return dyeableBlockEntity.color;
         } else {
             return DyeableBlockEntity.DEFAULT_COLOR;
         }
     }
-
-
 }

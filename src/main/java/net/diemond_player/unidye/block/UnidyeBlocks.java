@@ -1,16 +1,12 @@
 package net.diemond_player.unidye.block;
 
 import net.diemond_player.unidye.Unidye;
-import net.diemond_player.unidye.block.custom.DyeableBlock;
-import net.diemond_player.unidye.block.custom.DyeableCandleBlock;
-import net.diemond_player.unidye.block.custom.DyeableCarpetBlock;
-import net.diemond_player.unidye.block.custom.DyeableConcretePowderBlock;
+import net.diemond_player.unidye.block.custom.*;
 import net.diemond_player.unidye.item.custom.DyeableBlockItem;
 import net.diemond_player.unidye.item.custom.DyeableLeatheryBlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -35,6 +31,12 @@ public class UnidyeBlocks {
             () -> new DyeableCarpetBlock(Block.Properties.copy(Blocks.WHITE_CARPET)));
     public static final RegistryObject<Block> CUSTOM_CANDLE = registerDyeableBlock("custom_candle",
             () -> new DyeableCandleBlock(Block.Properties.copy(Blocks.WHITE_CANDLE)));
+    public static final RegistryObject<Block> CUSTOM_WOOL = registerDyeableLeatheryBlock("custom_wool",
+            () -> new DyeableWoolBlock(Block.Properties.copy(Blocks.WHITE_WOOL)));
+    public static final RegistryObject<Block> CUSTOM_STAINED_GLASS = registerDyeableLeatheryBlock("custom_stained_glass",
+            () -> new DyeableGlassBlock(Block.Properties.copy(Blocks.GLASS)));
+    public static final RegistryObject<Block> CUSTOM_STAINED_GLASS_PANE = registerDyeableLeatheryBlock("custom_stained_glass_pane",
+            () -> new DyeablePaneBlock(Block.Properties.copy(Blocks.WHITE_STAINED_GLASS_PANE)));
 //    public static final RegistryObject<Block> CUSTOM_SHULKER_BOX = registerDyeableBlock("custom_shulker_box",
 //            new DyeableShulkerBoxBlock(BlockBehaviour.Properties.copy(Blocks.WHITE_SHULKER_BOX)), new FabricItemSettings().maxCount(1));
 //    public static final RegistryObject<Block> CUSTOM_BED = registerDyeableBlock("custom_bed",

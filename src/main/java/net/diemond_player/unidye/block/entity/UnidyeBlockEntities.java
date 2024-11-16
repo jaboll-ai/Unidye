@@ -22,6 +22,10 @@ public class UnidyeBlockEntities {
                 UnidyeBlocks.CUSTOM_CANDLE.get()
 //                UnidyeBlocks.CUSTOM_CANDLE_CAKE.get()
             ).build(null));
+    public static final Supplier<BlockEntityType<DyeableLeatheryBlockEntity>> DYEABLE_LEATHERY_BE = BLOCK_ENTITIES.register("dyeable_leathery_block_entity",
+            () -> BlockEntityType.Builder.of(DyeableLeatheryBlockEntity::new,
+                    UnidyeBlocks.CUSTOM_WOOL.get()
+            ).build(null));
 //    public static final BlockEntityType<DyeableBlockEntity> DYEABLE_BANNER_BE = BLOCK_ENTITIES.register("dyeable_block_entity", () -> new BlockEntityType<>(
 //            DyeableBlockEntity::new,
 //            UnidyeBlocks.CUSTOM_BANNER.get(),

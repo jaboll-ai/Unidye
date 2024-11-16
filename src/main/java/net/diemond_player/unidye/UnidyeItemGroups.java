@@ -21,7 +21,17 @@ public class UnidyeItemGroups {
         .icon(() -> UnidyeItems.CUSTOM_DYE.get().getDefaultInstance())
         .displayItems((parameters, output) -> {
             output.accept(UnidyeItems.CUSTOM_DYE.get());
-//            output.accept(UnidyeBlocks.CUSTOM_CONCRETE.get());
+            output.accept(UnidyeBlocks.CUSTOM_WOOL.get());
+            output.accept(UnidyeBlocks.CUSTOM_CARPET.get());
+            output.accept(UnidyeBlocks.CUSTOM_TERRACOTTA.get());
+            output.accept(UnidyeBlocks.CUSTOM_CONCRETE.get());
+            output.accept(UnidyeBlocks.CUSTOM_CONCRETE_POWDER.get());
+            output.accept(UnidyeBlocks.CUSTOM_STAINED_GLASS.get());
+            output.accept(UnidyeBlocks.CUSTOM_STAINED_GLASS_PANE.get());
+//            output.accept(UnidyeBlocks.CUSTOM_SHULKER_BOX.get());
+//            output.accept(UnidyeBlocks.CUSTOM_BED.get());
+            output.accept(UnidyeBlocks.CUSTOM_CANDLE.get());
+//            output.accept(UnidyeBlocks.CUSTOM_BANNER.get());
 
             //add diffrent once here
         }).build());

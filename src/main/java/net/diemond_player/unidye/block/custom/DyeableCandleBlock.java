@@ -1,5 +1,6 @@
 package net.diemond_player.unidye.block.custom;
 
+import net.diemond_player.unidye.Unidye;
 import net.diemond_player.unidye.block.entity.DyeableBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -7,11 +8,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CandleBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.HitResult;
 
 import static net.diemond_player.unidye.item.custom.DyeableBlockItem.DEFAULT_COLOR;
@@ -36,7 +34,7 @@ public class DyeableCandleBlock extends CandleBlock implements IDyeableBlock {
     @Override
     public boolean canBeReplaced(BlockState pState, BlockPlaceContext pUseContext) {
         if (getColor(pUseContext.getItemInHand())
-                != getColor(getCloneItemStack(pUseContext.getLevel(), pUseContext.getClickedPos(), pState))) {
+                != getColor(pickBlock(pUseContext.getLevel(), pUseContext.getClickedPos(), new ItemStack(this)))) {
             return false;
         }
         return super.canBeReplaced(pState, pUseContext);
